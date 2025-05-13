@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "components/*": ["./src/*"]
+      "components/*": ["./src/app/components/*"],
+      "css-variables": ["./src/styles/_variables.module.scss"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
