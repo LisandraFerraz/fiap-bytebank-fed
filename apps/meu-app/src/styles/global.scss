@@ -17,8 +17,25 @@ body {
 }
 
 ul,
-li {
+li,
+p {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+* {
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: v.$sogrey_faded;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: v.$sogrey_highlight;
+    border-radius: 10px;
+  }
 }

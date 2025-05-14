@@ -1,8 +1,21 @@
+@use "css-variables" as v;
+
 .statLayout {
   background-image: url("/balance-bg.svg");
   height: 200px;
-  width: 100%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 35px;
+
+  .btn {
+    background-color: v.$green_faded;
+    color: v.$dark_green_default;
+    font-size: v.$text-base;
+  }
 }

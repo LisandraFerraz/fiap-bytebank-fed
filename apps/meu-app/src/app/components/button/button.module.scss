@@ -1,0 +1,18 @@
+@use "css-variables" as v;
+
+.btn {
+  height: 35px;
+  padding: 0 15px;
+  border-radius: 100px;
+  transition: ease-out 0.2s;
+  cursor: pointer;
+  // font-size: calc(v.$text-sm + 0.25rem);
+
+  &:hover {
+    opacity: 80%;
+  }
+
+  svg {
+    margin-right: 10px;
+  }
+}
