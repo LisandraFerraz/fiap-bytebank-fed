@@ -1,0 +1,19 @@
+@use "css-variables" as v;
+
+.header {
+  background-color: v.$green_highlight;
+  color: v.$white_default;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 25px;
+  height: 50px;
+  font-size: v.$text-md;
+
+  > div:nth-child(2) {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+}
