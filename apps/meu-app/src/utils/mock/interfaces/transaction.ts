@@ -1,4 +1,4 @@
-enum TransacationTypes {
+export enum TransacationTypes {
   DEPOSITO = "Depósito",
   TRANSAFERENCIA = "Transferência",
 }

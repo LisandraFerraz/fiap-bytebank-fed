@@ -1,8 +1,6 @@
 import Image from "next/image";
 import styles from "./sidenav.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLeftRight } from "@fortawesome/free-solid-svg-icons";
-import { faPiggyBank } from "@fortawesome/free-solid-svg-icons";
+import { Icon } from "components/icon/icon";
 
 export const Sidenav = () => {
   return (
@@ -16,11 +14,11 @@ export const Sidenav = () => {
       <div>
         <ul>
           <li>
-            <FontAwesomeIcon icon={faLeftRight} />
+            <Icon iconKey="transaction" />
             Transferências
           </li>
           <li>
-            <FontAwesomeIcon icon={faPiggyBank} />
+            <Icon iconKey="investment" />
             Investimentos
           </li>
         </ul>

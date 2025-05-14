@@ -1,0 +1,22 @@
+@use "css-variables" as v;
+
+.transaction {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  .icon {
+    padding: 2px 6px;
+    background-color: v.$sogrey_faded;
+    font-size: calc(v.$text-sm + 0.25rem);
+    border-radius: 100px;
+  }
+
+  .deposit {
+    color: v.$dark_green_default;
+  }
+
+  .expanse {
+    color: v.$grey_highlight;
+  }
+}
