@@ -13,9 +13,17 @@
   justify-content: space-between;
   padding: 0 35px;
 
-  .btn {
-    background-color: v.$green_faded;
-    color: v.$dark_green_default;
-    font-size: v.$text-base;
+  .actions {
+    display: flex;
+    gap: 10px;
+    height: 100%;
+    align-items: end;
+    padding-bottom: 45px;
+
+    .btn {
+      background-color: v.$green_faded;
+      color: v.$dark_green_default;
+      font-size: v.$text-base;
+    }
   }
 }

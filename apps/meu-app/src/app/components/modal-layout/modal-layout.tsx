@@ -9,12 +9,14 @@ export const ModalLayout = ({
   children: React.ReactNode;
 }) => {
   return (
-    <div className={styles.modal}>
-      <div className={styles.modal_header}>
-        <span>{modalTitle}</span>
-        <Icon iconKey="close" />
+    <div className={styles.modal_background}>
+      <div className={styles.modal}>
+        <div className={styles.modal_header}>
+          <span>{modalTitle}</span>
+          <Icon iconKey="close" />
+        </div>
+        <div className={styles.modal_body}>{children}</div>
       </div>
-      <div className={styles.modal_body}>{children}</div>
     </div>
   );
 };

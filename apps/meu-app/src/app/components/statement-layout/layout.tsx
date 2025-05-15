@@ -1,8 +1,15 @@
+"use client";
+
 import { Balance } from "components/balance/balance";
 import styles from "./statement.module.scss";
 import { Button } from "components/button/button";
+import { TransactionModal } from "components/transaction-modal/transaction-modal";
+import { TransacationTypes } from "../../../utils/mock/interfaces/transaction";
+import { useState } from "react";
 
 export const StatementLayout = () => {
+  const [showModal, setShowModal] = useState<boolean>(true);
+
   return (
     <div className={styles.statLayout}>
       <Balance />
@@ -18,6 +25,9 @@ export const StatementLayout = () => {
           text="Nova transação"
         />
       </div>
+      {showModal && (
+        <TransactionModal transactionType={TransacationTypes.DEPOSITO} />
+      )}
     </div>
   );
 };

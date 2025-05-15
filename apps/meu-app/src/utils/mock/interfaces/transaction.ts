@@ -1,6 +1,6 @@
 export enum TransacationTypes {
-  DEPOSITO = "Depósito",
-  TRANSAFERENCIA = "Transferência",
+  DEPOSITO = "DEPOSITO",
+  TRANSAFERENCIA = "TRANSFERENCIA",
 }
 
 export interface ITransaction {
