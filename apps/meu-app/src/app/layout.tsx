@@ -1,8 +1,8 @@
+import { Header } from "@components/header/header";
 import "./../styles/global.scss";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import { Header } from "components/header/header";
 config.autoAddCss = false;
 
 export const metadata = {

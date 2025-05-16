@@ -1,11 +1,11 @@
 "use client";
 
-import { Balance } from "components/balance/balance";
+import { Balance } from "@components/balance/balance";
 import styles from "./statement.module.scss";
-import { Button } from "components/button/button";
-import { TransactionModal } from "components/transaction-modal/transaction-modal";
-import { TransacationTypes } from "../../../utils/mock/interfaces/transaction";
+import { Button } from "@components/button/button";
+import { TransactionModal } from "@components/transaction-modal/transaction-modal";
 import { useState } from "react";
+import { TransacationTypes } from "../../utils/mock/interfaces/transaction";
 
 export const StatementLayout = () => {
   const [showModal, setShowModal] = useState<boolean>(true);

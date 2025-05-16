@@ -1,11 +1,12 @@
 import styles from "./transaction.module.scss";
 
-import { Icon } from "components/icon/icon";
+import { Icon } from "@components/icon/icon";
+
+import { Button } from "@components/button/button";
 import {
   ITransaction,
   TransacationTypes,
-} from "../../../utils/mock/interfaces/transaction";
-import { Button } from "components/button/button";
+} from "../../utils/mock/interfaces/transaction";
 
 export const Transaction = ({ dataT }: { dataT: ITransaction }) => {
   const isDeposit = dataT?.tipo === TransacationTypes.DEPOSITO;

@@ -1,6 +1,6 @@
+import { icons } from "../../utils/mock/types";
 import styles from "./button.module.scss";
-import { icons } from "../../../utils/mock/types";
-import { Icon } from "components/icon/icon";
+import { Icon } from "@components/icon/icon";
 
 export const Button = ({
   btnClass,

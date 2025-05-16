@@ -1,7 +1,7 @@
 import styles from "./transaction-modal.module.scss";
-import { ModalLayout } from "components/modal-layout/modal-layout";
-import { TransacationTypes } from "../../../utils/mock/interfaces/transaction";
-import { Button } from "components/button/button";
+import { ModalLayout } from "@components/modal-layout/modal-layout";
+import { Button } from "@components/button/button";
+import { TransacationTypes } from "../../utils/mock/interfaces/transaction";
 
 export const TransactionModal = ({
   transactionType,

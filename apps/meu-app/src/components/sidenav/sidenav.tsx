@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./sidenav.module.scss";
-import { Icon } from "components/icon/icon";
+import { Icon } from "@components/icon/icon";
 
 export const Sidenav = () => {
   return (

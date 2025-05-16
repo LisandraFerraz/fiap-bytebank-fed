@@ -1,3 +1,3 @@
-import { byteIcons } from "components/icon/icons-list";
+import { byteIcons } from "@components/icon/icons-list";
 
 export type icons = keyof typeof byteIcons;
