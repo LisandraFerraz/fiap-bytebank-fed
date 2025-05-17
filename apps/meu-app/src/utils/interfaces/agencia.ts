@@ -1,5 +1,5 @@
 export interface IAgencia {
-  agencia: string;
+  digito: string;
   nome: string;
   endereco: string;
 }
