@@ -5,7 +5,7 @@ import styles from "./transaction-list.module.scss";
 import { Title } from "@components/title-text/title-text";
 import { useState } from "react";
 import { Transaction } from "@components/transaction/transaction";
-import { transactionsList } from "../../utils/mock/transactions";
+import { transactionsList } from "../../utils/transactions";
 
 export const TransactionList = () => {
   const [transactions, setTransactions] = useState<any>(transactionsList);

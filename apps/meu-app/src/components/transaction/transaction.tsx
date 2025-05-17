@@ -4,11 +4,11 @@ import { Icon } from "@components/icon/icon";
 
 import { Button } from "@components/button/button";
 import {
-  ITransaction,
+  ITransacao,
   TransacationTypes,
-} from "../../utils/mock/interfaces/transaction";
+} from "../../utils/interfaces/transaction";
 
-export const Transaction = ({ dataT }: { dataT: ITransaction }) => {
+export const Transaction = ({ dataT }: { dataT: ITransacao }) => {
   const isDeposit = dataT?.tipo === TransacationTypes.DEPOSITO;
   return (
     <div className={styles.transaction}>
