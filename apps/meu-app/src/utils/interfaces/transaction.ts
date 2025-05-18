@@ -4,15 +4,14 @@ export enum TransacationTypes {
 }
 
 export interface ITransferencia {
-  id: number;
-  contaOrigem: string | null;
+  id?: number;
   valor: number;
   data: string;
   descricao: string;
 }
 
 export interface IDepositos {
-  id: number;
+  id?: number;
   contaDestino: string | null;
   valor: number;
   data: string;
@@ -20,7 +19,7 @@ export interface IDepositos {
 }
 
 export interface ITransacao {
-  id: number;
+  id?: number;
   contaDestino: string | null; // destino/origem a depender do tipo
   valor: number;
   data: string;

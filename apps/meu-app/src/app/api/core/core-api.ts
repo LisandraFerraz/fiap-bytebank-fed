@@ -4,10 +4,10 @@ import { env } from "../_environment/environment";
 interface IApi {
   url: string;
   method: methods;
-  params?: any;
+  body?: any;
 }
 
-export const coreApi = async ({ url, method, params }: IApi) => {
+export const coreApi = async ({ url, method, body }: IApi) => {
   let preparedUrl = `${env.localApi}/${url}`;
 
   const config = {
@@ -15,8 +15,8 @@ export const coreApi = async ({ url, method, params }: IApi) => {
     headers: { "Content-Type": "application/json" },
   };
 
-  if (method !== "GET" && method !== "DELETE" && params) {
-    Object.assign(config, { params: params });
+  if (method !== "GET" && method !== "DELETE" && body) {
+    Object.assign(config, { body: body });
   }
 
   const res = await fetch(preparedUrl, config);

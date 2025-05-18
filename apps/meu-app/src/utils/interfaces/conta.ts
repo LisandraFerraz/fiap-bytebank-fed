@@ -1,6 +1,7 @@
 import { IDepositos, ITransferencia } from "./transaction";
 
 export interface IConta {
+  id?: number;
   numeroConta: string;
   digito: number;
   usuarioCpf: string;

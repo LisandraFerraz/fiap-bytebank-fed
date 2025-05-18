@@ -3,7 +3,6 @@ import { coreApi } from "../core/core-api";
 import { IConta } from "../../../utils/interfaces/conta";
 import { IAgencia } from "../../../utils/interfaces/agencia";
 import { IUsuarioConta } from "../../../utils/interfaces/user";
-import { error } from "console";
 
 /*
  * Retorna um json com os dados do usuário
