@@ -4,26 +4,22 @@ import { env } from "../_environment/environment";
 
 export async function POST(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
-  const body: IPayLoan = await request.json();
 
   const loanId = searchParams.get("loanId");
   const cpf = searchParams.get("cpf");
+  const body: IPayLoan = await request.json();
 
   const reqConta = await fetch(`${env.localApi}/contas?usuarioCpf=${cpf}`);
   const contas = await reqConta.json();
   const conta = contas[0];
 
-  console.log("conta ", conta.historicoEmprestimos);
-
   const loanIndex = conta.historicoEmprestimos.findIndex(
     (e: any) => e.id === loanId
   );
 
-  console.log("loan valor : ", conta.historicoEmprestimos[loanIndex].valor);
-  if (
-    body.valorPago > 0 &&
-    body.valorPago <= conta.historicoEmprestimos[loanIndex].valor
-  ) {
+  const valorEmprestimo = conta.historicoEmprestimos[loanIndex].valor;
+
+  if (body.valorPago > 0 && body.valorPago <= valorEmprestimo) {
     if (loanIndex !== undefined && loanIndex !== -1) {
       const updateReq = await fetch(`${env.localApi}/contas/${conta.id}`, {
         method: "PATCH",
@@ -33,16 +29,33 @@ export async function POST(request: NextRequest) {
           historicoEmprestimos: [
             {
               ...conta.historicoEmprestimos[loanIndex],
-              valor:
-                conta.historicoEmprestimos[loanIndex].valor - body.valorPago,
-              aberto:
-                body.valorPago === conta.historicoEmprestimos[loanIndex].valor
-                  ? false
-                  : true,
+              valor: valorEmprestimo - body.valorPago,
+              aberto: body.valorPago === valorEmprestimo ? false : true,
             },
           ],
         }),
       });
+      return new Response(
+        JSON.stringify({
+          updateReq,
+          successMsg: `Pagamento no valor R$ ${body.data} feito com sucesso.`,
+        })
+      );
     } // fim if index
+    else if (body.valorPago <= 0) {
+      return new Response(
+        JSON.stringify({
+          errorMsg: "O valor do pagamento não pode ser menor ou igual a 0.",
+        }),
+        { status: 400 }
+      );
+    } else if (body.valorPago > valorEmprestimo) {
+      return new Response(
+        JSON.stringify({
+          errorMsg: `O valor R$ ${body.valorPago} é maior que o débito aberto de R$ ${valorEmprestimo}`,
+        }),
+        { status: 400 }
+      );
+    }
   }
 }

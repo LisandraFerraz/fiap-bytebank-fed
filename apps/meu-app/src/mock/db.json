@@ -76,8 +76,8 @@
       "digito": 9,
       "usuarioCpf": "12345678901",
       "agencia": "001",
-      "linhaCredito": 2000,
-      "saldo": 10500,
+      "linhaCredito": 2500,
+      "saldo": 10000,
       "depositos": [
         {
           "id": 1,
@@ -107,8 +107,8 @@
         {
           "id": "a51faca8-af3f-4bdf-aa8f-d7844ce6d0c6",
           "data": "2025-05-19T01:28:08.561Z",
-          "valor": 500,
-          "aberto": true
+          "valor": 0,
+          "aberto": false
         }
       ]
     },

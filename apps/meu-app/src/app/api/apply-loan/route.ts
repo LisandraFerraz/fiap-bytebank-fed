@@ -42,7 +42,8 @@ export async function POST(request: NextRequest) {
       JSON.stringify({
         errorMsg:
           "O valor solicitado é maior do que sua linha de crédito disponível. Por favor, solicite um valor dentro do limite.",
-      })
+      }),
+      { status: 400 }
     );
   }
 }
