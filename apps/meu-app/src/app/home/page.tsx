@@ -6,11 +6,11 @@ import { TransactionList } from "@components/transactions-list/transaction-list"
 import { useEffect } from "react";
 import { UseUser } from "../../utils/hooks/useUser";
 import { UseTransactions } from "../../utils/hooks/useTransactions";
-import { ITransferencia } from "../../utils/interfaces/transaction";
+import { IPayLoan, ITransferencia } from "../../utils/interfaces/transaction";
 
 export default function Home() {
   const { getUserInfo } = UseUser();
-  const { sendMoney, addMoney } = UseTransactions();
+  const { sendMoney, addMoney, applyLoan, payLoan } = UseTransactions();
 
   useEffect(() => {
     const getData = async () => {
@@ -37,7 +37,22 @@ export default function Home() {
       addMoney("789123", data); // TODO: alterar para conta ativa
     };
 
-    addMoneyTest();
+    const applyLoanTest = () => {
+      applyLoan("12345678901", 2000);
+    };
+
+    const payLoanTest = () => {
+      const dateNow = new Date();
+      let body: IPayLoan = {
+        valorPago: 500,
+        data: dateNow,
+      };
+      payLoan("12345678901", "a51faca8-af3f-4bdf-aa8f-d7844ce6d0c6", body);
+    };
+
+    payLoanTest();
+    // applyLoanTest();
+    // addMoneyTest();
     // sendMoneyTest();
     // getData();
   }, []);

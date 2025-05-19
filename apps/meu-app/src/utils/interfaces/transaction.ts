@@ -26,3 +26,8 @@ export interface ITransacao {
   descricao: string;
   tipo: TransacationTypes;
 }
+
+export interface IPayLoan {
+  valorPago: number;
+  data: Date;
+}

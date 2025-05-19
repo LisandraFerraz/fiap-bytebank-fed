@@ -1,5 +1,9 @@
 import { endpoints } from "../../app/api/_environment/endpoints";
-import { ITransferencia, TransacationTypes } from "../interfaces/transaction";
+import {
+  IPayLoan,
+  ITransferencia,
+  TransacationTypes,
+} from "../interfaces/transaction";
 
 export const UseTransactions = () => {
   // Envia dinheiro
@@ -25,11 +29,22 @@ export const UseTransactions = () => {
     });
   };
 
-  // Calcula câmbio
-  const currencyExc = async () => {};
-
   // Pede empréstimo
-  const applyLoan = async () => {};
+  const applyLoan = async (cpf: string, loan: number) => {
+    return await fetch(`${endpoints.applyLoan}?cpf=${cpf}&loan=${loan}`, {
+      method: "POST",
+    });
+  };
 
-  return { sendMoney, addMoney };
+  const payLoan = async (cpf: string, loanId: string, body: IPayLoan) => {
+    await fetch(`${endpoints.payLoan}?cpf=${cpf}&loanId=${loanId}`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+  };
+
+  // TODO: Calcula câmbio
+  // const currencyExc = async () => {};
+
+  return { sendMoney, addMoney, applyLoan, payLoan };
 };

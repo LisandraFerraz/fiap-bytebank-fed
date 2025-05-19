@@ -77,7 +77,7 @@
       "usuarioCpf": "12345678901",
       "agencia": "001",
       "linhaCredito": 2000,
-      "saldo": 10000,
+      "saldo": 10500,
       "depositos": [
         {
           "id": 1,
@@ -101,6 +101,14 @@
           "data": "20/12/2025",
           "descricao": "Testando transferencia novamente",
           "contaDestino": "789123"
+        }
+      ],
+      "historicoEmprestimos": [
+        {
+          "id": "a51faca8-af3f-4bdf-aa8f-d7844ce6d0c6",
+          "data": "2025-05-19T01:28:08.561Z",
+          "valor": 500,
+          "aberto": true
         }
       ]
     },
@@ -142,7 +150,8 @@
           "data": "2025-05-14T15:00:00Z",
           "descricao": "Pagamento"
         }
-      ]
+      ],
+      "historicoEmprestimos": []
     },
     {
       "id": "3",
@@ -151,7 +160,7 @@
       "usuarioCpf": "32165498722",
       "agencia": "003",
       "linhaCredito": 3000,
-      "saldo": 3500,
+      "saldo": 5500,
       "depositos": [
         {
           "id": 1,
@@ -166,6 +175,20 @@
           "data": "20/01/2025",
           "descricao": "Adicionando dinheiro na propria conta",
           "contaOrigem": null
+        },
+        {
+          "id": 3,
+          "valor": 1000,
+          "data": "20/01/2025",
+          "descricao": "Adicionando dinheiro na propria conta",
+          "contaOrigem": null
+        },
+        {
+          "id": 4,
+          "valor": 1000,
+          "data": "20/01/2025",
+          "descricao": "Adicionando dinheiro na propria conta",
+          "contaOrigem": null
         }
       ],
       "transferencias": [
@@ -176,7 +199,8 @@
           "data": "2025-05-13T10:30:00Z",
           "descricao": "Reembolso"
         }
-      ]
+      ],
+      "historicoEmprestimos": []
     }
   ]
 }

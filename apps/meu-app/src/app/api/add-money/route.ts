@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { env } from "../_environment/environment";
+import { v4 as generateUUID } from "uuid";
 
 export async function POST(request: Request) {
   const bodyReq = await request.json();
@@ -14,7 +15,7 @@ export async function POST(request: Request) {
   const conta = contas[0];
 
   const body = {
-    id: conta["depositos"].length + 1,
+    id: generateUUID(),
     ...bodyReq,
     contaOrigem: null, // significa que o deposito foi feito pelo dono da conta
   };

@@ -1,4 +1,5 @@
 import { env } from "../_environment/environment";
+import { v4 as generateUUID } from "uuid";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -19,7 +20,7 @@ export async function POST(request: Request) {
 
   // Depositando em uma conta destino e adicionando depósito no histórico
   let bodyDeposito = {
-    id: contaDestino["depositos"].length + 1,
+    id: generateUUID(),
     ...body,
     contaOrigem: Number(contaOrigem.numeroConta),
   };
@@ -33,7 +34,7 @@ export async function POST(request: Request) {
 
   // Deduzindo o valor do deposito na conta origem e adicionando transferência no histórico
   let bodyTransacao = {
-    id: contaOrigem["transferencias"].length + 1,
+    id: generateUUID(),
     ...body,
     contaDestino: Number(contaDNum),
   };
