@@ -1,4 +1,4 @@
-import { IDepositos, ITransferencia } from "./transaction";
+import { IDepositos } from "./transaction";
 
 export interface IConta {
   id?: number;
@@ -9,5 +9,20 @@ export interface IConta {
   agencia: string;
   saldo: number;
   depositos: IDepositos;
-  transferencias: ITransferencia;
+  transferencias: ITransferenciaG;
+  historicoEmprestimos: IEmprestimos;
+}
+
+interface IEmprestimos {
+  id?: string;
+  data: string;
+  valor: number;
+  aberto: boolean;
+}
+
+interface ITransferenciaG {
+  id?: number;
+  valor: number;
+  data: string;
+  descricao: string;
 }

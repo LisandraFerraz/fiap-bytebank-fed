@@ -3,13 +3,25 @@ export enum TransacationTypes {
   TRANSAFERENCIA = "TRANSFERENCIA",
 }
 
-export interface ITransferencia {
+// mantén
+export interface ITed {
   id?: number;
   valor: number;
   data: string;
   descricao: string;
+  pix?: string;
+  numConta?: string;
+}
+// mantén
+export interface IPix {
+  id?: number;
+  valor: number;
+  data: string;
+  descricao: string;
+  chavePix: string;
 }
 
+// mantén
 export interface IDepositos {
   id?: number;
   contaDestino: string | null;
@@ -18,16 +30,18 @@ export interface IDepositos {
   descricao: string;
 }
 
-export interface ITransacao {
-  id?: number;
-  contaDestino: string | null; // destino/origem a depender do tipo
-  valor: number;
-  data: string;
-  descricao: string;
-  tipo: TransacationTypes;
-}
+// mantén
+// export interface ITransacao {
+//   id?: number;
+//   contaDestino: string | null; // destino/origem a depender do tipo
+//   valor: number;
+//   data: string;
+//   descricao: string;
+//   tipo: TransacationTypes;
+// }
 
 export interface IPayLoan {
+  id?: number;
   valorPago: number;
   data: Date;
 }

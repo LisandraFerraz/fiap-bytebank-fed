@@ -1,17 +1,9 @@
 import { endpoints } from "../../app/api/_environment/endpoints";
-import {
-  IPayLoan,
-  ITransferencia,
-  TransacationTypes,
-} from "../interfaces/transaction";
+import { IPayLoan, IPix, ITed } from "../interfaces/transaction";
 
 export const UseTransactions = () => {
   // Envia dinheiro
-  const sendMoney = (
-    cpf: string,
-    contaDestino: string,
-    body: ITransferencia
-  ) => {
+  const sendBankDeposit = (cpf: string, contaDestino: string, body: ITed) => {
     return fetch(
       `${endpoints.sendMoney}?cpf=${cpf}&contaDestino=${contaDestino}`,
       {
@@ -21,8 +13,15 @@ export const UseTransactions = () => {
     );
   };
 
+  const sendPix = (cpf: string, body: IPix) => {
+    return fetch(`${endpoints.sendPix}?cpf=${cpf}`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+  };
+
   // Adiciona dinheiro na propria conta
-  const addMoney = async (contaDestino: string, body: ITransferencia) => {
+  const addMoney = async (contaDestino: string, body: ITed) => {
     return fetch(`${endpoints.addMoney}?contaDestino=${contaDestino}`, {
       method: "POST",
       body: JSON.stringify(body),
@@ -46,5 +45,5 @@ export const UseTransactions = () => {
   // TODO: Calcula câmbio
   // const currencyExc = async () => {};
 
-  return { sendMoney, addMoney, applyLoan, payLoan };
+  return { sendPix, sendBankDeposit, addMoney, applyLoan, payLoan };
 };

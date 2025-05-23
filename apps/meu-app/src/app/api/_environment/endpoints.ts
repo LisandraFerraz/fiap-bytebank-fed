@@ -4,4 +4,5 @@ export const endpoints = {
   addMoney: "/api/add-money",
   applyLoan: "/api/apply-loan",
   payLoan: "/api/pay-loan",
+  sendPix: "/api/send-pix",
 };
