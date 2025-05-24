@@ -1,7 +1,8 @@
 "use client";
 
-import { InputText } from "@components/input-text/input-text";
+import { v4 as generateUUID } from "uuid";
 import styles from "./styles.module.scss";
+import { InputText } from "@components/input-text/input-text";
 import { useState } from "react";
 import { IPix } from "../../utils/interfaces/transaction";
 import { Button } from "@components/button/button";
@@ -18,9 +19,13 @@ export default function SendPix() {
   });
 
   const updateBody = (key: string, value: string) => {
+    const dateToday = new Date();
+
     setPixBody({
+      id: generateUUID(),
       ...pixBody,
       [key]: key === "valor" ? Number(value) : value,
+      data: String(dateToday),
     });
   };
 
@@ -32,7 +37,7 @@ export default function SendPix() {
     <div className={styles.transaction_layout}>
       <h2>Enviar PIX</h2>
 
-      <div className={styles.pix_form}>
+      <div className={styles.transaction_form}>
         <div className={styles.row}>
           <InputText
             value={pixBody.valor}
@@ -61,7 +66,11 @@ export default function SendPix() {
         </div>
 
         <div className={styles.end_row}>
-          <Button text="Confirmar" click={handleSendPix} />
+          <Button
+            btnClass={styles.confirm_btn}
+            text="Confirmar"
+            click={handleSendPix}
+          />
         </div>
       </div>
     </div>

@@ -1,38 +1,42 @@
 export enum TransacationTypes {
   DEPOSITO = "DEPOSITO",
-  TRANSAFERENCIA = "TRANSFERENCIA",
+  TRANSFERENCIA = "TRANSFERENCIA",
+  EMPRESTIMO = "EMPRESTIMO",
 }
 
 // mantén
 export interface ITed {
-  id?: number;
+  id?: string;
+  data?: string;
   valor: number;
-  data: string;
+  cpfDestinatario: string;
+  numConta: number;
+  agencia: string;
+  digito: number;
   descricao: string;
-  pix?: string;
-  numConta?: string;
 }
 // mantén
 export interface IPix {
-  id?: number;
+  id?: string;
   valor: number;
   data?: string;
   descricao: string;
   chavePix: string;
 }
 
-// mantém
-// export interface ITransacao {
-//   id?: number;
-//   contaDestino: string | null; // destino/origem a depender do tipo
-//   valor: number;
-//   data: string;
-//   descricao: string;
-//   tipo: TransacationTypes;
-// }
+export interface ITransacao {
+  id?: string;
+  conta: string | null; // destino/origem a depender do tipo
+  valor: number;
+  data: string;
+  descricao: string;
+  tipo: TransacationTypes;
+  cpf: string;
+  nome: string;
+}
 
 export interface IPayLoan {
-  id?: number;
+  id?: string;
   valorPago: number;
   data: Date;
 }

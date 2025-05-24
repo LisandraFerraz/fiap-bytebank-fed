@@ -21,12 +21,13 @@ export const StatementLayout = () => {
           btnClass={styles.btn}
           iconKey="addMoney"
           text="Adicionar dinheiro"
-          click={() => router.push("/new-transaction")}
+          click={() => router.push("/add-money")}
         />
         <Button
           btnClass={styles.btn}
           iconKey="transaction"
           text="Nova transação"
+          click={() => router.push("/new-transaction")}
         />
       </div>
       {/* {showModal && (

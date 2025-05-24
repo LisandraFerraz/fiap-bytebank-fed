@@ -16,7 +16,7 @@ export default function NewTransaction() {
           </div>
         </div>
       </Link>
-      <Link href="/send-ted">
+      <Link href="/send-TED">
         <div className={styles.option}>
           <div className={styles.option_title}>
             <p>Enviar via TED</p> <Icon iconKey="longArrow" />

@@ -20,7 +20,7 @@ export const Transaction = ({ dataT }: { dataT: ITransacao }) => {
         >
           <Icon iconKey={isDeposit ? "deposit" : "expanse"} />
         </span>
-        <div>
+        <div className={styles.transaction_text}>
           <p className={styles.transaction_date}>{dataT.data}</p>
           <p>{dataT.tipo}</p>
           <p className={styles.transaction_value}>{dataT.valor}</p>

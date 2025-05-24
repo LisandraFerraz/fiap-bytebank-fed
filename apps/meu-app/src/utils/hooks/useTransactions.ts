@@ -3,14 +3,11 @@ import { IPayLoan, IPix, ITed } from "../interfaces/transaction";
 
 export const UseTransactions = () => {
   // Envia dinheiro
-  const sendBankDeposit = (cpf: string, contaDestino: string, body: ITed) => {
-    return fetch(
-      `${endpoints.sendMoney}?cpf=${cpf}&contaDestino=${contaDestino}`,
-      {
-        method: "POST",
-        body: JSON.stringify(body),
-      }
-    );
+  const sendBankDeposit = (cpf: string, body: ITed) => {
+    return fetch(`${endpoints.sendMoney}?cpf=${cpf}`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
   };
 
   const sendPix = (cpf: string, body: IPix) => {
