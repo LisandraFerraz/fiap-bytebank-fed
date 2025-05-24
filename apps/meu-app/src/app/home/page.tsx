@@ -72,12 +72,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={styles.homepage}>
-      <Sidenav />
-      <div className={styles.content}>
-        <StatementLayout />
-        <TransactionList />
-      </div>
+    <div className={styles.content}>
+      <StatementLayout />
+      <TransactionList />
     </div>
   );
 }

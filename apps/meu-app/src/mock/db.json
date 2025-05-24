@@ -72,12 +72,12 @@
   "contas": [
     {
       "id": "1",
-      "numeroConta": "654321",
+      "numeroConta": 123456,
       "digito": 5,
-      "usuarioCpf": "98765432100",
+      "usuarioCpf": "12345678901",
       "agencia": "002",
       "linhaCredito": 1500,
-      "saldo": 4900,
+      "saldo": 4000,
       "depositos": [
         {
           "id": 3,
@@ -94,10 +94,26 @@
           "descricao": "Transferência de Ana"
         },
         {
-          "contaDestino": "654321",
+          "contaOrigem": "654321",
           "valor": 2000,
           "data": "20/12/2025",
           "descricao": "Testando transferencia"
+        },
+        {
+          "id": "6d233c90-67dd-4ac6-8036-0f921d81093d",
+          "contaOrigem": "123456-5",
+          "valor": 2000,
+          "data": "2025-05-24T08:21:35.516Z",
+          "descricao": "testando"
+        },
+        {
+          "id": "943f454f-4a23-4665-8ff0-2bc89836f18d",
+          "contaOrigem": "654321-9",
+          "valor": 2000,
+          "data": "2025-05-24T08:27:55.010Z",
+          "descricao": "testando de bruno para ana",
+          "remetente": "Bruno Ferreira",
+          "cpfRemetente": "98765432100"
         }
       ],
       "transferencias": [
@@ -107,25 +123,52 @@
           "valor": 100,
           "data": "2025-05-14T15:00:00Z",
           "descricao": "Pagamento"
+        },
+        {
+          "id": "e5adc150-863e-487b-903d-a87bbd95ab4c",
+          "contaDestino": "654321-9",
+          "valor": 2000,
+          "data": "2025-05-24T08:21:35.573Z",
+          "descricao": "testando"
         }
       ],
       "historicoEmprestimos": []
     },
     {
       "id": "2",
-      "numeroConta": 123456,
+      "numeroConta": 654321,
       "digito": 9,
-      "usuarioCpf": "12345678901",
+      "usuarioCpf": "98765432100",
       "agencia": "001",
       "linhaCredito": 2500,
-      "saldo": 10100,
+      "saldo": 3000,
       "depositos": [
         {
+          "id": 3,
+          "contaOrigem": null,
+          "valor": 1890,
+          "data": "2025-05-02T10:00:00Z",
+          "descricao": "Depósito inicial"
+        },
+        {
           "id": 1,
-          "contaDestino": "654321-5",
+          "contaOrigem": "123456-9",
           "valor": 300,
           "data": "2025-05-12T14:00:00Z",
-          "descricao": "Transferência para Bruno"
+          "descricao": "Transferência de Ana"
+        },
+        {
+          "contaOrigem": "654321",
+          "valor": 2000,
+          "data": "20/12/2025",
+          "descricao": "Testando transferencia"
+        },
+        {
+          "id": "6d233c90-67dd-4ac6-8036-0f921d81093d",
+          "contaOrigem": "123456-5",
+          "valor": 2000,
+          "data": "2025-05-24T08:21:35.516Z",
+          "descricao": "testando"
         }
       ],
       "transferencias": [
@@ -142,6 +185,15 @@
           "data": "20/12/2025",
           "descricao": "Testando transferencia novamente",
           "contaDestino": "789123"
+        },
+        {
+          "id": "7134d416-c5ab-48b2-b5b2-8b3da67b6877",
+          "contaDestino": "123456-5",
+          "valor": 2000,
+          "data": "2025-05-24T08:27:55.040Z",
+          "descricao": "testando de bruno para ana",
+          "destinatario": "Ana Clara Silva",
+          "cpfDestinatario": "12345678901"
         }
       ],
       "historicoEmprestimos": [
@@ -155,7 +207,7 @@
     },
     {
       "id": "3",
-      "numeroConta": "789123",
+      "numeroConta": 789123,
       "digito": 2,
       "usuarioCpf": "32165498722",
       "agencia": "003",

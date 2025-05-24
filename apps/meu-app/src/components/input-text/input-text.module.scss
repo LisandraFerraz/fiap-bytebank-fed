@@ -1,0 +1,33 @@
+@use "@css-variables" as v;
+
+.input_group {
+  color: v.$grey_font;
+
+  label {
+    display: block;
+    text-transform: uppercase;
+    font-size: v.$text-sm;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  input {
+    width: 100%;
+    height: 45px;
+    padding: 0 10px;
+    border-radius: 10px;
+    border: 1px solid v.$sogrey_faded;
+
+    box-shadow: 0 0 4px #00000015;
+    background-color: rgb(v.$sogrey_faded, 40%);
+    transition: ease-in 0.1s;
+
+    &::placeholder {
+      color: rgb(v.$grey_font, 80%);
+    }
+
+    &:focus {
+      background-color: rgb(v.$sogrey_faded, 20%);
+    }
+  }
+}

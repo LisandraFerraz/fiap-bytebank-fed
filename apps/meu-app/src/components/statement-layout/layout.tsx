@@ -6,8 +6,11 @@ import { Button } from "@components/button/button";
 import { TransactionModal } from "@components/transaction-modal/transaction-modal";
 import { useState } from "react";
 import { TransacationTypes } from "../../utils/interfaces/transaction";
+import { useRouter } from "next/navigation";
 
 export const StatementLayout = () => {
+  const router = useRouter();
+
   const [showModal, setShowModal] = useState<boolean>(true);
 
   return (
@@ -18,6 +21,7 @@ export const StatementLayout = () => {
           btnClass={styles.btn}
           iconKey="addMoney"
           text="Adicionar dinheiro"
+          click={() => router.push("/new-transaction")}
         />
         <Button
           btnClass={styles.btn}
@@ -25,9 +29,9 @@ export const StatementLayout = () => {
           text="Nova transação"
         />
       </div>
-      {showModal && (
+      {/* {showModal && (
         <TransactionModal transactionType={TransacationTypes.DEPOSITO} />
-      )}
+      )} */}
     </div>
   );
 };

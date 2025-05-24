@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byteIcons } from "./icons-list";
-import { icons } from "../../../utils/mock/types";
+import { icons } from "../../utils/types";
 
 interface IconI {
   iconKey: icons;

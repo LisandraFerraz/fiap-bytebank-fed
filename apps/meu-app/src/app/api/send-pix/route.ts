@@ -1,3 +1,4 @@
+import { v4 as generateUUID } from "uuid";
 import { NextResponse } from "next/server";
 import { IConta } from "../../../utils/interfaces/conta";
 import { IPix } from "../../../utils/interfaces/transaction";
@@ -11,7 +12,10 @@ export async function POST(request: Request) {
   const cpf = searchParams.get("cpf");
 
   // Recupera quem está enviando o dinheiro
-  //   const pfR = await getFetch<IUsuario>(`${env.localApi}/usuarios?cpf=${cpf}`);
+  const pfsR = await getFetch<IUsuario[]>(
+    `${env.localApi}/usuarios?cpf=${cpf}`
+  );
+  const pfR = pfsR[0];
 
   // Recupera o destinatário
   const pfsD = await getFetch<IUsuario[]>(`${env.localApi}/usuarios`);
@@ -23,7 +27,7 @@ export async function POST(request: Request) {
   const accsR = await getFetch<IConta[]>(
     `${env.localApi}/contas?usuarioCpf=${cpf}`
   );
-  const accR = accsR[0];
+  const accR: IConta = accsR[0];
 
   // Recupera conta do remetente
   const accsD = await getFetch<IConta[]>(
@@ -31,21 +35,45 @@ export async function POST(request: Request) {
   );
   const accD = accsD[0];
 
-  //   Verifica se o saldo é suficiente para enviar o PIX
+  // Verifica se o saldo é suficiente para enviar o PIX
   if (accR.saldo >= body.valor) {
     try {
-      await fetch(`${env.localApi}/contas/${String(accR.id)}`, {
-        method: "PATCH",
-        body: JSON.stringify({
-          ...accD,
-          saldo: accD.saldo - body.valor,
-        }),
-      });
       await fetch(`${env.localApi}/contas/${String(accD.id)}`, {
         method: "PATCH",
         body: JSON.stringify({
+          ...accD,
+          saldo: accD.saldo + body.valor,
+          depositos: [
+            ...(accR["depositos"] || []),
+            {
+              id: generateUUID(),
+              contaOrigem: `${accR.numeroConta}-${accR.digito}`,
+              valor: body.valor,
+              data: new Date(),
+              descricao: body.descricao,
+              remetente: pfR.nome,
+              cpfRemetente: pfR.cpf,
+            },
+          ],
+        }),
+      });
+      await fetch(`${env.localApi}/contas/${String(accR.id)}`, {
+        method: "PATCH",
+        body: JSON.stringify({
           ...accR,
-          saldo: accR.saldo + body.valor,
+          saldo: accR.saldo - body.valor,
+          transferencias: [
+            ...(accR["transferencias"] || []),
+            {
+              id: generateUUID(),
+              contaDestino: `${accD.numeroConta}-${accD.digito}`,
+              valor: body.valor,
+              data: new Date(),
+              descricao: body.descricao,
+              destinatario: pfD?.nome,
+              cpfDestinatario: pfD?.cpf,
+            },
+          ],
         }),
       });
 

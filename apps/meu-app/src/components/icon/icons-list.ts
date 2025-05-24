@@ -1,5 +1,9 @@
 // Icones usados na aplicação
-import { faHandHoldingDollar, faPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRightLong,
+  faHandHoldingDollar,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import { faRightLeft } from "@fortawesome/free-solid-svg-icons";
 import { faPiggyBank } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
@@ -22,4 +26,5 @@ export const byteIcons = {
   deposit: faArrowDown,
   close: faXmark,
   addMoney: faHandHoldingDollar,
+  longArrow: faArrowRightLong,
 } as const;

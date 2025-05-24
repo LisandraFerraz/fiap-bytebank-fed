@@ -16,21 +16,12 @@ export interface ITed {
 export interface IPix {
   id?: number;
   valor: number;
-  data: string;
+  data?: string;
   descricao: string;
   chavePix: string;
 }
 
-// mantén
-export interface IDepositos {
-  id?: number;
-  contaDestino: string | null;
-  valor: number;
-  data: string;
-  descricao: string;
-}
-
-// mantén
+// mantém
 // export interface ITransacao {
 //   id?: number;
 //   contaDestino: string | null; // destino/origem a depender do tipo
