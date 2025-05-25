@@ -16,19 +16,19 @@ export default function AddMoney() {
   const { addMoney } = UseTransactions();
 
   const [depositoBody, setDepositoBody] = useState<IDeposito>({
-    id: "",
-    data: "",
-    valor: 0,
+    valor: "",
     tipo: TransacationTypes.DEPOSITO,
+    id: generateUUID(),
+    data: "",
   });
 
-  const updateBody = (key: string, value: number) => {
-    if (isNaN(value) && value > 0) {
+  const updateBody = (value: number) => {
+    if (!isNaN(value) && value > 0) {
       let dateToday = new Date();
+
       setDepositoBody({
         ...depositoBody,
-        id: generateUUID(),
-        [key]: Number(value),
+        valor: value,
         data: String(dateToday),
       });
     }
@@ -46,7 +46,7 @@ export default function AddMoney() {
       <div className={styles.row}>
         <InputText
           value={depositoBody.valor}
-          onChange={(e) => updateBody("valor", e.target.value)}
+          onChange={(e) => updateBody(Number(e.target.value))}
           id="valor"
           label="Valor"
           placeHolder="Valor"

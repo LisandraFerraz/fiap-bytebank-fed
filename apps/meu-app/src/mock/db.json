@@ -57,7 +57,7 @@
       "usuarioCpf": "12345678901",
       "agencia": "002",
       "linhaCredito": 1500,
-      "saldo": 4650,
+      "saldo": null,
       "depositos": [
         {
           "id": 3,
@@ -101,7 +101,31 @@
           "data": "Sat May 24 2025 22:56:25 GMT-0300 (Horário Padrão de Brasília)",
           "valor": 1000,
           "tipo": "DEPOSITO"
-        }
+        },
+        "{\"id\":\"2dcc49ce-615e-48e4-a547-522f59eb7ac0\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"118c6f01-09e8-4a80-b585-b783a4051a81\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"c34f937f-614b-463e-92dd-e21e39524273\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"65e7beeb-b651-4b1b-b59a-ecd63d7f8187\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"65e7beeb-b651-4b1b-b59a-ecd63d7f8187\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"65e7beeb-b651-4b1b-b59a-ecd63d7f8187\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"65e7beeb-b651-4b1b-b59a-ecd63d7f8187\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"65e7beeb-b651-4b1b-b59a-ecd63d7f8187\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"65e7beeb-b651-4b1b-b59a-ecd63d7f8187\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"65e7beeb-b651-4b1b-b59a-ecd63d7f8187\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"65e7beeb-b651-4b1b-b59a-ecd63d7f8187\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"261369eb-286d-42e5-b200-11d7718a57b2\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}"
       ],
       "transferencias": [
         {

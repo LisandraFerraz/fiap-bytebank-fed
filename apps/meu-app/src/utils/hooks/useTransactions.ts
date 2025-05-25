@@ -4,38 +4,50 @@ import { IDeposito, IPayLoan, IPix, ITed } from "../interfaces/transaction";
 export const UseTransactions = () => {
   // Envia dinheiro
   const sendBankDeposit = (cpf: string, body: ITed) => {
-    return fetch(`${endpoints.sendMoney}?cpf=${cpf}`, {
-      method: "POST",
+    return fetch(`${endpoints.sendMoney}?usuarioCpf=${cpf}`, {
+      method: "PATCH",
       body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   };
 
   const sendPix = (cpf: string, body: IPix) => {
-    return fetch(`${endpoints.sendPix}?cpf=${cpf}`, {
-      method: "POST",
+    return fetch(`${endpoints.sendPix}?usuarioCpf=${cpf}`, {
+      method: "PATCH",
       body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   };
 
   // Adiciona dinheiro na propria conta
   const addMoney = async (cpf: string, body: IDeposito) => {
     return fetch(`${endpoints.addMoney}?usuarioCpf=${cpf}`, {
-      method: "POST",
+      method: "PATCH",
       body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   };
 
   // Pede empréstimo
   const applyLoan = async (cpf: string, loan: number) => {
     return await fetch(`${endpoints.applyLoan}?cpf=${cpf}&loan=${loan}`, {
-      method: "POST",
+      method: "PATCH",
     });
   };
 
   const payLoan = async (cpf: string, loanId: string, body: IPayLoan) => {
     await fetch(`${endpoints.payLoan}?cpf=${cpf}&loanId=${loanId}`, {
-      method: "POST",
+      method: "PATCH",
       body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   };
 

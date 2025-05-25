@@ -45,7 +45,7 @@ export interface IPayLoan {
 
 export interface IDeposito {
   id: string;
-  valor: number;
+  valor: number | string;
   data: string;
   tipo: TransacationTypes.DEPOSITO;
 }

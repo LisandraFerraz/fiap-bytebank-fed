@@ -5,16 +5,25 @@ import { IUsuario } from "../../../utils/interfaces/user";
 import { env } from "../_environment/environment";
 import { getFetch } from "../lib/functions/fetch";
 import { hasEmptyValues } from "../lib/functions/has-empty-prop";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export async function POST(request: Request) {
-  const body: IPix = await request.json();
-  const { searchParams } = new URL(request.url);
-  const cpf = searchParams.get("cpf");
+export default async function sendPixHandle(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  if (req.method !== "PATCH") {
+    return res.status(405).json({
+      successMsg: `Método não permitido!`,
+    });
+  }
 
-  if (cpf && !hasEmptyValues(body)) {
+  const body: IPix = req.body;
+  const { usuarioCpf } = req.query;
+
+  if (usuarioCpf && !hasEmptyValues(body)) {
     // Recupera quem está enviando o dinheiro
     const pfsR = await getFetch<IUsuario[]>(
-      `${env.localApi}/usuarios?cpf=${cpf}`
+      `${env.localApi}/usuarios?cpf=${usuarioCpf}`
     );
     const pfR = pfsR[0];
 
@@ -26,7 +35,7 @@ export async function POST(request: Request) {
 
     // Recupera conta do remetente
     const accsR = await getFetch<IConta[]>(
-      `${env.localApi}/contas?usuarioCpf=${cpf}`
+      `${env.localApi}/contas?usuarioCpf=${usuarioCpf}`
     );
     const accR: IConta = accsR[0];
 
@@ -53,6 +62,9 @@ export async function POST(request: Request) {
                 cpfRemetente: pfR.cpf,
               },
             ],
+            headers: {
+              "Content-Type": "application/json",
+            },
           }),
         });
         await fetch(`${env.localApi}/contas/${String(accR.id)}`, {
@@ -69,29 +81,25 @@ export async function POST(request: Request) {
                 cpfDestinatario: pfD?.cpf,
               },
             ],
+            headers: {
+              "Content-Type": "application/json",
+            },
           }),
         });
 
-        return NextResponse.json(
-          {
-            successMessage: `PIX realizado com sucesso no valor de R$ ${body.valor} para ${pfD?.nome}`,
-          },
-          { status: 200 }
-        );
+        return res.status(200).json({
+          successMessage: `PIX realizado com sucesso no valor de R$ ${body.valor} para ${pfD?.nome}`,
+        });
       } catch (error) {
-        return NextResponse.json(
-          { errorMessage: "Não foi possível realizar o PIX." },
-          { status: 500 }
-        );
+        return res.status(500).json({
+          errorMessage: "Não foi possível realizar o PIX.",
+        });
       }
     } else {
-      return NextResponse.json(
-        {
-          errorMessage:
-            "Seu saldo não é suficiente para enviar o valor indicado no PIX.",
-        },
-        { status: 400 }
-      );
+      return res.status(405).json({
+        errorMessage:
+          "Seu saldo não é suficiente para enviar o valor indicado no PIX.",
+      });
     }
   }
 }

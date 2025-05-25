@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "start:mock": "json-server --watch src/mock/db.json --port 3001"
+    "start:mock": "json-server --watch db.json --port 3001"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",

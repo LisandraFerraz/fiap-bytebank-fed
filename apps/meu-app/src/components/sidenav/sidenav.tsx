@@ -5,7 +5,6 @@ import Link from "next/link";
 
 export const Sidenav = () => {
   const name = "Joana";
-  const dateNow = new Date();
 
   return (
     <div className={styles.sidenav}>

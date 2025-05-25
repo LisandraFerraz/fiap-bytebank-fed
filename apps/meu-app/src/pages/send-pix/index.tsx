@@ -14,7 +14,7 @@ export default function SendPix() {
   const [pixBody, setPixBody] = useState<IPix>({
     chavePix: "",
     descricao: "",
-    valor: 0,
+    valor: 100,
     data: "",
     tipo: TransacationTypes.TRANSFERENCIA,
   });
