@@ -1,5 +1,12 @@
-@use "css-variables" as v;
+@use "@css-variables" as v;
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: Inter, Verdana, sans-serif;
@@ -18,10 +25,19 @@ body {
 
 ul,
 li,
+h1,
+h2,
+h3,
+h4,
 p {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: inline-block;
+}
+
+a {
+  text-decoration: none;
 }
 
 * {
@@ -38,4 +54,7 @@ p {
     background-color: v.$sogrey_highlight;
     border-radius: 10px;
   }
+}
+
+.transaction_layout {
 }

@@ -1,16 +1,5 @@
-import { Sidenav } from "components/sidenav/sidenav";
-import styles from "./main.module.scss";
-import { StatementLayout } from "components/statement-layout/layout";
-import { TransactionList } from "components/transactions-list/transaction-list";
+import Home from "./home/page";
 
-export default function Home() {
-  return (
-    <div className={styles.homepage}>
-      <Sidenav />
-      <div className={styles.content}>
-        <StatementLayout />
-        <TransactionList />
-      </div>
-    </div>
-  );
+export default function App() {
+  return <Home />;
 }

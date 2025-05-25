@@ -1,0 +1,66 @@
+"use client";
+
+import { v4 as generateUUID } from "uuid";
+import styles from "./styles.module.scss";
+
+import { useState } from "react";
+import { UseTransactions } from "../../utils/hooks/useTransactions";
+import {
+  IDeposito,
+  TransacationTypes,
+} from "../../utils/interfaces/transaction";
+import { InputText } from "@components/input-text/input-text";
+import { BtnClasses, Button } from "@components/button/button";
+
+export default function AddMoney() {
+  const { addMoney } = UseTransactions();
+
+  const [depositoBody, setDepositoBody] = useState<IDeposito>({
+    id: "",
+    data: "",
+    valor: 0,
+    tipo: TransacationTypes.DEPOSITO,
+  });
+
+  const updateBody = (key: string, value: number) => {
+    if (isNaN(value) && value > 0) {
+      let dateToday = new Date();
+      setDepositoBody({
+        ...depositoBody,
+        id: generateUUID(),
+        [key]: Number(value),
+        data: String(dateToday),
+      });
+    }
+    // add toast notification for error
+  };
+
+  const handleAddMoney = () => {
+    addMoney("12345678901", depositoBody);
+  };
+
+  return (
+    <div className={styles.transaction_layout}>
+      <h2>Realizar Depósito</h2>
+
+      <div className={styles.row}>
+        <InputText
+          value={depositoBody.valor}
+          onChange={(e) => updateBody("valor", e.target.value)}
+          id="valor"
+          label="Valor"
+          placeHolder="Valor"
+          type="number"
+        />
+      </div>
+
+      <div className={styles.end_row}>
+        <Button
+          btnClass={BtnClasses.CONFIRM}
+          text="Confirmar"
+          click={handleAddMoney}
+        />
+      </div>
+    </div>
+  );
+}

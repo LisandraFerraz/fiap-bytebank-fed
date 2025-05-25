@@ -1,0 +1,49 @@
+@use "@css-variables" as v;
+
+.sidenav {
+  position: fixed;
+  top: 35px;
+  bottom: 35px;
+  left: 50px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+
+  .sidenav_top {
+    ul {
+      margin-top: 30px;
+      font-size: v.$text-md;
+
+      li {
+        padding: 20px 0;
+        color: v.$grey_highlight;
+
+        &:first-child {
+          border-bottom: 1px solid v.$sogrey_highlight;
+        }
+        > svg {
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+
+  .sidenav_card {
+    background-image: url("/sidenav-card-bg.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 25px;
+
+    .card_top {
+      color: v.$dark_green_default;
+    }
+
+    .card_bottom {
+      text-align: right;
+      margin-top: 50px;
+      font-weight: bold;
+    }
+  }
+}

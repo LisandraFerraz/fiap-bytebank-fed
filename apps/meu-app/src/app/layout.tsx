@@ -1,8 +1,9 @@
+import styles from "./layout.module.scss";
 import "./../styles/global.scss";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import { Header } from "components/header/header";
+import { Sidenav } from "@components/sidenav/sidenav";
 config.autoAddCss = false;
 
 export const metadata = {
@@ -17,9 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <Header />
-        {children}
+      <body className={styles.custom_body}>
+        <Sidenav />
+        <div className={styles.content}>{children}</div>
       </body>
     </html>
   );

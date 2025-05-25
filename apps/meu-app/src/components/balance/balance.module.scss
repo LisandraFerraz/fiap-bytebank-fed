@@ -1,0 +1,34 @@
+@use "@css-variables" as v;
+
+.balance {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  .divisor {
+    height: 2px;
+    width: 100%;
+    background-color: v.$dark_green_default;
+  }
+
+  .balance_type_title {
+    font-size: calc(v.$text-sm + 0.15rem);
+  }
+
+  .balance_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 250px;
+
+    > p {
+      font-weight: 800;
+    }
+
+    > p,
+    svg {
+      color: v.$dark_green_default;
+      font-size: v.$text-lg;
+    }
+  }
+}
