@@ -14,7 +14,7 @@ export default async function getUserHandle(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const cpf = req.query;
+  const { cpf } = req.query;
 
   const { userRes, contasRes } = {
     userRes: await coreApi({
@@ -45,7 +45,7 @@ export default async function getUserHandle(
     };
     return res
       .status(500)
-      .json({ data: data, successMessage: "Dados listados com sucesso" });
+      .json({ data, successMessage: "Dados listados com sucesso" });
   }
   return res
     .status(500)
