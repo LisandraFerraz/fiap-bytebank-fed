@@ -16,3 +16,14 @@
     margin-right: 10px;
   }
 }
+
+.btn_confirm {
+  background-color: v.$transparent_green;
+  color: v.$dark_green_default;
+  transition: ease-in 0.1s;
+  width: 200px;
+
+  &:hover {
+    opacity: 80%;
+  }
+}

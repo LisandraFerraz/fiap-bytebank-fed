@@ -77,7 +77,7 @@
       "usuarioCpf": "12345678901",
       "agencia": "002",
       "linhaCredito": 1500,
-      "saldo": 4050,
+      "saldo": 4650,
       "depositos": [
         {
           "id": 3,
@@ -115,6 +115,12 @@
           "contaOrigem": "654321-9",
           "remetente": "Bruno Ferreira",
           "cpfRemetente": "98765432100"
+        },
+        {
+          "id": "c4186255-3482-43a5-8bac-02f621652cfd",
+          "data": "Sat May 24 2025 22:56:25 GMT-0300 (Horário Padrão de Brasília)",
+          "valor": 1000,
+          "tipo": "DEPOSITO"
         }
       ],
       "transferencias": [
@@ -131,6 +137,42 @@
           "valor": 2000,
           "data": "2025-05-24T08:21:35.573Z",
           "descricao": "testando"
+        },
+        {
+          "valor": 100,
+          "data": "Sat May 24 2025 20:14:48 GMT-0300 (Horário Padrão de Brasília)",
+          "descricao": "Testando pix",
+          "chavePix": "bruno.ferreira@pix.com",
+          "contaDestino": "654321-9",
+          "destinatario": "Bruno Ferreira",
+          "cpfDestinatario": "98765432100"
+        },
+        {
+          "valor": 100,
+          "data": "Sat May 24 2025 20:18:16 GMT-0300 (Horário Padrão de Brasília)",
+          "descricao": "Testando pix",
+          "chavePix": "bruno.ferreira@pix.com",
+          "contaDestino": "654321-9",
+          "destinatario": "Bruno Ferreira",
+          "cpfDestinatario": "98765432100"
+        },
+        {
+          "valor": 100,
+          "data": "Sat May 24 2025 21:20:47 GMT-0300 (Horário Padrão de Brasília)",
+          "descricao": "Testando pix",
+          "chavePix": "bruno.ferreira@pix.com",
+          "contaDestino": "654321-9",
+          "destinatario": "Bruno Ferreira",
+          "cpfDestinatario": "98765432100"
+        },
+        {
+          "valor": 100,
+          "data": "Sat May 24 2025 23:02:24 GMT-0300 (Horário Padrão de Brasília)",
+          "descricao": "Testando pix",
+          "chavePix": "bruno.ferreira@pix.com",
+          "contaDestino": "654321-9",
+          "destinatario": "Bruno Ferreira",
+          "cpfDestinatario": "98765432100"
         }
       ],
       "historicoEmprestimos": []
@@ -142,7 +184,7 @@
       "usuarioCpf": "98765432100",
       "agencia": "001",
       "linhaCredito": 2500,
-      "saldo": 2950,
+      "saldo": 3550,
       "depositos": [
         {
           "id": 3,
@@ -170,6 +212,31 @@
           "valor": 2000,
           "data": "2025-05-24T08:21:35.516Z",
           "descricao": "testando"
+        },
+        {
+          "id": "109e9c16-3834-48c4-904b-57c2629804fc",
+          "chavePix": "ana.clara@example.com",
+          "descricao": "Testando nova validação",
+          "valor": 50,
+          "data": "Sat May 24 2025 17:09:58 GMT-0300 (Horário Padrão de Brasília)",
+          "contaOrigem": "654321-9",
+          "remetente": "Bruno Ferreira",
+          "cpfRemetente": "98765432100"
+        },
+        {
+          "id": "c4186255-3482-43a5-8bac-02f621652cfd",
+          "data": "Sat May 24 2025 22:56:25 GMT-0300 (Horário Padrão de Brasília)",
+          "valor": 1000,
+          "tipo": "DEPOSITO"
+        },
+        {
+          "valor": 100,
+          "data": "Sat May 24 2025 23:02:24 GMT-0300 (Horário Padrão de Brasília)",
+          "descricao": "Testando pix",
+          "chavePix": "bruno.ferreira@pix.com",
+          "contaOrigem": "123456-5",
+          "remetente": "Ana Clara Silva",
+          "cpfRemetente": "12345678901"
         }
       ],
       "transferencias": [

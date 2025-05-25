@@ -1,4 +1,4 @@
-import { endpoints } from "../../app/api/_environment/endpoints";
+import { endpoints } from "../../environment/endpoints";
 
 export const UseUser = () => {
   const getUserInfo = async (cpf: string) => {

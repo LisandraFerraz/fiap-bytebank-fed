@@ -4,8 +4,8 @@ import { v4 as generateUUID } from "uuid";
 import styles from "./styles.module.scss";
 import { InputText } from "@components/input-text/input-text";
 import { useState } from "react";
-import { IPix } from "../../utils/interfaces/transaction";
-import { Button } from "@components/button/button";
+import { IPix, TransacationTypes } from "../../utils/interfaces/transaction";
+import { BtnClasses, Button } from "@components/button/button";
 import { UseTransactions } from "../../utils/hooks/useTransactions";
 
 export default function SendPix() {
@@ -16,6 +16,7 @@ export default function SendPix() {
     descricao: "",
     valor: 0,
     data: "",
+    tipo: TransacationTypes.TRANSFERENCIA,
   });
 
   const updateBody = (key: string, value: string) => {
@@ -45,6 +46,7 @@ export default function SendPix() {
             id="valor"
             label="Valor"
             placeHolder="Valor"
+            type="number"
           />
           <InputText
             value={pixBody.chavePix}
@@ -67,8 +69,8 @@ export default function SendPix() {
 
         <div className={styles.end_row}>
           <Button
-            btnClass={styles.confirm_btn}
             text="Confirmar"
+            btnClass={BtnClasses.CONFIRM}
             click={handleSendPix}
           />
         </div>

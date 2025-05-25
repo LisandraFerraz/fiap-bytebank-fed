@@ -11,7 +11,7 @@ export const InputText = ({
   label: string;
   value: string | number;
   id: string;
-  type?: "text";
+  type?: string | "text";
   placeHolder: string;
   onChange?: (e: any) => void;
 }) => {

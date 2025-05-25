@@ -1,7 +1,7 @@
 import { IConta } from "./conta";
 
 export interface IUsuario {
-  id: 1;
+  id: number;
   nome: string;
   cpf: string;
   dataNascimento: string;

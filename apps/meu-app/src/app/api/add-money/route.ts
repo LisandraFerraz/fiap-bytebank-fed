@@ -1,32 +1,39 @@
 import { NextResponse } from "next/server";
 import { env } from "../_environment/environment";
-import { v4 as generateUUID } from "uuid";
+import { getFetch } from "../lib/functions/fetch";
+import { IDeposito } from "../../../utils/interfaces/transaction";
+import { IConta } from "../../../utils/interfaces/conta";
+import { hasEmptyValues } from "../lib/functions/has-empty-prop";
 
 export async function POST(request: Request) {
-  const bodyReq = await request.json();
+  const bodyReq: IDeposito = await request.json();
 
   const { searchParams } = new URL(request.url);
-  const contaNum = searchParams.get("contaDestino");
+  const cpf = searchParams.get("usuarioCpf");
 
-  const resConta = await fetch(
-    `${env.localApi}/contas?numeroConta=${contaNum}`
-  );
-  const contas = await resConta.json();
-  const conta = contas[0];
+  if (cpf && !hasEmptyValues(bodyReq)) {
+    const resConta = await getFetch<IConta[]>(
+      `${env.localApi}/contas?usuarioCpf=${cpf}`
+    );
+    const conta = resConta[0];
 
-  const body = {
-    id: generateUUID(),
-    ...bodyReq,
-    contaOrigem: null, // significa que o deposito foi feito pelo dono da conta
-  };
+    const req = await fetch(`${env.localApi}/contas/${conta.id}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        depositos: [...conta["depositos"], bodyReq],
+        saldo: conta.saldo + bodyReq.valor,
+      }),
+    });
 
-  const req = await fetch(`${env.localApi}/contas/${conta.id}`, {
-    method: "PATCH",
-    body: JSON.stringify({
-      depositos: [...conta["depositos"], body],
-      saldo: conta.saldo + bodyReq.valor,
-    }),
-  });
-
-  return new Response(JSON.stringify(req));
+    return NextResponse.json({
+      successMsg: `Depósito no valor de R$ ${bodyReq.valor} realizado com sucesso!`,
+      status: 200,
+      data: req,
+    });
+  } else {
+    return NextResponse.json({
+      successMsg: `É necessário que os campos obrigatórios sejam preenchidos!`,
+      status: 400,
+    });
+  }
 }

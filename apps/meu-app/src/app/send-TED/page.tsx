@@ -1,12 +1,12 @@
 "use client";
 
 import { v4 as generateUUID } from "uuid";
-import { InputText } from "@components/input-text/input-text";
 import styles from "./styles.module.scss";
+import { InputText } from "@components/input-text/input-text";
 import { useState } from "react";
-import { ITed } from "../../utils/interfaces/transaction";
+import { ITed, TransacationTypes } from "../../utils/interfaces/transaction";
 import { UseTransactions } from "../../utils/hooks/useTransactions";
-import { Button } from "@components/button/button";
+import { BtnClasses, Button } from "@components/button/button";
 
 export default function SendTED() {
   const { sendBankDeposit } = UseTransactions();
@@ -19,6 +19,7 @@ export default function SendTED() {
     digito: 0,
     agencia: "",
     cpfDestinatario: "",
+    tipo: TransacationTypes.TRANSFERENCIA,
   });
 
   const updateBody = (key: string, value: string | number) => {
@@ -44,7 +45,7 @@ export default function SendTED() {
     <div className={styles.transaction_layout}>
       <h2>Tranferência Bancária</h2>
 
-      <div className={styles.pix_form}>
+      <div className={styles.transaction_form}>
         <div className={styles.row}>
           <InputText
             value={tedBody.valor}
@@ -52,6 +53,7 @@ export default function SendTED() {
             id="valor"
             label="Valor"
             placeHolder="Valor"
+            type="number"
           />
           <InputText
             value={tedBody.cpfDestinatario}
@@ -98,7 +100,7 @@ export default function SendTED() {
 
         <div className={styles.end_row}>
           <Button
-            btnClass={styles.confirm_btn}
+            btnClass={BtnClasses.CONFIRM}
             text="Confirmar"
             click={handleSendTED}
           />

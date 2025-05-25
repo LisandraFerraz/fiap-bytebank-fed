@@ -2,7 +2,7 @@
 
 import { Balance } from "@components/balance/balance";
 import styles from "./statement.module.scss";
-import { Button } from "@components/button/button";
+import { BtnClasses, Button } from "@components/button/button";
 import { TransactionModal } from "@components/transaction-modal/transaction-modal";
 import { useState } from "react";
 import { TransacationTypes } from "../../utils/interfaces/transaction";
@@ -18,13 +18,13 @@ export const StatementLayout = () => {
       <Balance />
       <div className={styles.actions}>
         <Button
-          btnClass={styles.btn}
+          btnClass={BtnClasses.CONFIRM}
           iconKey="addMoney"
           text="Adicionar dinheiro"
           click={() => router.push("/add-money")}
         />
         <Button
-          btnClass={styles.btn}
+          btnClass={BtnClasses.CONFIRM}
           iconKey="transaction"
           text="Nova transação"
           click={() => router.push("/new-transaction")}

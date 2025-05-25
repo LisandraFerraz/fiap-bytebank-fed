@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./sidenav.module.scss";
 import { Icon } from "@components/icon/icon";
+import Link from "next/link";
 
 export const Sidenav = () => {
   const name = "Joana";
@@ -9,7 +10,9 @@ export const Sidenav = () => {
   return (
     <div className={styles.sidenav}>
       <div className={styles.sidenav_top}>
-        <Image src="/bytebank-logo.svg" alt="Logo" width={170} height={40} />
+        <Link href="/">
+          <Image src="/bytebank-logo.svg" alt="Logo" width={170} height={40} />
+        </Link>
         <div>
           <ul>
             <li>

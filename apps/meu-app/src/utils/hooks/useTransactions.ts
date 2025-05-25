@@ -1,5 +1,5 @@
-import { endpoints } from "../../app/api/_environment/endpoints";
-import { IPayLoan, IPix, ITed } from "../interfaces/transaction";
+import { endpoints } from "../../environment/endpoints";
+import { IDeposito, IPayLoan, IPix, ITed } from "../interfaces/transaction";
 
 export const UseTransactions = () => {
   // Envia dinheiro
@@ -18,8 +18,8 @@ export const UseTransactions = () => {
   };
 
   // Adiciona dinheiro na propria conta
-  const addMoney = async (contaDestino: string, body: ITed) => {
-    return fetch(`${endpoints.addMoney}?contaDestino=${contaDestino}`, {
+  const addMoney = async (cpf: string, body: IDeposito) => {
+    return fetch(`${endpoints.addMoney}?usuarioCpf=${cpf}`, {
       method: "POST",
       body: JSON.stringify(body),
     });

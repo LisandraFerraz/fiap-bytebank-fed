@@ -14,6 +14,7 @@ export interface ITed {
   agencia: string;
   digito: number;
   descricao: string;
+  tipo: TransacationTypes.TRANSFERENCIA;
 }
 // mantén
 export interface IPix {
@@ -22,6 +23,7 @@ export interface IPix {
   data?: string;
   descricao: string;
   chavePix: string;
+  tipo: TransacationTypes.TRANSFERENCIA;
 }
 
 export interface ITransacao {
@@ -38,5 +40,12 @@ export interface ITransacao {
 export interface IPayLoan {
   id?: string;
   valorPago: number;
-  data: Date;
+  data: string;
+}
+
+export interface IDeposito {
+  id: string;
+  valor: number;
+  data: string;
+  tipo: TransacationTypes.DEPOSITO;
 }

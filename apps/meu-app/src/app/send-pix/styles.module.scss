@@ -17,15 +17,5 @@
     .end_row {
       text-align: end;
     }
-
-    .confirm_btn {
-      background-color: v.$transparent_green;
-      color: v.$dark_green_default;
-      transition: ease-in 0.1s;
-
-      &:hover {
-        opacity: 80%;
-      }
-    }
   }
 }
