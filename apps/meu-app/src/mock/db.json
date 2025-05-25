@@ -49,26 +49,6 @@
       }
     }
   ],
-  "agencias": [
-    {
-      "digito": "001",
-      "nome": "Agência Central",
-      "endereco": "Rua Principal, 1000 - Centro",
-      "id": "8e51"
-    },
-    {
-      "digito": "002",
-      "nome": "Agência Sul",
-      "endereco": "Avenida das Américas, 2500 - Sul",
-      "id": "fb66"
-    },
-    {
-      "digito": "003",
-      "nome": "Agência Norte",
-      "endereco": "Rua do Comércio, 789 - Norte",
-      "id": "a33e"
-    }
-  ],
   "contas": [
     {
       "id": "1",

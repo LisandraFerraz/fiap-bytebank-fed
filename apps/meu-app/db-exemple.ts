@@ -1,0 +1,181 @@
+/*  Para rodar o banco mockado, siga esses passos:
+    1. Crie um arquivo "db.json" na raiz do projeto ou renomeie este arquivo
+    2. Utilize o conteúdo da constante abaixo para criar o JSON mock de resposta
+*/
+
+const dbExemplo = {
+  usuarios: [
+    {
+      id: "1",
+      nome: "Ana Clara Silva",
+      dataNascimento: "1990-05-10",
+      cpf: "12345678901",
+      dadosBancarios: {
+        numeroConta: 123456,
+        agencia: "001",
+        digito: 9,
+        chavePix: "ana.clara@example.com",
+      },
+      login: {
+        email: "anaclara@email.com",
+        password: "anaclara123",
+      },
+    },
+    {
+      id: "2",
+      nome: "Bruno Ferreira",
+      dataNascimento: "1985-11-23",
+      cpf: "98765432100",
+      dadosBancarios: {
+        numeroConta: 654321,
+        agencia: "002",
+        digito: 5,
+        chavePix: "bruno.ferreira@pix.com",
+      },
+      login: {
+        email: "brunoferreira@email.com",
+        password: "brunoferreira123",
+      },
+    },
+    {
+      id: "3",
+      nome: "Carla Mendes",
+      dataNascimento: "1992-08-17",
+      cpf: "32165498722",
+      dadosBancarios: {
+        numeroConta: 789123,
+        agencia: "003",
+        digito: 2,
+        chavePix: "carla.mendes@pix.com",
+      },
+      login: {
+        email: "carlamendes@email.com",
+        password: "carlamendes123",
+      },
+    },
+  ],
+  contas: [
+    {
+      id: "1",
+      numeroConta: 123456,
+      digito: 5,
+      usuarioCpf: "12345678901",
+      agencia: "002",
+      linhaCredito: 1500,
+      saldo: 4650,
+      depositos: [
+        {
+          id: "109e9c16-3834-48c4-904b-57c2629804fc",
+          chavePix: "ana.clara@example.com",
+          descricao: "Testando nova validação",
+          valor: 50,
+          data: "Sat May 24 2025 17:09:58 GMT-0300 (Horário Padrão de Brasília)",
+          contaOrigem: "654321-9",
+          remetente: "Bruno Ferreira",
+          cpfRemetente: "98765432100",
+          tipo: "DEPOSITO",
+        },
+        {
+          id: "c4186255-3482-43a5-8bac-02f621652cfd",
+          data: "Sat May 24 2025 22:56:25 GMT-0300 (Horário Padrão de Brasília)",
+          valor: 1000,
+          tipo: "DEPOSITO",
+        },
+      ],
+      transferencias: [
+        {
+          valor: 100,
+          data: "Sat May 24 2025 23:02:24 GMT-0300 (Horário Padrão de Brasília)",
+          descricao: "Testando pix",
+          chavePix: "bruno.ferreira@pix.com",
+          contaDestino: "654321-9",
+          destinatario: "Bruno Ferreira",
+          cpfDestinatario: "98765432100",
+        },
+      ],
+      historicoEmprestimos: [],
+    },
+    {
+      id: "2",
+      numeroConta: 654321,
+      digito: 9,
+      usuarioCpf: "98765432100",
+      agencia: "001",
+      linhaCredito: 2500,
+      saldo: 3550,
+      depositos: [
+        {
+          id: "109e9c16-3834-48c4-904b-57c2629804fc",
+          chavePix: "ana.clara@example.com",
+          descricao: "Testando nova validação",
+          valor: 50,
+          data: "Sat May 24 2025 17:09:58 GMT-0300 (Horário Padrão de Brasília)",
+          contaOrigem: "654321-9",
+          remetente: "Bruno Ferreira",
+          cpfRemetente: "98765432100",
+          tipo: "DEPOSITO",
+        },
+        {
+          id: "c4186255-3482-43a5-8bac-02f621652cfd",
+          data: "Sat May 24 2025 22:56:25 GMT-0300 (Horário Padrão de Brasília)",
+          valor: 1000,
+          tipo: "DEPOSITO",
+        },
+        {
+          valor: 100,
+          data: "Sat May 24 2025 23:02:24 GMT-0300 (Horário Padrão de Brasília)",
+          descricao: "Testando pix",
+          chavePix: "bruno.ferreira@pix.com",
+          contaOrigem: "123456-5",
+          remetente: "Ana Clara Silva",
+          cpfRemetente: "12345678901",
+          tipo: "DEPOSITO",
+        },
+      ],
+      transferencias: [
+        {
+          id: "7134d416-c5ab-48b2-b5b2-8b3da67b6877",
+          contaDestino: "123456-5",
+          valor: 2000,
+          data: "2025-05-24T08:27:55.040Z",
+          descricao: "testando de bruno para ana",
+          destinatario: "Ana Clara Silva",
+          cpfDestinatario: "12345678901",
+          tipo: "TRANSFERENCIA",
+        },
+        {
+          id: "109e9c16-3834-48c4-904b-57c2629804fc",
+          chavePix: "ana.clara@example.com",
+          descricao: "Testando nova validação",
+          valor: 50,
+          data: "Sat May 24 2025 17:09:58 GMT-0300 (Horário Padrão de Brasília)",
+          contaDestino: "123456-5",
+          destinatario: "Ana Clara Silva",
+          cpfDestinatario: "12345678901",
+          tipo: "TRANSFERENCIA",
+        },
+      ],
+      historicoEmprestimos: [
+        {
+          id: "a51faca8-af3f-4bdf-aa8f-d7844ce6d0c6",
+          data: "2025-05-19T01:28:08.561Z",
+          valor: 1000,
+          aberto: true,
+          tipo: "EMPRESTIMO",
+        },
+      ],
+    },
+    {
+      id: "3",
+      numeroConta: 789123,
+      digito: 2,
+      usuarioCpf: "32165498722",
+      agencia: "003",
+      linhaCredito: 3000,
+      saldo: 5500,
+      depositos: [],
+      transferencias: [],
+      historicoEmprestimos: [],
+    },
+  ],
+};
