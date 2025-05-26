@@ -1,0 +1,17 @@
+.pending_list {
+  .list_item {
+    margin: 5px 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > div {
+      h4,
+      p {
+        display: block;
+        margin: 15px 0;
+      }
+    }
+  }
+}

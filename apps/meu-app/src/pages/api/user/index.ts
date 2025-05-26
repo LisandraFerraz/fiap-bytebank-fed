@@ -14,6 +14,12 @@ export default async function getUserHandle(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  if (req.method !== "GET") {
+    return res.status(405).json({
+      errorMessage: "Método não permitdo.",
+    });
+  }
+
   const { cpf } = req.query;
 
   const { userRes, contasRes } = {

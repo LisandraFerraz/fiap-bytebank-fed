@@ -1,5 +1,5 @@
 import { endpoints } from "../../environment/endpoints";
-import { IDeposito, IPayLoan, IPix, ITed } from "../interfaces/transaction";
+import { IDeposito, IEmprestimo, IPix, ITed } from "../interfaces/transaction";
 
 export const UseTransactions = () => {
   // Envia dinheiro
@@ -35,14 +35,20 @@ export const UseTransactions = () => {
   };
 
   // Pede empréstimo
-  const applyLoan = async (cpf: string, loan: number) => {
-    return await fetch(`${endpoints.applyLoan}?cpf=${cpf}&loan=${loan}`, {
+  const requestLoan = async (cpf: string, body: IEmprestimo) => {
+    return await fetch(`${endpoints.requestLoan}?cpf=${cpf}`, {
       method: "PATCH",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   };
 
-  const payLoan = async (cpf: string, loanId: string, body: IPayLoan) => {
-    await fetch(`${endpoints.payLoan}?cpf=${cpf}&loanId=${loanId}`, {
+  // REVISAR!
+  // loanId está como query param e também no body. usar somente a do body!
+  const payLoan = async (cpf: string, body: IEmprestimo) => {
+    await fetch(`${endpoints.payLoan}?cpf=${cpf}`, {
       method: "PATCH",
       body: JSON.stringify(body),
       headers: {
@@ -54,5 +60,5 @@ export const UseTransactions = () => {
   // TODO: Calcula câmbio
   // const currencyExc = async () => {};
 
-  return { sendPix, sendBankDeposit, addMoney, applyLoan, payLoan };
+  return { sendPix, sendBankDeposit, addMoney, requestLoan, payLoan };
 };

@@ -7,6 +7,7 @@ import { GetStaticProps } from "next";
 import { endpoints } from "../../environment/endpoints";
 import { useEffect } from "react";
 import { env } from "../api/_environment/environment";
+import { Shortcuts } from "@components/shortcuts/shortcuts";
 
 interface HomeProps {
   data: IUsuarioConta;
@@ -22,6 +23,7 @@ export default function Home(data: HomeProps) {
   return (
     <div className={styles.content}>
       <StatementLayout />
+      <Shortcuts />
       <TransactionList />
     </div>
   );
@@ -30,7 +32,8 @@ export default function Home(data: HomeProps) {
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   try {
     const response = await fetch(
-      `${env.bffUrl}${endpoints.listaUser}?cpf=${"12345678901"}`
+      `${env.bffUrl}${endpoints.listaUser}?cpf=${"12345678901"}`,
+      { method: "GET" }
     );
     const udata = await response.json();
     const data = udata.data;

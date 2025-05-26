@@ -2,7 +2,8 @@ export const endpoints = {
   listaUser: "/api/user",
   sendMoney: "/api/send-money",
   addMoney: "/api/add-money",
-  applyLoan: "/api/apply-loan",
-  payLoan: "/api/pay-loan",
   sendPix: "/api/send-pix",
+  requestLoan: "/api/loan/request",
+  payLoan: "/api/loan/pay",
+  listLoans: "/api/loan",
 };

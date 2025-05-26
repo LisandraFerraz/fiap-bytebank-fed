@@ -19,8 +19,8 @@ export const Sidenav = () => {
               Transferências
             </li>
             <li>
-              <Icon iconKey="investment" />
-              Investimentos
+              <Icon iconKey="requestLoan" />
+              Empréstimos
             </li>
           </ul>
         </div>

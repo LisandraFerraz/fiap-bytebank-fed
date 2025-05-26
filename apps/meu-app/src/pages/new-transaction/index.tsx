@@ -30,6 +30,13 @@ export default function NewTransaction() {
           </div>
         </div>
       </Link>
+      <Link href="/apply-loan">
+        <div className={styles.option}>
+          <div className={styles.option_title}>
+            <p>Pedir empréstimo</p> <Icon iconKey="longArrow" />
+          </div>
+        </div>
+      </Link>
     </div>
   );
 }

@@ -11,7 +11,7 @@ export default async function sendMoneyHandle(
 ) {
   if (req.method !== "PATCH") {
     return res.status(405).json({
-      successMsg: `Método não permitido!`,
+      errorMsg: `Método não permitido!`,
     });
   }
 
@@ -44,6 +44,9 @@ export default async function sendMoneyHandle(
             depositos: [...(contaDestino["depositos"] || []), body],
             saldo: contaDestino.saldo + body.valor,
           }),
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
 

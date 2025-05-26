@@ -4,7 +4,6 @@ export enum TransacationTypes {
   EMPRESTIMO = "EMPRESTIMO",
 }
 
-// mantén
 export interface ITed {
   id?: string;
   data?: string;
@@ -16,7 +15,6 @@ export interface ITed {
   descricao: string;
   tipo: TransacationTypes.TRANSFERENCIA;
 }
-// mantén
 export interface IPix {
   id?: string;
   valor: number;
@@ -37,10 +35,13 @@ export interface ITransacao {
   nome: string;
 }
 
-export interface IPayLoan {
-  id?: string;
-  valorPago: number;
+export interface IEmprestimo {
+  id: string;
+  valor: number;
   data: string;
+  aberto?: boolean;
+  tipo: TransacationTypes;
+  valorPago: number; // somente para pagamento de emprestimo
 }
 
 export interface IDeposito {

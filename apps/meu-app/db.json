@@ -56,8 +56,8 @@
       "digito": 5,
       "usuarioCpf": "12345678901",
       "agencia": "002",
-      "linhaCredito": 1500,
-      "saldo": 5570,
+      "linhaCredito": 1050,
+      "saldo": 6020,
       "depositos": [
         {
           "id": "109e9c16-3834-48c4-904b-57c2629804fc",
@@ -142,10 +142,30 @@
           "id": "45c9f405-2fd2-427a-8e25-2354809cbe6c"
         }
       ],
-      "historicoEmprestimos": [],
-      "headers": {
-        "Content-Type": "application/json"
-      }
+      "historicoEmprestimos": [
+        {
+          "tipo": "EMPRESTIMO",
+          "id": "bd5c7089-6fce-4c72-93c6-35eb15feaa5f",
+          "valor": 100,
+          "data": "Mon May 26 2025 00:58:10 GMT-0300 (Horário Padrão de Brasília)",
+          "aberto": true
+        },
+        {
+          "tipo": "EMPRESTIMO",
+          "id": "fb218667-f783-439e-8193-af9ea68058ba",
+          "valor": 100,
+          "data": "Mon May 26 2025 01:07:45 GMT-0300 (Horário Padrão de Brasília)",
+          "aberto": true
+        },
+        {
+          "tipo": "EMPRESTIMO",
+          "id": "599747da-affc-43b9-800f-095bd6273040",
+          "valor": 200,
+          "data": "Mon May 26 2025 00:57:13 GMT-0300 (Horário Padrão de Brasília)",
+          "aberto": false,
+          "valorPago": 50
+        }
+      ]
     },
     {
       "id": "2",
@@ -258,11 +278,15 @@
           "valor": 1000,
           "aberto": true,
           "tipo": "EMPRESTIMO"
+        },
+        {
+          "id": "a51faca8-af3f-4bdf-aa8f-d7844ce6d0c6",
+          "data": "2025-05-19T01:28:08.561Z",
+          "valor": 1000,
+          "aberto": false,
+          "tipo": "EMPRESTIMO"
         }
-      ],
-      "headers": {
-        "Content-Type": "application/json"
-      }
+      ]
     },
     {
       "id": "3",

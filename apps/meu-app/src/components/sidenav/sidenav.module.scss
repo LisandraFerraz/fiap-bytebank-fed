@@ -42,8 +42,10 @@
 
     .card_bottom {
       text-align: right;
+      font-weight: 600;
+      color: v.$grey_font;
       margin-top: 50px;
-      font-weight: bold;
+      font-size: v.$text-sm;
     }
   }
 }

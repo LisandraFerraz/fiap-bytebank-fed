@@ -13,7 +13,7 @@ export default async function sendPixHandle(
 ) {
   if (req.method !== "PATCH") {
     return res.status(405).json({
-      successMsg: `Método não permitido!`,
+      errorMsg: `Método não permitido!`,
     });
   }
 
@@ -62,10 +62,10 @@ export default async function sendPixHandle(
                 cpfRemetente: pfR.cpf,
               },
             ],
-            headers: {
-              "Content-Type": "application/json",
-            },
           }),
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
         await fetch(`${env.localApi}/contas/${String(accR.id)}`, {
           method: "PATCH",
@@ -81,10 +81,10 @@ export default async function sendPixHandle(
                 cpfDestinatario: pfD?.cpf,
               },
             ],
-            headers: {
-              "Content-Type": "application/json",
-            },
           }),
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
 
         return res.status(200).json({
