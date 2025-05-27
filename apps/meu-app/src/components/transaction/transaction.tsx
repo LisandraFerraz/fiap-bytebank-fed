@@ -9,21 +9,21 @@ import {
 } from "../../utils/interfaces/transaction";
 
 export const Transaction = ({ dataT }: { dataT: ITransacao }) => {
-  const isDeposit = dataT?.tipo === TransacationTypes.DEPOSITO;
+  const isExpanse = dataT?.tipo !== TransacationTypes.DEPOSITO;
   return (
     <div className={styles.transaction}>
       <div className={styles.transaction_content}>
         <span
           className={`${styles.icon} ${
-            isDeposit ? styles.deposit : styles.expanse
+            isExpanse ? styles.deposit : styles.expanse
           }`}
         >
-          <Icon iconKey={isDeposit ? "deposit" : "expanse"} />
+          <Icon iconKey={isExpanse ? "expanse" : "deposit"} />
         </span>
         <div className={styles.transaction_text}>
           <p className={styles.transaction_date}>{dataT.data}</p>
           <p>{dataT.tipo}</p>
-          <p className={styles.transaction_value}>{dataT.valor}</p>
+          <p className={styles.transaction_value}>R$ {dataT.valor}</p>
         </div>
       </div>
       <Button btnClass={BtnClasses.DEFAULT} text="Visualizar" />

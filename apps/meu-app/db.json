@@ -64,48 +64,42 @@
           "chavePix": "ana.clara@example.com",
           "descricao": "Testando nova validação",
           "valor": 50,
-          "data": "Sat May 24 2025 17:09:58 GMT-0300 (Horário Padrão de Brasília)",
+          "data": "24-05-2025",
           "contaOrigem": "654321-9",
           "remetente": "Bruno Ferreira",
           "cpfRemetente": "98765432100",
-          "tipo": "DEPOSITO"
-        },
-        {
-          "id": "c4186255-3482-43a5-8bac-02f621652cfd",
-          "data": "Sat May 24 2025 22:56:25 GMT-0300 (Horário Padrão de Brasília)",
-          "valor": 1000,
-          "tipo": "DEPOSITO"
+          "tipo": "PIX"
         },
         {
           "valor": 100,
-          "data": "Sat May 24 2025 23:02:24 GMT-0300 (Horário Padrão de Brasília)",
+          "data": "24-07-2025",
           "descricao": "Testando pix",
           "chavePix": "bruno.ferreira@pix.com",
           "contaOrigem": "123456-5",
           "remetente": "Ana Clara Silva",
           "cpfRemetente": "12345678901",
-          "tipo": "DEPOSITO"
+          "tipo": "PIX"
         },
         {
           "descricao": "",
-          "data": "Sun May 25 2025 06:27:02 GMT-0300 (Horário Padrão de Brasília)",
+          "data": "25-05-2025",
           "valor": 400,
           "numConta": 654321,
           "digito": 9,
           "agencia": "001",
           "cpfDestinatario": "98765432100",
-          "tipo": "TRANSFERENCIA",
+          "tipo": "TED",
           "id": "692fed3c-d3f9-4e03-b64b-234276809e84"
         },
         {
           "descricao": "",
-          "data": "Sun May 25 2025 06:30:31 GMT-0300 (Horário Padrão de Brasília)",
+          "data": "25-05-2025",
           "valor": 400,
           "numConta": 654321,
           "digito": 9,
           "agencia": "001",
           "cpfDestinatario": "98765432100",
-          "tipo": "TRANSFERENCIA",
+          "tipo": "TED",
           "id": "45c9f405-2fd2-427a-8e25-2354809cbe6c"
         },
         {
@@ -113,8 +107,8 @@
           "chavePix": "ana.clara@example.com",
           "descricao": "",
           "valor": 220,
-          "data": "Sun May 25 2025 06:43:09 GMT-0300 (Horário Padrão de Brasília)",
-          "tipo": "TRANSFERENCIA",
+          "data": "25-12-2025",
+          "tipo": "PIX",
           "contaOrigem": "654321-9",
           "remetente": "Bruno Ferreira",
           "cpfRemetente": "98765432100"
@@ -123,22 +117,23 @@
       "transferencias": [
         {
           "valor": 100,
-          "data": "Sat May 24 2025 23:02:24 GMT-0300 (Horário Padrão de Brasília)",
+          "data": "24-02-2025",
           "descricao": "Testando pix",
           "chavePix": "bruno.ferreira@pix.com",
           "contaDestino": "654321-9",
           "destinatario": "Bruno Ferreira",
-          "cpfDestinatario": "98765432100"
+          "cpfDestinatario": "98765432100",
+          "tipo": "PIX"
         },
         {
           "descricao": "",
-          "data": "Sun May 25 2025 06:30:31 GMT-0300 (Horário Padrão de Brasília)",
+          "data": "25-02-2025",
           "valor": 400,
           "numConta": 654321,
           "digito": 9,
           "agencia": "001",
           "cpfDestinatario": "98765432100",
-          "tipo": "TRANSFERENCIA",
+          "tipo": "TED",
           "id": "45c9f405-2fd2-427a-8e25-2354809cbe6c"
         }
       ],
@@ -147,7 +142,7 @@
           "tipo": "EMPRESTIMO",
           "id": "db8828f7-e2bf-48af-8373-64cc860eb920",
           "valor": 30,
-          "data": "Mon May 26 2025 21:21:10 GMT-0300 (Horário Padrão de Brasília)",
+          "data": "26-04-2025",
           "valorPago": 20,
           "aberto": true,
           "valorDevido": 20
@@ -156,7 +151,7 @@
           "tipo": "EMPRESTIMO",
           "id": "30d857b8-cc36-4275-b574-20db29f9633f",
           "valor": 100,
-          "data": "Mon May 26 2025 22:05:53 GMT-0300 (Horário Padrão de Brasília)",
+          "data": "26-04-2025",
           "valorPago": 100,
           "aberto": false,
           "valorDevido": 0
@@ -177,48 +172,42 @@
           "chavePix": "ana.clara@example.com",
           "descricao": "Testando nova validação",
           "valor": 50,
-          "data": "Sat May 24 2025 17:09:58 GMT-0300 (Horário Padrão de Brasília)",
+          "data": "24-05-2025",
           "contaOrigem": "654321-9",
           "remetente": "Bruno Ferreira",
           "cpfRemetente": "98765432100",
-          "tipo": "DEPOSITO"
-        },
-        {
-          "id": "c4186255-3482-43a5-8bac-02f621652cfd",
-          "data": "Sat May 24 2025 22:56:25 GMT-0300 (Horário Padrão de Brasília)",
-          "valor": 1000,
-          "tipo": "DEPOSITO"
+          "tipo": "PIX"
         },
         {
           "valor": 100,
-          "data": "Sat May 24 2025 23:02:24 GMT-0300 (Horário Padrão de Brasília)",
+          "data": "24-05-2025",
           "descricao": "Testando pix",
           "chavePix": "bruno.ferreira@pix.com",
           "contaOrigem": "123456-5",
           "remetente": "Ana Clara Silva",
           "cpfRemetente": "12345678901",
-          "tipo": "DEPOSITO"
+          "tipo": "PIX"
         },
         {
           "descricao": "",
-          "data": "Sun May 25 2025 06:27:02 GMT-0300 (Horário Padrão de Brasília)",
+          "data": "25-05-2025",
           "valor": 400,
           "numConta": 654321,
           "digito": 9,
           "agencia": "001",
           "cpfDestinatario": "98765432100",
-          "tipo": "TRANSFERENCIA",
+          "tipo": "TED",
           "id": "692fed3c-d3f9-4e03-b64b-234276809e84"
         },
         {
           "descricao": "",
-          "data": "Sun May 25 2025 06:30:31 GMT-0300 (Horário Padrão de Brasília)",
+          "data": "25-05-2025",
           "valor": 400,
           "numConta": 654321,
           "digito": 9,
           "agencia": "001",
           "cpfDestinatario": "98765432100",
-          "tipo": "TRANSFERENCIA",
+          "tipo": "TED",
           "id": "45c9f405-2fd2-427a-8e25-2354809cbe6c"
         }
       ],
@@ -227,32 +216,32 @@
           "id": "7134d416-c5ab-48b2-b5b2-8b3da67b6877",
           "contaDestino": "123456-5",
           "valor": 2000,
-          "data": "2025-05-24T08:27:55.040Z",
+          "data": "24-05-2025",
           "descricao": "testando de bruno para ana",
           "destinatario": "Ana Clara Silva",
           "cpfDestinatario": "12345678901",
-          "tipo": "TRANSFERENCIA"
+          "tipo": "TED"
         },
         {
           "id": "109e9c16-3834-48c4-904b-57c2629804fc",
           "chavePix": "ana.clara@example.com",
           "descricao": "Testando nova validação",
           "valor": 50,
-          "data": "Sat May 24 2025 17:09:58 GMT-0300 (Horário Padrão de Brasília)",
+          "data": "24-05-2025",
           "contaDestino": "123456-5",
           "destinatario": "Ana Clara Silva",
           "cpfDestinatario": "12345678901",
-          "tipo": "TRANSFERENCIA"
+          "tipo": "PIX"
         },
         {
           "descricao": "",
-          "data": "Sun May 25 2025 06:27:02 GMT-0300 (Horário Padrão de Brasília)",
+          "data": "25-05-2025",
           "valor": 400,
           "numConta": 654321,
           "digito": 9,
           "agencia": "001",
           "cpfDestinatario": "98765432100",
-          "tipo": "TRANSFERENCIA",
+          "tipo": "TED",
           "id": "692fed3c-d3f9-4e03-b64b-234276809e84"
         },
         {
@@ -260,8 +249,8 @@
           "chavePix": "ana.clara@example.com",
           "descricao": "",
           "valor": 220,
-          "data": "Sun May 25 2025 06:43:09 GMT-0300 (Horário Padrão de Brasília)",
-          "tipo": "TRANSFERENCIA",
+          "data": "25-05-2025",
+          "tipo": "PIX",
           "contaDestino": "123456-5",
           "destinatario": "Ana Clara Silva",
           "cpfDestinatario": "12345678901"
@@ -270,17 +259,21 @@
       "historicoEmprestimos": [
         {
           "id": "a51faca8-af3f-4bdf-aa8f-d7844ce6d0c6",
-          "data": "2025-05-19T01:28:08.561Z",
+          "data": "19-05-2025",
           "valor": 1000,
           "aberto": true,
-          "tipo": "EMPRESTIMO"
+          "tipo": "EMPRESTIMO",
+          "valorPago": 0,
+          "valorDevido": 100
         },
         {
           "id": "a51faca8-af3f-4bdf-aa8f-d7844ce6d0c6",
-          "data": "2025-05-19T01:28:08.561Z",
+          "data": "19-05-2025",
           "valor": 1000,
           "aberto": false,
-          "tipo": "EMPRESTIMO"
+          "tipo": "EMPRESTIMO",
+          "valorPago": 900,
+          "valorDevido": 100
         }
       ]
     },

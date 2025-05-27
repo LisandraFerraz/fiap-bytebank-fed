@@ -19,8 +19,6 @@ export default async function sendMoneyHandle(
     const body: ITed = req.body;
     const { usuarioCpf } = req.query;
 
-    console.log("body ", body);
-
     if (usuarioCpf && !hasEmptyValues(body)) {
       // Resgata a conta destino
       const resD = await getFetch<IConta[]>(

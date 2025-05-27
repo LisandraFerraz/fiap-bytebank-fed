@@ -1,15 +1,8 @@
-import { NextResponse } from "next/server";
-import { coreApi } from "../core/core-api";
-import { IConta } from "../../../utils/interfaces/conta";
-import { IAgencia } from "../../../utils/interfaces/agencia";
-import { IUsuarioConta } from "../../../utils/interfaces/user";
+import { IUsuario } from "../../../utils/interfaces/user";
 import { NextApiRequest, NextApiResponse } from "next";
+import { getFetch } from "../lib/functions/fetch";
+import { env } from "../_environment/environment";
 
-/*
- * Retorna um json com os dados do usuário
- * e sua conta bancária (incluindo as transações)
- * conforme o search param "cpf"
- */
 export default async function getUserHandle(
   req: NextApiRequest,
   res: NextApiResponse
@@ -22,36 +15,14 @@ export default async function getUserHandle(
 
   const { cpf } = req.query;
 
-  const { userRes, contasRes } = {
-    userRes: await coreApi({
-      url: `usuarios?cpf=${cpf}`,
-      method: "GET",
-    }),
-    contasRes: await coreApi({
-      url: "contas",
-      method: "GET",
-    }),
-  };
-
-  const { userData, contasData } = {
-    userData: await userRes.json(),
-    contasData: await contasRes.json(),
-  };
-
-  const contaB = contasData.find(
-    (conta: IConta) => conta.usuarioCpf === String(cpf)
+  const userData = await getFetch<IUsuario>(
+    `${env.localApi}/usuarios?cpf=${cpf}`
   );
 
-  let data: IUsuarioConta;
-
-  if (contaB) {
-    data = {
-      usuario: userData,
-      contaBancaria: contaB,
-    };
+  if (userData) {
     return res
-      .status(500)
-      .json({ data, successMessage: "Dados listados com sucesso" });
+      .status(200)
+      .json({ data: userData, successMessage: "Dados listados com sucesso" });
   }
   return res
     .status(500)

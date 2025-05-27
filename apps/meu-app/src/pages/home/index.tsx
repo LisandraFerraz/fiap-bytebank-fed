@@ -2,45 +2,38 @@
 import styles from "./styles.module.scss";
 import { StatementLayout } from "@components/statement-layout/layout";
 import { TransactionList } from "@components/transactions-list/transaction-list";
-import { IUsuarioConta } from "../../utils/interfaces/user";
+import { Shortcuts } from "@components/shortcuts/shortcuts";
+import { IConta } from "../../utils/interfaces/conta";
 import { GetStaticProps } from "next";
 import { endpoints } from "../../environment/endpoints";
-import { useEffect } from "react";
 import { env } from "../api/_environment/environment";
-import { Shortcuts } from "@components/shortcuts/shortcuts";
+import { useEffect } from "react";
 
-interface HomeProps {
-  data: IUsuarioConta;
+interface IHomeProps {
+  data: any;
 }
 
-export default function Home(data: HomeProps) {
-  const dateNow = new Date();
-
-  useEffect(() => {
-    console.log("DATA: ", data);
-  }, []);
-
+export default function Home({ data }: IHomeProps) {
   return (
     <div className={styles.content}>
-      <StatementLayout />
+      <StatementLayout data={data.accDetails} />
       <Shortcuts />
-      <TransactionList />
+      <TransactionList data={data.transactions} />
     </div>
   );
 }
 
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+export const getStaticProps: GetStaticProps<IHomeProps> = async () => {
   try {
     const response = await fetch(
-      `${env.bffUrl}${endpoints.listaUser}?cpf=${"12345678901"}`,
+      `${env.bffUrl}${endpoints.listaAccount}?cpf=${"12345678901"}`,
       { method: "GET" }
     );
-    const udata = await response.json();
-    const data = udata.data;
+    const data = await response.json();
 
     return {
       props: {
-        data,
+        data: data.data,
       },
     };
   } catch (error) {

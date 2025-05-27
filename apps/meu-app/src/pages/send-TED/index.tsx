@@ -19,7 +19,7 @@ export default function SendTED() {
     digito: 0,
     agencia: "",
     cpfDestinatario: "",
-    tipo: TransacationTypes.TRANSFERENCIA,
+    tipo: TransacationTypes.TED,
   });
 
   const updateBody = (key: string, value: string | number) => {

@@ -16,7 +16,7 @@ export default function SendPix() {
     descricao: "",
     valor: 100,
     data: "",
-    tipo: TransacationTypes.TRANSFERENCIA,
+    tipo: TransacationTypes.PIX,
   });
 
   const updateBody = (key: string, value: string) => {

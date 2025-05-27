@@ -46,6 +46,10 @@ export default async function addMoneyHandler(
       });
     }
   } catch (error) {
-    console.log("ERROR HERE: ", error);
+    return res.status(500).json({
+      successMsg:
+        "Um erro inesperado aconteceu e não foi possível concluir o depósito",
+      error: error,
+    });
   }
 }

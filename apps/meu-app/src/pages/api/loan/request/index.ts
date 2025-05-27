@@ -20,10 +20,6 @@ export default async function requestLoanHandle(
   const contas = await contasReq.json();
   const conta = contas[0];
 
-  console.log("loanBody: ", loanBody);
-  console.log("cpf: ", cpf);
-  console.log("conta: ", conta);
-
   // Verifica se o limite de empréstimo é suficiente
   // Adiciona o empréstimo no histórico
   if (conta.linhaCredito > loanBody.valor) {

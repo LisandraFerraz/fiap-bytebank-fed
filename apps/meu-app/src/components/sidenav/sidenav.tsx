@@ -2,10 +2,13 @@ import Image from "next/image";
 import styles from "./sidenav.module.scss";
 import { Icon } from "@components/icon/icon";
 import Link from "next/link";
-import { GetStaticProps } from "next";
+import { useUserContext } from "../../context/user-context";
+import { useEffect } from "react";
 
 export const Sidenav = () => {
-  const name = "Joana";
+  const { user } = useUserContext();
+
+  const dateNow = new Date();
 
   return (
     <div className={styles.sidenav}>
@@ -16,30 +19,30 @@ export const Sidenav = () => {
         <div>
           <ul>
             <li>
-              <Icon iconKey="transaction" />
-              Transferências
+              <Link href={"/"}>
+                <Icon iconKey="transaction" />
+                Transferências
+              </Link>
             </li>
             <li>
-              <Icon iconKey="requestLoan" />
-              Empréstimos
+              <Link href={"/loan"}>
+                <Icon iconKey="requestLoan" />
+                Empréstimos
+              </Link>
             </li>
           </ul>
         </div>
       </div>
-      <div className={styles.sidenav_card}>
-        {/* <Image
-          src="/sidenav-card-bg.svg"
-          alt="Sidenav Card Background Image"
-          className={styles.card_bg}
-        /> */}
-        <div className={styles.card_top}>
-          <h2>Olá, {name}! :) </h2>
-          {/* <p>{String(dateNow)}</p> */}
+      {user && (
+        <div className={styles.sidenav_card}>
+          <div className={styles.card_top}>
+            <h2>Olá, {user?.nome}! :) </h2>
+          </div>
+          <div className={styles.card_bottom}>
+            <p>{String(dateNow)}</p>
+          </div>
         </div>
-        <div className={styles.card_bottom}>
-          Configurações do perfil <Icon iconKey="longArrow" />
-        </div>
-      </div>
+      )}
     </div>
   );
 };

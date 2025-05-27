@@ -1,21 +1,20 @@
 "use client";
-
 import { Balance } from "@components/balance/balance";
 import styles from "./statement.module.scss";
 import { BtnClasses, Button } from "@components/button/button";
-import { TransactionModal } from "@components/loan-modal/loan-modal";
-import { useState } from "react";
-import { TransacationTypes } from "../../utils/interfaces/transaction";
 import { useRouter } from "next/navigation";
+import { IConta } from "../../utils/interfaces/conta";
 
-export const StatementLayout = () => {
+interface IStatement {
+  data: IConta;
+}
+
+export const StatementLayout = ({ data }: IStatement) => {
   const router = useRouter();
-
-  const [showModal, setShowModal] = useState<boolean>(true);
 
   return (
     <div className={styles.statLayout}>
-      <Balance />
+      <Balance amount={data.saldo} />
       <div className={styles.actions}>
         <Button
           btnClass={BtnClasses.CONFIRM}

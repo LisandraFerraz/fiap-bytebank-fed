@@ -3,18 +3,26 @@
 import styles from "./transaction-list.module.scss";
 
 import { Title } from "@components/title-text/title-text";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Transaction } from "@components/transaction/transaction";
 import { transactionsList } from "../../utils/transactions";
+import { ITransacao } from "../../utils/interfaces/transaction";
 
-export const TransactionList = () => {
-  const [transactions, setTransactions] = useState<any>(transactionsList);
+interface ITransactions {
+  data: any;
+}
 
+export const TransactionList = ({ data }: ITransactions) => {
   return (
     <div className={styles.transacions_list}>
       <Title text="Extrato" />
-      {transactions.map((t: any, index: any) => (
-        <Transaction dataT={t} key={index} />
+      {data.map((item: any, index: any) => (
+        <>
+          {item.mes}
+          {item.transferencias.map((t: any, idx: any) => (
+            <Transaction dataT={t} key={idx} />
+          ))}
+        </>
       ))}
     </div>
   );

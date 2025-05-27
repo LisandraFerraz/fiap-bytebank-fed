@@ -1,12 +1,15 @@
 import { endpoints } from "../../environment/endpoints";
 
 export const UseUser = () => {
-  const getUserInfo = async (cpf: string) => {
-    const resBff = await fetch(`${endpoints.listaUsuarios}?cpf=${cpf}`);
-
-    const data = await resBff.json();
-    return data;
+  const getUserInfo = (cpf: string) => {
+    return fetch(`${endpoints.listaUser}?cpf=${cpf}`, {
+      method: "GET",
+    });
   };
 
-  return { getUserInfo };
+  const getAccountInfo = (cpf: string) => {
+    return fetch(`${endpoints.listaAccount}?cpf=${cpf}`);
+  };
+
+  return { getUserInfo, getAccountInfo };
 };

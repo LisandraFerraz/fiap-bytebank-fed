@@ -17,14 +17,22 @@
       font-size: v.$text-md;
 
       li {
+        a {
+          text-decoration: none;
+          color: v.$grey_highlight;
+          transition: ease-in 0.1s;
+          svg {
+            margin-right: 20px;
+          }
+
+          &:hover {
+            opacity: 80%;
+          }
+        }
         padding: 20px 0;
-        color: v.$grey_highlight;
 
         &:first-child {
           border-bottom: 1px solid v.$sogrey_highlight;
-        }
-        > svg {
-          margin-right: 20px;
         }
       }
     }

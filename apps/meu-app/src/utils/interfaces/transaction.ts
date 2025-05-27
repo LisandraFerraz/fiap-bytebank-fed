@@ -1,7 +1,8 @@
 export enum TransacationTypes {
   DEPOSITO = "DEPOSITO",
-  TRANSFERENCIA = "TRANSFERENCIA",
+  TED = "TED",
   EMPRESTIMO = "EMPRESTIMO",
+  PIX = "PIX",
 }
 
 export interface ITed {
@@ -13,7 +14,7 @@ export interface ITed {
   agencia: string;
   digito: number;
   descricao: string;
-  tipo: TransacationTypes.TRANSFERENCIA;
+  tipo: TransacationTypes.TED;
 }
 export interface IPix {
   id?: string;
@@ -21,7 +22,7 @@ export interface IPix {
   data?: string;
   descricao: string;
   chavePix: string;
-  tipo: TransacationTypes.TRANSFERENCIA;
+  tipo: TransacationTypes.PIX;
 }
 
 export interface ITransacao {
