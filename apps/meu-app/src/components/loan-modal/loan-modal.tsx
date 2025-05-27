@@ -1,0 +1,77 @@
+import styles from "./loan-modal.module.scss";
+import { ModalLayout } from "@components/modal-layout/modal-layout";
+import { BtnClasses, Button } from "@components/button/button";
+import {
+  IEmprestimo,
+  TransacationTypes,
+} from "../../utils/interfaces/transaction";
+import { InputText } from "@components/input-text/input-text";
+import { useEffect, useState } from "react";
+import { UseTransactions } from "../../utils/hooks/useTransactions";
+
+interface IEmprestimoModal {
+  data: IEmprestimo;
+  isOpen: boolean;
+}
+
+export const LoanModal = ({ data, isOpen }: IEmprestimoModal) => {
+  const { payLoan } = UseTransactions();
+
+  const [payLoanBody, setPayLoanBody] = useState<IEmprestimo>({
+    ...data,
+  });
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(isOpen);
+
+  useEffect(() => {
+    console.log(data);
+  }, []);
+
+  const handleSetBody = (valor: string) => {
+    const valorParsed = Number(valor);
+
+    if (!isNaN(valorParsed) && valorParsed > 0) {
+      setPayLoanBody({
+        ...data,
+        valorPago: valorParsed,
+      });
+    }
+  };
+
+  const handlePayLoan = () => {
+    payLoan("12345678901", payLoanBody);
+  };
+
+  return (
+    <>
+      <ModalLayout
+        onClose={() => setIsModalOpen(false)}
+        modalTitle="Pagar empréstimo"
+      >
+        <p className={styles.loan_amount}>
+          Valor do empréstimo: R$ {data.valorDevido}
+        </p>
+        {/* Resgatar do local storage */}
+        {/* <p>Saldo disponível: R$ {data.valor}</p> */}
+        <div className={styles.form_layout}>
+          <div className={styles.row}>
+            <InputText
+              value={payLoanBody.valorPago}
+              id="valor"
+              label="Valor a pagar"
+              placeHolder="Valor a pagar"
+              onChange={(e) => handleSetBody(e.target.value)}
+              type="number"
+            />
+          </div>
+          <div className={styles.form_bottom}>
+            <Button
+              text="Confirmar"
+              click={handlePayLoan}
+              btnClass={BtnClasses.CONFIRM}
+            />
+          </div>
+        </div>
+      </ModalLayout>
+    </>
+  );
+};

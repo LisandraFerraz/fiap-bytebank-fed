@@ -37,6 +37,7 @@ export default async function requestLoanHandle(
           {
             ...loanBody,
             aberto: true,
+            valorDevido: loanBody.valor,
           },
         ],
       }),

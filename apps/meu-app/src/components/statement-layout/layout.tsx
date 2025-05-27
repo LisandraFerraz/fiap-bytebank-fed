@@ -3,7 +3,7 @@
 import { Balance } from "@components/balance/balance";
 import styles from "./statement.module.scss";
 import { BtnClasses, Button } from "@components/button/button";
-import { TransactionModal } from "@components/transaction-modal/transaction-modal";
+import { TransactionModal } from "@components/loan-modal/loan-modal";
 import { useState } from "react";
 import { TransacationTypes } from "../../utils/interfaces/transaction";
 import { useRouter } from "next/navigation";

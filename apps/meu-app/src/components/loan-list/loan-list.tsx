@@ -1,11 +1,12 @@
 import styles from "./loan-list.module.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   IEmprestimo,
   TransacationTypes,
 } from "../../utils/interfaces/transaction";
 import { BtnClasses, Button } from "@components/button/button";
 import { UseTransactions } from "../../utils/hooks/useTransactions";
+import { LoanModal } from "@components/loan-modal/loan-modal";
 
 interface ILoan {
   data: IEmprestimo[];
@@ -13,6 +14,9 @@ interface ILoan {
 
 export const LoanPendingList = ({ data }: ILoan) => {
   const { payLoan } = UseTransactions();
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [modalData, setModalData] = useState<IEmprestimo>();
 
   const handlePayLoan = (item: IEmprestimo) => {
     const dateToday = new Date();
@@ -26,24 +30,32 @@ export const LoanPendingList = ({ data }: ILoan) => {
     payLoan("12345678901", body);
   };
 
+  const handleModal = (data: IEmprestimo) => {
+    setIsOpen(true);
+    setModalData(data);
+  };
+
   return (
-    <div className={styles.pending_list}>
-      {data.map((item: IEmprestimo, index) => (
-        <div key={index} className={styles.list_item}>
-          <div>
-            <h4>A pagar</h4>
-            <p>Aberto em {item.data}</p>
-            <p>{item.valor}</p>
+    <>
+      <div className={styles.pending_list}>
+        {data.map((item: IEmprestimo, index) => (
+          <div key={index} className={styles.list_item}>
+            <div>
+              <h4>A pagar</h4>
+              <p>Aberto em {item.data}</p>
+              <p>{item.valorDevido}</p>
+            </div>
+            {item.aberto && (
+              <Button
+                text="Pagar"
+                click={() => handleModal(item)}
+                btnClass={BtnClasses.DEFAULT}
+              />
+            )}
           </div>
-          {item.aberto && (
-            <Button
-              text="Pagar"
-              click={() => handlePayLoan(item)}
-              btnClass={BtnClasses.DEFAULT}
-            />
-          )}
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+      {isOpen && modalData && <LoanModal isOpen={isOpen} data={modalData} />}
+    </>
   );
 };

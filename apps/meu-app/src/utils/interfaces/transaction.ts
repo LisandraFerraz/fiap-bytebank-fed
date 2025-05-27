@@ -37,11 +37,12 @@ export interface ITransacao {
 
 export interface IEmprestimo {
   id: string;
-  valor: number;
+  valor: number; // valor do empréstimo
   data: string;
   aberto?: boolean;
   tipo: TransacationTypes;
-  valorPago: number; // somente para pagamento de emprestimo
+  valorPago: number; // valor para pagar o empréstimo
+  valorDevido?: number; // seu valor só é alterado no BFF
 }
 
 export interface IDeposito {

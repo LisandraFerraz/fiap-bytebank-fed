@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./sidenav.module.scss";
 import { Icon } from "@components/icon/icon";
 import Link from "next/link";
+import { GetStaticProps } from "next";
 
 export const Sidenav = () => {
   const name = "Joana";

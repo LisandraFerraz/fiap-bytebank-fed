@@ -56,8 +56,8 @@
       "digito": 5,
       "usuarioCpf": "12345678901",
       "agencia": "002",
-      "linhaCredito": 1050,
-      "saldo": 6020,
+      "linhaCredito": 1080,
+      "saldo": 5990,
       "depositos": [
         {
           "id": "109e9c16-3834-48c4-904b-57c2629804fc",
@@ -145,25 +145,21 @@
       "historicoEmprestimos": [
         {
           "tipo": "EMPRESTIMO",
-          "id": "bd5c7089-6fce-4c72-93c6-35eb15feaa5f",
-          "valor": 100,
-          "data": "Mon May 26 2025 00:58:10 GMT-0300 (Horário Padrão de Brasília)",
-          "aberto": true
+          "id": "db8828f7-e2bf-48af-8373-64cc860eb920",
+          "valor": 30,
+          "data": "Mon May 26 2025 21:21:10 GMT-0300 (Horário Padrão de Brasília)",
+          "valorPago": 20,
+          "aberto": true,
+          "valorDevido": 20
         },
         {
           "tipo": "EMPRESTIMO",
-          "id": "fb218667-f783-439e-8193-af9ea68058ba",
+          "id": "30d857b8-cc36-4275-b574-20db29f9633f",
           "valor": 100,
-          "data": "Mon May 26 2025 01:07:45 GMT-0300 (Horário Padrão de Brasília)",
-          "aberto": true
-        },
-        {
-          "tipo": "EMPRESTIMO",
-          "id": "599747da-affc-43b9-800f-095bd6273040",
-          "valor": 200,
-          "data": "Mon May 26 2025 00:57:13 GMT-0300 (Horário Padrão de Brasília)",
+          "data": "Mon May 26 2025 22:05:53 GMT-0300 (Horário Padrão de Brasília)",
+          "valorPago": 100,
           "aberto": false,
-          "valorPago": 50
+          "valorDevido": 0
         }
       ]
     },

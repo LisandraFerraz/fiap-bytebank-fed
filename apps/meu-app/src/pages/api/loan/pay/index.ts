@@ -17,13 +17,14 @@ export default async function payLoanHandle(
     (e: any) => e.id === body.id
   );
 
-  const valorEmprestimo = conta.historicoEmprestimos[loanIndex].valor;
+  const valorPago = conta.historicoEmprestimos[loanIndex].valorPago;
+  const valorDevido = conta.historicoEmprestimos[loanIndex].valorDevido;
 
   const oldHistory = conta.historicoEmprestimos.filter(
     (ch: IEmprestimo) => ch.id !== body.id
   );
 
-  if (body.valor > 0 && body.valor <= valorEmprestimo) {
+  if (body.valorPago > 0 && body.valorPago <= valorDevido) {
     if (loanIndex !== undefined && loanIndex !== -1) {
       const updateReq = await fetch(`${env.localApi}/contas/${conta.id}`, {
         method: "PATCH",
@@ -35,8 +36,9 @@ export default async function payLoanHandle(
             ...oldHistory,
             {
               ...conta.historicoEmprestimos[loanIndex],
-              aberto: body.valor === valorEmprestimo ? false : true,
-              valorPago: body.valorPago,
+              aberto: body.valorPago - valorDevido === 0 ? false : true,
+              valorPago: valorPago + body.valorPago,
+              valorDevido: valorDevido - body.valorPago,
             },
           ],
         }),
@@ -49,14 +51,17 @@ export default async function payLoanHandle(
         successMsg: `Pagamento no valor R$ ${body.data} feito com sucesso.`,
       });
     } // fim if index
-    else if (body.valor <= 0) {
-      return res.status(403).json({
+    else if (body.valorPago <= 0) {
+      return res.status(400).json({
         errorMsg: "O valor do pagamento não pode ser menor ou igual a 0.",
       });
-    } else if (body.valor > valorEmprestimo) {
-      return res.status(403).json({
-        errorMsg: `O valor R$ ${body.valor} é maior que o débito aberto de R$ ${valorEmprestimo}`,
+    } else if (body.valorPago > valorDevido) {
+      return res.status(400).json({
+        errorMsg: `O valor R$ ${body.valor} é maior que o débito aberto de R$ ${valorDevido}`,
       });
     }
   }
+  return res.status(400).json({
+    errorMsg: `O valor R$ ${body.valor} é inconsistente.`,
+  });
 }
