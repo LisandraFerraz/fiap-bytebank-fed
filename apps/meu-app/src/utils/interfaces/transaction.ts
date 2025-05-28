@@ -25,6 +25,23 @@ export interface IPix {
   tipo: TransacationTypes.PIX;
 }
 
+export interface IEmprestimo {
+  id: string;
+  valor: number; // valor do empréstimo
+  data: string;
+  aberto?: boolean;
+  tipo: TransacationTypes;
+  valorPago: number; // valor para pagar o empréstimo
+  valorDevido: number | 0; // seu valor só é alterado no BFF
+}
+
+export interface IDeposito {
+  id: string;
+  valor: number | string;
+  data: string;
+  tipo: TransacationTypes.DEPOSITO;
+}
+
 export interface ITransacao {
   id?: string;
   conta: string | null; // destino/origem a depender do tipo
@@ -34,21 +51,4 @@ export interface ITransacao {
   tipo: TransacationTypes;
   cpf: string;
   nome: string;
-}
-
-export interface IEmprestimo {
-  id: string;
-  valor: number; // valor do empréstimo
-  data: string;
-  aberto?: boolean;
-  tipo: TransacationTypes;
-  valorPago: number; // valor para pagar o empréstimo
-  valorDevido?: number; // seu valor só é alterado no BFF
-}
-
-export interface IDeposito {
-  id: string;
-  valor: number | string;
-  data: string;
-  tipo: TransacationTypes.DEPOSITO;
 }

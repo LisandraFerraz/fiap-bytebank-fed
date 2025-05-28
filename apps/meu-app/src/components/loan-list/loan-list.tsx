@@ -1,19 +1,16 @@
 import styles from "./loan-list.module.scss";
-import { useEffect, useState } from "react";
-import {
-  IEmprestimo,
-  TransacationTypes,
-} from "../../utils/interfaces/transaction";
+import { useState } from "react";
+import { IEmprestimo } from "../../utils/interfaces/transaction";
 import { BtnClasses, Button } from "@components/button/button";
-import { UseTransactions } from "../../utils/hooks/useTransactions";
 import { LoanModal } from "@components/loan-modal/loan-modal";
+import { UseLoans } from "../../utils/hooks/useLoans";
 
 interface ILoan {
   data: IEmprestimo[];
 }
 
 export const LoanPendingList = ({ data }: ILoan) => {
-  const { payLoan } = UseTransactions();
+  const { payLoan } = UseLoans();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [modalData, setModalData] = useState<IEmprestimo>();
@@ -27,12 +24,18 @@ export const LoanPendingList = ({ data }: ILoan) => {
       valorPago: 50,
     };
 
-    payLoan("12345678901", body);
+    payLoan(body);
   };
 
   const handleModal = (data: IEmprestimo) => {
     setIsOpen(true);
     setModalData(data);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+    // setTimeout(() => {
+    // }, 300);
   };
 
   return (
@@ -47,7 +50,7 @@ export const LoanPendingList = ({ data }: ILoan) => {
             </div>
             {item.aberto && (
               <Button
-                text="Pagar"
+                text="Registrar pagamento"
                 click={() => handleModal(item)}
                 btnClass={BtnClasses.DEFAULT}
               />
@@ -55,7 +58,9 @@ export const LoanPendingList = ({ data }: ILoan) => {
           </div>
         ))}
       </div>
-      {isOpen && modalData && <LoanModal isOpen={isOpen} data={modalData} />}
+      {isOpen && modalData && (
+        <LoanModal onClose={handleCloseModal} data={modalData} />
+      )}
     </>
   );
 };

@@ -7,8 +7,11 @@ import { useState } from "react";
 import { IPix, TransacationTypes } from "../../utils/interfaces/transaction";
 import { BtnClasses, Button } from "@components/button/button";
 import { UseTransactions } from "../../utils/hooks/useTransactions";
+import { useUserContext } from "../../context/user-context";
+import { FormatDate } from "../../utils/functions/format-date";
 
 export default function SendPix() {
+  const { user } = useUserContext();
   const { sendPix } = UseTransactions();
 
   const [pixBody, setPixBody] = useState<IPix>({
@@ -26,17 +29,18 @@ export default function SendPix() {
       id: generateUUID(),
       ...pixBody,
       [key]: key === "valor" ? Number(value) : value,
-      data: String(dateToday),
+      data: FormatDate(dateToday),
     });
   };
 
   const handleSendPix = () => {
-    sendPix("98765432100", pixBody);
+    sendPix(pixBody);
   };
 
   return (
     <div className={styles.transaction_layout}>
       <h2>Enviar PIX</h2>
+      <h5>Saldo disponível: R${}</h5>
 
       <div className={styles.transaction_form}>
         <div className={styles.row}>

@@ -1,3 +1,4 @@
+import nookies from "nookies";
 import "./../styles/global.scss";
 import { Sidenav } from "@components/sidenav/sidenav";
 import styles from "../styles/layout.module.scss";
@@ -21,8 +22,9 @@ export default function App({
   }, []);
 
   async function getUserData() {
-    const data = await getUserInfo("12345678901");
-    const parsedData = await data.json(); // -> trocar o cpf para outros perfis
+    const mockedCpf = "12345678901";
+    const data = await getUserInfo(mockedCpf); // -> trocar o cpf para outros perfis
+    const parsedData = await data.json();
 
     setUserData(parsedData.data[0]);
   }

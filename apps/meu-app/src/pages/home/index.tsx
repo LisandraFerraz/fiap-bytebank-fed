@@ -8,12 +8,19 @@ import { GetStaticProps } from "next";
 import { endpoints } from "../../environment/endpoints";
 import { env } from "../api/_environment/environment";
 import { useEffect } from "react";
+import { parseCookies } from "nookies";
 
 interface IHomeProps {
   data: any;
 }
 
 export default function Home({ data }: IHomeProps) {
+  useEffect(() => {
+    const cookies = parseCookies();
+    const userCpf = cookies["@userCpf"];
+    console.log("userCpf | ", userCpf);
+  }, []);
+
   return (
     <div className={styles.content}>
       <StatementLayout data={data.accDetails} />

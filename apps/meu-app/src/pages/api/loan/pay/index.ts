@@ -48,7 +48,7 @@ export default async function payLoanHandle(
       });
       return res.status(200).json({
         data: updateReq,
-        successMsg: `Pagamento no valor R$ ${body.data} feito com sucesso.`,
+        successMsg: `Pagamento no valor R$ ${body.valorPago} feito com sucesso.`,
       });
     } // fim if index
     else if (body.valorPago <= 0) {

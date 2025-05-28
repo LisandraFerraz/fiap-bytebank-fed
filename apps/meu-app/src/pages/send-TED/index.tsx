@@ -7,6 +7,7 @@ import { useState } from "react";
 import { ITed, TransacationTypes } from "../../utils/interfaces/transaction";
 import { UseTransactions } from "../../utils/hooks/useTransactions";
 import { BtnClasses, Button } from "@components/button/button";
+import { FormatDate } from "../../utils/functions/format-date";
 
 export default function SendTED() {
   const { sendBankDeposit } = UseTransactions();
@@ -33,12 +34,12 @@ export default function SendTED() {
         key === "valor" || key === "numConta" || key === "digito"
           ? Number(value)
           : value,
-      data: String(dateToday),
+      data: FormatDate(dateToday),
     });
   };
 
   const handleSendTED = () => {
-    sendBankDeposit("12345678901", tedBody);
+    sendBankDeposit(tedBody);
   };
 
   return (

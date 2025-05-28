@@ -30,10 +30,23 @@ export default async function sendPixHandle(
     // Recupera o destinatário
     const pfsD = await getFetch<IUsuario[]>(`${env.localApi}/usuarios`);
     const pfD = pfsD.find(
-      (u: IUsuario) => u.dadosBancarios.chavePix === body.chavePix
+      (u: IUsuario) => u.dadosBancarios.chavePix === String(body.chavePix)
     );
 
-    // Recupera conta do remetente
+    if (pfR?.dadosBancarios.chavePix === String(body.chavePix)) {
+      return res.status(405).json({
+        errorMsg: `Você não pode enviar um PIX para a própria conta do Bytebank.`,
+      });
+    }
+    if (!pfD) {
+      return res.status(405).json({
+        errorMsg: `Conta não encontrada. Verifique se a chave foi informada corretamente.`,
+      });
+    }
+
+    console.log(pfsD);
+
+    // // Recupera conta do remetente
     const accsR = await getFetch<IConta[]>(
       `${env.localApi}/contas?usuarioCpf=${usuarioCpf}`
     );

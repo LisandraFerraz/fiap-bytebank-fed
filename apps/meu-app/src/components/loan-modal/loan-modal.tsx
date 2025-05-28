@@ -8,19 +8,20 @@ import {
 import { InputText } from "@components/input-text/input-text";
 import { useEffect, useState } from "react";
 import { UseTransactions } from "../../utils/hooks/useTransactions";
+import { UseLoans } from "../../utils/hooks/useLoans";
 
-interface IEmprestimoModal {
+export const LoanModal = ({
+  data,
+  onClose,
+}: {
   data: IEmprestimo;
-  isOpen: boolean;
-}
-
-export const LoanModal = ({ data, isOpen }: IEmprestimoModal) => {
-  const { payLoan } = UseTransactions();
+  onClose: () => void;
+}) => {
+  const { payLoan } = UseLoans();
 
   const [payLoanBody, setPayLoanBody] = useState<IEmprestimo>({
     ...data,
   });
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(isOpen);
 
   useEffect(() => {
     console.log(data);
@@ -38,15 +39,12 @@ export const LoanModal = ({ data, isOpen }: IEmprestimoModal) => {
   };
 
   const handlePayLoan = () => {
-    payLoan("12345678901", payLoanBody);
+    payLoan(payLoanBody);
   };
 
   return (
     <>
-      <ModalLayout
-        onClose={() => setIsModalOpen(false)}
-        modalTitle="Pagar empréstimo"
-      >
+      <ModalLayout onClose={onClose} modalTitle="Registrar pagamento">
         <p className={styles.loan_amount}>
           Valor do empréstimo: R$ {data.valorDevido}
         </p>

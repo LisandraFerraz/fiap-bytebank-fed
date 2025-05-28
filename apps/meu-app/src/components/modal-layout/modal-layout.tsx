@@ -10,12 +10,17 @@ export const ModalLayout = ({
   children: React.ReactNode;
   onClose: () => void;
 }) => {
+  const handleCloseModal = (e: any) => {
+    e.preventDefault();
+    onClose();
+  };
+
   return (
     <div className={styles.modal_background}>
       <div className={styles.modal}>
         <div className={styles.modal_header}>
           <span>{modalTitle}</span>
-          <button onClick={onClose}>
+          <button className={styles.close_btn} onClick={handleCloseModal}>
             <Icon iconKey="close" />
           </button>
         </div>

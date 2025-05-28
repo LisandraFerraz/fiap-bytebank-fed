@@ -1,10 +1,13 @@
+import { useUserContext } from "../../context/user-context";
 import { endpoints } from "../../environment/endpoints";
 import { IDeposito, IEmprestimo, IPix, ITed } from "../interfaces/transaction";
 
 export const UseTransactions = () => {
+  const { user } = useUserContext();
+
   // Envia dinheiro
-  const sendBankDeposit = (cpf: string, body: ITed) => {
-    return fetch(`${endpoints.sendMoney}?usuarioCpf=${cpf}`, {
+  const sendBankDeposit = (body: ITed) => {
+    return fetch(`${endpoints.sendMoney}?usuarioCpf=${user?.cpf}`, {
       method: "PATCH",
       body: JSON.stringify(body),
       headers: {
@@ -13,8 +16,8 @@ export const UseTransactions = () => {
     });
   };
 
-  const sendPix = (cpf: string, body: IPix) => {
-    return fetch(`${endpoints.sendPix}?usuarioCpf=${cpf}`, {
+  const sendPix = (body: IPix) => {
+    return fetch(`${endpoints.sendPix}?usuarioCpf=${user?.cpf}`, {
       method: "PATCH",
       body: JSON.stringify(body),
       headers: {
@@ -24,8 +27,8 @@ export const UseTransactions = () => {
   };
 
   // Adiciona dinheiro na propria conta
-  const addMoney = async (cpf: string, body: IDeposito) => {
-    return fetch(`${endpoints.addMoney}?usuarioCpf=${cpf}`, {
+  const addMoney = async (body: IDeposito) => {
+    return fetch(`${endpoints.deposit}?usuarioCpf=${user?.cpf}`, {
       method: "PATCH",
       body: JSON.stringify(body),
       headers: {
@@ -35,8 +38,8 @@ export const UseTransactions = () => {
   };
 
   // Pede empréstimo
-  const requestLoan = async (cpf: string, body: IEmprestimo) => {
-    return await fetch(`${endpoints.requestLoan}?cpf=${cpf}`, {
+  const requestLoan = async (body: IEmprestimo) => {
+    return await fetch(`${endpoints.requestLoan}?cpf=${user?.cpf}`, {
       method: "PATCH",
       body: JSON.stringify(body),
       headers: {
@@ -45,20 +48,10 @@ export const UseTransactions = () => {
     });
   };
 
-  // REVISAR!
-  // loanId está como query param e também no body. usar somente a do body!
-  const payLoan = async (cpf: string, body: IEmprestimo) => {
-    await fetch(`${endpoints.payLoan}?cpf=${cpf}`, {
-      method: "PATCH",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  return {
+    sendPix,
+    sendBankDeposit,
+    addMoney,
+    requestLoan,
   };
-
-  // TODO: Calcula câmbio
-  // const currencyExc = async () => {};
-
-  return { sendPix, sendBankDeposit, addMoney, requestLoan, payLoan };
 };

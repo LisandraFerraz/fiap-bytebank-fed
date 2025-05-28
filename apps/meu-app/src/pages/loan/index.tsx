@@ -15,6 +15,7 @@ import { env } from "../api/_environment/environment";
 import { InputText } from "@components/input-text/input-text";
 import { UseTransactions } from "../../utils/hooks/useTransactions";
 import { BtnClasses, Button } from "@components/button/button";
+import { FormatDate } from "../../utils/functions/format-date";
 
 interface IPendingLoan {
   loanHistory: IEmprestimo[];
@@ -45,10 +46,11 @@ export default function Loan({ loanHistory, loanPending }: IPendingLoan) {
         tipo: TransacationTypes.EMPRESTIMO,
         id: generateUUID(),
         valor: valorParsed,
-        data: String(dateToday),
+        data: FormatDate(dateToday),
         valorPago: 0,
+        valorDevido: 0,
       };
-      requestLoan("12345678901", loanBody);
+      requestLoan(loanBody);
     }
   };
 
@@ -86,15 +88,13 @@ export const getStaticProps: GetStaticProps<IPendingLoan> = async () => {
   try {
     const { historyRes, loanRes } = {
       historyRes: await fetch(
-        `${env.bffUrl}${endpoints.listLoans}?cpf=${"12345678901"}`,
+        `${env.bffUrl}${endpoints.loan}?cpf=${"12345678901"}`,
         {
           method: "GET",
         }
       ),
       loanRes: await fetch(
-        `${env.bffUrl}${
-          endpoints.listLoans
-        }?cpf=${"12345678901"}&aberto=${true}`,
+        `${env.bffUrl}${endpoints.loan}?cpf=${"12345678901"}&aberto=${true}`,
         {
           method: "GET",
         }

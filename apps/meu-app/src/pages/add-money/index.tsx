@@ -11,6 +11,7 @@ import {
 } from "../../utils/interfaces/transaction";
 import { InputText } from "@components/input-text/input-text";
 import { BtnClasses, Button } from "@components/button/button";
+import { FormatDate } from "../../utils/functions/format-date";
 
 export default function AddMoney() {
   const { addMoney } = UseTransactions();
@@ -29,14 +30,14 @@ export default function AddMoney() {
       setDepositoBody({
         ...depositoBody,
         valor: value,
-        data: String(dateToday),
+        data: FormatDate(dateToday),
       });
     }
     // add toast notification for error
   };
 
   const handleAddMoney = () => {
-    addMoney("12345678901", depositoBody);
+    addMoney(depositoBody);
   };
 
   return (

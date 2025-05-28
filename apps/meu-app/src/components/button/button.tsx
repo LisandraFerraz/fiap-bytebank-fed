@@ -4,8 +4,8 @@ import { Icon } from "@components/icon/icon";
 
 export enum BtnClasses {
   CONFIRM = "CONFIRM",
-  CANCEL = "CANCEL",
   DEFAULT = "DEFAULT",
+  DELETE = "",
 }
 
 export const Button = ({
@@ -28,8 +28,8 @@ export const Button = ({
   const getBtnClass = (btnC: BtnClasses) => {
     const btnClassMap: { [key: string]: string } = {
       [BtnClasses.CONFIRM]: styles.btn_confirm,
-      [BtnClasses.CANCEL]: styles.btn_cancel,
       [BtnClasses.DEFAULT]: styles.btn_default,
+      [BtnClasses.DELETE]: styles.btn_delete,
     };
 
     return btnClassMap[btnC];

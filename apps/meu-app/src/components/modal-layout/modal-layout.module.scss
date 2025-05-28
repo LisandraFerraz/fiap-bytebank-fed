@@ -16,7 +16,7 @@
   .modal {
     z-index: 1;
     background-color: v.$white_default;
-    padding: 15px;
+    padding: 25px;
     border-radius: 10px;
     width: 620px;
 
@@ -27,6 +27,11 @@
 
       span {
         font-weight: 600;
+      }
+
+      .close_btn {
+        cursor: pointer;
+        background-color: transparent;
       }
     }
 
