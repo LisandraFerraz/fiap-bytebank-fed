@@ -1,10 +1,8 @@
 "use client";
-
 import { v4 as generateUUID } from "uuid";
 import styles from "./styles.module.scss";
 
 import { useState } from "react";
-import { UseTransactions } from "../../utils/hooks/useTransactions";
 import {
   IDeposito,
   TransacationTypes,
@@ -12,9 +10,10 @@ import {
 import { InputText } from "@components/input-text/input-text";
 import { BtnClasses, Button } from "@components/button/button";
 import { FormatDate } from "../../utils/functions/format-date";
+import { UseDeposit } from "../../utils/hooks/useDeposit";
 
 export default function AddMoney() {
-  const { addMoney } = UseTransactions();
+  const { createDeposit } = UseDeposit();
 
   const [depositoBody, setDepositoBody] = useState<IDeposito>({
     valor: "",
@@ -37,7 +36,7 @@ export default function AddMoney() {
   };
 
   const handleAddMoney = () => {
-    addMoney(depositoBody);
+    createDeposit(depositoBody);
   };
 
   return (

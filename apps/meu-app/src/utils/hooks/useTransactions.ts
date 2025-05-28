@@ -26,17 +26,6 @@ export const UseTransactions = () => {
     });
   };
 
-  // Adiciona dinheiro na propria conta
-  const addMoney = async (body: IDeposito) => {
-    return fetch(`${endpoints.deposit}?usuarioCpf=${user?.cpf}`, {
-      method: "PATCH",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  };
-
   // Pede empréstimo
   const requestLoan = async (body: IEmprestimo) => {
     return await fetch(`${endpoints.requestLoan}?cpf=${user?.cpf}`, {
@@ -51,7 +40,6 @@ export const UseTransactions = () => {
   return {
     sendPix,
     sendBankDeposit,
-    addMoney,
     requestLoan,
   };
 };

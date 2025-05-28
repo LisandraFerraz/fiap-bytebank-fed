@@ -57,19 +57,25 @@
       "usuarioCpf": "12345678901",
       "agencia": "002",
       "linhaCredito": 889,
-      "saldo": 7100,
+      "saldo": 10000,
       "depositos": [
-        {
-          "valor": 1200,
-          "tipo": "DEPOSITO",
-          "id": "7bea1074-c8bd-4669-9fd4-4d4b663bf340",
-          "data": "02-04-2025"
-        },
         {
           "valor": 1200,
           "tipo": "DEPOSITO",
           "id": "7bea1074-c8bd-4669-8fd4-4d4b663bf340",
           "data": "02-04-2025"
+        },
+        {
+          "valor": 100,
+          "tipo": "DEPOSITO",
+          "id": "7bea1074-c8bd-4669-9fd4-4d4b663bf340",
+          "data": "02-04-2025"
+        },
+        {
+          "valor": 4000,
+          "tipo": "DEPOSITO",
+          "id": "fa0fed31-3a34-40d9-a6f7-ebb4f2d2b184",
+          "data": "03-04-2025"
         }
       ],
       "transferencias": [
