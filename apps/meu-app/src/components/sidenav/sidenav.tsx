@@ -3,7 +3,7 @@ import styles from "./sidenav.module.scss";
 import { Icon } from "@components/icon/icon";
 import Link from "next/link";
 import { useUserContext } from "../../context/user-context";
-import { useEffect } from "react";
+import { FormatDateName } from "../../utils/functions/format-date";
 
 export const Sidenav = () => {
   const { user } = useUserContext();
@@ -25,9 +25,9 @@ export const Sidenav = () => {
               </Link>
             </li>
             <li>
-              <Link href={"/loan"}>
+              <Link href={"/new-transaction"}>
                 <Icon iconKey="requestLoan" />
-                Empréstimos
+                Transações
               </Link>
             </li>
           </ul>
@@ -36,10 +36,10 @@ export const Sidenav = () => {
       {user && (
         <div className={styles.sidenav_card}>
           <div className={styles.card_top}>
-            <h2>Olá, {user?.nome}! :) </h2>
+            <h3>Olá, {user?.nome}! :) </h3>
           </div>
           <div className={styles.card_bottom}>
-            <p>{String(dateNow)}</p>
+            <p>{FormatDateName(dateNow)}</p>
           </div>
         </div>
       )}

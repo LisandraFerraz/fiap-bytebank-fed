@@ -5,11 +5,11 @@ import Link from "next/link";
 export default function NewTransaction() {
   return (
     <div className={styles.transaction_layout}>
-      <h2>Nova transação</h2>
+      <h2>Registrar transações</h2>
       <Link href="/send-pix">
         <div className={styles.option}>
           <div className={styles.option_title}>
-            <p>Realizar PIX</p> <Icon iconKey="longArrow" />
+            <p>Registrar envio de PIX</p> <Icon iconKey="longArrow" />
           </div>
           <div className={styles.saved_pix}>
             {/* adicionar contatos pix salvos */}
@@ -19,21 +19,21 @@ export default function NewTransaction() {
       <Link href="/send-TED">
         <div className={styles.option}>
           <div className={styles.option_title}>
-            <p>Enviar via TED</p> <Icon iconKey="longArrow" />
+            <p>Registrar envio de TED</p> <Icon iconKey="longArrow" />
           </div>
         </div>
       </Link>
       <Link href="/add-money">
         <div className={styles.option}>
           <div className={styles.option_title}>
-            <p>Depositar</p> <Icon iconKey="longArrow" />
+            <p>Registrar novo depósito</p> <Icon iconKey="longArrow" />
           </div>
         </div>
       </Link>
       <Link href="/loan">
         <div className={styles.option}>
           <div className={styles.option_title}>
-            <p>Pedir empréstimo</p> <Icon iconKey="longArrow" />
+            <p>Registrar novo empréstimo</p> <Icon iconKey="longArrow" />
           </div>
         </div>
       </Link>

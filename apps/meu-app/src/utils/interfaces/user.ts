@@ -21,3 +21,13 @@ export interface IUsuarioConta {
   usuario: IUsuario;
   contaBancaria: IConta;
 }
+
+export interface IResumoConta {
+  id: string;
+  numeroConta: number;
+  digito: number;
+  usuarioCpf: string;
+  agencia: string;
+  linhaCredito: number;
+  saldo: number;
+}

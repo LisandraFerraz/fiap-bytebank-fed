@@ -25,7 +25,7 @@ export const StatementLayout = ({ data }: IStatement) => {
         <Button
           btnClass={BtnClasses.CONFIRM}
           iconKey="transaction"
-          text="Nova transação"
+          text="Registrar transação"
           click={() => router.push("/new-transaction")}
         />
       </div>

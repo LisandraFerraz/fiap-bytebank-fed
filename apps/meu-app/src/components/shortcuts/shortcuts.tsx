@@ -27,7 +27,7 @@ export const Shortcuts = () => {
   return (
     <div className={styles.shortcut_item_group}>
       {shortcuts.map((sc: IShortcut, index) => (
-        <Link href={sc.url}>
+        <Link key={index} href={sc.url}>
           <div className={styles.shortcut_item}>
             <Icon iconKey={sc.icon} />
             <span>{sc.title}</span>

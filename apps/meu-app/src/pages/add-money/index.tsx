@@ -1,6 +1,6 @@
 "use client";
 import { v4 as generateUUID } from "uuid";
-import styles from "./styles.module.scss";
+import styles from "./../../styles/page-form.module.scss";
 
 import { useState } from "react";
 import {
@@ -40,7 +40,7 @@ export default function AddMoney() {
   };
 
   return (
-    <div className={styles.transaction_layout}>
+    <div className={styles.transaction_form}>
       <h2>Realizar Depósito</h2>
 
       <div className={styles.row}>

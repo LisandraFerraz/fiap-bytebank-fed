@@ -1,6 +1,6 @@
 "use client";
 import { v4 as generateUUID } from "uuid";
-import styles from "./styles.module.scss";
+import styles from "./../../styles/page-form.module.scss";
 import { InputText } from "@components/input-text/input-text";
 import { useState } from "react";
 import { ITed, TransacationTypes } from "../../utils/interfaces/transaction";
@@ -42,69 +42,66 @@ export default function SendTED() {
   };
 
   return (
-    <div className={styles.transaction_layout}>
+    <div className={styles.transaction_form}>
       <h2>Tranferência Bancária</h2>
+      <div className={styles.row}>
+        <InputText
+          value={tedBody.valor}
+          onChange={(e) => updateBody("valor", e.target.value)}
+          id="valor"
+          label="Valor"
+          placeHolder="Valor"
+          type="number"
+        />
+        <InputText
+          value={tedBody.cpfDestinatario}
+          id="cpfDestinatario"
+          onChange={(e) => updateBody("cpfDestinatario", e.target.value)}
+          label="CPF Destinatário"
+          placeHolder="CPF Destinatário"
+        />
+      </div>
 
-      <div className={styles.transaction_form}>
-        <div className={styles.row}>
-          <InputText
-            value={tedBody.valor}
-            onChange={(e) => updateBody("valor", e.target.value)}
-            id="valor"
-            label="Valor"
-            placeHolder="Valor"
-            type="number"
-          />
-          <InputText
-            value={tedBody.cpfDestinatario}
-            id="cpfDestinatario"
-            onChange={(e) => updateBody("cpfDestinatario", e.target.value)}
-            label="CPF Destinatário"
-            placeHolder="CPF Destinatário"
-          />
-        </div>
+      <div className={styles.row}>
+        <InputText
+          value={tedBody.numConta}
+          id="numConta"
+          onChange={(e) => updateBody("numConta", e.target.value)}
+          label="Conta"
+          placeHolder="Número da conta"
+        />
+        <InputText
+          value={tedBody.agencia}
+          id="agencia"
+          onChange={(e) => updateBody("agencia", e.target.value)}
+          label="Agência"
+          placeHolder="Agência"
+        />
+        <InputText
+          value={tedBody.digito}
+          id="digito"
+          onChange={(e) => updateBody("digito", e.target.value)}
+          label="Digito"
+          placeHolder="Digito da agência"
+        />
+      </div>
 
-        <div className={styles.row}>
-          <InputText
-            value={tedBody.numConta}
-            id="numConta"
-            onChange={(e) => updateBody("numConta", e.target.value)}
-            label="Conta"
-            placeHolder="Número da conta"
-          />
-          <InputText
-            value={tedBody.agencia}
-            id="agencia"
-            onChange={(e) => updateBody("agencia", e.target.value)}
-            label="Agência"
-            placeHolder="Agência"
-          />
-          <InputText
-            value={tedBody.digito}
-            id="digito"
-            onChange={(e) => updateBody("digito", e.target.value)}
-            label="Digito"
-            placeHolder="Digito da agência"
-          />
-        </div>
+      <div className={styles.row}>
+        <InputText
+          value={tedBody.descricao}
+          onChange={(e) => updateBody("descricao", e.target.value)}
+          id="descricao"
+          label="Mensagem"
+          placeHolder="Mensagem"
+        />
+      </div>
 
-        <div className={styles.row}>
-          <InputText
-            value={tedBody.descricao}
-            onChange={(e) => updateBody("descricao", e.target.value)}
-            id="descricao"
-            label="Mensagem"
-            placeHolder="Mensagem"
-          />
-        </div>
-
-        <div className={styles.end_row}>
-          <Button
-            btnClass={BtnClasses.CONFIRM}
-            text="Confirmar"
-            click={handleSendTED}
-          />
-        </div>
+      <div className={styles.end_row}>
+        <Button
+          btnClass={BtnClasses.CONFIRM}
+          text="Confirmar"
+          click={handleSendTED}
+        />
       </div>
     </div>
   );

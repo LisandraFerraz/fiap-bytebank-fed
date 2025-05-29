@@ -4,6 +4,8 @@ import { useState } from "react";
 import { InputText } from "@components/input-text/input-text";
 import { ITed } from "../../../utils/interfaces/transaction";
 import { BtnClasses, Button } from "@components/button/button";
+import { formatCpf } from "../../../utils/functions/mask-values";
+import { useMask } from "@react-input/mask";
 
 export const TedForm = ({ data }: { data: any }) => {
   const { deleteTed, updateTed } = useTed();
@@ -11,7 +13,7 @@ export const TedForm = ({ data }: { data: any }) => {
   const [updatedTed, setUpdatedTed] = useState<any>({
     ...data,
     valor: data.valor,
-    cpfDestinatario: data.cpfDestinatario,
+    cpfDestinatario: formatCpf(data.cpfDestinatario),
     numConta: data.numConta,
     agencia: data.agencia,
     digito: data.digito,
@@ -31,11 +33,19 @@ export const TedForm = ({ data }: { data: any }) => {
 
   const handleUpdateTed = () => {
     if (!isNaN(updatedTed.agencia) || updatedTed < 1) {
-      updateTed(updatedTed);
+      updateTed({
+        ...updatedTed,
+        cpfDestinatario: updatedTed.cpfDestinatario.replace(/[.-]/g, ""),
+      });
     } else {
       console.error("Agência tem que ser um tipo númerico.");
     }
   };
+
+  const cpfMaks = useMask({
+    mask: "000.000.000-00",
+    replacement: { 0: /\d/ },
+  });
 
   return (
     <>
@@ -68,6 +78,7 @@ export const TedForm = ({ data }: { data: any }) => {
                 handleChangeValues("cpfDestinatario", e.target.value)
               }
               type="text"
+              ref={cpfMaks}
             />
           </div>
         </div>

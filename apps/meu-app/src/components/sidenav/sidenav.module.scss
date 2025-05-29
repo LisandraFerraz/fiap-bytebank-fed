@@ -10,13 +10,25 @@
   flex-direction: column;
   justify-content: space-between;
   height: auto;
+  background-color: v.$white_default;
+  z-index: 10;
+
+  @media screen and (max-width: 1024px) {
+    box-shadow: 0 0 10px #00000015;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding: 35px;
+    width: 350px;
+  }
 
   .sidenav_top {
     ul {
       margin-top: 30px;
-      font-size: v.$text-md;
+      font-size: v.$text-base;
 
       li {
+        display: block;
         a {
           text-decoration: none;
           color: v.$grey_highlight;

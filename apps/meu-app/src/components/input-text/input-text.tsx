@@ -7,6 +7,7 @@ export const InputText = ({
   type,
   placeHolder,
   onChange,
+  ref,
 }: {
   label: string;
   value: string | number;
@@ -14,6 +15,7 @@ export const InputText = ({
   type?: string | "text";
   placeHolder: string;
   onChange?: (e: any) => void;
+  ref?: any;
 }) => {
   return (
     <div className={styles.input_group}>
@@ -24,6 +26,7 @@ export const InputText = ({
         type={type}
         value={value}
         id={id}
+        ref={ref}
       />
     </div>
   );

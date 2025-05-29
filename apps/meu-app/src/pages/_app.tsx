@@ -1,10 +1,10 @@
-import nookies from "nookies";
 import "./../styles/global.scss";
 import { Sidenav } from "@components/sidenav/sidenav";
 import styles from "../styles/layout.module.scss";
 import { UseUser } from "../utils/hooks/useUser";
 import { useEffect, useState } from "react";
 import { UserContext } from "../context/user-context";
+import { useRouter } from "next/router";
 
 export default function App({
   Component,
@@ -14,12 +14,18 @@ export default function App({
   pageProps: any;
 }) {
   const { getUserInfo } = UseUser();
+  const router = useRouter();
 
   const [userData, setUserData] = useState(null);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     getUserData();
   }, []);
+
+  useEffect(() => {
+    setIsVisible(false);
+  }, [router.asPath]);
 
   async function getUserData() {
     const mockedCpf = "12345678901";
@@ -32,7 +38,15 @@ export default function App({
   return (
     <UserContext.Provider value={{ user: userData }}>
       <div className={styles.custom_body}>
-        <Sidenav />
+        <div className={`${!isVisible ? styles.hidden : ""}`}>
+          <Sidenav />
+        </div>
+        <button
+          className={styles.toggle_sidenav}
+          onClick={() => setIsVisible(!isVisible)}
+        >
+          O
+        </button>
         <div className={styles.content}>
           <Component {...pageProps} />
         </div>

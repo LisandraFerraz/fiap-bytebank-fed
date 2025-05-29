@@ -60,12 +60,6 @@
       "saldo": 9500,
       "depositos": [
         {
-          "valor": 1200,
-          "tipo": "DEPOSITO",
-          "id": "7bea1074-c8bd-4669-8fd4-4d4b663bf340",
-          "data": "02-04-2025"
-        },
-        {
           "valor": 100,
           "tipo": "DEPOSITO",
           "id": "7bea1074-c8bd-4669-9fd4-4d4b663bf340",
@@ -80,17 +74,6 @@
       ],
       "transferencias": [
         {
-          "descricao": "TESTANDO NOVA TRANSFERENCA TED",
-          "data": "02-04-2025",
-          "valor": 100,
-          "numConta": 654321,
-          "digito": 9,
-          "agencia": "001",
-          "cpfDestinatario": "98765432100",
-          "tipo": "TED",
-          "id": "a04d652d-e0ea-4c3c-9cb4-c4ec088090e3"
-        },
-        {
           "id": "6f591dde-0c68-4451-aed0-1c7011f6ddcc",
           "chavePix": "bruno.ferreira@pix.com",
           "descricao": "Testando pix do zero",
@@ -100,6 +83,17 @@
           "contaDestino": "654321-9",
           "destinatario": "Bruno Ferreira",
           "cpfDestinatario": "98765432100"
+        },
+        {
+          "descricao": "TESTANDO NOVA TRANSFERENCA TED",
+          "data": "02-04-2025",
+          "valor": 100,
+          "numConta": 654321,
+          "digito": 9,
+          "agencia": "001",
+          "cpfDestinatario": "23232323232",
+          "tipo": "TED",
+          "id": "a04d652d-e0ea-4c3c-9cb4-c4ec088090e3"
         }
       ],
       "historicoEmprestimos": [

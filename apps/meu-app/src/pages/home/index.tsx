@@ -3,12 +3,9 @@ import styles from "./styles.module.scss";
 import { StatementLayout } from "@components/statement-layout/layout";
 import { TransactionList } from "@components/transactions-list/transaction-list";
 import { Shortcuts } from "@components/shortcuts/shortcuts";
-import { IConta } from "../../utils/interfaces/conta";
 import { GetStaticProps } from "next";
 import { endpoints } from "../../environment/endpoints";
 import { env } from "../api/_environment/environment";
-import { useEffect } from "react";
-import { parseCookies } from "nookies";
 
 interface IHomeProps {
   data: any;

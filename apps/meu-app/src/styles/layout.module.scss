@@ -16,4 +16,24 @@
       margin-left: 350px;
     }
   }
+
+  .hidden {
+    display: none;
+
+    @media screen and (min-width: 1024px) {
+      display: block;
+    }
+  }
+
+  .toggle_sidenav {
+    display: none;
+    @media screen and (max-width: 1024px) {
+      display: block;
+      cursor: pointer;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      z-index: 10;
+    }
+  }
 }

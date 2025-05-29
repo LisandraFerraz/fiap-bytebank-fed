@@ -8,6 +8,7 @@ import { useState } from "react";
 import { TransactionDetailsModal } from "@components/deposito-modal/transaction-details-modal";
 import { transacao } from "../../utils/types";
 import { FormatTypeName } from "../../utils/functions/format-type-names";
+import { FormatDateSlash } from "../../utils/functions/format-date";
 
 export const Transaction = ({ dataT }: { dataT: transacao }) => {
   const isExpanse = dataT?.tipo !== TransacationTypes.DEPOSITO;
@@ -24,6 +25,11 @@ export const Transaction = ({ dataT }: { dataT: transacao }) => {
     setIsOpen(false);
   };
 
+  const formatDate = (date: any): string => {
+    const newDate = FormatDateSlash(date);
+    return newDate.slice(0, 5);
+  };
+
   return (
     <>
       <div className={styles.transaction}>
@@ -36,7 +42,7 @@ export const Transaction = ({ dataT }: { dataT: transacao }) => {
             <Icon iconKey={isExpanse ? "expanse" : "deposit"} />
           </span>
           <div className={styles.transaction_text}>
-            <p className={styles.transaction_date}>{dataT.data}</p>
+            <p className={styles.transaction_date}>{formatDate(dataT.data)}</p>
             <p>{FormatTypeName(dataT.tipo)}</p>
             <p className={styles.transaction_value}>R$ {dataT.valor}</p>
           </div>

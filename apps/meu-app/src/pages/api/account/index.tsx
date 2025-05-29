@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getFetch } from "../lib/functions/fetch";
-import { coreApi } from "../core/core-api";
 import { env } from "../_environment/environment";
 import { IConta } from "../../../utils/interfaces/conta";
-import { number } from "framer-motion";
+import { getMonthName } from "../../../utils/functions/format-month-names";
 
 export default async function getAccountHandle(
   req: NextApiRequest,
@@ -27,21 +26,6 @@ export default async function getAccountHandle(
     Array.isArray(a)
   );
   const transactions = accTransaction.flat();
-
-  const getMonthName: { [key: string]: string } = {
-    "01": "Janeiro",
-    "02": "Fevereiro",
-    "03": "Março",
-    "04": "Abril",
-    "05": "Maio",
-    "06": "Junho",
-    "07": "Julho",
-    "08": "Agosto",
-    "09": "Setembro",
-    "10": "Outubro",
-    "11": "Nobembro",
-    "12": "Dezembro",
-  };
 
   const getMonth = (month: string): string => {
     const mo = month.slice(3, 7).slice(0, 2);

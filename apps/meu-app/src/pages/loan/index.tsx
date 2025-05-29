@@ -2,7 +2,7 @@
 import { v4 as generateUUID } from "uuid";
 
 import { LoanPendingList } from "@components/loan-list/loan-list";
-import styles from "./styles.module.scss";
+import form_styles from "./../../styles/page-form.module.scss";
 import {
   IEmprestimo,
   TransacationTypes,
@@ -55,9 +55,9 @@ export default function Loan({ loanHistory, loanPending }: IPendingLoan) {
 
   return (
     <>
-      <div className={styles.transaction_layout}>
+      <div className={form_styles.transaction_form}>
         <h2>Empréstimos</h2>
-        <div className={styles.row}>
+        <div className={form_styles.row}>
           <InputText
             value={valor}
             id="valor"
@@ -67,7 +67,7 @@ export default function Loan({ loanHistory, loanPending }: IPendingLoan) {
             type="number"
           />
         </div>
-        <div className={styles.row}>
+        <div className={form_styles.end_row}>
           <Button
             click={handleRequestLoan}
             btnClass={BtnClasses.CONFIRM}
@@ -76,9 +76,6 @@ export default function Loan({ loanHistory, loanPending }: IPendingLoan) {
         </div>
       </div>
       <LoanPendingList data={loanPending} />
-      {/* Solicitar empréstimos */}
-      {/* verificar empréstimos em aberto */}
-      {/* historico de emprestimos\\ */}
     </>
   );
 }
