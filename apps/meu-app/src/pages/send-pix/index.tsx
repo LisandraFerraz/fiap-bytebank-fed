@@ -1,18 +1,15 @@
 "use client";
-
 import { v4 as generateUUID } from "uuid";
 import styles from "./styles.module.scss";
 import { InputText } from "@components/input-text/input-text";
 import { useState } from "react";
 import { IPix, TransacationTypes } from "../../utils/interfaces/transaction";
 import { BtnClasses, Button } from "@components/button/button";
-import { UseTransactions } from "../../utils/hooks/useTransactions";
-import { useUserContext } from "../../context/user-context";
+import { UsePix } from "../../utils/hooks/usePix";
 import { FormatDate } from "../../utils/functions/format-date";
 
 export default function SendPix() {
-  const { user } = useUserContext();
-  const { sendPix } = UseTransactions();
+  const { sendPix } = UsePix();
 
   const [pixBody, setPixBody] = useState<IPix>({
     chavePix: "",
@@ -20,6 +17,7 @@ export default function SendPix() {
     valor: 100,
     data: "",
     tipo: TransacationTypes.PIX,
+    destinatario: "",
   });
 
   const updateBody = (key: string, value: string) => {
@@ -39,7 +37,7 @@ export default function SendPix() {
 
   return (
     <div className={styles.transaction_layout}>
-      <h2>Enviar PIX</h2>
+      <h2>Registrar PIX</h2>
       <h5>Saldo disponível: R${}</h5>
 
       <div className={styles.transaction_form}>
@@ -58,6 +56,13 @@ export default function SendPix() {
             onChange={(e) => updateBody("chavePix", e.target.value)}
             label="Chave PIX"
             placeHolder="Chave PIX"
+          />
+          <InputText
+            value={pixBody.destinatario}
+            id="destinatario"
+            onChange={(e) => updateBody("destinatario", e.target.value)}
+            label="nome do destinatário"
+            placeHolder="Destinatário"
           />
         </div>
 

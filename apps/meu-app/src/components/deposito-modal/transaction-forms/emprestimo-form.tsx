@@ -1,8 +1,7 @@
 import styles from "./form.module.scss";
 import { BtnClasses, Button } from "@components/button/button";
-import { UseTransactions } from "../../../utils/hooks/useTransactions";
 import { UseLoans } from "../../../utils/hooks/useLoans";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IEmprestimo } from "../../../utils/interfaces/transaction";
 import { InputText } from "@components/input-text/input-text";
 

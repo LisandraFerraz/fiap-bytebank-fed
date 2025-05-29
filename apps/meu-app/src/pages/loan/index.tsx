@@ -1,5 +1,4 @@
 "use client";
-
 import { v4 as generateUUID } from "uuid";
 
 import { LoanPendingList } from "@components/loan-list/loan-list";
@@ -10,12 +9,12 @@ import {
 } from "../../utils/interfaces/transaction";
 import { endpoints } from "../../environment/endpoints";
 import { GetStaticProps } from "next";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { env } from "../api/_environment/environment";
 import { InputText } from "@components/input-text/input-text";
-import { UseTransactions } from "../../utils/hooks/useTransactions";
 import { BtnClasses, Button } from "@components/button/button";
 import { FormatDate } from "../../utils/functions/format-date";
+import { UseLoans } from "../../utils/hooks/useLoans";
 
 interface IPendingLoan {
   loanHistory: IEmprestimo[];
@@ -23,7 +22,7 @@ interface IPendingLoan {
 }
 
 export default function Loan({ loanHistory, loanPending }: IPendingLoan) {
-  const { requestLoan } = UseTransactions();
+  const { requestLoan } = UseLoans();
 
   const [valor, setValor] = useState<number>(0);
   const tabsContent = [

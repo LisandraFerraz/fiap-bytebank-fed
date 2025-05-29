@@ -1,15 +1,13 @@
 import { useUserContext } from "../../context/user-context";
 import { endpoints } from "../../environment/endpoints";
-import { IDeposito, IEmprestimo, IPix, ITed } from "../interfaces/transaction";
+import { IPix } from "../interfaces/transaction";
 
-export const UseTransactions = () => {
+export const UsePix = () => {
   const { user } = useUserContext();
-
-  // Envia dinheiro
 
   const sendPix = (body: IPix) => {
     return fetch(`${endpoints.sendPix}?usuarioCpf=${user?.cpf}`, {
-      method: "PATCH",
+      method: "POST",
       body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
@@ -17,9 +15,14 @@ export const UseTransactions = () => {
     });
   };
 
-  // Pede empréstimo
-  const requestLoan = async (body: IEmprestimo) => {
-    return await fetch(`${endpoints.requestLoan}?cpf=${user?.cpf}`, {
+  const deletePix = (id: string) => {
+    return fetch(`${endpoints.sendPix}?usuarioCpf=${user?.cpf}&id=${id}`, {
+      method: "DELETE",
+    });
+  };
+
+  const updatePix = (body: IPix) => {
+    return fetch(`${endpoints.sendPix}?usuarioCpf=${user?.cpf}`, {
       method: "PATCH",
       body: JSON.stringify(body),
       headers: {
@@ -30,6 +33,7 @@ export const UseTransactions = () => {
 
   return {
     sendPix,
-    requestLoan,
+    deletePix,
+    updatePix,
   };
 };

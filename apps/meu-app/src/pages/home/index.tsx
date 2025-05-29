@@ -15,12 +15,6 @@ interface IHomeProps {
 }
 
 export default function Home({ data }: IHomeProps) {
-  useEffect(() => {
-    const cookies = parseCookies();
-    const userCpf = cookies["@userCpf"];
-    console.log("userCpf | ", userCpf);
-  }, []);
-
   return (
     <div className={styles.content}>
       <StatementLayout data={data.accDetails} />

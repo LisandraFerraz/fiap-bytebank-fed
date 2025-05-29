@@ -15,7 +15,6 @@ export const Transaction = ({ dataT }: { dataT: transacao }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleOpenModal = () => {
-    console.log(dataT);
     if (dataT) {
       setIsOpen(true);
     }

@@ -140,6 +140,13 @@ export default async function sendMoneyHandle(
     }
 
     const newSaldo = conta.saldo + aimedTed.valor;
+
+    if (newSaldo < reqBody.valor) {
+      return res.status(405).json({
+        errorMsg: `O valor informado é menor do que você tem disponível na conta.`,
+      });
+    }
+
     await fetch(`${env.localApi}/contas/${conta.id}`, {
       method: "PATCH",
       body: JSON.stringify({
@@ -150,6 +157,10 @@ export default async function sendMoneyHandle(
       headers: {
         "Content-Type": "application/json",
       },
+    });
+
+    return res.status(200).json({
+      errorMsg: `Atualização do PIX registrada com sucesso!`,
     });
   } else {
     return res.status(405).json({

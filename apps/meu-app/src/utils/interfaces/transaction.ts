@@ -18,10 +18,11 @@ export interface ITed {
 }
 export interface IPix {
   id?: string;
-  valor: number;
   data?: string;
+  valor: number;
   descricao: string;
   chavePix: string;
+  destinatario: string; // nome
   tipo: TransacationTypes.PIX;
 }
 

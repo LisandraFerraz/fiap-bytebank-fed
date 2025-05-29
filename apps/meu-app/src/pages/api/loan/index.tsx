@@ -17,8 +17,6 @@ export default async function listLoansHandle(
       `${env.localApi}/contas?usuarioCpf=${cpf}`
     );
 
-    console.log("ABERTO: ", aberto);
-
     const data = response[0].historicoEmprestimos;
 
     if (aberto) {
@@ -98,6 +96,12 @@ export default async function listLoansHandle(
     );
 
     const novoSaldo = conta.saldo - originalLoan?.valorDevido;
+
+    if (conta.linhaCredito < updateBody.valor) {
+      return res.status(405).json({
+        errorMsg: `O valor informado é maior do que você tem disponível na linha de crédito.`,
+      });
+    }
 
     await fetch(`${env.localApi}/contas/${conta.id}`, {
       method: "PATCH",

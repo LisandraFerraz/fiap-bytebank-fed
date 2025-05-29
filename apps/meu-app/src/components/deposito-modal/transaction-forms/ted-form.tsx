@@ -9,6 +9,7 @@ export const TedForm = ({ data }: { data: any }) => {
   const { deleteTed, updateTed } = useTed();
 
   const [updatedTed, setUpdatedTed] = useState<any>({
+    ...data,
     valor: data.valor,
     cpfDestinatario: data.cpfDestinatario,
     numConta: data.numConta,
@@ -19,7 +20,7 @@ export const TedForm = ({ data }: { data: any }) => {
 
   const handleChangeValues = (key: keyof ITed, value: string | number) => {
     setUpdatedTed({
-      ...data,
+      ...updatedTed,
       [key]: value,
     });
   };
@@ -51,7 +52,9 @@ export const TedForm = ({ data }: { data: any }) => {
               label="Valor do depósito"
               placeHolder="Valor do depósito"
               value={updatedTed.valor}
-              onChange={(e) => handleChangeValues("valor", e.target.value)}
+              onChange={(e) =>
+                handleChangeValues("valor", Number(e.target.value))
+              }
               type="number"
             />
           </div>

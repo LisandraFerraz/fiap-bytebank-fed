@@ -57,7 +57,7 @@
       "usuarioCpf": "12345678901",
       "agencia": "002",
       "linhaCredito": 889,
-      "saldo": 9200,
+      "saldo": 9500,
       "depositos": [
         {
           "valor": 1200,
@@ -80,31 +80,9 @@
       ],
       "transferencias": [
         {
-          "id": "6f591dde-0c68-4451-aed0-1c7011f6ddcc",
-          "chavePix": "bruno.ferreira@pix.com",
-          "descricao": "Testando pix do zero",
-          "valor": 100,
-          "data": "02-04-2025",
-          "tipo": "PIX",
-          "contaDestino": "654321-9",
-          "destinatario": "Bruno Ferreira",
-          "cpfDestinatario": "98765432100"
-        },
-        {
-          "id": "6f591dde-0c68-4451-aeg0-1c7011f6ddcc",
-          "chavePix": "amanda.ferreira@pix.com",
-          "descricao": "Testando pix do zero",
-          "valor": 100,
-          "data": "12-04-2025",
-          "tipo": "PIX",
-          "contaDestino": "654321-2",
-          "destinatario": "Amanda Ferreira",
-          "cpfDestinatario": "98765452100"
-        },
-        {
           "descricao": "TESTANDO NOVA TRANSFERENCA TED",
           "data": "02-04-2025",
-          "valor": "900",
+          "valor": 100,
           "numConta": 654321,
           "digito": 9,
           "agencia": "001",
@@ -113,15 +91,15 @@
           "id": "a04d652d-e0ea-4c3c-9cb4-c4ec088090e3"
         },
         {
-          "descricao": "Enviando TED",
-          "data": "03-04-2025",
-          "valor": 100,
-          "numConta": 123456,
-          "digito": 9,
-          "agencia": "001",
-          "cpfDestinatario": "78615126062",
-          "tipo": "TED",
-          "id": "68a1e3f4-b5b1-4f8b-930f-c8b036e8b67c"
+          "id": "6f591dde-0c68-4451-aed0-1c7011f6ddcc",
+          "chavePix": "bruno.ferreira@pix.com",
+          "descricao": "Testando pix do zero",
+          "valor": 300,
+          "data": "02-04-2025",
+          "tipo": "PIX",
+          "contaDestino": "654321-9",
+          "destinatario": "Bruno Ferreira",
+          "cpfDestinatario": "98765432100"
         }
       ],
       "historicoEmprestimos": [
@@ -153,30 +131,7 @@
       "agencia": "001",
       "linhaCredito": 2500,
       "saldo": 3630,
-      "depositos": [
-        {
-          "id": "6f591dde-0c68-4451-aed0-1c7011f6ddcc",
-          "chavePix": "bruno.ferreira@pix.com",
-          "descricao": "Testando pix do zero",
-          "valor": 100,
-          "data": "02-04-2025",
-          "tipo": "PIX",
-          "contaOrigem": "123456-5",
-          "remetente": "Ana Clara Silva",
-          "cpfRemetente": "12345678901"
-        },
-        {
-          "descricao": "TESTANDO NOVA TRANSFERENCA TED",
-          "data": "02-04-2025",
-          "valor": 200,
-          "numConta": 654321,
-          "digito": 9,
-          "agencia": "001",
-          "cpfDestinatario": "98765432100",
-          "tipo": "TED",
-          "id": "a04d652d-e0ea-4c3c-9cb4-c4ec088090e3"
-        }
-      ],
+      "depositos": [],
       "transferencias": [],
       "historicoEmprestimos": []
     },

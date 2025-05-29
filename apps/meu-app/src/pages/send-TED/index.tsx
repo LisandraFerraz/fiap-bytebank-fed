@@ -1,11 +1,9 @@
 "use client";
-
 import { v4 as generateUUID } from "uuid";
 import styles from "./styles.module.scss";
 import { InputText } from "@components/input-text/input-text";
 import { useState } from "react";
 import { ITed, TransacationTypes } from "../../utils/interfaces/transaction";
-import { UseTransactions } from "../../utils/hooks/useTransactions";
 import { BtnClasses, Button } from "@components/button/button";
 import { FormatDate } from "../../utils/functions/format-date";
 import { useTed } from "../../utils/hooks/useTed";

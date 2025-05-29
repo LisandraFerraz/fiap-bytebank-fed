@@ -1,13 +1,9 @@
 import styles from "./loan-modal.module.scss";
 import { ModalLayout } from "@components/modal-layout/modal-layout";
 import { BtnClasses, Button } from "@components/button/button";
-import {
-  IEmprestimo,
-  TransacationTypes,
-} from "../../utils/interfaces/transaction";
+import { IEmprestimo } from "../../utils/interfaces/transaction";
 import { InputText } from "@components/input-text/input-text";
-import { useEffect, useState } from "react";
-import { UseTransactions } from "../../utils/hooks/useTransactions";
+import { useState } from "react";
 import { UseLoans } from "../../utils/hooks/useLoans";
 
 export const LoanModal = ({
@@ -22,10 +18,6 @@ export const LoanModal = ({
   const [payLoanBody, setPayLoanBody] = useState<IEmprestimo>({
     ...data,
   });
-
-  useEffect(() => {
-    console.log(data);
-  }, []);
 
   const handleSetBody = (valor: string) => {
     const valorParsed = Number(valor);

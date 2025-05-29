@@ -5,6 +5,16 @@ import { IEmprestimo } from "../interfaces/transaction";
 export function UseLoans() {
   const { user } = useUserContext();
 
+  const requestLoan = async (body: IEmprestimo) => {
+    return await fetch(`${endpoints.requestLoan}?cpf=${user?.cpf}`, {
+      method: "PATCH",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
+
   const payLoan = async (body: IEmprestimo) => {
     await fetch(`${endpoints.payLoan}?cpf=${user?.cpf}`, {
       method: "PATCH",
@@ -35,5 +45,6 @@ export function UseLoans() {
     payLoan,
     deleteLoan,
     updateLoan,
+    requestLoan,
   };
 }
