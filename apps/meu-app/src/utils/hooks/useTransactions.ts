@@ -6,15 +6,6 @@ export const UseTransactions = () => {
   const { user } = useUserContext();
 
   // Envia dinheiro
-  const sendBankDeposit = (body: ITed) => {
-    return fetch(`${endpoints.sendMoney}?usuarioCpf=${user?.cpf}`, {
-      method: "PATCH",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  };
 
   const sendPix = (body: IPix) => {
     return fetch(`${endpoints.sendPix}?usuarioCpf=${user?.cpf}`, {
@@ -39,7 +30,6 @@ export const UseTransactions = () => {
 
   return {
     sendPix,
-    sendBankDeposit,
     requestLoan,
   };
 };

@@ -1,7 +1,7 @@
 export const endpoints = {
   listaUser: "/api/user",
   listaAccount: "/api/account",
-  sendMoney: "/api/send-money",
+  ted: "/api/ted",
   deposit: "/api/deposit",
   sendPix: "/api/send-pix",
   requestLoan: "/api/loan/request",

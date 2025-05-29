@@ -19,8 +19,8 @@ export const TransactionDetailsModal = ({
     const getComponent: { [key: string]: ReactNode } = {
       [TransacationTypes.DEPOSITO]: <DepositForm data={data} />,
       [TransacationTypes.EMPRESTIMO]: <EmprestimoForm data={data} />,
-      [TransacationTypes.PIX]: <TedForm data={data} />,
-      [TransacationTypes.TED]: <PixForm data={data} />,
+      [TransacationTypes.TED]: <TedForm data={data} />,
+      [TransacationTypes.PIX]: <PixForm data={data} />,
     };
 
     return getComponent[type];

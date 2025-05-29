@@ -8,9 +8,10 @@ import { ITed, TransacationTypes } from "../../utils/interfaces/transaction";
 import { UseTransactions } from "../../utils/hooks/useTransactions";
 import { BtnClasses, Button } from "@components/button/button";
 import { FormatDate } from "../../utils/functions/format-date";
+import { useTed } from "../../utils/hooks/useTed";
 
 export default function SendTED() {
-  const { sendBankDeposit } = UseTransactions();
+  const { sendTed } = useTed();
 
   const [tedBody, setTedBody] = useState<ITed>({
     descricao: "",
@@ -39,7 +40,7 @@ export default function SendTED() {
   };
 
   const handleSendTED = () => {
-    sendBankDeposit(tedBody);
+    sendTed(tedBody);
   };
 
   return (

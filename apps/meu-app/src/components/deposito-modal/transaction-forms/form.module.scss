@@ -3,7 +3,7 @@
 .transaction_form {
   display: flex;
   flex-direction: column;
-  margin-top: 25px;
+  margin-top: 15px;
   color: v.$grey_font;
 
   .payment_info {
@@ -26,6 +26,7 @@
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
     gap: 15px;
+    padding: 10px 0;
 
     .original_legenda {
       text-align: end;
@@ -39,7 +40,7 @@
   }
 
   .end_row {
-    margin-top: 50px;
+    margin-top: 25px;
     text-align: end;
 
     > button:last-child {
