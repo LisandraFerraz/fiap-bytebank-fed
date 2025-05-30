@@ -1,7 +1,7 @@
 "use client";
 import { v4 as generateUUID } from "uuid";
 
-import { LoanPendingList } from "@components/loan-list/loan-list";
+import { LoanList } from "@components/loan-list/loan-list";
 import form_styles from "./../../styles/page-form.module.scss";
 import {
   IEmprestimo,
@@ -15,24 +15,25 @@ import { InputText } from "@components/input-text/input-text";
 import { BtnClasses, Button } from "@components/button/button";
 import { FormatDate } from "../../utils/functions/format-date";
 import { UseLoans } from "../../utils/hooks/useLoans";
+import { TabsList } from "@components/tabs-list/tabs-list";
 
 interface IPendingLoan {
-  loanHistory: IEmprestimo[];
+  paidLoan: IEmprestimo[];
   loanPending: IEmprestimo[];
 }
 
-export default function Loan({ loanHistory, loanPending }: IPendingLoan) {
+export default function Loan({ paidLoan, loanPending }: IPendingLoan) {
   const { requestLoan } = UseLoans();
 
   const [valor, setValor] = useState<number>(0);
   const tabsContent = [
     {
       title: "A pagar",
-      component: <LoanPendingList data={loanPending} />,
+      component: <LoanList data={loanPending} />,
     },
     {
       title: "Histórico",
-      component: <LoanPendingList data={loanPending} />,
+      component: <LoanList data={paidLoan} />,
     },
   ];
 
@@ -75,7 +76,7 @@ export default function Loan({ loanHistory, loanPending }: IPendingLoan) {
           />
         </div>
       </div>
-      <LoanPendingList data={loanPending} />
+      <TabsList data={tabsContent} />
     </>
   );
 }
@@ -97,14 +98,14 @@ export const getStaticProps: GetStaticProps<IPendingLoan> = async () => {
       ),
     };
 
-    const { loanHistory, openLoan } = {
-      loanHistory: await historyRes.json(),
+    const { paidLoan, openLoan } = {
+      paidLoan: await historyRes.json(),
       openLoan: await loanRes.json(),
     };
 
     return {
       props: {
-        loanHistory: loanHistory.data,
+        paidLoan: paidLoan.paidLoan,
         loanPending: openLoan.pendingLoan,
       },
     };
@@ -113,7 +114,7 @@ export const getStaticProps: GetStaticProps<IPendingLoan> = async () => {
 
     return {
       props: {
-        loanHistory: [],
+        paidLoan: [],
         loanPending: [],
       },
     };

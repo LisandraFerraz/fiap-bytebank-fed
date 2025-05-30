@@ -1,3 +1,5 @@
+@use "@css-variables" as v;
+
 .custom_body {
   display: flex;
   flex-direction: row;
@@ -27,6 +29,14 @@
 
   .toggle_sidenav {
     display: none;
+    height: 35px;
+    width: 35px;
+    font-size: v.$text-base;
+    border-radius: 100px;
+    color: v.$dark_green_default;
+    background-color: rgb(v.$green_highlight, 10%);
+    box-shadow: 0 0 2px #00000015;
+
     @media screen and (max-width: 1024px) {
       display: block;
       cursor: pointer;

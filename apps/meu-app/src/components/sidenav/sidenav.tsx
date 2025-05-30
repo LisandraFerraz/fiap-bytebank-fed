@@ -4,11 +4,24 @@ import { Icon } from "@components/icon/icon";
 import Link from "next/link";
 import { useUserContext } from "../../context/user-context";
 import { FormatDateName } from "../../utils/functions/format-date";
+import { useRouter } from "next/router";
+import { CustomLink } from "@components/custom-link/custom-link";
 
 export const Sidenav = () => {
+  const router = useRouter();
   const { user } = useUserContext();
 
   const dateNow = new Date();
+
+  const handleRedirect = (route: string) => {
+    if (document.startViewTransition) {
+      document.startViewTransition(() => {
+        router.push(route);
+      });
+    } else {
+      router.push("/");
+    }
+  };
 
   return (
     <div className={styles.sidenav}>
@@ -19,16 +32,16 @@ export const Sidenav = () => {
         <div>
           <ul>
             <li>
-              <Link href={"/"}>
+              <CustomLink href="/">
                 <Icon iconKey="transaction" />
                 Transferências
-              </Link>
+              </CustomLink>
             </li>
             <li>
-              <Link href={"/new-transaction"}>
+              <CustomLink href="/new-transaction">
                 <Icon iconKey="requestLoan" />
                 Transações
-              </Link>
+              </CustomLink>
             </li>
           </ul>
         </div>

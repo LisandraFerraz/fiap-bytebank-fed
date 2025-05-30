@@ -4,12 +4,13 @@ import { IEmprestimo } from "../../utils/interfaces/transaction";
 import { BtnClasses, Button } from "@components/button/button";
 import { LoanModal } from "@components/loan-modal/loan-modal";
 import { UseLoans } from "../../utils/hooks/useLoans";
+import { FormatDateSlash } from "../../utils/functions/format-date";
 
 interface ILoan {
   data: IEmprestimo[];
 }
 
-export const LoanPendingList = ({ data }: ILoan) => {
+export const LoanList = ({ data }: ILoan) => {
   const { payLoan } = UseLoans();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -44,9 +45,16 @@ export const LoanPendingList = ({ data }: ILoan) => {
         {data.map((item: IEmprestimo, index) => (
           <div key={index} className={styles.list_item}>
             <div>
-              <h4>A pagar</h4>
-              <p>Aberto em {item.data}</p>
-              <p>{item.valorDevido}</p>
+              {item.aberto ? <h4>A pagar</h4> : <h4>Pago</h4>}
+              <p>Aberto em {FormatDateSlash(item.data)}</p>
+              <p>
+                R${" "}
+                {item.aberto ? (
+                  <span>{item.valorDevido}</span>
+                ) : (
+                  <span>{item.valor}</span>
+                )}{" "}
+              </p>
             </div>
             {item.aberto && (
               <Button

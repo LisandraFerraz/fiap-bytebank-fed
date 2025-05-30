@@ -26,8 +26,9 @@ export default async function listLoansHandle(
         successMsg: "Lista de empréstimos abertos resgatada com sucesso.",
       });
     } else {
+      const paidLoan = data.filter((loan: any) => loan.aberto === false);
       return res.status(200).json({
-        data,
+        paidLoan,
         successMsg: "Histórico de empréstimos resgatado com sucesso.",
       });
     }

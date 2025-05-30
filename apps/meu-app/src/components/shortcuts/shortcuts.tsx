@@ -1,8 +1,7 @@
-import Link from "next/link";
 import styles from "./shortcuts.module.scss";
 import { Icon } from "@components/icon/icon";
-import { byteIcons } from "@components/icon/icons-list";
 import { icons } from "../../utils/types";
+import { CustomLink } from "@components/custom-link/custom-link";
 
 interface IShortcut {
   title: string;
@@ -27,12 +26,12 @@ export const Shortcuts = () => {
   return (
     <div className={styles.shortcut_item_group}>
       {shortcuts.map((sc: IShortcut, index) => (
-        <Link key={index} href={sc.url}>
+        <CustomLink key={index} href={sc.url}>
           <div className={styles.shortcut_item}>
             <Icon iconKey={sc.icon} />
             <span>{sc.title}</span>
           </div>
-        </Link>
+        </CustomLink>
       ))}
     </div>
   );

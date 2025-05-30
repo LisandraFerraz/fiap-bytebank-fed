@@ -1,6 +1,7 @@
 // Icones usados na aplicação
 import {
   faArrowRightLong,
+  faBars,
   faDiamond,
   faHandHoldingDollar,
   faMoneyBills,
@@ -31,4 +32,5 @@ export const byteIcons = {
   longArrow: faArrowRightLong,
   requestLoan: faHandHoldingDollar,
   pix: faDiamond,
+  menu: faBars,
 } as const;

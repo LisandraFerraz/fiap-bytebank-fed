@@ -5,6 +5,7 @@ import { UseUser } from "../utils/hooks/useUser";
 import { useEffect, useState } from "react";
 import { UserContext } from "../context/user-context";
 import { useRouter } from "next/router";
+import { Icon } from "@components/icon/icon";
 
 export default function App({
   Component,
@@ -45,7 +46,7 @@ export default function App({
           className={styles.toggle_sidenav}
           onClick={() => setIsVisible(!isVisible)}
         >
-          O
+          <Icon iconKey="menu" />
         </button>
         <div className={styles.content}>
           <Component {...pageProps} />

@@ -60,5 +60,40 @@ a {
   }
 }
 
-.transaction_layout {
+// animacao nav
+
+.content::view-transition-old(root),
+.content::view-transition-new(root) {
+  animation-duration: 0.8s;
+  animation-timing-function: ease-in-out;
+}
+
+.content::view-transition-old(root) {
+  animation-name: slide-right;
+}
+
+.content::view-transition-new(root) {
+  animation-name: slide-left;
+}
+
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
 }

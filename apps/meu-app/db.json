@@ -114,6 +114,15 @@
           "valorPago": 29,
           "aberto": true,
           "valorDevido": 130
+        },
+        {
+          "tipo": "EMPRESTIMO",
+          "id": "b89e8cf1-f328-467c-a9ad-8fad7e9da818",
+          "valor": 20,
+          "data": "12-04-2025",
+          "valorPago": 20,
+          "aberto": false,
+          "valorDevido": 0
         }
       ]
     },

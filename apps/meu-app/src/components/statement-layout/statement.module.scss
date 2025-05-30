@@ -28,6 +28,24 @@
     align-items: end;
     padding-bottom: 45px;
 
+    .link {
+      text-decoration: none;
+      color: v.$dark_green_default;
+      > span {
+        margin: 0 5px;
+      }
+    }
+    .btn_transaction {
+      background-color: v.$transparent_green;
+      font-weight: 500;
+      width: 220px;
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100px;
+    }
+
     @media screen and (max-width: 1024px) {
       padding-bottom: 0;
     }
