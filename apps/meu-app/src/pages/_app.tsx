@@ -1,4 +1,5 @@
 import "./../styles/global.scss";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Sidenav } from "@components/sidenav/sidenav";
 import styles from "../styles/layout.module.scss";
 import { UseUser } from "../utils/hooks/useUser";

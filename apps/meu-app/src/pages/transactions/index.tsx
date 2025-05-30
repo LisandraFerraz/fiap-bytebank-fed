@@ -33,6 +33,7 @@ export const getStaticProps: GetStaticProps<IHomeProps> = async () => {
       props: {
         data: data.data,
       },
+      revalidate: 5,
     };
   } catch (error) {
     return {

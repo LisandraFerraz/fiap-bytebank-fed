@@ -22,6 +22,12 @@ export default async function getAccountHandle(
 
   const conta = contasRes[0];
 
+  if (!conta) {
+    return res.status(404).json({
+      errorMessage: "Não foi possível recuperar as informações da conta..",
+    });
+  }
+
   const accTransaction = Object.values(conta).filter((a: any) =>
     Array.isArray(a)
   );
