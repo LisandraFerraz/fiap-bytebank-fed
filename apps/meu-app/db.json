@@ -68,6 +68,24 @@
           "data": "29-05-2025",
           "tipo": "PIX",
           "destinatario": "Bruno Ferreira Albuquerque"
+        },
+        {
+          "id": "4ca0d8a6-0eav-4ea4-9209-bd307d812b20",
+          "chavePix": "bruno.ferreira@pix.com",
+          "descricao": "Enviando Novo Pix",
+          "valor": 1000,
+          "data": "19-05-2025",
+          "tipo": "PIX",
+          "destinatario": "Bruno Ferreira Albuquerque"
+        },
+        {
+          "id": "4ca0d8a6-0ebb-4ea4-9209-bd307d812b20",
+          "chavePix": "bruno.ferreira@pix.com",
+          "descricao": "Enviando Novo Pix",
+          "valor": 2000,
+          "data": "22-05-2025",
+          "tipo": "PIX",
+          "destinatario": "Bruno Ferreira Albuquerque"
         }
       ],
       "historicoEmprestimos": [
