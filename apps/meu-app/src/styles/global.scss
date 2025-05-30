@@ -3,7 +3,6 @@
 
 html,
 body {
-  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -14,6 +13,13 @@ body {
   padding: 0;
   box-sizing: border-box;
   background-color: v.$white_default;
+
+  > div {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
 }
 
 *,
@@ -61,7 +67,6 @@ a {
 }
 
 // animacao nav
-
 .content::view-transition-old(root),
 .content::view-transition-new(root) {
   animation-duration: 0.8s;

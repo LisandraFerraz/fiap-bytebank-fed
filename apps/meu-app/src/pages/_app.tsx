@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { UserContext } from "../context/user-context";
 import { useRouter } from "next/router";
 import { Icon } from "@components/icon/icon";
+import Home from "./home";
 
 export default function App({
   Component,
@@ -38,20 +39,26 @@ export default function App({
 
   return (
     <UserContext.Provider value={{ user: userData }}>
-      <div className={styles.custom_body}>
-        <div className={`${!isVisible ? styles.hidden : ""}`}>
-          <Sidenav />
-        </div>
-        <button
-          className={styles.toggle_sidenav}
-          onClick={() => setIsVisible(!isVisible)}
-        >
-          <Icon iconKey="menu" />
-        </button>
-        <div className={styles.content}>
-          <Component {...pageProps} />
-        </div>
-      </div>
+      {router.route !== "/home" ? (
+        <>
+          <div className={styles.custom_body}>
+            <div className={`${!isVisible ? styles.hidden : ""}`}>
+              <Sidenav />
+            </div>
+            <button
+              className={styles.toggle_sidenav}
+              onClick={() => setIsVisible(!isVisible)}
+            >
+              <Icon iconKey="menu" />
+            </button>
+            <div className={styles.content}>
+              <Component {...pageProps} />
+            </div>
+          </div>
+        </>
+      ) : (
+        <Home />
+      )}
     </UserContext.Provider>
   );
 }

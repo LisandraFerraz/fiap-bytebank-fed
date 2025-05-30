@@ -56,73 +56,29 @@
       "digito": 5,
       "usuarioCpf": "12345678901",
       "agencia": "002",
-      "linhaCredito": 889,
-      "saldo": 9500,
-      "depositos": [
-        {
-          "valor": 100,
-          "tipo": "DEPOSITO",
-          "id": "7bea1074-c8bd-4669-9fd4-4d4b663bf340",
-          "data": "02-04-2025"
-        },
-        {
-          "valor": 4000,
-          "tipo": "DEPOSITO",
-          "id": "fa0fed31-3a34-40d9-a6f7-ebb4f2d2b184",
-          "data": "03-04-2025"
-        }
-      ],
+      "linhaCredito": 10000,
+      "saldo": 8600,
+      "depositos": [],
       "transferencias": [
         {
-          "id": "6f591dde-0c68-4451-aed0-1c7011f6ddcc",
+          "id": "4ca0d8a6-0eab-4ea4-9209-bd307d812b20",
           "chavePix": "bruno.ferreira@pix.com",
-          "descricao": "Testando pix do zero",
-          "valor": 300,
-          "data": "02-04-2025",
-          "tipo": "PIX",
-          "contaDestino": "654321-9",
-          "destinatario": "Bruno Ferreira",
-          "cpfDestinatario": "98765432100"
-        },
-        {
-          "descricao": "TESTANDO NOVA TRANSFERENCA TED",
-          "data": "02-04-2025",
+          "descricao": "Enviando Novo Pix",
           "valor": 100,
-          "numConta": 654321,
-          "digito": 9,
-          "agencia": "001",
-          "cpfDestinatario": "23232323232",
-          "tipo": "TED",
-          "id": "a04d652d-e0ea-4c3c-9cb4-c4ec088090e3"
+          "data": "29-05-2025",
+          "tipo": "PIX",
+          "destinatario": "Bruno Ferreira Albuquerque"
         }
       ],
       "historicoEmprestimos": [
         {
           "tipo": "EMPRESTIMO",
-          "id": "b89e8cf1-f308-567c-a9ad-8fad7e9da818",
-          "valor": 200,
-          "data": "02-04-2025",
-          "valorPago": 20,
-          "aberto": true,
-          "valorDevido": 180
-        },
-        {
-          "tipo": "EMPRESTIMO",
-          "id": "b89e8cf1-f308-467c-a9ad-8fad7e9da818",
-          "valor": 159,
-          "data": "02-04-2025",
-          "valorPago": 29,
-          "aberto": true,
-          "valorDevido": 130
-        },
-        {
-          "tipo": "EMPRESTIMO",
-          "id": "b89e8cf1-f328-467c-a9ad-8fad7e9da818",
-          "valor": 20,
-          "data": "12-04-2025",
-          "valorPago": 20,
-          "aberto": false,
-          "valorDevido": 0
+          "id": "23d7dd7c-c0a5-492c-aef0-404aa7e17337",
+          "valor": 1000,
+          "data": "29-05-2025",
+          "valorPago": 1000,
+          "valorDevido": 0,
+          "aberto": false
         }
       ]
     },

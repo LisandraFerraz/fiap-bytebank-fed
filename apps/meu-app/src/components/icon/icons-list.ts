@@ -1,12 +1,21 @@
 // Icones usados na aplicação
 import {
+  faInstagram,
+  faWhatsapp,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
+import {
   faArrowRightLong,
   faBars,
+  faDatabase,
   faDiamond,
+  faFolderTree,
   faHandHoldingDollar,
   faMoneyBills,
   faMoneyBillTransfer,
   faPlus,
+  faShieldHeart,
+  faWrench,
 } from "@fortawesome/free-solid-svg-icons";
 import { faPiggyBank } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
@@ -33,4 +42,11 @@ export const byteIcons = {
   requestLoan: faHandHoldingDollar,
   pix: faDiamond,
   menu: faBars,
+  igIcon: faInstagram,
+  waIcon: faWhatsapp,
+  ytIcon: faYoutube,
+  database: faDatabase,
+  adjust: faWrench,
+  organize: faFolderTree,
+  safety: faShieldHeart,
 } as const;

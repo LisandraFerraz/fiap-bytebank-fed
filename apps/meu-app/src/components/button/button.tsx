@@ -5,6 +5,7 @@ import { Icon } from "@components/icon/icon";
 export enum BtnClasses {
   CONFIRM = "CONFIRM",
   DEFAULT = "DEFAULT",
+  HIGHLIGHT = "HIGHLIGHT",
   DELETE = "",
 }
 
@@ -30,6 +31,7 @@ export const Button = ({
       [BtnClasses.CONFIRM]: styles.btn_confirm,
       [BtnClasses.DEFAULT]: styles.btn_default,
       [BtnClasses.DELETE]: styles.btn_delete,
+      [BtnClasses.HIGHLIGHT]: styles.btn_highlight,
     };
 
     return btnClassMap[btnC];
