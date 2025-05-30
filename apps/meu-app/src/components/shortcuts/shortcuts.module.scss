@@ -1,0 +1,24 @@
+@use "@css-variables" as v;
+
+.shortcut_item_group {
+  display: flex;
+  gap: 15px;
+
+  .shortcut_item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 10px;
+    height: 60px;
+    width: 150px;
+
+    border-radius: 8px;
+    background-color: v.$white_default;
+    box-shadow: 0 0 8px #00000015;
+    color: v.$grey_highlight;
+
+    &:hover {
+      color: v.$dark_green_default;
+    }
+  }
+}

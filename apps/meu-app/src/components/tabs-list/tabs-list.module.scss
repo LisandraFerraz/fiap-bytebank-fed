@@ -1,0 +1,28 @@
+@use "@css-variables" as v;
+
+.tab {
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+
+  button {
+    height: 45px;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: v.$text-sm;
+    font-weight: bold;
+    // color: v.$grey_font;
+    transition: ease-in 0.1s;
+    opacity: 70%;
+
+    &:hover {
+      background-color: v.$sogrey_faded;
+      cursor: pointer;
+    }
+  }
+}
+.tab_content {
+  .hidden {
+    display: none;
+  }
+}

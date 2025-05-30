@@ -1,0 +1,50 @@
+@use "@css-variables" as v;
+
+.transaction_form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  color: v.$grey_font;
+
+  .payment_info {
+    margin-bottom: 25px;
+
+    > p:nth-child(2),
+    p:nth-child(3) {
+      margin-top: 5px;
+      opacity: 60%;
+    }
+  }
+
+  //   Para emprestimo
+  .pending_payment {
+    font-weight: 400;
+  }
+
+  .row {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 15px;
+    padding: 10px 0;
+
+    .original_legenda {
+      text-align: end;
+      font-size: v.$text-sm;
+    }
+  }
+  .original_legenda {
+    width: 100%;
+    font-size: v.$text-base;
+    font-weight: 500;
+  }
+
+  .end_row {
+    margin-top: 25px;
+    text-align: end;
+
+    > button:last-child {
+      margin-left: 15px;
+    }
+  }
+}

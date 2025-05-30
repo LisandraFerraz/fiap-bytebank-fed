@@ -1,0 +1,6 @@
+@use "@css-variables" as v;
+
+.title {
+  font-size: v.$text-md;
+  font-weight: 600;
+}

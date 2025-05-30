@@ -1,0 +1,29 @@
+@use "@css-variables" as v;
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 45px 20px;
+  background: linear-gradient(to top, #fff, #e2fefc);
+
+  > div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+
+    ul li {
+      font-size: v.$text-md;
+      margin-left: 25px;
+    }
+  }
+
+  @media screen and (max-width: 920px) {
+    justify-content: start;
+
+    > div {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+@use "@css-variables" as v;
+
+.modal_background {
+  z-index: 1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(v.$dark_default, 60%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal {
+    z-index: 1;
+    background-color: v.$white_default;
+    padding: 25px;
+    border-radius: 10px;
+    width: 620px;
+
+    .modal_header {
+      display: flex;
+      justify-content: space-between;
+      font-size: v.$text-md;
+
+      span {
+        font-weight: 600;
+      }
+
+      .close_btn {
+        cursor: pointer;
+        background-color: transparent;
+      }
+    }
+
+    .modal_body {
+      margin: 15px 0;
+    }
+  }
+}

@@ -1,0 +1,340 @@
+{
+  "usuarios": [
+    {
+      "id": "1",
+      "nome": "Ana Clara Silva",
+      "dataNascimento": "1990-05-10",
+      "cpf": "12345678901",
+      "dadosBancarios": {
+        "numeroConta": 123456,
+        "agencia": "001",
+        "digito": 9,
+        "chavePix": "ana.clara@example.com"
+      },
+      "login": {
+        "email": "anaclara@email.com",
+        "password": "anaclara123"
+      }
+    },
+    {
+      "id": "2",
+      "nome": "Bruno Ferreira",
+      "dataNascimento": "1985-11-23",
+      "cpf": "98765432100",
+      "dadosBancarios": {
+        "numeroConta": 654321,
+        "agencia": "002",
+        "digito": 5,
+        "chavePix": "bruno.ferreira@pix.com"
+      },
+      "login": {
+        "email": "brunoferreira@email.com",
+        "password": "brunoferreira123"
+      }
+    },
+    {
+      "id": "3",
+      "nome": "Carla Mendes",
+      "dataNascimento": "1992-08-17",
+      "cpf": "32165498722",
+      "dadosBancarios": {
+        "numeroConta": 789123,
+        "agencia": "003",
+        "digito": 2,
+        "chavePix": "carla.mendes@pix.com"
+      },
+      "login": {
+        "email": "carlamendes@email.com",
+        "password": "carlamendes123"
+      }
+    }
+  ],
+  "contas": [
+    {
+      "id": "1",
+      "numeroConta": 123456,
+      "digito": 5,
+      "usuarioCpf": "12345678901",
+      "agencia": "002",
+      "linhaCredito": 1500,
+      "saldo": null,
+      "depositos": [
+        {
+          "id": 3,
+          "contaOrigem": null,
+          "valor": 1890,
+          "data": "2025-05-02T10:00:00Z",
+          "descricao": "Depósito inicial"
+        },
+        {
+          "id": 1,
+          "contaOrigem": "123456-9",
+          "valor": 300,
+          "data": "2025-05-12T14:00:00Z",
+          "descricao": "Transferência de Ana"
+        },
+        {
+          "contaOrigem": "654321",
+          "valor": 2000,
+          "data": "20/12/2025",
+          "descricao": "Testando transferencia"
+        },
+        {
+          "id": "6d233c90-67dd-4ac6-8036-0f921d81093d",
+          "contaOrigem": "123456-5",
+          "valor": 2000,
+          "data": "2025-05-24T08:21:35.516Z",
+          "descricao": "testando"
+        },
+        {
+          "id": "109e9c16-3834-48c4-904b-57c2629804fc",
+          "chavePix": "ana.clara@example.com",
+          "descricao": "Testando nova validação",
+          "valor": 50,
+          "data": "Sat May 24 2025 17:09:58 GMT-0300 (Horário Padrão de Brasília)",
+          "contaOrigem": "654321-9",
+          "remetente": "Bruno Ferreira",
+          "cpfRemetente": "98765432100"
+        },
+        {
+          "id": "c4186255-3482-43a5-8bac-02f621652cfd",
+          "data": "Sat May 24 2025 22:56:25 GMT-0300 (Horário Padrão de Brasília)",
+          "valor": 1000,
+          "tipo": "DEPOSITO"
+        },
+        "{\"id\":\"2dcc49ce-615e-48e4-a547-522f59eb7ac0\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"118c6f01-09e8-4a80-b585-b783a4051a81\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"c34f937f-614b-463e-92dd-e21e39524273\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"65e7beeb-b651-4b1b-b59a-ecd63d7f8187\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"65e7beeb-b651-4b1b-b59a-ecd63d7f8187\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"65e7beeb-b651-4b1b-b59a-ecd63d7f8187\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"65e7beeb-b651-4b1b-b59a-ecd63d7f8187\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"65e7beeb-b651-4b1b-b59a-ecd63d7f8187\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"65e7beeb-b651-4b1b-b59a-ecd63d7f8187\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"65e7beeb-b651-4b1b-b59a-ecd63d7f8187\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"65e7beeb-b651-4b1b-b59a-ecd63d7f8187\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"261369eb-286d-42e5-b200-11d7718a57b2\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}",
+        "{\"id\":\"3994db37-070b-40b0-b998-893ab79ef1df\",\"data\":\"a\",\"valor\":1000,\"tipo\":\"DEPOSITO\"}"
+      ],
+      "transferencias": [
+        {
+          "id": 3,
+          "contaDestino": "789123-2",
+          "valor": 100,
+          "data": "2025-05-14T15:00:00Z",
+          "descricao": "Pagamento"
+        },
+        {
+          "id": "e5adc150-863e-487b-903d-a87bbd95ab4c",
+          "contaDestino": "654321-9",
+          "valor": 2000,
+          "data": "2025-05-24T08:21:35.573Z",
+          "descricao": "testando"
+        },
+        {
+          "valor": 100,
+          "data": "Sat May 24 2025 20:14:48 GMT-0300 (Horário Padrão de Brasília)",
+          "descricao": "Testando pix",
+          "chavePix": "bruno.ferreira@pix.com",
+          "contaDestino": "654321-9",
+          "destinatario": "Bruno Ferreira",
+          "cpfDestinatario": "98765432100"
+        },
+        {
+          "valor": 100,
+          "data": "Sat May 24 2025 20:18:16 GMT-0300 (Horário Padrão de Brasília)",
+          "descricao": "Testando pix",
+          "chavePix": "bruno.ferreira@pix.com",
+          "contaDestino": "654321-9",
+          "destinatario": "Bruno Ferreira",
+          "cpfDestinatario": "98765432100"
+        },
+        {
+          "valor": 100,
+          "data": "Sat May 24 2025 21:20:47 GMT-0300 (Horário Padrão de Brasília)",
+          "descricao": "Testando pix",
+          "chavePix": "bruno.ferreira@pix.com",
+          "contaDestino": "654321-9",
+          "destinatario": "Bruno Ferreira",
+          "cpfDestinatario": "98765432100"
+        },
+        {
+          "valor": 100,
+          "data": "Sat May 24 2025 23:02:24 GMT-0300 (Horário Padrão de Brasília)",
+          "descricao": "Testando pix",
+          "chavePix": "bruno.ferreira@pix.com",
+          "contaDestino": "654321-9",
+          "destinatario": "Bruno Ferreira",
+          "cpfDestinatario": "98765432100"
+        }
+      ],
+      "historicoEmprestimos": []
+    },
+    {
+      "id": "2",
+      "numeroConta": 654321,
+      "digito": 9,
+      "usuarioCpf": "98765432100",
+      "agencia": "001",
+      "linhaCredito": 2500,
+      "saldo": 3550,
+      "depositos": [
+        {
+          "id": 3,
+          "contaOrigem": null,
+          "valor": 1890,
+          "data": "2025-05-02T10:00:00Z",
+          "descricao": "Depósito inicial"
+        },
+        {
+          "id": 1,
+          "contaOrigem": "123456-9",
+          "valor": 300,
+          "data": "2025-05-12T14:00:00Z",
+          "descricao": "Transferência de Ana"
+        },
+        {
+          "contaOrigem": "654321",
+          "valor": 2000,
+          "data": "20/12/2025",
+          "descricao": "Testando transferencia"
+        },
+        {
+          "id": "6d233c90-67dd-4ac6-8036-0f921d81093d",
+          "contaOrigem": "123456-5",
+          "valor": 2000,
+          "data": "2025-05-24T08:21:35.516Z",
+          "descricao": "testando"
+        },
+        {
+          "id": "109e9c16-3834-48c4-904b-57c2629804fc",
+          "chavePix": "ana.clara@example.com",
+          "descricao": "Testando nova validação",
+          "valor": 50,
+          "data": "Sat May 24 2025 17:09:58 GMT-0300 (Horário Padrão de Brasília)",
+          "contaOrigem": "654321-9",
+          "remetente": "Bruno Ferreira",
+          "cpfRemetente": "98765432100"
+        },
+        {
+          "id": "c4186255-3482-43a5-8bac-02f621652cfd",
+          "data": "Sat May 24 2025 22:56:25 GMT-0300 (Horário Padrão de Brasília)",
+          "valor": 1000,
+          "tipo": "DEPOSITO"
+        },
+        {
+          "valor": 100,
+          "data": "Sat May 24 2025 23:02:24 GMT-0300 (Horário Padrão de Brasília)",
+          "descricao": "Testando pix",
+          "chavePix": "bruno.ferreira@pix.com",
+          "contaOrigem": "123456-5",
+          "remetente": "Ana Clara Silva",
+          "cpfRemetente": "12345678901"
+        }
+      ],
+      "transferencias": [
+        {
+          "id": 1,
+          "contaDestino": "123456-9",
+          "valor": 200,
+          "data": "2025-05-13T10:30:00Z",
+          "descricao": "Reembolso"
+        },
+        {
+          "id": 2,
+          "valor": 2000,
+          "data": "20/12/2025",
+          "descricao": "Testando transferencia novamente",
+          "contaDestino": "789123"
+        },
+        {
+          "id": "7134d416-c5ab-48b2-b5b2-8b3da67b6877",
+          "contaDestino": "123456-5",
+          "valor": 2000,
+          "data": "2025-05-24T08:27:55.040Z",
+          "descricao": "testando de bruno para ana",
+          "destinatario": "Ana Clara Silva",
+          "cpfDestinatario": "12345678901"
+        },
+        {
+          "id": "109e9c16-3834-48c4-904b-57c2629804fc",
+          "chavePix": "ana.clara@example.com",
+          "descricao": "Testando nova validação",
+          "valor": 50,
+          "data": "Sat May 24 2025 17:09:58 GMT-0300 (Horário Padrão de Brasília)",
+          "contaDestino": "123456-5",
+          "destinatario": "Ana Clara Silva",
+          "cpfDestinatario": "12345678901"
+        }
+      ],
+      "historicoEmprestimos": [
+        {
+          "id": "a51faca8-af3f-4bdf-aa8f-d7844ce6d0c6",
+          "data": "2025-05-19T01:28:08.561Z",
+          "valor": 0,
+          "aberto": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "numeroConta": 789123,
+      "digito": 2,
+      "usuarioCpf": "32165498722",
+      "agencia": "003",
+      "linhaCredito": 3000,
+      "saldo": 5500,
+      "depositos": [
+        {
+          "id": 1,
+          "contaOrigem": null,
+          "valor": 560.5,
+          "data": "2025-05-05T11:00:00Z",
+          "descricao": "Depósito inicial"
+        },
+        {
+          "id": 2,
+          "valor": 1000,
+          "data": "20/01/2025",
+          "descricao": "Adicionando dinheiro na propria conta",
+          "contaOrigem": null
+        },
+        {
+          "id": 3,
+          "valor": 1000,
+          "data": "20/01/2025",
+          "descricao": "Adicionando dinheiro na propria conta",
+          "contaOrigem": null
+        },
+        {
+          "id": 4,
+          "valor": 1000,
+          "data": "20/01/2025",
+          "descricao": "Adicionando dinheiro na propria conta",
+          "contaOrigem": null
+        }
+      ],
+      "transferencias": [
+        {
+          "id": 2,
+          "contaDestino": "123456-9",
+          "valor": 200,
+          "data": "2025-05-13T10:30:00Z",
+          "descricao": "Reembolso"
+        }
+      ],
+      "historicoEmprestimos": []
+    }
+  ]
+}

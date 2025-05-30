@@ -1,0 +1,34 @@
+@use "@css-variables" as v;
+
+.transaction_layout {
+  h2 {
+    margin-bottom: 25px;
+  }
+
+  .option {
+    min-height: 85px;
+    background-color: v.$white_default;
+    box-shadow: 0 0 8px #00000015;
+    border-radius: 10px;
+    display: flex;
+
+    padding: 0 25px;
+    margin: 15px 0;
+
+    color: v.$grey_font;
+    transition: ease-in 0.1s;
+
+    &:hover {
+      box-shadow: 0 0 4px v.$green_faded;
+      background-color: v.$grey_faded;
+      color: v.$white_default;
+    }
+
+    &_title {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}

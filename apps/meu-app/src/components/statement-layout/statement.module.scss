@@ -1,0 +1,59 @@
+@use "@css-variables" as v;
+
+.statLayout {
+  background-image: url("/balance-bg.svg");
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35px;
+
+  @media screen and (max-width: 1024px) {
+    background-position: center;
+    height: max-content;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+    height: 100%;
+    align-items: end;
+    padding-bottom: 45px;
+
+    .link {
+      text-decoration: none;
+      color: v.$dark_green_default;
+      > span {
+        margin: 0 5px;
+      }
+    }
+    .btn_transaction {
+      background-color: v.$transparent_green;
+      font-weight: 500;
+      width: 220px;
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100px;
+    }
+
+    @media screen and (max-width: 1024px) {
+      padding-bottom: 0;
+    }
+
+    .btn {
+      background-color: v.$green_faded;
+      color: v.$dark_green_default;
+      font-size: v.$text-base;
+    }
+  }
+}

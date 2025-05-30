@@ -1,0 +1,49 @@
+@use "@css-variables" as v;
+
+.custom_body {
+  display: flex;
+  flex-direction: row;
+  margin: 0 50px;
+  position: relative;
+
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    position: relative;
+    margin-top: 50px;
+
+    @media screen and (min-width: 1024px) {
+      margin-left: 350px;
+    }
+  }
+
+  .hidden {
+    display: none;
+
+    @media screen and (min-width: 1024px) {
+      display: block;
+    }
+  }
+
+  .toggle_sidenav {
+    display: none;
+    height: 35px;
+    width: 35px;
+    font-size: v.$text-base;
+    border-radius: 100px;
+    color: v.$dark_green_default;
+    background-color: rgb(v.$green_highlight, 10%);
+    box-shadow: 0 0 2px #00000015;
+
+    @media screen and (max-width: 1024px) {
+      display: block;
+      cursor: pointer;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      z-index: 10;
+    }
+  }
+}

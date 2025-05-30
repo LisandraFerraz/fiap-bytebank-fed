@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ByteBank 💸
 
-## Getting Started
+## Objetivo:
+Criar uma interface que permita aos usuários gerenciar suas transações financeiras, aplicando conceitos de POO. Tech Challenge da FIAP, no curso Front-end Engineering.
 
-First, run the development server:
+Na aplicação é possível:
+- Registrar depósitos, transações PIX, TED e empréstimos bancários;
+- Visualizar, editar e excluir os registros
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![image](https://github.com/user-attachments/assets/befb0cfe-023a-49a6-897d-d3d860187178)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Overview do projeto
+O desenvolvimento foi feito utilizando [json-server](https://www.npmjs.com/package/json-server) para simular uma base de dados e receber informações no formato de JSON.
+Ao clonar o projeto, é possível encontrar na raiz o arquivo `db-exemple.ts`. Os conteúdo da constante `dbExemplo` é o mesmo que você pode inserir no `db.json` para simular as interações.
+Aqui estão os passos para isso:
+1. Crie um arquivo "db.json" na raiz do projeto ou renomeie este arquivo;
+2. Utilize o conteúdo dde dbExemplo para criar o JSON que vai simular registros em uma base de dados.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Rodando localmente
 
-## Learn More
+Dependências: 
+- "next": "15.3.2"
+- "@types/node": "^20"
+- "@types/react": "^19"
 
-To learn more about Next.js, take a look at the following resources:
+Comandos para instalação e inicialização:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+      > git clone <link-do-repositorio>
+      > npm install
+      > npm run dev // Roda o front-end
+      > npm run start:mock // Roda o mock do json-server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

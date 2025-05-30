@@ -1,0 +1,41 @@
+@use "@css-variables" as v;
+
+.btn {
+  padding: 0 15px;
+  border-radius: 100px;
+  transition: ease-out 0.2s;
+  cursor: pointer;
+  // font-size: calc(v.$text-sm + 0.25rem);
+  width: 200px;
+  height: 40px;
+
+  &:hover {
+    opacity: 80%;
+  }
+
+  svg {
+    margin-right: 10px;
+  }
+}
+
+.btn_confirm {
+  background-color: v.$transparent_green;
+  color: v.$dark_green_default;
+  font-weight: 500;
+}
+
+.btn_default {
+  height: 35px;
+}
+
+.btn_delete {
+  background-color: rgb(v.$red_faded, 20%);
+  color: v.$red_highlight;
+  font-weight: 600;
+}
+
+.btn_highlight {
+  background-color: v.$dark_green_default;
+  color: v.$white_default;
+  font-weight: 600;
+}
