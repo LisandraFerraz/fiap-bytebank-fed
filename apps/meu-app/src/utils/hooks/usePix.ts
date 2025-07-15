@@ -6,8 +6,8 @@ export const UsePix = () => {
   const { user } = useUserContext();
 
   const sendPix = (body: IPix) => {
-    return fetch(`${endpoints.sendPix}?usuarioCpf=${user?.cpf}`, {
-      method: "POST",
+    return fetch(`${endpoints.sendPix}?accountId=${user?._id}`, {
+      method: "PUT",
       body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",

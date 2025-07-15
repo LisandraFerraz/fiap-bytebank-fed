@@ -7,22 +7,31 @@ export default async function getUserHandle(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method !== "GET") {
+  if (req.method !== "POST") {
     return res.status(405).json({
       errorMessage: "Método não permitdo.",
     });
   }
 
-  const { cpf } = req.query;
+  const reqBody: { email: string; password: string } = req.body;
 
-  const userData = await getFetch<IUsuario>(
-    `${env.localApi}/usuarios?cpf=${cpf}`
-  );
+  const userData = await fetch(`${env.NEST_API}/user/login`, {
+    method: "POST",
+    body: JSON.stringify(reqBody),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const dataFormated = await userData.json();
 
   if (userData) {
     return res
       .status(200)
-      .json({ data: userData, successMessage: "Dados listados com sucesso" });
+      .json({
+        data: dataFormated,
+        successMessage: "Dados listados com sucesso",
+      });
   }
   return res
     .status(500)

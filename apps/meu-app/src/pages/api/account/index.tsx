@@ -48,7 +48,7 @@ export default async function getAccountHandle(
     if (!monthGroup) {
       monthGroup = {
         mes: monthName,
-        data: curr.data.replace(/-/g, "/"),
+        data: curr.data?.replace(/-/g, "/"),
         transferencias: [],
       };
       acc.push(monthGroup);

@@ -8,7 +8,7 @@ import { UseDeposit } from "../../../utils/hooks/useDeposit";
 export const DepositForm = ({ data }: { data: any }) => {
   const { deleteDeposit, updateDeposit } = UseDeposit();
 
-  const [newValor, setNewValor] = useState<number>(data.valor);
+  const [newValor, setNewValor] = useState<number>(data?.valor);
 
   const handleChangeValues = (value: string | number) => {
     const parsed = Number(value);
@@ -19,7 +19,7 @@ export const DepositForm = ({ data }: { data: any }) => {
   };
 
   const handleDeleteData = () => {
-    deleteDeposit(data.id);
+    deleteDeposit(data?.id);
   };
 
   const handleUpdateLoan = () => {
@@ -35,7 +35,7 @@ export const DepositForm = ({ data }: { data: any }) => {
       <div className={styles.transaction_form}>
         <div className={styles.payment_info}>
           <p className={styles.pending_payment}>
-            Valor original: <b>R$ {data.valor}</b>
+            Valor original: <b>R$ {data?.valor}</b>
           </p>
         </div>
         <div className={styles.row}>

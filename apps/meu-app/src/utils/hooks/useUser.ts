@@ -1,9 +1,16 @@
 import { endpoints } from "../../environment/endpoints";
 
 export const UseUser = () => {
-  const getUserInfo = async (cpf: string) => {
-    return await fetch(`${endpoints.listaUser}?cpf=${cpf}`, {
-      method: "GET",
+  const getUserInfo = async (loginBody: {
+    email: string;
+    password: string;
+  }) => {
+    return await fetch(`${endpoints.listaUser}`, {
+      method: "POST",
+      body: JSON.stringify(loginBody),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   };
 

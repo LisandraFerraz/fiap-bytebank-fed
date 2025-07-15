@@ -29,9 +29,9 @@ export const TransactionDetailsModal = ({
   return (
     <ModalLayout
       onClose={onClose}
-      modalTitle={`Detalhes do ${FormatTypeName(data.tipo)}`}
+      modalTitle={`Detalhes do ${FormatTypeName(data?.tipo)}`}
     >
-      <>{checkFormType(data.tipo)}</>
+      <>{checkFormType(data?.tipo)}</>
     </ModalLayout>
   );
 };

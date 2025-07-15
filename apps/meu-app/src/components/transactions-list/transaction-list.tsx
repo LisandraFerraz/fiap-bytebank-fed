@@ -11,10 +11,10 @@ interface ITransactions {
 export const TransactionList = ({ data }: ITransactions) => {
   return (
     <div className={styles.transacions_list}>
-      {data.length ? (
+      {data?.length ? (
         <>
           <Title text="Extrato" />
-          {data.map((item: any, index: any) => (
+          {data?.map((item: any, index: any) => (
             <div key={index} className={styles.list_items}>
               {item.mes}
               {item.transferencias.map((t: any, idx: any) => (

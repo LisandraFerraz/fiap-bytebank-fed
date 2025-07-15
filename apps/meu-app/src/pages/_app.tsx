@@ -31,11 +31,14 @@ export default function App({
   }, [router.asPath]);
 
   async function getUserData() {
-    const mockedCpf = "12345678901";
-    const data = await getUserInfo(mockedCpf); // -> trocar o cpf para outros perfis
+    const userLogin = {
+      email: "anaclara@email.com",
+      password: "anaclara123",
+    };
+    const data = await getUserInfo(userLogin);
     const parsedData = await data.json();
 
-    setUserData(parsedData.data[0]);
+    setUserData(parsedData.data);
   }
 
   return (

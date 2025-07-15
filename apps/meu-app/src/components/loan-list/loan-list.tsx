@@ -42,7 +42,7 @@ export const LoanList = ({ data }: ILoan) => {
   return (
     <>
       <div className={styles.pending_list}>
-        {data.map((item: IEmprestimo, index) => (
+        {data?.map((item: IEmprestimo, index) => (
           <div key={index} className={styles.list_item}>
             <div>
               {item.aberto ? <h4>A pagar</h4> : <h4>Pago</h4>}

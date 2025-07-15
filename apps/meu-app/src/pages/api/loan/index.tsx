@@ -20,13 +20,13 @@ export default async function listLoansHandle(
     const data = response[0].historicoEmprestimos;
 
     if (aberto) {
-      const pendingLoan = data.filter((loan: any) => loan.aberto === true);
+      const pendingLoan = data?.filter((loan: any) => loan.aberto === true);
       return res.status(200).json({
         pendingLoan,
         successMsg: "Lista de empréstimos abertos resgatada com sucesso.",
       });
     } else {
-      const paidLoan = data.filter((loan: any) => loan.aberto === false);
+      const paidLoan = data?.filter((loan: any) => loan.aberto === false);
       return res.status(200).json({
         paidLoan,
         successMsg: "Histórico de empréstimos resgatado com sucesso.",

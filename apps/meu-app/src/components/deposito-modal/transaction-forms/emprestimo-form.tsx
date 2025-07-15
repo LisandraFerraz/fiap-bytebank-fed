@@ -9,8 +9,8 @@ export const EmprestimoForm = ({ data }: { data: any }) => {
   const { deleteLoan, updateLoan } = UseLoans();
 
   const [updatedLoan, setUpdatedLoan] = useState<any>({
-    valorPago: data.valorPago,
-    valor: data.valor,
+    valorPago: data?.valorPago,
+    valor: data?.valor,
   });
 
   const handleChangeValues = (key: keyof IEmprestimo, e: any) => {
@@ -24,11 +24,11 @@ export const EmprestimoForm = ({ data }: { data: any }) => {
   };
 
   const handleDeleteData = () => {
-    deleteLoan(data.id);
+    deleteLoan(data?.id);
   };
 
   const handleUpdateLoan = () => {
-    delete data.valor;
+    delete data?.valor;
 
     updateLoan({
       ...data,
@@ -45,10 +45,10 @@ export const EmprestimoForm = ({ data }: { data: any }) => {
             Valor a pagar: <b>R$ {updatedLoan.valor - updatedLoan.valorPago}</b>
           </p>
           <p className={styles.original_legenda}>
-            Valor original: <b>R$ {data.valor}</b>
+            Valor original: <b>R$ {data?.valor}</b>
           </p>
           <p className={styles.original_legenda}>
-            Total já pago: <b>R$ {data.valorPago}</b>
+            Total já pago: <b>R$ {data?.valorPago}</b>
           </p>
         </div>
         <div className={styles.row}>
@@ -62,7 +62,7 @@ export const EmprestimoForm = ({ data }: { data: any }) => {
               type="number"
             />
             <p className={styles.original_legenda}>
-              Valor original: R$ {data.valor}
+              Valor original: R$ {data?.valor}
             </p>
           </div>
           <div>
@@ -75,7 +75,7 @@ export const EmprestimoForm = ({ data }: { data: any }) => {
               type="number"
             />
             <p className={styles.original_legenda}>
-              Valor original: R$ {data.valorPago}
+              Valor original: R$ {data?.valorPago}
             </p>
           </div>
         </div>

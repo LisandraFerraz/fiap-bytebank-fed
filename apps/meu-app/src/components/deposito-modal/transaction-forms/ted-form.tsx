@@ -12,12 +12,12 @@ export const TedForm = ({ data }: { data: any }) => {
 
   const [updatedTed, setUpdatedTed] = useState<any>({
     ...data,
-    valor: data.valor,
-    cpfDestinatario: formatCpf(data.cpfDestinatario),
-    numConta: data.numConta,
-    agencia: data.agencia,
-    digito: data.digito,
-    descricao: data.descricao,
+    valor: data?.valor,
+    cpfDestinatario: formatCpf(data?.cpfDestinatario),
+    numConta: data?.numConta,
+    agencia: data?.agencia,
+    digito: data?.digito,
+    descricao: data?.descricao,
   });
 
   const handleChangeValues = (key: keyof ITed, value: string | number) => {
@@ -28,7 +28,7 @@ export const TedForm = ({ data }: { data: any }) => {
   };
 
   const handleDeleteTed = () => {
-    deleteTed(data.id);
+    deleteTed(data?.id);
   };
 
   const handleUpdateTed = () => {
@@ -52,7 +52,7 @@ export const TedForm = ({ data }: { data: any }) => {
       <div className={styles.transaction_form}>
         <div className={styles.payment_info}>
           <p className={styles.pending_payment}>
-            Valor original: <b>R$ {data.valor}</b>
+            Valor original: <b>R$ {data?.valor}</b>
           </p>
         </div>
         <div className={styles.row}>

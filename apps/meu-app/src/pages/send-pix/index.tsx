@@ -45,7 +45,7 @@ export default function SendPix({ data }: IAccountProps) {
   return (
     <div className={styles.transaction_layout}>
       <h2>Registrar PIX</h2>
-      <h5>Saldo disponível: R$ {data.saldo}</h5>
+      <h5>Saldo disponível: R$ {data?.saldo}</h5>
 
       <div className={styles.transaction_form}>
         <div className={styles.row}>
@@ -108,7 +108,7 @@ export const getStaticProps: GetServerSideProps<IAccountProps> = async () => {
 
     return {
       props: {
-        data: data.accDetails,
+        data: data?.accDetails,
       },
     };
   } catch (error) {

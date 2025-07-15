@@ -11,22 +11,24 @@ interface IStatement {
 
 export const StatementLayout = ({ data }: IStatement) => {
   return (
-    <div className={styles.statLayout}>
-      <Balance amount={data.saldo} />
-      <div className={styles.actions}>
-        <span className={styles.btn_transaction}>
-          <CustomLink className={styles.link} href="/add-money">
-            <Icon iconKey="addMoney" />
-            <span>Adicionar dinheiro</span>
-          </CustomLink>
-        </span>
-        <span className={styles.btn_transaction}>
-          <CustomLink className={styles.link} href="/new-transaction">
-            <Icon iconKey="transaction" />
-            <span>Registrar Transação</span>
-          </CustomLink>
-        </span>
+    <>
+      <div className={styles.statLayout}>
+        <Balance amount={data?.saldo} />
+        <div className={styles.actions}>
+          <span className={styles.btn_transaction}>
+            <CustomLink className={styles.link} href="/add-money">
+              <Icon iconKey="addMoney" />
+              <span>Adicionar dinheiro</span>
+            </CustomLink>
+          </span>
+          <span className={styles.btn_transaction}>
+            <CustomLink className={styles.link} href="/new-transaction">
+              <Icon iconKey="transaction" />
+              <span>Registrar Transação</span>
+            </CustomLink>
+          </span>
+        </div>
       </div>
-    </div>
+    </>
   );
 };

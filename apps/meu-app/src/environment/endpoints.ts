@@ -1,3 +1,4 @@
+// ENDPOINTS DO BFF
 export const endpoints = {
   listaUser: "/api/user",
   listaAccount: "/api/account",

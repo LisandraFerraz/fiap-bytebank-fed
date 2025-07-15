@@ -11,64 +11,30 @@ export default async function sendPixHandle(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method === "POST") {
+  if (req.method === "PUT") {
     const body: IPix = req.body;
-    const { usuarioCpf } = req.query;
+    const { accountId } = req.query;
 
-    if (usuarioCpf && !hasEmptyValues(body)) {
-      // Recupera dados do usuário logado e verifica se o PIX é o mesmo do destino.
-      const users = await getFetch<IUsuario[]>(
-        `${env.localApi}/usuarios?cpf=${usuarioCpf}`
-      );
-      const user = users[0];
-
-      if (user?.dadosBancarios.chavePix === String(body.chavePix)) {
-        return res.status(405).json({
-          errorMsg: `Você não pode registrar um PIX para a própria conta.`,
-        });
-      }
-
-      const contas = await getFetch<IConta[]>(
-        `${env.localApi}/contas?usuarioCpf=${usuarioCpf}`
-      );
-      const conta = contas[0];
-
-      if (!conta) {
-        return res.status(405).json({
-          errorMsg: `Não foi possível recuperar os dados da sua conta.`,
-        });
-      }
-
-      // Verifica se o saldo é suficiente para enviar o PIX
-      if (conta.saldo >= body.valor) {
-        try {
-          await fetch(`${env.localApi}/contas/${String(conta.id)}`, {
-            method: "PATCH",
-            body: JSON.stringify({
-              ...conta,
-              saldo: conta.saldo - body.valor,
-              transferencias: [...(conta["transferencias"] || []), body],
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-
-          return res.status(200).json({
-            successMessage: `PIX registrado com sucesso no valor de R$ ${body.valor} para ${body?.destinatario}`,
-          });
-        } catch (error) {
-          return res.status(500).json({
-            errorMessage: "Não foi possível registrar o PIX.",
-          });
-        }
-      } else {
-        return res.status(405).json({
-          errorMessage:
-            "Seu saldo não é suficiente para registrar o valor indicado no PIX.",
-        });
-      }
+    if (!accountId || hasEmptyValues(body)) {
+      return res.status(500).json({
+        errorMsg: `Os campos são obrigatórios e é necessário fornecer o ID da conta.`,
+      });
     }
+
+    const response = await fetch(
+      `${env.NEST_API}/account/${accountId}/transaction/new`,
+      {
+        method: "PUT",
+        body: JSON.stringify(body),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const resFormatted = await response.json();
+
+    return res.status(response.status).json(resFormatted);
   } else if (req.method === "DELETE") {
     const { id } = req.query;
     const { usuarioCpf } = req.query;

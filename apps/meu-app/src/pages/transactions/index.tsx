@@ -14,9 +14,9 @@ interface IHomeProps {
 export default function TransactionsLayout({ data }: IHomeProps) {
   return (
     <div className={styles.content}>
-      <StatementLayout data={data.accDetails} />
+      <StatementLayout data={data?.accDetails} />
       <Shortcuts />
-      <TransactionList data={data.transactions} />
+      <TransactionList data={data?.transactions} />
     </div>
   );
 }
@@ -31,7 +31,7 @@ export const getStaticProps: GetStaticProps<IHomeProps> = async () => {
 
     return {
       props: {
-        data: data.data,
+        data: data?.data ?? null,
       },
       revalidate: 5,
     };

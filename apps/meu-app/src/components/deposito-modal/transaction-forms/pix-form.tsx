@@ -10,11 +10,11 @@ export const PixForm = ({ data }: { data: any }) => {
 
   const [updatedPix, setUpdatedPix] = useState<any>({
     ...data,
-    descricao: data.descricao,
-    chavePix: data.chavePix,
-    destinatario: data.destinatario,
-    valor: data.valor,
-    id: data.id,
+    descricao: data?.descricao,
+    chavePix: data?.chavePix,
+    destinatario: data?.destinatario,
+    valor: data?.valor,
+    id: data?.id,
   });
 
   const handleChangeValues = (key: keyof IPix, value: string | number) => {
@@ -24,7 +24,7 @@ export const PixForm = ({ data }: { data: any }) => {
     });
   };
   const handleDeleteTed = () => {
-    deletePix(data.id);
+    deletePix(data?.id);
   };
 
   const handleUpdateTed = () => {
@@ -36,7 +36,7 @@ export const PixForm = ({ data }: { data: any }) => {
       <div className={styles.transaction_form}>
         <div className={styles.payment_info}>
           <p className={styles.pending_payment}>
-            Valor original: <b>R$ {data.valor}</b>
+            Valor original: <b>R$ {data?.valor}</b>
           </p>
         </div>
         <div className={styles.row}>
@@ -52,7 +52,7 @@ export const PixForm = ({ data }: { data: any }) => {
               type="number"
             />
             <p className={styles.original_legenda}>
-              Valor original: R$ {data.valor}
+              Valor original: R$ {data?.valor}
             </p>
           </div>
         </div>
