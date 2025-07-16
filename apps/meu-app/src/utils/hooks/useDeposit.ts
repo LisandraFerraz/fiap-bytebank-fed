@@ -1,14 +1,15 @@
 import { useUserContext } from "../../context/user-context";
 import { endpoints } from "../../environment/endpoints";
+import { env } from "../../pages/api/_environment/environment";
 import { IDeposito } from "../interfaces/transaction";
 
 export const UseDeposit = () => {
-  const { user } = useUserContext();
+  const { account } = useUserContext();
 
   // Adiciona dinheiro na propria conta
   const createDeposit = async (body: IDeposito) => {
-    return fetch(`${endpoints.deposit}?usuarioCpf=${user?.cpf}`, {
-      method: "POST",
+    return fetch(`${env.NEST_API}/account/${account?._id}/deposit/new`, {
+      method: "PUT",
       body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
@@ -17,7 +18,7 @@ export const UseDeposit = () => {
   };
 
   const updateDeposit = async (body: IDeposito) => {
-    return await fetch(`${endpoints.deposit}?usuarioCpf=${user?.cpf}`, {
+    return fetch(`${env.NEST_API}/account/${account?._id}/deposit`, {
       method: "PATCH",
       body: JSON.stringify(body),
       headers: {
@@ -27,10 +28,10 @@ export const UseDeposit = () => {
   };
 
   const deleteDeposit = async (id: string) => {
-    return await fetch(
-      `${endpoints.deposit}?id=${id}&usuarioCpf=${user?.cpf}`,
+    return fetch(
+      `${env.NEST_API}/account/${account?._id}/deposit/delete?depositId=${id}`,
       {
-        method: "DELETE",
+        method: "PATCH",
       }
     );
   };

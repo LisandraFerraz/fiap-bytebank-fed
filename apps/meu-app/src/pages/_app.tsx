@@ -20,6 +20,7 @@ export default function App({
   const router = useRouter();
 
   const [userData, setUserData] = useState(null);
+  const [accountData, setAccountData] = useState(null);
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -35,34 +36,38 @@ export default function App({
       email: "anaclara@email.com",
       password: "anaclara123",
     };
-    const data = await getUserInfo(userLogin);
-    const parsedData = await data.json();
 
-    setUserData(parsedData.data);
+    const data = await getUserInfo(userLogin);
+    const parsed = await data.json();
+
+    setAccountData(parsed.account);
+    setUserData(parsed.user);
   }
 
   return (
-    <UserContext.Provider value={{ user: userData }}>
-      {router.route !== "/home" ? (
-        <>
-          <div className={styles.custom_body}>
-            <div className={`${!isVisible ? styles.hidden : ""}`}>
-              <Sidenav />
+    <>
+      <UserContext.Provider value={{ user: userData, account: accountData }}>
+        {router.route !== "/home" ? (
+          <>
+            <div className={styles.custom_body}>
+              <div className={`${!isVisible ? styles.hidden : ""}`}>
+                <Sidenav />
+              </div>
+              <button
+                className={styles.toggle_sidenav}
+                onClick={() => setIsVisible(!isVisible)}
+              >
+                <Icon iconKey="menu" />
+              </button>
+              <div className={styles.content}>
+                <Component {...pageProps} />
+              </div>
             </div>
-            <button
-              className={styles.toggle_sidenav}
-              onClick={() => setIsVisible(!isVisible)}
-            >
-              <Icon iconKey="menu" />
-            </button>
-            <div className={styles.content}>
-              <Component {...pageProps} />
-            </div>
-          </div>
-        </>
-      ) : (
-        <Home />
-      )}
-    </UserContext.Provider>
+          </>
+        ) : (
+          <Home />
+        )}
+      </UserContext.Provider>
+    </>
   );
 }

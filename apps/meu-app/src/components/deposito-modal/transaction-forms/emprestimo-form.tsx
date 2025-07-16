@@ -27,14 +27,16 @@ export const EmprestimoForm = ({ data }: { data: any }) => {
     deleteLoan(data?.id);
   };
 
-  const handleUpdateLoan = () => {
-    delete data?.valor;
+  const handlepayLoan = () => {
+    delete data.valorDevido;
+    delete data.aberto;
 
-    updateLoan({
+    let body = {
       ...data,
       ...updatedLoan,
-      valorDevido: updatedLoan.valor - updatedLoan.valorPago,
-    });
+    };
+
+    const response = updateLoan(body);
   };
 
   return (
@@ -88,7 +90,7 @@ export const EmprestimoForm = ({ data }: { data: any }) => {
           <Button
             btnClass={BtnClasses.CONFIRM}
             text="Salvar Alterações"
-            click={handleUpdateLoan}
+            click={handlepayLoan}
           />
         </div>
       </div>

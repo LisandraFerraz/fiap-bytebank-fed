@@ -3,21 +3,31 @@ import styles from "./transaction-list.module.scss";
 
 import { Title } from "@components/title-text/title-text";
 import { Transaction } from "@components/transaction/transaction";
+import { useEffect, useState } from "react";
 
-interface ITransactions {
-  data: any;
-}
+//  TO-DO CRIAR INTERFACE TRANSHISTORY
+export const TransactionList = ({ data }: { data: any }) => {
+  const [transactions, setTransactions] = useState<any>();
 
-export const TransactionList = ({ data }: ITransactions) => {
+  useEffect(() => {
+    setTransactions([data]);
+  }, [data]);
+
   return (
     <div className={styles.transacions_list}>
-      {data?.length ? (
+      {transactions?.length ? (
         <>
           <Title text="Extrato" />
-          {data?.map((item: any, index: any) => (
+          {transactions?.map((item: any, index: any) => (
             <div key={index} className={styles.list_items}>
               {item.mes}
               {item.transferencias.map((t: any, idx: any) => (
+                <Transaction dataT={t} key={idx} />
+              ))}
+              {item.depositos.map((t: any, idx: any) => (
+                <Transaction dataT={t} key={idx} />
+              ))}
+              {item.historicoEmprestimos.map((t: any, idx: any) => (
                 <Transaction dataT={t} key={idx} />
               ))}
             </div>

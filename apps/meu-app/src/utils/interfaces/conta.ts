@@ -7,7 +7,7 @@ import {
 } from "./transaction";
 
 export interface IConta {
-  id?: number;
+  _id?: number;
   numeroConta: string;
   digito: number;
   usuarioCpf: string;

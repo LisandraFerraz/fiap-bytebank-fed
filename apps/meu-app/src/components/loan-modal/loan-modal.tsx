@@ -40,8 +40,6 @@ export const LoanModal = ({
         <p className={styles.loan_amount}>
           Valor do empréstimo: R$ {data?.valorDevido}
         </p>
-        {/* Resgatar do local storage */}
-        {/* <p>Saldo disponível: R$ {data?.valor}</p> */}
         <div className={styles.form_layout}>
           <div className={styles.row}>
             <InputText

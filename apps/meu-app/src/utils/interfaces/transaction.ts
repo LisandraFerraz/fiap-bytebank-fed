@@ -17,7 +17,6 @@ export interface ITed {
   tipo: TransacationTypes.TED;
 }
 export interface IPix {
-  id?: string;
   data?: string;
   valor: number;
   descricao: string;

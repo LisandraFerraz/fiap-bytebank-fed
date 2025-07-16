@@ -97,25 +97,25 @@ export default function SendPix({ data }: IAccountProps) {
   );
 }
 
-export const getStaticProps: GetServerSideProps<IAccountProps> = async () => {
-  try {
-    const response = await fetch(
-      `${env.bffUrl}${endpoints.listaAccount}?cpf=${"12345678901"}`,
-      { method: "GET" }
-    );
-    const dataRes = await response.json();
-    const data = dataRes.data;
+// export const getStaticProps: GetServerSideProps<IAccountProps> = async () => {
+//   try {
+//     const response = await fetch(
+//       `${env.bffUrl}${endpoints.listaAccount}?cpf=${"12345678901"}`,
+//       { method: "GET" }
+//     );
+//     const dataRes = await response.json();
+//     const data = dataRes.data;
 
-    return {
-      props: {
-        data: data?.accDetails,
-      },
-    };
-  } catch (error) {
-    return {
-      props: {
-        data: {},
-      },
-    };
-  }
-};
+//     return {
+//       props: {
+//         data: data?.accDetails,
+//       },
+//     };
+//   } catch (error) {
+//     return {
+//       props: {
+//         data: {},
+//       },
+//     };
+//   }
+// };

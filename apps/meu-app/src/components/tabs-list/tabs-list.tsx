@@ -15,7 +15,6 @@ export const TabsList = ({ data }: { data: ITabs[] }) => {
   }, []);
 
   return (
-    // <div className={styles.tabs_container}>
     <>
       <div className={styles.tab}>
         {data?.map((item: any, index: any) => (
@@ -30,12 +29,14 @@ export const TabsList = ({ data }: { data: ITabs[] }) => {
       </div>
       <div className={styles.tab_content}>
         {data?.map((item: any, index: any) => (
-          <div className={`${selectedTab === index ? "" : styles.hidden}`}>
+          <div
+            key={index}
+            className={`${selectedTab === index ? "" : styles.hidden}`}
+          >
             {item.component}
           </div>
         ))}
       </div>
     </>
-    // </div>
   );
 };

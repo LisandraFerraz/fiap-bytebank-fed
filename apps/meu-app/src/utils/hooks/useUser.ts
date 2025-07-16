@@ -5,7 +5,7 @@ export const UseUser = () => {
     email: string;
     password: string;
   }) => {
-    return await fetch(`${endpoints.listaUser}`, {
+    return await fetch(`${endpoints.login}`, {
       method: "POST",
       body: JSON.stringify(loginBody),
       headers: {

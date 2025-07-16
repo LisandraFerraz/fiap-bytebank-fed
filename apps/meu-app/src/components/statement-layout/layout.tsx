@@ -1,15 +1,12 @@
 "use client";
 import { Balance } from "@components/balance/balance";
 import styles from "./statement.module.scss";
-import { IConta } from "../../utils/interfaces/conta";
 import { CustomLink } from "@components/custom-link/custom-link";
 import { Icon } from "@components/icon/icon";
+import { useEffect } from "react";
 
-interface IStatement {
-  data: IConta;
-}
-
-export const StatementLayout = ({ data }: IStatement) => {
+//  TO-DO CRIAR INTERFACE ACCOUNTDETAILS
+export const StatementLayout = ({ data }: { data: any }) => {
   return (
     <>
       <div className={styles.statLayout}>

@@ -1,5 +1,5 @@
 "use client";
-import { v4 as generateUUID } from "uuid";
+import { v4 as generateUUID, v7 } from "uuid";
 
 import { LoanList } from "@components/loan-list/loan-list";
 import form_styles from "./../../styles/page-form.module.scss";
@@ -8,24 +8,38 @@ import {
   TransacationTypes,
 } from "../../utils/interfaces/transaction";
 import { endpoints } from "../../environment/endpoints";
-import { GetStaticProps } from "next";
-import { useState } from "react";
-import { env } from "../api/_environment/environment";
+import { GetServerSideProps } from "next";
+import { useEffect, useState } from "react";
 import { InputText } from "@components/input-text/input-text";
 import { BtnClasses, Button } from "@components/button/button";
 import { FormatDate } from "../../utils/functions/format-date";
 import { UseLoans } from "../../utils/hooks/useLoans";
 import { TabsList } from "@components/tabs-list/tabs-list";
+import { useUserContext } from "../../context/user-context";
 
-interface IPendingLoan {
-  paidLoan: IEmprestimo[];
-  loanPending: IEmprestimo[];
-}
+export default function Loan() {
+  const { user } = useUserContext();
 
-export default function Loan({ paidLoan, loanPending }: IPendingLoan) {
-  const { requestLoan } = UseLoans();
+  const { requestLoan, orderLoan } = UseLoans();
 
   const [valor, setValor] = useState<number>(0);
+  const [loanPending, setLoanPending] = useState<IEmprestimo[]>([]);
+  const [paidLoan, setPaidLoan] = useState<IEmprestimo[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (user?.cpf) {
+      orderLoan(user?.cpf).then((res) => {
+        const { loanPending, paidLoan } = res;
+
+        setLoanPending(loanPending);
+        setPaidLoan(paidLoan);
+
+        setIsLoading(false);
+      });
+    }
+  }, [user?.cpf]);
+
   const tabsContent = [
     {
       title: "A pagar",
@@ -56,67 +70,31 @@ export default function Loan({ paidLoan, loanPending }: IPendingLoan) {
 
   return (
     <>
-      <div className={form_styles.transaction_form}>
-        <h2>Empréstimos</h2>
-        <div className={form_styles.row}>
-          <InputText
-            value={valor}
-            id="valor"
-            onChange={(e) => setValor(e.target.value)}
-            label="valor"
-            placeHolder="Valor"
-            type="number"
-          />
-        </div>
-        <div className={form_styles.end_row}>
-          <Button
-            click={handleRequestLoan}
-            btnClass={BtnClasses.CONFIRM}
-            text="Confirmar"
-          />
-        </div>
-      </div>
-      <TabsList data={tabsContent} />
+      {!isLoading && (
+        <>
+          <div className={form_styles.transaction_form}>
+            <h2>Empréstimos</h2>
+            <div className={form_styles.row}>
+              <InputText
+                value={valor}
+                id="valor"
+                onChange={(e) => setValor(e.target.value)}
+                label="valor"
+                placeHolder="Valor"
+                type="number"
+              />
+            </div>
+            <div className={form_styles.end_row}>
+              <Button
+                click={handleRequestLoan}
+                btnClass={BtnClasses.CONFIRM}
+                text="Confirmar"
+              />
+            </div>
+          </div>
+          <TabsList data={tabsContent} />
+        </>
+      )}
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps<IPendingLoan> = async () => {
-  try {
-    const { historyRes, loanRes } = {
-      historyRes: await fetch(
-        `${env.bffUrl}${endpoints.loan}?cpf=${"12345678901"}`,
-        {
-          method: "GET",
-        }
-      ),
-      loanRes: await fetch(
-        `${env.bffUrl}${endpoints.loan}?cpf=${"12345678901"}&aberto=${true}`,
-        {
-          method: "GET",
-        }
-      ),
-    };
-
-    const { paidLoan, openLoan } = {
-      paidLoan: await historyRes.json(),
-      openLoan: await loanRes.json(),
-    };
-
-    return {
-      props: {
-        paidLoan: paidLoan.paidLoan,
-        loanPending: openLoan.pendingLoan,
-      },
-    };
-  } catch (error) {
-    console.error(error);
-
-    return {
-      props: {
-        paidLoan: [],
-        loanPending: [],
-      },
-    };
-  }
-};
