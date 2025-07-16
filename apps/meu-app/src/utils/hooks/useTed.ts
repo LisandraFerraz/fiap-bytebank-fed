@@ -1,34 +1,51 @@
 import { useUserContext } from "../../context/user-context";
-import { endpoints } from "../../environment/endpoints";
+import { env } from "../../pages/api/_environment/environment";
 import { ITed } from "../interfaces/transaction";
 
 export const useTed = () => {
-  const { user } = useUserContext();
+  const { account } = useUserContext();
 
   const sendTed = async (body: ITed) => {
-    return await fetch(`${endpoints.ted}?usuarioCpf=${user?.cpf}`, {
-      method: "POST",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `${env.NEST_API}/account/${account?._id}/transaction/new`,
+      {
+        method: "PUT",
+        body: JSON.stringify(body),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const resFormatted = await response.json();
+    return resFormatted;
   };
 
   const deleteTed = async (id: string) => {
-    return await fetch(`${endpoints.ted}?usuarioCpf=${user?.cpf}&id=${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `${env.NEST_API}/account/${account?._id}/transaction/delete?transId=${id}`,
+      {
+        method: "PATCH",
+      }
+    );
+    const resFormatted = await response.json();
+    return resFormatted;
   };
 
   const updateTed = async (body: ITed) => {
-    return await fetch(`${endpoints.ted}?usuarioCpf=${user?.cpf}`, {
-      method: "PATCH",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `${env.NEST_API}/account/${account?._id}/transaction`,
+      {
+        method: "PATCH",
+        body: JSON.stringify(body),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const resFormatted = await response.json();
+    return resFormatted;
   };
 
   return { sendTed, deleteTed, updateTed };
