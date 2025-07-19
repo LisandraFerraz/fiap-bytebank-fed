@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/login",
+        source: "/auth/login",
         destination: `${AUTH_MFE_URL}/auth/login`,
       },
     ];
