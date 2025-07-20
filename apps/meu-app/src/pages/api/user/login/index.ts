@@ -31,15 +31,6 @@ export default async function getUserHandle(
 
   const { access_token } = await loginResponse.json();
 
-  const cookie = serialize("access_token", access_token, {
-    httpOnly: true,
-    sameSite: "lax",
-    // secure: process.env.NODE_ENV === "production",
-    path: "/",
-  });
-
-  res.setHeader("Set-Cookie", cookie);
-
   const userData = await fetch(`${env.NEST_API}/user/one`, {
     method: "GET",
     headers: {

@@ -7,7 +7,7 @@ import { BtnClasses, Button } from "@components/button/button";
 import { UsePix } from "../../utils/hooks/usePix";
 import { FormatDate } from "../../utils/functions/format-date";
 import { GetServerSideProps } from "next";
-import { endpoints } from "../../environment/endpoints";
+import { endpoints } from "../../core/environment/endpoints";
 import { env } from "../api/_environment/environment";
 import { IResumoConta } from "../../utils/interfaces/user";
 

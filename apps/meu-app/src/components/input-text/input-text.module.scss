@@ -20,8 +20,9 @@
     border: 1px solid v.$sogrey_faded;
 
     box-shadow: 0 0 4px #00000015;
-    background-color: rgb(v.$sogrey_faded, 40%);
+    background-color: rgb(v.$sogrey_faded, 10%);
     transition: ease-in 0.1s;
+    font-size: v.$text-base;
 
     &::placeholder {
       color: rgb(v.$grey_font, 80%);

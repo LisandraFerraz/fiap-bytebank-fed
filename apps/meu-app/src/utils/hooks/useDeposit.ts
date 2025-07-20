@@ -1,5 +1,5 @@
 import { useUserContext } from "../../context/user-context";
-import { endpoints } from "../../environment/endpoints";
+import { endpoints } from "../../core/environment/endpoints";
 import { env } from "../../pages/api/_environment/environment";
 import { IDeposito } from "../interfaces/transaction";
 

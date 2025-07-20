@@ -1,5 +1,9 @@
 import { IConta } from "./conta";
 
+export class LoginBody {
+  email: string = "";
+  password: string = "";
+}
 export interface IUsuario {
   _id: number;
   nome: string;

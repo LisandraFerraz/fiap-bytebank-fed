@@ -14,10 +14,12 @@ export const Button = ({
   text,
   iconKey,
   click,
+  type,
 }: {
   text: string;
   btnClass: BtnClasses;
   iconKey?: icons;
+  type?: "button" | "submit" | "reset" | undefined;
   click?: () => void;
 }) => {
   function handleClick() {
@@ -39,6 +41,7 @@ export const Button = ({
 
   return (
     <button
+      type={type}
       onClick={handleClick}
       className={`${getBtnClass(btnClass)} ${styles.btn}`}
     >

@@ -1,3 +1,4 @@
+// import "../core/lib/axiosInstance";
 import "./../styles/global.scss";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Sidenav } from "@components/sidenav/sidenav";
@@ -8,6 +9,7 @@ import { UserContext } from "../context/user-context";
 import { useRouter } from "next/router";
 import { Icon } from "@components/icon/icon";
 import Home from "./home";
+import Login from "./auth/login";
 
 export default function App({
   Component,
@@ -38,13 +40,12 @@ export default function App({
       password: "anaclara123",
     };
 
-    const data = await getUserInfo(userLogin);
-    console.log("Resultado login: ", data);
-    const parsed = await data.json();
+    // const data = await getUserInfo(userLogin);
+    // const parsed = await data.json();
 
-    setAccountData(parsed.account);
-    setUserData(parsed.user);
-    setToken(parsed.access_token);
+    // setAccountData(parsed.account);
+    // setUserData(parsed.user);
+    // setToken(parsed.access_token);
   }
 
   return (
@@ -52,7 +53,7 @@ export default function App({
       <UserContext.Provider
         value={{ user: userData, account: accountData, access_token: token }}
       >
-        {router.route !== "/home" ? (
+        {token ? (
           <>
             <div className={styles.custom_body}>
               <div className={`${!isVisible ? styles.hidden : ""}`}>
@@ -70,7 +71,7 @@ export default function App({
             </div>
           </>
         ) : (
-          <Home />
+          <Login />
         )}
       </UserContext.Provider>
     </>
