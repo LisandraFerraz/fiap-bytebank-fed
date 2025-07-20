@@ -12,8 +12,8 @@ export const HomeHeader = () => {
 
       <div>
         <Button
-          click={() => router.push("/transactions")}
-          text="Acessar Mock"
+          click={() => router.push("/auth/login")}
+          text="Acessar conta"
           btnClass={BtnClasses.HIGHLIGHT}
         />
       </div>

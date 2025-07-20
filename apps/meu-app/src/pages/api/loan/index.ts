@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { env } from "../_environment/environment";
 import { IConta } from "../../../utils/interfaces/conta";
 import { IEmprestimo } from "../../../utils/interfaces/transaction";
+import axios from "axios";
 
 export default async function handleOrderedLoan(
   req: NextApiRequest,
@@ -11,18 +12,11 @@ export default async function handleOrderedLoan(
   const access_token = req.headers.authorization;
   // Lista e organiza os empréstimos por pagos e não pagos
   if (req.method === "GET") {
-    const conta = await fetch(
-      `${env.NEST_API}/account?usuarioCpf=${usuarioCpf}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${access_token}`,
-        },
-      }
+    const conta: IConta = await axios.get(
+      `${env.NEST_API}/account?usuarioCpf=${usuarioCpf}`
     );
 
-    const dataParsed: IConta = await conta.json();
+    const dataParsed: IConta = conta;
 
     const emprestimos = dataParsed.historicoEmprestimos;
 

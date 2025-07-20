@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getFetch } from "../lib/functions/fetch";
 import { env } from "../_environment/environment";
 import { IConta } from "../../../utils/interfaces/conta";
 import { getMonthName } from "../../../utils/functions/format-month-names";
+import axios from "axios";
 
 export default async function getAccountHandle(
   req: NextApiRequest,
@@ -16,7 +16,7 @@ export default async function getAccountHandle(
 
   const { cpf } = req.query;
 
-  const contasRes = await getFetch<IConta[]>(
+  const contasRes: IConta[] = await axios.get(
     `${env.localApi}/contas?usuarioCpf=${cpf}`
   );
 

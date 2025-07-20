@@ -14,8 +14,8 @@ export const UseUser = () => {
     });
 
     const { access_token } = await response.json();
-    localStorage.setItem("access_token", access_token);
 
+    // localStorage.setItem("access_token", access_token);
     return response;
   };
 

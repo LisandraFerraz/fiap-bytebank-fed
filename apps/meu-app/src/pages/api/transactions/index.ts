@@ -1,5 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { env } from "../_environment/environment";
+import axios from "axios";
+import { IConta } from "../../../utils/interfaces/conta";
 
 export default async function handleListTrans(
   req: NextApiRequest,
@@ -9,28 +11,18 @@ export default async function handleListTrans(
     const { usuarioCpf } = req.query;
     const access_token = req.headers.authorization;
 
-    const conta = await fetch(
-      `${env.NEST_API}/account?usuarioCpf=${usuarioCpf}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${access_token}`,
-        },
-      }
+    const conta: IConta = await axios.get(
+      `${env.NEST_API}/account?usuarioCpf=${usuarioCpf}`
     );
 
-    const parsedConta = await conta.json();
-
     const transHistory = {
-      depositos: parsedConta.depositos,
-      transferencias: parsedConta.transferencias,
-      historicoEmprestimos: parsedConta.historicoEmprestimos,
+      depositos: conta.depositos,
+      transferencias: conta.transferencias,
+      historicoEmprestimos: conta.historicoEmprestimos,
     };
 
-    delete parsedConta.depositos;
-    delete parsedConta.transferencias;
-    delete parsedConta.historicoEmprestimos;
+    const { depositos, transferencias, historicoEmprestimos, ...parsedConta } =
+      conta;
 
     const accountDetails = {
       ...parsedConta,

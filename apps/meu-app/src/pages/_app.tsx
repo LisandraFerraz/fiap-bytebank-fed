@@ -1,4 +1,4 @@
-// import "../core/lib/axiosInstance";
+import "../core/lib/axiosInstance";
 import "./../styles/global.scss";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Sidenav } from "@components/sidenav/sidenav";
@@ -8,8 +8,7 @@ import { useEffect, useState } from "react";
 import { UserContext } from "../context/user-context";
 import { useRouter } from "next/router";
 import { Icon } from "@components/icon/icon";
-import Home from "./home";
-import Login from "./auth/login";
+import { GetServerSidePropsContext } from "next";
 
 export default function App({
   Component,
@@ -48,30 +47,34 @@ export default function App({
     // setToken(parsed.access_token);
   }
 
+  const routesWOSidebar = ["/auth", "/home"];
+
   return (
     <>
       <UserContext.Provider
         value={{ user: userData, account: accountData, access_token: token }}
       >
-        {token ? (
+        {!routesWOSidebar.some((route) => router.route.startsWith(route)) ? (
           <>
             <div className={styles.custom_body}>
-              <div className={`${!isVisible ? styles.hidden : ""}`}>
-                <Sidenav />
-              </div>
-              <button
-                className={styles.toggle_sidenav}
-                onClick={() => setIsVisible(!isVisible)}
-              >
-                <Icon iconKey="menu" />
-              </button>
+              <>
+                <div className={`${!isVisible ? styles.hidden : ""}`}>
+                  <Sidenav />
+                </div>
+                <button
+                  className={styles.toggle_sidenav}
+                  onClick={() => setIsVisible(!isVisible)}
+                >
+                  <Icon iconKey="menu" />
+                </button>
+              </>
               <div className={styles.content}>
                 <Component {...pageProps} />
               </div>
             </div>
           </>
         ) : (
-          <Login />
+          <Component {...pageProps} />
         )}
       </UserContext.Provider>
     </>
