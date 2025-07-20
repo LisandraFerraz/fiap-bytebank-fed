@@ -1,10 +1,9 @@
 import { useUserContext } from "../../context/user-context";
-import { endpoints } from "../../environment/endpoints";
 import { env } from "../../pages/api/_environment/environment";
 import { IPix } from "../interfaces/transaction";
 
 export const UsePix = () => {
-  const { account } = useUserContext();
+  const { account, access_token } = useUserContext();
 
   const sendPix = async (body: IPix) => {
     const response = await fetch(
@@ -14,6 +13,7 @@ export const UsePix = () => {
         body: JSON.stringify(body),
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${access_token}`,
         },
       }
     );
@@ -27,6 +27,10 @@ export const UsePix = () => {
       `${env.NEST_API}/account/${account?._id}/transaction/delete?transId=${id}`,
       {
         method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${access_token}`,
+        },
       }
     );
   };
@@ -37,6 +41,7 @@ export const UsePix = () => {
       body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${access_token}`,
       },
     });
   };

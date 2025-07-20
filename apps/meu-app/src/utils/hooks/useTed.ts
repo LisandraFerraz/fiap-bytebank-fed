@@ -3,7 +3,7 @@ import { env } from "../../pages/api/_environment/environment";
 import { ITed } from "../interfaces/transaction";
 
 export const useTed = () => {
-  const { account } = useUserContext();
+  const { account, access_token } = useUserContext();
 
   const sendTed = async (body: ITed) => {
     const response = await fetch(
@@ -13,6 +13,7 @@ export const useTed = () => {
         body: JSON.stringify(body),
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${access_token}`,
         },
       }
     );
@@ -26,6 +27,10 @@ export const useTed = () => {
       `${env.NEST_API}/account/${account?._id}/transaction/delete?transId=${id}`,
       {
         method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${access_token}`,
+        },
       }
     );
     const resFormatted = await response.json();
@@ -40,6 +45,7 @@ export const useTed = () => {
         body: JSON.stringify(body),
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${access_token}`,
         },
       }
     );

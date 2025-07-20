@@ -4,7 +4,7 @@ import { env } from "../../pages/api/_environment/environment";
 import { IDeposito } from "../interfaces/transaction";
 
 export const UseDeposit = () => {
-  const { account } = useUserContext();
+  const { account, access_token } = useUserContext();
 
   // Adiciona dinheiro na propria conta
   const createDeposit = async (body: IDeposito) => {
@@ -13,6 +13,7 @@ export const UseDeposit = () => {
       body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${access_token}`,
       },
     });
   };
@@ -23,6 +24,7 @@ export const UseDeposit = () => {
       body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${access_token}`,
       },
     });
   };
@@ -32,6 +34,10 @@ export const UseDeposit = () => {
       `${env.NEST_API}/account/${account?._id}/deposit/delete?depositId=${id}`,
       {
         method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${access_token}`,
+        },
       }
     );
   };

@@ -1,5 +1,5 @@
 "use client";
-import { v4 as generateUUID, v7 } from "uuid";
+import { v4 as generateUUID } from "uuid";
 
 import { LoanList } from "@components/loan-list/loan-list";
 import form_styles from "./../../styles/page-form.module.scss";
@@ -7,8 +7,6 @@ import {
   IEmprestimo,
   TransacationTypes,
 } from "../../utils/interfaces/transaction";
-import { endpoints } from "../../environment/endpoints";
-import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import { InputText } from "@components/input-text/input-text";
 import { BtnClasses, Button } from "@components/button/button";
@@ -20,7 +18,7 @@ import { useUserContext } from "../../context/user-context";
 export default function Loan() {
   const { user } = useUserContext();
 
-  const { requestLoan, orderLoan } = UseLoans();
+  const { requestLoan, getOrderedLoan } = UseLoans();
 
   const [valor, setValor] = useState<number>(0);
   const [loanPending, setLoanPending] = useState<IEmprestimo[]>([]);
@@ -29,7 +27,7 @@ export default function Loan() {
 
   useEffect(() => {
     if (user?.cpf) {
-      orderLoan(user?.cpf).then((res) => {
+      getOrderedLoan(user?.cpf).then((res) => {
         const { loanPending, paidLoan } = res;
 
         setLoanPending(loanPending);

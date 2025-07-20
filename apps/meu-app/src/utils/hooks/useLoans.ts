@@ -4,7 +4,7 @@ import { env } from "../../pages/api/_environment/environment";
 import { IEmprestimo } from "../interfaces/transaction";
 
 export function UseLoans() {
-  const { account } = useUserContext();
+  const { account, access_token } = useUserContext();
 
   const requestLoan = async (body: IEmprestimo) => {
     return await fetch(`${env.NEST_API}/account/${account?._id}/loan/new`, {
@@ -12,6 +12,7 @@ export function UseLoans() {
       body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${access_token}`,
       },
     });
   };
@@ -22,6 +23,7 @@ export function UseLoans() {
       body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${access_token}`,
       },
     });
   };
@@ -31,6 +33,10 @@ export function UseLoans() {
       `${env.NEST_API}/account/${account?._id}/loan/delete?loanId=${id}`,
       {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${access_token}`,
+        },
       }
     );
   };
@@ -43,6 +49,7 @@ export function UseLoans() {
         body: JSON.stringify(body),
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${access_token}`,
         },
       }
     );
@@ -51,11 +58,12 @@ export function UseLoans() {
     return data;
   };
 
-  const orderLoan = async (usuarioCpf: string) => {
+  const getOrderedLoan = async (usuarioCpf: string) => {
     const response = await fetch(`${endpoints.loan}?usuarioCpf=${usuarioCpf}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${access_token}`,
       },
     });
 
@@ -73,6 +81,6 @@ export function UseLoans() {
     deleteLoan,
     updateLoan,
     requestLoan,
-    orderLoan,
+    getOrderedLoan,
   };
 }
