@@ -1,7 +1,6 @@
-import { IUsuario } from "../../../../utils/interfaces/user";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getFetch } from "../../lib/functions/fetch";
 import { env } from "../../_environment/environment";
+import { serialize } from "cookie";
 
 // LOGIN
 export default async function getUserHandle(
@@ -16,7 +15,7 @@ export default async function getUserHandle(
 
   const reqBody: { email: string; password: string } = req.body;
 
-  const userData = await fetch(`${env.NEST_API}/user/login`, {
+  const loginResponse = await fetch(`${env.NEST_API}/auth/login`, {
     method: "POST",
     body: JSON.stringify(reqBody),
     headers: {
@@ -24,31 +23,52 @@ export default async function getUserHandle(
     },
   });
 
-  if (!userData) {
+  if (!loginResponse) {
     return res
       .status(500)
       .json({ errorMessage: "Não foi possível listar os dados do usuário." });
   }
 
-  const userFormat = await userData.json();
+  const { access_token } = await loginResponse.json();
 
-  const accountData = await fetch(
-    `${env.NEST_API}/account/one?usuarioCpf=${userFormat.cpf}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const cookie = serialize("access_token", access_token, {
+    httpOnly: true,
+    sameSite: "lax",
+    // secure: process.env.NODE_ENV === "production",
+    path: "/",
+  });
 
-  if (!accountData) {
+  res.setHeader("Set-Cookie", cookie);
+
+  const userData = await fetch(`${env.NEST_API}/user/one`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
+
+  if (!userData) {
     return res
       .status(500)
       .json({ errorMessage: "Não foi possível listar os dados do conta." });
   }
 
+  const userFormat = await userData.json();
+
+  const accountData = await fetch(
+    `${env.NEST_API}/account?usuarioCpf=${userFormat.cpf}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${access_token}`,
+      },
+    }
+  );
+
   const accountFormat = await accountData.json();
+  // const accountFormat = await accountData.json();
 
   delete accountFormat.depositos;
   delete accountFormat.transferencias;
@@ -57,6 +77,7 @@ export default async function getUserHandle(
   return res.status(200).json({
     user: userFormat,
     account: accountFormat,
+    access_token: access_token,
     successMessage: "Dados listados com sucesso",
   });
 }

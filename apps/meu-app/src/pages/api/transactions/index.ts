@@ -7,13 +7,15 @@ export default async function handleListTrans(
 ) {
   if (req.method === "GET") {
     const { usuarioCpf } = req.query;
+    const access_token = req.headers.authorization;
 
     const conta = await fetch(
-      `${env.NEST_API}/account/one?usuarioCpf=${usuarioCpf}`,
+      `${env.NEST_API}/account?usuarioCpf=${usuarioCpf}`,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `${access_token}`,
         },
       }
     );

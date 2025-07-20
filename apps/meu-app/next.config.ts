@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-const { AUTH_MFE_URL } = process.env;
 
 const nextConfig: NextConfig = {
   experimental: {
@@ -11,15 +10,6 @@ const nextConfig: NextConfig = {
         source: "/",
         destination: "/home",
         permanent: true,
-      },
-    ];
-  },
-
-  async rewrites() {
-    return [
-      {
-        source: "/auth/login",
-        destination: `${AUTH_MFE_URL}/auth/login`,
       },
     ];
   },

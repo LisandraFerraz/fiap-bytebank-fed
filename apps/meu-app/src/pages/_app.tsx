@@ -20,6 +20,7 @@ export default function App({
   const router = useRouter();
 
   const [userData, setUserData] = useState(null);
+  const [token, setToken] = useState(null);
   const [accountData, setAccountData] = useState(null);
   const [isVisible, setIsVisible] = useState(true);
 
@@ -38,15 +39,19 @@ export default function App({
     };
 
     const data = await getUserInfo(userLogin);
+    console.log("Resultado login: ", data);
     const parsed = await data.json();
 
     setAccountData(parsed.account);
     setUserData(parsed.user);
+    setToken(parsed.access_token);
   }
 
   return (
     <>
-      <UserContext.Provider value={{ user: userData, account: accountData }}>
+      <UserContext.Provider
+        value={{ user: userData, account: accountData, access_token: token }}
+      >
         {router.route !== "/home" ? (
           <>
             <div className={styles.custom_body}>
