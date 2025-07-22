@@ -1,27 +1,14 @@
 import { endpoints } from "../../core/environment/endpoints";
+import { apiFetch } from "../../core/core-api";
 
 export const UseUser = () => {
-  const getUserInfo = async (loginBody: {
-    email: string;
-    password: string;
-  }) => {
-    const response = await fetch(`${endpoints.login}`, {
+  const loginUser = async (loginBody: { email: string; password: string }) => {
+    return await apiFetch({
+      url: `${endpoints.login}`,
       method: "POST",
-      body: JSON.stringify(loginBody),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      body: loginBody,
     });
-
-    const { access_token } = await response.json();
-
-    // localStorage.setItem("access_token", access_token);
-    return response;
   };
 
-  const getAccountInfo = async (cpf: string) => {
-    return await fetch(`${endpoints.listaAccount}?cpf=${cpf}`);
-  };
-
-  return { getUserInfo, getAccountInfo };
+  return { loginUser };
 };

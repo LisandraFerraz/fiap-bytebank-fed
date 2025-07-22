@@ -8,7 +8,7 @@ import { UsePix } from "../../utils/hooks/usePix";
 import { FormatDate } from "../../utils/functions/format-date";
 import { GetServerSideProps } from "next";
 import { endpoints } from "../../core/environment/endpoints";
-import { env } from "../api/_environment/environment";
+import { env } from "../../core/environment/api-urls";
 import { IResumoConta } from "../../utils/interfaces/user";
 
 interface IAccountProps {

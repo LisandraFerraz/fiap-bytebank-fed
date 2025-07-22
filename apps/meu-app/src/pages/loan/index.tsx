@@ -14,9 +14,11 @@ import { FormatDate } from "../../utils/functions/format-date";
 import { UseLoans } from "../../utils/hooks/useLoans";
 import { TabsList } from "@components/tabs-list/tabs-list";
 import { useUserContext } from "../../context/user-context";
+import { UserDataStore } from "../../stores/user-data-store";
 
 export default function Loan() {
-  const { user } = useUserContext();
+  // const { user } = useUserContext();
+  const { user } = UserDataStore((state) => state.data);
 
   const { requestLoan, getOrderedLoan } = UseLoans();
 

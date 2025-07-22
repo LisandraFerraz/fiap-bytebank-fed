@@ -7,24 +7,23 @@ import { LoginBody } from "../../../utils/interfaces/user";
 import { InputText } from "@components/input-text/input-text";
 import { BtnClasses, Button } from "@components/button/button";
 import { useRouter } from "next/router";
+import { UserDataStore } from "../../../stores/user-data-store";
 
 export default function Login() {
   const router = useRouter();
-  const { getUserInfo } = UseUser();
+  const { loginUser } = UseUser();
 
   const [userBody, setUserBody] = useState<LoginBody>(new LoginBody());
 
-  useEffect(() => {
-    let c = document.cookie;
-
-    console.log(c);
-  });
+  const setUserData = UserDataStore((state) => state.setUserData);
 
   const handleLogin = async () => {
-    const { status } = await getUserInfo(userBody);
-    if (status === 200) {
-      router.push("/transactions");
-    }
+    const data = await loginUser(userBody);
+    const { access_token, account, user } = data;
+
+    setUserData({ access_token, account, user });
+
+    router.push("/transactions");
   };
 
   const updateBody = (key: string, value: string) => {

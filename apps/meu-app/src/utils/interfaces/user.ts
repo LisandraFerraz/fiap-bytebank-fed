@@ -1,4 +1,4 @@
-import { IConta } from "./conta";
+import { IConta, IUserConta } from "./conta";
 
 export class LoginBody {
   email: string = "";
@@ -24,6 +24,13 @@ export interface IUsuario {
 export interface IUsuarioConta {
   usuario: IUsuario;
   contaBancaria: IConta;
+}
+
+// response do login bff
+export interface UserData {
+  access_token: string;
+  user: IUsuario | null;
+  account: IUserConta | null;
 }
 
 export interface IResumoConta {

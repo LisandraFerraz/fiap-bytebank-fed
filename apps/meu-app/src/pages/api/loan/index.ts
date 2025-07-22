@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { env } from "../_environment/environment";
+import { env } from "../../../core/environment/api-urls";
 import { IConta } from "../../../utils/interfaces/conta";
 import { IEmprestimo } from "../../../utils/interfaces/transaction";
-import axios from "axios";
+import { apiFetch } from "../../../core/core-api";
 
 export default async function handleOrderedLoan(
   req: NextApiRequest,
@@ -12,22 +12,26 @@ export default async function handleOrderedLoan(
   const access_token = req.headers.authorization;
   // Lista e organiza os empréstimos por pagos e não pagos
   if (req.method === "GET") {
-    const conta: IConta = await axios.get(
-      `${env.NEST_API}/account?usuarioCpf=${usuarioCpf}`
-    );
+    if (access_token && usuarioCpf) {
+      const conta = await apiFetch<IConta>({
+        url: `${env.NEST_API}/account?usuarioCpf=${usuarioCpf}`,
+        method: "GET",
+        access_token: `${access_token}`,
+      });
 
-    const dataParsed: IConta = conta;
+      const emprestimos = conta.historicoEmprestimos;
 
-    const emprestimos = dataParsed.historicoEmprestimos;
+      const pending = emprestimos.filter(
+        (em: IEmprestimo) => em.aberto === true
+      );
+      const paid = emprestimos.filter((em: IEmprestimo) => em.aberto === false);
 
-    const pending = emprestimos.filter((em: IEmprestimo) => em.aberto === true);
-    const paid = emprestimos.filter((em: IEmprestimo) => em.aberto === false);
-
-    return res.status(200).json({
-      loanPending: pending,
-      paidLoan: paid,
-      successMsg: "Empréstimos mapeados com sucesso.",
-    });
+      return res.status(200).json({
+        loanPending: pending,
+        paidLoan: paid,
+        successMsg: "Empréstimos mapeados com sucesso.",
+      });
+    }
   } else {
     return res
       .status(500)

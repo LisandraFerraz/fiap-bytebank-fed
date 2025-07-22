@@ -1,57 +1,35 @@
 import { useUserContext } from "../../context/user-context";
-import { env } from "../../pages/api/_environment/environment";
+import { env } from "../../core/environment/api-urls";
+import { apiFetch } from "../../core/core-api";
 import { ITed } from "../interfaces/transaction";
 
 export const useTed = () => {
   const { account, access_token } = useUserContext();
 
   const sendTed = async (body: ITed) => {
-    const response = await fetch(
-      `${env.NEST_API}/account/${account?._id}/transaction/new`,
-      {
-        method: "PUT",
-        body: JSON.stringify(body),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${access_token}`,
-        },
-      }
-    );
-
-    const resFormatted = await response.json();
-    return resFormatted;
+    return await apiFetch({
+      method: "PUT",
+      url: `${env.NEST_API}/account/${account?._id}/transaction/new`,
+      body: body,
+      access_token: `${access_token}`,
+    });
   };
 
   const deleteTed = async (id: string) => {
-    const response = await fetch(
-      `${env.NEST_API}/account/${account?._id}/transaction/delete?transId=${id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${access_token}`,
-        },
-      }
-    );
-    const resFormatted = await response.json();
-    return resFormatted;
+    return await apiFetch({
+      url: `${env.NEST_API}/account/${account?._id}/transaction/delete?transId=${id}`,
+      method: "PATCH",
+      access_token: `${access_token}`,
+    });
   };
 
   const updateTed = async (body: ITed) => {
-    const response = await fetch(
-      `${env.NEST_API}/account/${account?._id}/transaction`,
-      {
-        method: "PATCH",
-        body: JSON.stringify(body),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${access_token}`,
-        },
-      }
-    );
-
-    const resFormatted = await response.json();
-    return resFormatted;
+    return await apiFetch({
+      url: `${env.NEST_API}/account/${account?._id}/transaction`,
+      method: "PATCH",
+      body: body,
+      access_token: `${access_token}`,
+    });
   };
 
   return { sendTed, deleteTed, updateTed };

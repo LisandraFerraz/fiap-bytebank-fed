@@ -1,6 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { env } from "../../_environment/environment";
+import { env } from "../../../../core/environment/api-urls";
+import { IConta } from "../../../../utils/interfaces/conta";
+import { IUsuario } from "../../../../utils/interfaces/user";
 import { serialize } from "cookie";
+import { apiFetch } from "../../../../core/core-api";
 
 // LOGIN
 export default async function getUserHandle(
@@ -15,12 +18,12 @@ export default async function getUserHandle(
 
   const reqBody: { email: string; password: string } = req.body;
 
-  const loginResponse = await fetch(`${env.NEST_API}/auth/login`, {
+  const loginResponse = await apiFetch<{
+    access_token: { access_token: string };
+  }>({
+    url: `${env.NEST_API}/auth/login`,
     method: "POST",
-    body: JSON.stringify(reqBody),
-    headers: {
-      "Content-Type": "application/json",
-    },
+    body: reqBody,
   });
 
   if (!loginResponse) {
@@ -29,54 +32,39 @@ export default async function getUserHandle(
       .json({ errorMessage: "Não foi possível listar os dados do usuário." });
   }
 
-  const { access_token } = await loginResponse.json();
+  const { access_token } = loginResponse;
 
-  const cookie = serialize("access_token", access_token, {
+  const cookie = serialize("access_token", `${access_token}`, {
     httpOnly: true,
     sameSite: "lax",
-    // secure: process.env.NODE_ENV === "production",
     path: "/",
   });
-
   res.setHeader("Set-Cookie", cookie);
 
-  const userData = await fetch(`${env.NEST_API}/user/one`, {
+  const userData = await apiFetch<IUsuario>({
+    url: `${env.NEST_API}/user/one`,
     method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${access_token}`,
-    },
+    access_token: `${access_token}`,
   });
 
-  if (!userData) {
+  if (!userData.cpf) {
     return res
       .status(500)
       .json({ errorMessage: "Não foi possível listar os dados do conta." });
   }
 
-  const userFormat = await userData.json();
+  const accountData = await apiFetch<IConta>({
+    url: `${env.NEST_API}/account?usuarioCpf=${userData.cpf}`,
+    method: "GET",
+    access_token: `${access_token}`,
+  });
 
-  const accountData = await fetch(
-    `${env.NEST_API}/account?usuarioCpf=${userFormat.cpf}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
-      },
-    }
-  );
-
-  const accountFormat = await accountData.json();
-  // const accountFormat = await accountData.json();
-
-  delete accountFormat.depositos;
-  delete accountFormat.transferencias;
-  delete accountFormat.historicoEmprestimos;
+  const { depositos, transferencias, historicoEmprestimos, ...parsedConta } =
+    accountData;
 
   return res.status(200).json({
-    user: userFormat,
-    account: accountFormat,
+    user: userData,
+    account: parsedConta,
     access_token: access_token,
     successMessage: "Dados listados com sucesso",
   });

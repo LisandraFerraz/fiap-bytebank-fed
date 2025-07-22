@@ -1,48 +1,34 @@
 import { useUserContext } from "../../context/user-context";
-import { env } from "../../pages/api/_environment/environment";
+import { env } from "../../core/environment/api-urls";
+import { apiFetch } from "../../core/core-api";
 import { IPix } from "../interfaces/transaction";
 
 export const UsePix = () => {
   const { account, access_token } = useUserContext();
 
   const sendPix = async (body: IPix) => {
-    const response = await fetch(
-      `${env.NEST_API}/account/${account?._id}/transaction/new`,
-      {
-        method: "PUT",
-        body: JSON.stringify(body),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${access_token}`,
-        },
-      }
-    );
-    const resFormatted = await response.json();
-
-    return resFormatted;
+    return await apiFetch({
+      method: "PUT",
+      url: `${env.NEST_API}/account/${account?._id}/transaction/new`,
+      body: body,
+      access_token: `${access_token}`,
+    });
   };
 
   const deletePix = async (id: string) => {
-    return await fetch(
-      `${env.NEST_API}/account/${account?._id}/transaction/delete?transId=${id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${access_token}`,
-        },
-      }
-    );
+    return await apiFetch({
+      url: `${env.NEST_API}/account/${account?._id}/transaction/delete?transId=${id}`,
+      method: "PATCH",
+      access_token: `${access_token}`,
+    });
   };
 
   const updatePix = async (body: IPix) => {
-    return await fetch(`${env.NEST_API}/account/${account?._id}/transaction`, {
+    return await apiFetch({
+      url: `${env.NEST_API}/account/${account?._id}/transaction`,
       method: "PATCH",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
-      },
+      body: body,
+      access_token: `${access_token}`,
     });
   };
 

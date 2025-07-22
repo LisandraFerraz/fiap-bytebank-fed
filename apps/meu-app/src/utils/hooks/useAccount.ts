@@ -1,34 +1,24 @@
-import { useUserContext } from "../../context/user-context";
-import { env } from "../../pages/api/_environment/environment";
-import cookie from "cookie";
+import { env } from "../../core/environment/api-urls";
+import { apiFetch } from "../../core/core-api";
+import { UserDataStore } from "../../stores/user-data-store";
 
 export const UseAccount = () => {
-  const { user, access_token } = useUserContext();
+  const { user, access_token } = UserDataStore((state) => state.data);
 
   const getAccountByCpf = async () => {
-    const response = await fetch(`${env.NEST_API}/account/one/${user?.cpf}`, {
+    return await apiFetch({
+      url: `${env.NEST_API}/account/one/${user?.cpf}`,
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
-      },
+      access_token: `${access_token}`,
     });
-    const res = await response.json();
-    return res;
   };
 
   const getAccountDetails = async () => {
-    const response = await fetch(`/api/transactions?usuarioCpf=${user?.cpf}`, {
+    return await apiFetch({
+      url: `/api/transactions?usuarioCpf=${user?.cpf}`,
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
-      },
+      access_token: `${access_token}`,
     });
-
-    const parsedAccount = await response.json();
-
-    return parsedAccount;
   };
 
   return {

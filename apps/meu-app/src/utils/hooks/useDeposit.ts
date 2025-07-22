@@ -1,6 +1,7 @@
 import { useUserContext } from "../../context/user-context";
 import { endpoints } from "../../core/environment/endpoints";
-import { env } from "../../pages/api/_environment/environment";
+import { env } from "../../core/environment/api-urls";
+import { apiFetch } from "../../core/core-api";
 import { IDeposito } from "../interfaces/transaction";
 
 export const UseDeposit = () => {
@@ -8,38 +9,29 @@ export const UseDeposit = () => {
 
   // Adiciona dinheiro na propria conta
   const createDeposit = async (body: IDeposito) => {
-    return fetch(`${env.NEST_API}/account/${account?._id}/deposit/new`, {
+    return apiFetch({
+      url: `${env.NEST_API}/account/${account?._id}/deposit/new`,
+      access_token: `${access_token}`,
       method: "PUT",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
-      },
+      body: body,
     });
   };
 
   const updateDeposit = async (body: IDeposito) => {
-    return fetch(`${env.NEST_API}/account/${account?._id}/deposit`, {
+    return apiFetch({
+      url: `${env.NEST_API}/account/${account?._id}/deposit`,
       method: "PATCH",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
-      },
+      access_token: `${access_token}`,
+      body: body,
     });
   };
 
   const deleteDeposit = async (id: string) => {
-    return fetch(
-      `${env.NEST_API}/account/${account?._id}/deposit/delete?depositId=${id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${access_token}`,
-        },
-      }
-    );
+    return apiFetch({
+      url: `${env.NEST_API}/account/${account?._id}/deposit/delete?depositId=${id}`,
+      method: "PATCH",
+      access_token: `${access_token}`,
+    });
   };
 
   return {
