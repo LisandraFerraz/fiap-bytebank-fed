@@ -1,13 +1,6 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { IUsuario } from "../utils/interfaces/user";
-import { IUserConta } from "../utils/interfaces/conta";
-
-interface UserData {
-  access_token: string;
-  user: IUsuario | null;
-  account: IUserConta | null;
-}
+import { UserData } from "../utils/interfaces/user";
 
 type UserDataStore = {
   data: UserData;

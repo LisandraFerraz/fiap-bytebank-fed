@@ -3,7 +3,7 @@ import { AuthTemplate } from "../_template";
 import Image from "next/image";
 import { UseUser } from "../../../utils/hooks/useUser";
 import { useEffect, useState } from "react";
-import { LoginBody } from "../../../utils/interfaces/user";
+import { LoginBody, UserData } from "../../../utils/interfaces/user";
 import { InputText } from "@components/input-text/input-text";
 import { BtnClasses, Button } from "@components/button/button";
 import { useRouter } from "next/router";

@@ -1,4 +1,3 @@
-import { useUserContext } from "../../context/user-context";
 import { endpoints } from "../../core/environment/endpoints";
 import { env } from "../../core/environment/api-urls";
 import { apiFetch } from "../../core/core-api";
@@ -44,7 +43,7 @@ export function UseLoans() {
   };
 
   const getOrderedLoan = async (usuarioCpf: string) => {
-    const data: { loanPending: {}; paidLoan: {} } = await apiFetch({
+    const data: { loanPending: []; paidLoan: [] } = await apiFetch({
       url: `${endpoints.loan}?usuarioCpf=${usuarioCpf}`,
       method: "GET",
       access_token: `${access_token}`,

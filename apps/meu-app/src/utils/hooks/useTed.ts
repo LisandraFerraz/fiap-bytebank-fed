@@ -1,10 +1,10 @@
-import { useUserContext } from "../../context/user-context";
 import { env } from "../../core/environment/api-urls";
 import { apiFetch } from "../../core/core-api";
 import { ITed } from "../interfaces/transaction";
+import { UserDataStore } from "../../stores/user-data-store";
 
 export const useTed = () => {
-  const { account, access_token } = useUserContext();
+  const { account, access_token } = UserDataStore((state) => state.data);
 
   const sendTed = async (body: ITed) => {
     return await apiFetch({

@@ -1,11 +1,10 @@
-import { useUserContext } from "../../context/user-context";
-import { endpoints } from "../../core/environment/endpoints";
 import { env } from "../../core/environment/api-urls";
 import { apiFetch } from "../../core/core-api";
 import { IDeposito } from "../interfaces/transaction";
+import { UserDataStore } from "../../stores/user-data-store";
 
 export const UseDeposit = () => {
-  const { account, access_token } = useUserContext();
+  const { account, access_token } = UserDataStore((state) => state.data);
 
   // Adiciona dinheiro na propria conta
   const createDeposit = async (body: IDeposito) => {

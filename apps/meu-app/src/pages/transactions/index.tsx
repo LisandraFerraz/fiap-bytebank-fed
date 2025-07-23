@@ -6,21 +6,21 @@ import { Shortcuts } from "@components/shortcuts/shortcuts";
 import { useEffect, useState } from "react";
 import { UseAccount } from "../../utils/hooks/useAccount";
 import { UserDataStore } from "../../stores/user-data-store";
+import { IUsuario } from "../../utils/interfaces/user";
+import { IConta } from "../../utils/interfaces/conta";
 
 export default function TransactionsLayout() {
   const { getAccountDetails } = UseAccount();
-  // const { user } = useUserContext();
 
   const { user } = UserDataStore((state) => state.data);
 
-  const [accountDetails, setAccountDetails] = useState<any>();
-  const [trasnDetails, setTransDetails] = useState<any>();
+  const [accountDetails, setAccountDetails] = useState<IUsuario>();
+  const [trasnDetails, setTransDetails] = useState<Partial<IConta>>();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log("aqui ", user);
     if (user?.cpf) {
-      getAccountDetails().then((data) => {
+      getAccountDetails().then((data: any) => {
         setAccountDetails(data.accountDetails);
         setTransDetails(data.transHistory);
 

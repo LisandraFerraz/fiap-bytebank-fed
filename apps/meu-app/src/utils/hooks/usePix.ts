@@ -1,10 +1,10 @@
-import { useUserContext } from "../../context/user-context";
 import { env } from "../../core/environment/api-urls";
 import { apiFetch } from "../../core/core-api";
 import { IPix } from "../interfaces/transaction";
+import { UserDataStore } from "../../stores/user-data-store";
 
 export const UsePix = () => {
-  const { account, access_token } = useUserContext();
+  const { account, access_token } = UserDataStore((state) => state.data);
 
   const sendPix = async (body: IPix) => {
     return await apiFetch({
