@@ -1,0 +1,43 @@
+@use "@css-variables" as v;
+
+.upload_file_container {
+  input {
+    width: 100%;
+    overflow: hidden;
+    color: transparent;
+
+    &::file-selector-button {
+      width: 100%;
+      height: 30px;
+      border-radius: 10px;
+      border-style: dashed;
+      border-color: rgb(v.$dark_default, 20%);
+      cursor: pointer;
+      text-transform: capitalize;
+      background-color: v.$white_default;
+      transition: ease 0.2s;
+
+      &:hover {
+        background-color: rgb(v.$sogrey_highlight, 20%);
+      }
+    }
+  }
+
+  .file_actions {
+    text-align: right;
+    margin: 10px 0;
+
+    button {
+      background-color: transparent;
+      font-size: v.$text-base;
+      cursor: pointer;
+      transition: ease 0.2s;
+      color: v.$dark_green_default;
+      text-decoration: underline;
+
+      &:hover {
+        opacity: 60%;
+      }
+    }
+  }
+}

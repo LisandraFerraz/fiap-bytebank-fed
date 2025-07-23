@@ -24,8 +24,6 @@ export default function TransactionsLayout() {
         setAccountDetails(data.accountDetails);
         setTransDetails(data.transHistory);
 
-        console.log("transaction : ", data);
-
         setIsLoading(false);
       });
     }

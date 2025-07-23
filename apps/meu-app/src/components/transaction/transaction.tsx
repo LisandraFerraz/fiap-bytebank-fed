@@ -9,6 +9,7 @@ import { TransactionDetailsModal } from "@components/deposito-modal/transaction-
 import { transacao } from "../../utils/types";
 import { FormatTypeName } from "../../utils/functions/format-type-names";
 import { FormatDateSlash } from "../../utils/functions/format-date";
+import { handleDownloadFile } from "./utils/download-file";
 
 export const Transaction = ({ dataT }: { dataT: transacao }) => {
   const isExpanse = dataT?.tipo !== TransacationTypes.DEPOSITO;
@@ -47,11 +48,21 @@ export const Transaction = ({ dataT }: { dataT: transacao }) => {
             <p className={styles.transaction_value}>R$ {dataT.valor}</p>
           </div>
         </div>
-        <Button
-          click={handleOpenModal}
-          btnClass={BtnClasses.DEFAULT}
-          text="Visualizar"
-        />
+        <div className={styles.action_btns}>
+          <Button
+            click={() => handleDownloadFile(dataT)}
+            btnClass={BtnClasses.DEFAULT}
+            addClass={styles.action_btn}
+            iconKey="fileDownload"
+            disabled={dataT.file ? false : true}
+          />
+          <Button
+            click={handleOpenModal}
+            btnClass={BtnClasses.CONFIRM}
+            addClass={styles.action_btn}
+            iconKey="magnifying"
+          />
+        </div>
       </div>
       {isOpen && (
         <TransactionDetailsModal data={dataT} onClose={handleCloseModal} />

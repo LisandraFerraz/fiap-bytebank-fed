@@ -1,11 +1,9 @@
 @use "@css-variables" as v;
 
 .btn {
-  padding: 0 15px;
   border-radius: 100px;
   transition: ease-out 0.2s;
   cursor: pointer;
-  // font-size: calc(v.$text-sm + 0.25rem);
   width: 200px;
   height: 40px;
 
@@ -15,6 +13,10 @@
 
   svg {
     margin-right: 10px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 }
 

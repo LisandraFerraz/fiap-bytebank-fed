@@ -9,8 +9,10 @@ import {
   faBars,
   faDatabase,
   faDiamond,
+  faFileArrowDown,
   faFolderTree,
   faHandHoldingDollar,
+  faMagnifyingGlassPlus,
   faMoneyBills,
   faMoneyBillTransfer,
   faPlus,
@@ -49,4 +51,6 @@ export const byteIcons = {
   adjust: faWrench,
   organize: faFolderTree,
   safety: faShieldHeart,
+  magnifying: faMagnifyingGlassPlus,
+  fileDownload: faFileArrowDown,
 } as const;

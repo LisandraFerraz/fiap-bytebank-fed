@@ -13,12 +13,16 @@ export const Button = ({
   btnClass,
   text,
   iconKey,
+  addClass,
   click,
   type,
+  disabled,
 }: {
-  text: string;
+  text?: string;
   btnClass: BtnClasses;
+  addClass?: string;
   iconKey?: icons;
+  disabled?: boolean;
   type?: "button" | "submit" | "reset" | undefined;
   click?: () => void;
 }) => {
@@ -41,9 +45,10 @@ export const Button = ({
 
   return (
     <button
+      disabled={disabled}
       type={type}
       onClick={handleClick}
-      className={`${getBtnClass(btnClass)} ${styles.btn}`}
+      className={`${getBtnClass(btnClass)} ${addClass} ${styles.btn}`}
     >
       {iconKey && <Icon iconKey={iconKey} />}
       <span>{text}</span>
