@@ -1,0 +1,34 @@
+@use "@css-variables" as v;
+
+.paginator_container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+
+  button {
+    cursor: pointer;
+    height: 45px;
+    width: 45px;
+    border-radius: 15px;
+    background-color: rgb(v.$grey_faded, 10%);
+    border: 1px solid rgb(v.$soft_font, 10%);
+    box-shadow: 0 0 8px rgb(v.$soft_font, 20%);
+    font-size: v.$text-base;
+    transition: ease 0.2s;
+
+    &:hover {
+      opacity: 80%;
+    }
+  }
+
+  .active {
+    color: v.$white_default;
+    font-weight: bolder;
+    background-color: v.$dark_green_default;
+  }
+
+  .skip_btn {
+    font-size: v.$text-sm;
+  }
+}

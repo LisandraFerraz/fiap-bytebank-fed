@@ -53,18 +53,17 @@ export default async function getUserHandle(
       .json({ errorMessage: "Não foi possível listar os dados do conta." });
   }
 
-  const accountData = await apiFetch<IConta>({
+  const accountData = await apiFetch<any>({
     url: `${env.NEST_API}/account?usuarioCpf=${userData.cpf}`,
     method: "GET",
     access_token: `${access_token}`,
   });
 
-  const { depositos, transferencias, historicoEmprestimos, ...parsedConta } =
-    accountData;
+  const { account } = accountData;
 
   return res.status(200).json({
     user: userData,
-    account: parsedConta,
+    account: account,
     access_token: access_token,
     successMessage: "Dados listados com sucesso",
   });

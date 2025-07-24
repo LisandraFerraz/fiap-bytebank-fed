@@ -3,6 +3,7 @@ import { env } from "../../core/environment/api-urls";
 import { apiFetch } from "../../core/core-api";
 import { UserDataStore } from "../../stores/user-data-store";
 import { IEmprestimo } from "../interfaces/transaction";
+import { Pagination } from "../interfaces/pagination";
 
 export function UseLoans() {
   const { account, access_token } = UserDataStore((state) => state.data);

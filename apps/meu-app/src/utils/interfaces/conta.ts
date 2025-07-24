@@ -1,3 +1,4 @@
+import { Pagination } from "./pagination";
 import { IDeposito, IEmprestimo, IPix, ITed } from "./transaction";
 
 export interface IConta {
@@ -8,12 +9,9 @@ export interface IConta {
   linhaCredito: number;
   agencia: string;
   saldo: number;
-  depositos: IDeposito[];
-  transferencias: ITed[] | IPix[];
-  historicoEmprestimos: IEmprestimo[];
+  transacoesList: ITransacoes;
 }
 
-// sem arrays de transacoes
 export interface IUserConta {
   _id?: number;
   numeroConta: string;
@@ -28,4 +26,9 @@ export interface IUserTransactions {
   depositos: IDeposito[];
   transferencias: ITed[] | IPix[];
   historicoEmprestimos: IEmprestimo[];
+}
+
+export interface ITransacoes {
+  transacoes: any[];
+  paginacao: Pagination;
 }

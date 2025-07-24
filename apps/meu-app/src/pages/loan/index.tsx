@@ -90,7 +90,13 @@ export default function Loan() {
               />
             </div>
           </div>
-          <TabsList data={tabsContent} />
+          {loanPending.length || paidLoan.length ? (
+            <TabsList data={tabsContent} />
+          ) : (
+            <>
+              <h3>Sem registros.</h3>
+            </>
+          )}
         </>
       )}
     </>

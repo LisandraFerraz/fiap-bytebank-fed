@@ -7,6 +7,8 @@ import {
 import {
   faArrowRightLong,
   faBars,
+  faChevronLeft,
+  faChevronRight,
   faDatabase,
   faDiamond,
   faFileArrowDown,
@@ -53,4 +55,6 @@ export const byteIcons = {
   safety: faShieldHeart,
   magnifying: faMagnifyingGlassPlus,
   fileDownload: faFileArrowDown,
+  chevLeft: faChevronLeft,
+  chevRight: faChevronRight,
 } as const;
