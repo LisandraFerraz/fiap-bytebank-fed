@@ -1,4 +1,5 @@
 import styles from "./input-text.module.scss";
+import sharedStyles from "./../input-styles.module.scss";
 
 export const InputText = ({
   label,
@@ -19,8 +20,11 @@ export const InputText = ({
 }) => {
   return (
     <div className={styles.input_group}>
-      <label htmlFor={id}>{label}</label>
+      <label className={sharedStyles.label} htmlFor={id}>
+        {label}
+      </label>
       <input
+        className={sharedStyles.input}
         placeholder={placeHolder}
         onChange={onChange}
         type={type}

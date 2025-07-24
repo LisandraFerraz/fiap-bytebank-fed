@@ -6,30 +6,28 @@ import { Transaction } from "@components/transaction/transaction";
 import { useEffect, useState } from "react";
 
 //  TO-DO CRIAR INTERFACE TRANSHISTORY
-export const TransactionList = ({ data }: { data: any }) => {
-  const [transactions, setTransactions] = useState<any>();
+export const TransactionList = ({
+  data,
+  children,
+}: {
+  data: any;
+  children: React.ReactNode;
+}) => {
+  const [transactions, setTransactions] = useState<any>(data);
 
   useEffect(() => {
-    setTransactions([data]);
+    setTransactions(data);
   }, [data]);
 
   return (
     <div className={styles.transacions_list}>
       {transactions?.length ? (
         <>
-          <Title text="Extrato" />
+          <Title text="Movimentações bancárias" />
+          {children}
           {transactions?.map((item: any, index: any) => (
             <div key={index} className={styles.list_items}>
-              {item.mes}
-              {item.transferencias.map((t: any, idx: any) => (
-                <Transaction dataT={t} key={idx} />
-              ))}
-              {item.depositos.map((t: any, idx: any) => (
-                <Transaction dataT={t} key={idx} />
-              ))}
-              {item.historicoEmprestimos.map((t: any, idx: any) => (
-                <Transaction dataT={t} key={idx} />
-              ))}
+              <Transaction dataT={item} key={index} />
             </div>
           ))}
         </>

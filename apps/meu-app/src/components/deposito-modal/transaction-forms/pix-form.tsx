@@ -1,6 +1,6 @@
 import { BtnClasses, Button } from "@components/button/button";
 import styles from "./form.module.scss";
-import { InputText } from "@components/input-text/input-text";
+import { InputText } from "@components/inputs/input-text/input-text";
 import { useState } from "react";
 import { IPix } from "../../../utils/interfaces/transaction";
 import { UsePix } from "../../../utils/hooks/usePix";

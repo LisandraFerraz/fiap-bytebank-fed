@@ -8,6 +8,10 @@ import { UseAccount } from "../../utils/hooks/useAccount";
 import { UserDataStore } from "../../stores/user-data-store";
 import { IUsuario } from "../../utils/interfaces/user";
 import { IConta } from "../../utils/interfaces/conta";
+import { TransactionFilter } from "../../utils/interfaces/transaction";
+import { Select } from "@components/inputs/input-select/input-select";
+import { transPeriodMap, transTypesMap } from "./utils/transaction-maps";
+import { Icon } from "@components/icon/icon";
 
 export default function TransactionsLayout() {
   const { getAccountDetails } = UseAccount();
@@ -15,19 +19,31 @@ export default function TransactionsLayout() {
   const { user } = UserDataStore((state) => state.data);
 
   const [accountDetails, setAccountDetails] = useState<IUsuario>();
-  const [trasnDetails, setTransDetails] = useState<Partial<IConta>>();
+  const [trasactionList, setTransactionList] = useState<Partial<IConta>>();
   const [isLoading, setIsLoading] = useState(true);
+
+  const [filters, setFilters] = useState<TransactionFilter>(
+    new TransactionFilter()
+  );
 
   useEffect(() => {
     if (user?.cpf) {
-      getAccountDetails().then((data: any) => {
+      getAccountDetails(filters).then((data: any) => {
         setAccountDetails(data.accountDetails);
-        setTransDetails(data.transHistory);
+        setTransactionList(data.transacoes);
 
         setIsLoading(false);
       });
     }
-  }, [user?.cpf]);
+  }, [user?.cpf, filters]);
+
+  const handleUpdateFilter = (e: any, key: string) => {
+    e.preventDefault();
+    setFilters({
+      ...filters,
+      [key]: e.target.value,
+    });
+  };
 
   return (
     <>
@@ -35,7 +51,28 @@ export default function TransactionsLayout() {
         <div className={styles.content}>
           <StatementLayout data={accountDetails} />
           <Shortcuts />
-          <TransactionList data={trasnDetails} />
+          <TransactionList data={trasactionList}>
+            <div className={styles.filter_group}>
+              {(filters.transPeriod || filters.transType) && (
+                <button onClick={() => setFilters(new TransactionFilter())}>
+                  <Icon iconKey="close" />
+                </button>
+              )}
+              <Select
+                value={filters.transType}
+                data={transTypesMap}
+                defaultSelected="Tipo"
+                onChange={(e) => handleUpdateFilter(e, "transType")}
+              />
+
+              <Select
+                value={filters.transPeriod}
+                data={transPeriodMap}
+                defaultSelected="Período"
+                onChange={(e) => handleUpdateFilter(e, "transPeriod")}
+              />
+            </div>
+          </TransactionList>
         </div>
       )}
     </>

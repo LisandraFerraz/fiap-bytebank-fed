@@ -4,14 +4,13 @@ import { Icon } from "@components/icon/icon";
 
 import { BtnClasses, Button } from "@components/button/button";
 import { TransacationTypes } from "../../utils/interfaces/transaction";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TransactionDetailsModal } from "@components/deposito-modal/transaction-details-modal";
-import { transacao } from "../../utils/types";
 import { FormatTypeName } from "../../utils/functions/format-type-names";
 import { FormatDateSlash } from "../../utils/functions/format-date";
 import { handleDownloadFile } from "./utils/download-file";
 
-export const Transaction = ({ dataT }: { dataT: transacao }) => {
+export const Transaction = ({ dataT }: { dataT: any }) => {
   const isExpanse = dataT?.tipo !== TransacationTypes.DEPOSITO;
 
   const [isOpen, setIsOpen] = useState<boolean>(false);

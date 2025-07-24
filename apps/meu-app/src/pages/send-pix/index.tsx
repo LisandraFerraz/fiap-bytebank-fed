@@ -1,6 +1,6 @@
 import { v4 as generateUUID } from "uuid";
 import styles from "./../../styles/page-form.module.scss";
-import { InputText } from "@components/input-text/input-text";
+import { InputText } from "@components/inputs/input-text/input-text";
 import { useState } from "react";
 import { IPix, TransacationTypes } from "../../utils/interfaces/transaction";
 import { BtnClasses, Button } from "@components/button/button";

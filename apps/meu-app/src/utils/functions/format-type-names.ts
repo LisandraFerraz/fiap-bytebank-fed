@@ -1,6 +1,6 @@
-import { TransacationTypes } from "../interfaces/transaction";
+import { TransacationTypes, TransPeriod } from "../interfaces/transaction";
 
-export function FormatTypeName(typeN: TransacationTypes) {
+export function FormatTypeName(typeN: TransacationTypes | string) {
   const checkType: { [key: string]: string } = {
     [TransacationTypes.DEPOSITO]: "Depósito",
     [TransacationTypes.EMPRESTIMO]: "Empréstimo",
@@ -9,4 +9,13 @@ export function FormatTypeName(typeN: TransacationTypes) {
   };
 
   return checkType[typeN];
+}
+
+export function FormatPeriodFilter(period: TransPeriod | string) {
+  const checkPeriod: { [key: string]: string } = {
+    [TransPeriod.RECENT]: "Recente",
+    [TransPeriod.OLD]: "Antigo",
+  };
+
+  return checkPeriod[period];
 }

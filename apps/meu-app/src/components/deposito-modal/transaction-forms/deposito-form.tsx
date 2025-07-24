@@ -1,6 +1,6 @@
 import styles from "./form.module.scss";
 import { IDeposito } from "../../../utils/interfaces/transaction";
-import { InputText } from "@components/input-text/input-text";
+import { InputText } from "@components/inputs/input-text/input-text";
 import { BtnClasses, Button } from "@components/button/button";
 import { useState } from "react";
 import { UseDeposit } from "../../../utils/hooks/useDeposit";

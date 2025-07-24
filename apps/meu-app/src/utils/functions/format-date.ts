@@ -17,7 +17,10 @@ export function FormatDate(date: Date): string {
 }
 
 export function FormatDateSlash(date: string): string {
-  return date.replace(/-/g, "/");
+  if (date) {
+    return date.replace(/-/g, "/");
+  }
+  return "";
 }
 
 export function FormatDateName(date: Date): string {

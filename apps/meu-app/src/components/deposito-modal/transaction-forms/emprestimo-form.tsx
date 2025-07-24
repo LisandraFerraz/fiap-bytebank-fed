@@ -3,7 +3,7 @@ import { BtnClasses, Button } from "@components/button/button";
 import { UseLoans } from "../../../utils/hooks/useLoans";
 import { useState } from "react";
 import { IEmprestimo } from "../../../utils/interfaces/transaction";
-import { InputText } from "@components/input-text/input-text";
+import { InputText } from "@components/inputs/input-text/input-text";
 
 export const EmprestimoForm = ({ data }: { data: any }) => {
   const { deleteLoan, updateLoan } = UseLoans();

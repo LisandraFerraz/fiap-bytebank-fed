@@ -8,7 +8,7 @@ import {
   IDeposito,
   TransacationTypes,
 } from "../../utils/interfaces/transaction";
-import { InputText } from "@components/input-text/input-text";
+import { InputText } from "@components/inputs/input-text/input-text";
 import { BtnClasses, Button } from "@components/button/button";
 import { FormatDate } from "../../utils/functions/format-date";
 import { UseDeposit } from "../../utils/hooks/useDeposit";

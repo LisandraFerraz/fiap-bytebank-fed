@@ -5,6 +5,12 @@ export enum TransacationTypes {
   PIX = "PIX",
 }
 
+export enum TransPeriod {
+  RECENT = "RECENT",
+  OLD = "OLD",
+  NULL = "NULL",
+}
+
 export interface ITed {
   id?: string;
   data?: string;
@@ -15,7 +21,7 @@ export interface ITed {
   digito: number;
   descricao: string;
   tipo: TransacationTypes.TED;
-  file: any;
+  file?: any;
 }
 export interface IPix {
   data?: string;
@@ -24,7 +30,7 @@ export interface IPix {
   chavePix: string;
   destinatario: string; // nome
   tipo: TransacationTypes.PIX;
-  file: any;
+  file?: any;
 }
 
 export interface IEmprestimo {
@@ -35,7 +41,7 @@ export interface IEmprestimo {
   tipo: TransacationTypes;
   valorPago: number; // valor para pagar o empréstimo
   valorDevido: number | 0; // seu valor só é alterado no BFF
-  file: any;
+  file?: any;
 }
 
 export interface IDeposito {
@@ -43,5 +49,11 @@ export interface IDeposito {
   valor: number;
   data: string;
   tipo: TransacationTypes.DEPOSITO;
-  file: any;
+  file?: any;
+}
+
+// === FILTROS ===
+export class TransactionFilter {
+  transType: TransacationTypes | string = "";
+  transPeriod: TransPeriod | string = "";
 }

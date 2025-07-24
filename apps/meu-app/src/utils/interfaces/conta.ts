@@ -23,3 +23,9 @@ export interface IUserConta {
   agencia: string;
   saldo: number;
 }
+
+export interface IUserTransactions {
+  depositos: IDeposito[];
+  transferencias: ITed[] | IPix[];
+  historicoEmprestimos: IEmprestimo[];
+}
