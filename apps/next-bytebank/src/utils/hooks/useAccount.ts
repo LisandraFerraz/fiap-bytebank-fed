@@ -16,7 +16,6 @@ export const UseAccount = () => {
     transacoes: any;
     successMsg: string;
   }> => {
-    console.log(pagination);
     return await apiFetch({
       url: `${endpoints.transacoes}?usuarioCpf=${user?.cpf}&transType=${filters.transType}&transPeriod=${filters.transPeriod}&itemsPage=${pagination.itemsPage}&currentPage=${pagination.currentPage}`,
       method: "GET",

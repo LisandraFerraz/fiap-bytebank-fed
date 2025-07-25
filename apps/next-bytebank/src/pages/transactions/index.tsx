@@ -35,15 +35,17 @@ export default function TransactionsLayout() {
 
   const listTransactions = (page: number) => {
     if (user?.cpf) {
-      getAccountDetails(filters, pagination).then((data: any) => {
-        const { accountDetails, transacoes } = data;
+      getAccountDetails(filters, { ...pagination, currentPage: page }).then(
+        (data: any) => {
+          const { accountDetails, transacoes } = data;
 
-        setAccountDetails(accountDetails);
-        setTransactionList(transacoes.transactions);
-        setPagination({ ...pagination, currentPage: page });
+          setAccountDetails(accountDetails);
+          setTransactionList(transacoes.transactions);
+          setPagination(transacoes.paginacao);
 
-        setIsLoading(false);
-      });
+          setIsLoading(false);
+        }
+      );
     }
   };
 
