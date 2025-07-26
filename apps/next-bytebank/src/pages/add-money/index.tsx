@@ -8,7 +8,7 @@ import {
   IDeposito,
   TransacationTypes,
 } from "../../utils/interfaces/transaction";
-import { InputText } from "@components/inputs/input-text/input-text";
+import { InputText } from "@bytebank/ui";
 import { BtnClasses, Button } from "@components/button/button";
 import { FormatDate } from "../../utils/functions/format-date";
 import { UseDeposit } from "../../utils/hooks/useDeposit";
@@ -49,9 +49,9 @@ export default function AddMoney() {
   };
 
   const listDepositos = async () => {
-    const accountData = await getAccountDetails();
-    const depositList = accountData.transHistory.depositos;
-    setDepositList(depositList);
+    // const accountData = await getAccountDetails();
+    // const depositList = accountData.transHistory.depositos;
+    // setDepositList(depositList);
   };
 
   return (
@@ -78,7 +78,7 @@ export default function AddMoney() {
           />
         </div>
       </div>
-      {depositList && (
+      {/* {depositList && (
         <div className={style.transacions_list}>
           {depositList.map((dp: IDeposito, index) => (
             <div key={index} className={styles.list_items}>
@@ -86,7 +86,7 @@ export default function AddMoney() {
             </div>
           ))}
         </div>
-      )}
+      )} */}
     </>
   );
 }

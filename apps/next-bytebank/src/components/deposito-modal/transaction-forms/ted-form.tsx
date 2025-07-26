@@ -1,7 +1,7 @@
 import styles from "./form.module.scss";
 import { useTed } from "../../../utils/hooks/useTed";
 import { useState } from "react";
-import { InputText } from "@components/inputs/input-text/input-text";
+import { InputText } from "@bytebank/ui";
 import { ITed } from "../../../utils/interfaces/transaction";
 import { BtnClasses, Button } from "@components/button/button";
 import { formatCpf } from "../../../utils/functions/mask-values";

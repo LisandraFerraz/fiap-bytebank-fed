@@ -18,6 +18,9 @@
     "typescript": "5.8.3"
   },
   "dependencies": {
+    "next": "15.3.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "zustand": "^5.0.6"
   },
   "engines": {

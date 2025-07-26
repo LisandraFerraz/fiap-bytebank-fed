@@ -4,7 +4,7 @@ import Image from "next/image";
 import { UseUser } from "../../../utils/hooks/useUser";
 import { useEffect, useState } from "react";
 import { LoginBody, UserData } from "../../../utils/interfaces/user";
-import { InputText } from "@components/inputs/input-text/input-text";
+import { InputText } from "@bytebank/ui";
 import { BtnClasses, Button } from "@components/button/button";
 import { useRouter } from "next/router";
 import { UserDataStore } from "../../../stores/user-data-store";

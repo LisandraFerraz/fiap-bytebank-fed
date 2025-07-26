@@ -1,14 +1,10 @@
-import { v4 as generateUUID } from "uuid";
 import styles from "./../../styles/page-form.module.scss";
-import { InputText } from "@components/inputs/input-text/input-text";
+import { InputText } from "@bytebank/ui";
 import { useState } from "react";
 import { IPix, TransacationTypes } from "../../utils/interfaces/transaction";
 import { BtnClasses, Button } from "@components/button/button";
 import { UsePix } from "../../utils/hooks/usePix";
 import { FormatDate } from "../../utils/functions/format-date";
-import { GetServerSideProps } from "next";
-import { endpoints } from "../../core/environment/endpoints";
-import { env } from "../../core/environment/api-urls";
 import { IResumoConta } from "../../utils/interfaces/user";
 
 interface IAccountProps {
@@ -31,7 +27,6 @@ export default function SendPix({ data }: IAccountProps) {
     const dateToday = new Date();
 
     setPixBody({
-      id: generateUUID(),
       ...pixBody,
       [key]: key === "valor" ? Number(value) : value,
       data: FormatDate(dateToday),

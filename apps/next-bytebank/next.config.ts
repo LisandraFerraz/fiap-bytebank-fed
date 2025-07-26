@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   experimental: {
     viewTransition: true,
   },
-  transpilePackages: ["@bytebank/ui"],
 
   async redirects() {
     return [
@@ -20,6 +19,17 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+
+  // Multi-zones config
+  async rewrites() {
+    return [
+      {
+        source: "/dashboard/:path*",
+        destination: "http://localhost:3002/dashboard/:path*",
+      },
+    ];
+  },
+  transpilePackages: ["@bytebank/ui"],
 };
 
 export default nextConfig;
