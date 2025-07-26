@@ -9,11 +9,11 @@ import { UserDataStore } from "../../stores/user-data-store";
 import { IUsuario } from "../../utils/interfaces/user";
 import { IConta, ITransacoes } from "../../utils/interfaces/conta";
 import { TransactionFilter } from "../../utils/interfaces/transaction";
-import { Select } from "@components/inputs/input-select/input-select";
 import { transPeriodMap, transTypesMap } from "./utils/transaction-maps";
 import { Icon } from "@components/icon/icon";
 import { Paginator } from "@components/paginator/paginator";
 import { Pagination } from "../../utils/interfaces/pagination";
+import { Select } from "@bytebank/ui";
 
 export default function TransactionsLayout() {
   const { getAccountDetails } = UseAccount();

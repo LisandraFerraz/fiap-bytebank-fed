@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@bytebank/ui": ["packages/ui/src"],
+      "@bytebank/ui/*": ["packages/ui/src/*"]
+    }
+  }
+}

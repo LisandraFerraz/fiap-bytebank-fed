@@ -26,7 +26,7 @@ export default function Home() {
         />
 
         <Button
-          click={() => router.push("/transactions")}
+          click={() => router.push("/auth/login")}
           text="Acessar Mock"
           btnClass={BtnClasses.HIGHLIGHT}
         />
