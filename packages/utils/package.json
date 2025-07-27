@@ -1,0 +1,22 @@
+{
+  "name": "@bytebank/utils",
+  "main": "./dist/index.js",
+  "types": "./src/index.ts",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./dist/index.js",
+      "types": "./src/index.ts"
+    },
+    "./*": "./src/*"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "latest",
+    "eslint": "^9.31.0"
+  }
+}

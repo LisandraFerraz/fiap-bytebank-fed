@@ -13,8 +13,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/auth",
-        destination: "/auth/login",
+        source: "/auth/trasactions",
+        destination: "/trasactions",
         permanent: true,
       },
     ];
@@ -24,12 +24,12 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/dashboard/:path*",
-        destination: "http://localhost:3002/dashboard/:path*",
+        source: "/auth/:path*",
+        destination: "http://localhost:3002/auth/:path*",
       },
     ];
   },
-  transpilePackages: ["@bytebank/ui"],
+  transpilePackages: ["@bytebank/ui", "@bytebank/utils"],
 };
 
 export default nextConfig;

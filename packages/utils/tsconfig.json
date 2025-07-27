@@ -1,9 +1,10 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
+  "name": "@bytebank/utils",
+  "main": "./dist/index.js",
+  "types": "./src/index.ts",
   "compilerOptions": {
     "outDir": "dist",
-    "declaration": true,
-    "declarationMap": true
+    "rootDir": "src"
   },
   "include": [
     "src",

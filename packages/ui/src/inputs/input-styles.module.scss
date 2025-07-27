@@ -1,9 +1,9 @@
-@use "@css-variables" as v;
+// @use "@css-variables" as v;
 
 .label {
   display: block;
   text-transform: uppercase;
-  font-size: v.$text-sm;
+  // font-size: v.$text-sm;
   font-weight: bold;
   margin-bottom: 10px;
   opacity: 80%;
@@ -14,18 +14,18 @@
   height: 45px;
   padding: 0 10px;
   border-radius: 10px;
-  border: 1px solid v.$sogrey_faded;
+  // border: 1px solid v.$sogrey_faded;
 
   box-shadow: 0 0 4px #00000015;
-  background-color: rgb(v.$sogrey_faded, 10%);
+  // background-color: rgb(v.$sogrey_faded, 10%);
   transition: ease-in 0.1s;
-  font-size: v.$text-base;
+  // font-size: v.$text-base;
 
-  &::placeholder {
-    color: rgb(v.$grey_font, 80%);
-  }
+  // &::placeholder {
+  //   // color: rgb(v.$grey_font, 80%);
+  // }
 
-  &:focus {
-    background-color: rgb(v.$sogrey_faded, 20%);
-  }
+  // &:focus {
+  //   // background-color: rgb(v.$sogrey_faded, 20%);
+  // }
 }

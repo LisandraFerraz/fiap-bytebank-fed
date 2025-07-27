@@ -1,13 +1,13 @@
-@use "@css-variables" as v;
+// @use "@css-variables" as v;
 
 .input_group {
   select,
   ::picker(select) {
     appearance: base-select;
     top: calc(anchor(bottom) + 5px);
-    border: v.$sogrey_faded;
-    box-shadow: 0 0 10px v.$sogrey_faded;
-    color: v.$grey_font;
+    // border: v.$sogrey_faded;
+    // box-shadow: 0 0 10px v.$sogrey_faded;
+    // color: v.$grey_font;
   }
 
   option {
@@ -15,7 +15,7 @@
     justify-content: flex-start;
     gap: 20px;
 
-    background: v.$white_default;
+    // background: v.$white_default;
     padding: 10px;
     transition: 0.4s;
 
@@ -31,7 +31,7 @@
 
     &:hover {
       cursor: pointer;
-      background-color: rgb(v.$sogrey_faded, 40%);
+      // background-color: rgb(v.$sogrey_faded, 40%);
     }
   }
 
@@ -39,7 +39,7 @@
     padding: 10px;
     transition: ease 0.2s;
     width: 180px;
-    color: v.$grey_font;
+    // color: v.$grey_font;
 
     &:open::picker-icon {
       transform: rotate(180deg);

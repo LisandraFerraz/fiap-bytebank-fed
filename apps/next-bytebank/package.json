@@ -9,13 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.7.2",
-    "@fortawesome/free-brands-svg-icons": "^6.7.2",
-    "@fortawesome/free-solid-svg-icons": "^6.7.2",
-    "@fortawesome/react-fontawesome": "^0.2.2",
     "@react-input/mask": "^2.0.4",
     "cookie": "^1.0.2",
-    "uuid": "^11.1.0",
-    "@bytebank/ui": "workspace:*"
+    "uuid": "^11.1.0"
   }
 }

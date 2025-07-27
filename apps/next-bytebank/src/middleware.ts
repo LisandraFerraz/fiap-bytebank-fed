@@ -16,9 +16,17 @@ export function middleware(request: NextRequest) {
     const isAuthenticated = request.cookies.get("access_token")?.value;
 
     if (isAuthenticated === undefined || !isAuthenticated) {
-      return NextResponse.redirect(new URL("/auth/login", request.url));
+      return NextResponse.redirect(new URL("/auth", request.url));
+    }
+    if (pathname === "/auth/transactions") {
+      const url = request.nextUrl.clone();
+      url.pathname = "/transctions";
+      return NextResponse.redirect(url);
     }
   }
 
   return NextResponse.next();
 }
+export const config = {
+  matcher: "/auth/transactions",
+};
