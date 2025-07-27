@@ -8,7 +8,8 @@
       "require": "./dist/index.js",
       "types": "./src/index.ts"
     },
-    "./*": "./src/*"
+    "./*": "./src/*",
+    "./variables": "./src/styles/variables.scss"
   },
   "scripts": {
     "dev": "tsc --watch --preserveWatchOutput",
