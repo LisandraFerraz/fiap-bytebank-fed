@@ -1,4 +1,4 @@
-import { Icon } from "@components/icon/icon";
+import { Icon } from "@bytebank/ui";
 import styles from "./modal-layout.module.scss";
 
 export const ModalLayout = ({

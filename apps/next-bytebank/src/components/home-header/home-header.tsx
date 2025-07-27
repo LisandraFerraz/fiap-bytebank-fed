@@ -1,7 +1,8 @@
 import Image from "next/image";
 import styles from "./home-header.module.scss";
-import { BtnClasses, Button } from "@components/button/button";
 import { useRouter } from "next/router";
+import { BtnClasses } from "../../utils/types";
+import { Button } from "@bytebank/ui";
 
 export const HomeHeader = () => {
   const router = useRouter();

@@ -1,10 +1,11 @@
 import styles from "./loan-list.module.scss";
 import { useState } from "react";
 import { IEmprestimo } from "../../utils/interfaces/transaction";
-import { BtnClasses, Button } from "@components/button/button";
 import { LoanModal } from "@components/loan-modal/loan-modal";
 import { UseLoans } from "../../utils/hooks/useLoans";
 import { FormatDateSlash } from "../../utils/functions/format-date";
+import { BtnClasses } from "../../utils/types";
+import { Button } from "@bytebank/ui";
 
 interface ILoan {
   data: IEmprestimo[];

@@ -1,9 +1,9 @@
 import styles from "./form.module.scss";
-import { BtnClasses, Button } from "@components/button/button";
 import { UseLoans } from "../../../utils/hooks/useLoans";
 import { useState } from "react";
 import { IEmprestimo } from "../../../utils/interfaces/transaction";
-import { InputText } from "@bytebank/ui";
+import { Button, InputText } from "@bytebank/ui";
+import { BtnClasses } from "../../../utils/types";
 
 export const EmprestimoForm = ({ data }: { data: any }) => {
   const { deleteLoan, updateLoan } = UseLoans();

@@ -1,12 +1,19 @@
 import styles from "./login.module.scss";
 import Image from "next/image";
 import { useState } from "react";
-import { InputText } from "@bytebank/ui";
+import { Button, InputText } from "@bytebank/ui";
 import { useRouter } from "next/router";
 import { LoginBody } from "@/utils/classes/login";
 import { UserDataStore } from "@/stores/user-data-store";
 import { AuthTemplate } from "./components/auth-template/auth-template";
 import { UseUser } from "@/utils/hooks/useUser";
+
+enum BtnClasses {
+  CONFIRM = "CONFIRM",
+  DEFAULT = "DEFAULT",
+  HIGHLIGHT = "HIGHLIGHT",
+  DELETE = "",
+}
 
 export default function Login() {
   const router = useRouter();
@@ -64,12 +71,11 @@ export default function Login() {
               onChange={(e) => updateBody("password", e.target.value)}
             />
             <div className={styles.submit_btn}>
-              <button type="submit">entrar</button>
-              {/* <Button
+              <Button
                 type="submit"
                 btnClass={BtnClasses.CONFIRM}
                 text="Entrar"
-              /> */}
+              />
             </div>
           </form>
         </div>

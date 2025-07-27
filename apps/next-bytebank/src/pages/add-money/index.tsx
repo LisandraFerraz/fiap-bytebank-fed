@@ -8,12 +8,12 @@ import {
   IDeposito,
   TransacationTypes,
 } from "../../utils/interfaces/transaction";
-import { InputText } from "@bytebank/ui";
-import { BtnClasses, Button } from "@components/button/button";
+import { Button, InputText } from "@bytebank/ui";
 import { FormatDate } from "../../utils/functions/format-date";
 import { UseDeposit } from "../../utils/hooks/useDeposit";
 import { UseAccount } from "../../utils/hooks/useAccount";
 import { Transaction } from "@components/transaction/transaction";
+import { BtnClasses } from "../../utils/types";
 
 export default function AddMoney() {
   const { createDeposit } = UseDeposit();

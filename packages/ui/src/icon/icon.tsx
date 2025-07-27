@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { byteIcons } from "./icons-list";
+import { byteIcons } from "../utils/icons-list";
 
-export type icons = keyof typeof byteIcons;
+type icons = keyof typeof byteIcons;
 
 interface IconI {
   iconKey: icons;

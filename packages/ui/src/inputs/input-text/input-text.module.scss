@@ -1,5 +1,5 @@
-// @use "@css-variables" as v;
+@use "@bytebank/ui/variables" as v;
 
 .input_group {
-  color: black;
+  color: v.$grey_font;
 }

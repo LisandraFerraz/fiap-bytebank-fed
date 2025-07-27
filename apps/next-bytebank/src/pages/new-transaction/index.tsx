@@ -1,6 +1,5 @@
-import { Icon } from "@components/icon/icon";
+import { Icon } from "@bytebank/ui";
 import styles from "./styles.module.scss";
-import Link from "next/link";
 import { CustomLink } from "@components/custom-link/custom-link";
 
 export default function NewTransaction() {

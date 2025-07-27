@@ -8,12 +8,12 @@ import {
   TransacationTypes,
 } from "../../utils/interfaces/transaction";
 import { useEffect, useState } from "react";
-import { InputText } from "@bytebank/ui";
-import { BtnClasses, Button } from "@components/button/button";
+import { Button, InputText } from "@bytebank/ui";
 import { FormatDate } from "../../utils/functions/format-date";
 import { UseLoans } from "../../utils/hooks/useLoans";
 import { TabsList } from "@components/tabs-list/tabs-list";
 import { UserDataStore } from "../../stores/user-data-store";
+import { BtnClasses } from "../../utils/types";
 
 export default function Loan() {
   const { user } = UserDataStore((state) => state.data);

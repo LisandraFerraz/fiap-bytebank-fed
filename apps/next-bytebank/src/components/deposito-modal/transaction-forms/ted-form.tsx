@@ -1,11 +1,11 @@
 import styles from "./form.module.scss";
 import { useTed } from "../../../utils/hooks/useTed";
 import { useState } from "react";
-import { InputText } from "@bytebank/ui";
+import { Button, InputText } from "@bytebank/ui";
 import { ITed } from "../../../utils/interfaces/transaction";
-import { BtnClasses, Button } from "@components/button/button";
 import { formatCpf } from "../../../utils/functions/mask-values";
 import { useMask } from "@react-input/mask";
+import { BtnClasses } from "../../../utils/types";
 
 export const TedForm = ({ data }: { data: any }) => {
   const { deleteTed, updateTed } = useTed();

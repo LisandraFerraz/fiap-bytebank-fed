@@ -1,9 +1,9 @@
-import { BtnClasses, Button } from "@components/button/button";
 import styles from "./form.module.scss";
-import { InputText } from "@bytebank/ui";
+import { Button, InputText } from "@bytebank/ui";
 import { useState } from "react";
 import { IPix } from "../../../utils/interfaces/transaction";
 import { UsePix } from "../../../utils/hooks/usePix";
+import { BtnClasses } from "../../../utils/types";
 
 export const PixForm = ({ data }: { data: any }) => {
   const { deletePix, updatePix } = UsePix();

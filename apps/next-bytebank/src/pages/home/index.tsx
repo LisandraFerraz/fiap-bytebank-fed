@@ -2,9 +2,8 @@ import { HomeHeader } from "@components/home-header/home-header";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { BtnClasses, Button } from "@components/button/button";
-import { Icon } from "@components/icon/icon";
-import { byteIcons } from "@components/icon/icons-list";
+import { Button, Icon } from "@bytebank/ui";
+import { BtnClasses } from "../../utils/types";
 
 export default function Home() {
   const router = useRouter();

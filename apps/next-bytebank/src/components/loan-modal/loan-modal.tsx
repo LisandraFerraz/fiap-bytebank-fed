@@ -1,10 +1,10 @@
 import styles from "./loan-modal.module.scss";
 import { ModalLayout } from "@components/modal-layout/modal-layout";
-import { BtnClasses, Button } from "@components/button/button";
 import { IEmprestimo } from "../../utils/interfaces/transaction";
-import { InputText } from "@bytebank/ui";
+import { Button, InputText } from "@bytebank/ui";
 import { useState } from "react";
 import { UseLoans } from "../../utils/hooks/useLoans";
+import { BtnClasses } from "../../utils/types";
 
 export const LoanModal = ({
   data,

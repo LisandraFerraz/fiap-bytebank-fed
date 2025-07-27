@@ -1,4 +1,4 @@
-// @use "@css-variables" as v;
+@use "@bytebank/ui/variables" as v;
 
 .container {
   display: grid;
@@ -13,9 +13,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    // background-color: v.$dark_green_default;
+    background-color: v.$dark_green_default;
     padding: 15px 30px;
-    // color: v.$white_default;
+    color: v.$white_default;
     font-weight: 300;
 
     @media screen and (max-width: 920px) {
@@ -24,20 +24,20 @@
 
     p {
       &:nth-child(2) {
-        // font-size: calc(v.$text-lg + 1.2rem);
+        font-size: calc(v.$text-lg + 1.2rem);
         font-weight: 100;
 
         @media screen and (max-width: 1024px) {
-          //   font-size: calc(v.$text-lg + 0.8rem);
+          font-size: calc(v.$text-lg + 0.8rem);
         }
       }
       &:nth-child(3) {
         margin-top: 10px;
-        // font-size: calc(v.$text-lg * 2);
+        font-size: calc(v.$text-lg * 2);
         font-weight: 600;
 
         @media screen and (max-width: 1024px) {
-          //   font-size: calc(v.$text-lg + 0.8rem);
+          font-size: calc(v.$text-lg + 0.8rem);
         }
       }
     }
@@ -59,6 +59,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // background-color: rgb(v.$sogrey_highlight, 20%);
+    background-color: rgb(v.$sogrey_highlight, 20%);
   }
 }

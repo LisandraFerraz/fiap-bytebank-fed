@@ -1,11 +1,11 @@
 import Image from "next/image";
 import styles from "./sidenav.module.scss";
-import { Icon } from "@components/icon/icon";
 import Link from "next/link";
 import { FormatDateName } from "../../utils/functions/format-date";
 import { useRouter } from "next/router";
 import { CustomLink } from "@components/custom-link/custom-link";
 import { UserDataStore } from "../../stores/user-data-store";
+import { Icon } from "@bytebank/ui";
 
 export const Sidenav = () => {
   const router = useRouter();
@@ -32,7 +32,7 @@ export const Sidenav = () => {
         <div>
           <ul>
             <li>
-              <CustomLink href="/">
+              <CustomLink href="/transactions">
                 <Icon iconKey="transaction" />
                 Transferências
               </CustomLink>

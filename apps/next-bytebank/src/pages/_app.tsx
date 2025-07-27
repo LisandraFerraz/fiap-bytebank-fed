@@ -1,10 +1,13 @@
-import "./../styles/global.scss";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import { Sidenav } from "@components/sidenav/sidenav";
+import "@bytebank/ui/variables";
 import styles from "../styles/layout.module.scss";
+import "./../styles/global.scss";
+
+import "@fortawesome/fontawesome-svg-core/styles.css";
+
+import { Sidenav } from "@components/sidenav/sidenav";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Icon } from "@components/icon/icon";
+import { Icon } from "@bytebank/ui";
 
 export default function App({
   Component,

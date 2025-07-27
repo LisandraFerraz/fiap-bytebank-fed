@@ -1,17 +1,17 @@
 import styles from "./../../styles/page-form.module.scss";
-import { InputText } from "@bytebank/ui";
+import { Button, InputText } from "@bytebank/ui";
 import { useState } from "react";
 import { IPix, TransacationTypes } from "../../utils/interfaces/transaction";
-import { BtnClasses, Button } from "@components/button/button";
 import { UsePix } from "../../utils/hooks/usePix";
 import { FormatDate } from "../../utils/functions/format-date";
 import { IResumoConta } from "../../utils/interfaces/user";
+import { BtnClasses } from "../../utils/types";
 
 interface IAccountProps {
   data: IResumoConta;
 }
 
-export default function SendPix({ data }: IAccountProps) {
+export default function SendPix() {
   const { sendPix } = UsePix();
 
   const [pixBody, setPixBody] = useState<IPix>({
@@ -40,7 +40,7 @@ export default function SendPix({ data }: IAccountProps) {
   return (
     <div className={styles.transaction_layout}>
       <h2>Registrar PIX</h2>
-      <h5>Saldo disponível: R$ {data?.saldo}</h5>
+      {/* <h5>Saldo disponível: R$ {data?.saldo}</h5> */}
 
       <div className={styles.transaction_form}>
         <div className={styles.row}>
@@ -91,26 +91,3 @@ export default function SendPix({ data }: IAccountProps) {
     </div>
   );
 }
-
-// export const getStaticProps: GetServerSideProps<IAccountProps> = async () => {
-//   try {
-//     const response = await fetch(
-//       `${env.bffUrl}${endpoints.listaAccount}?cpf=${"12345678901"}`,
-//       { method: "GET" }
-//     );
-//     const dataRes = await response.json();
-//     const data = dataRes.data;
-
-//     return {
-//       props: {
-//         data: data?.accDetails,
-//       },
-//     };
-//   } catch (error) {
-//     return {
-//       props: {
-//         data: {},
-//       },
-//     };
-//   }
-// };

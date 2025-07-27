@@ -1,12 +1,12 @@
 "use client";
 import { v4 as generateUUID } from "uuid";
 import styles from "./../../styles/page-form.module.scss";
-import { InputText } from "@bytebank/ui";
+import { Button, InputText } from "@bytebank/ui";
 import { useState } from "react";
 import { ITed, TransacationTypes } from "../../utils/interfaces/transaction";
-import { BtnClasses, Button } from "@components/button/button";
 import { FormatDate } from "../../utils/functions/format-date";
 import { useTed } from "../../utils/hooks/useTed";
+import { BtnClasses } from "../../utils/types";
 
 export default function SendTED() {
   const { sendTed } = useTed();

@@ -7,13 +7,12 @@ import { useEffect, useState } from "react";
 import { UseAccount } from "../../utils/hooks/useAccount";
 import { UserDataStore } from "../../stores/user-data-store";
 import { IUsuario } from "../../utils/interfaces/user";
-import { IConta, ITransacoes } from "../../utils/interfaces/conta";
+import { ITransacoes } from "../../utils/interfaces/conta";
 import { TransactionFilter } from "../../utils/interfaces/transaction";
 import { transPeriodMap, transTypesMap } from "./utils/transaction-maps";
-import { Icon } from "@components/icon/icon";
 import { Paginator } from "@components/paginator/paginator";
 import { Pagination } from "../../utils/interfaces/pagination";
-import { Select } from "@bytebank/ui";
+import { Icon, Select } from "@bytebank/ui";
 
 export default function TransactionsLayout() {
   const { getAccountDetails } = UseAccount();

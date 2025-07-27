@@ -1,8 +1,10 @@
-import { icons } from "../../utils/types";
+import { byteIcons } from "../utils/icons-list";
 import styles from "./button.module.scss";
-import { Icon } from "@components/icon/icon";
+import { Icon } from "@bytebank/ui";
 
-export enum BtnClasses {
+type icons = keyof typeof byteIcons;
+
+enum BtnClasses {
   CONFIRM = "CONFIRM",
   DEFAULT = "DEFAULT",
   HIGHLIGHT = "HIGHLIGHT",
@@ -34,10 +36,10 @@ export const Button = ({
 
   const getBtnClass = (btnC: BtnClasses) => {
     const btnClassMap: { [key: string]: string } = {
-      [BtnClasses.CONFIRM]: styles.btn_confirm,
-      [BtnClasses.DEFAULT]: styles.btn_default,
-      [BtnClasses.DELETE]: styles.btn_delete,
-      [BtnClasses.HIGHLIGHT]: styles.btn_highlight,
+      [BtnClasses.CONFIRM]: styles.btn_confirm || "",
+      [BtnClasses.DEFAULT]: styles.btn_default || "",
+      [BtnClasses.HIGHLIGHT]: styles.btn_highlight || "",
+      [BtnClasses.DELETE]: styles.btn_delete || "",
     };
 
     return btnClassMap[btnC];

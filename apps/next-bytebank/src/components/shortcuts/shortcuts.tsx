@@ -1,7 +1,7 @@
 import styles from "./shortcuts.module.scss";
-import { Icon } from "@components/icon/icon";
 import { icons } from "../../utils/types";
 import { CustomLink } from "@components/custom-link/custom-link";
+import { Icon } from "@bytebank/ui";
 
 interface IShortcut {
   title: string;

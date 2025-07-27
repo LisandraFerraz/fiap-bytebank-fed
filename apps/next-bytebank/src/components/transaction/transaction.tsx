@@ -1,14 +1,13 @@
 import styles from "./transaction.module.scss";
 
-import { Icon } from "@components/icon/icon";
-
-import { BtnClasses, Button } from "@components/button/button";
 import { TransacationTypes } from "../../utils/interfaces/transaction";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TransactionDetailsModal } from "@components/deposito-modal/transaction-details-modal";
 import { FormatTypeName } from "../../utils/functions/format-type-names";
 import { FormatDateSlash } from "../../utils/functions/format-date";
 import { handleDownloadFile } from "./utils/download-file";
+import { Button, Icon } from "@bytebank/ui";
+import { BtnClasses } from "../../utils/types";
 
 export const Transaction = ({ dataT }: { dataT: any }) => {
   const isExpanse = dataT?.tipo !== TransacationTypes.DEPOSITO;

@@ -1,10 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { env } from "../../../core/environment/api-urls";
 import { IConta } from "../../../utils/interfaces/conta";
-import {
-  IEmprestimo,
-  TransacationTypes,
-} from "../../../utils/interfaces/transaction";
+import { IEmprestimo } from "../../../utils/interfaces/transaction";
 import { apiFetch } from "../../../core/core-api";
 
 export default async function handleOrderedLoan(

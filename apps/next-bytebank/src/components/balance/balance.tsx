@@ -1,4 +1,4 @@
-import { Icon } from "@components/icon/icon";
+import { Icon } from "@bytebank/ui";
 import styles from "./balance.module.scss";
 import { Title } from "@components/title-text/title-text";
 import { useState } from "react";

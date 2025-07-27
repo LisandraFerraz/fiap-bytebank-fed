@@ -1,7 +1,7 @@
 import styles from "./paginator.module.scss";
 import { useEffect, useState } from "react";
 import { Pagination } from "../../utils/interfaces/pagination";
-import { Icon } from "@components/icon/icon";
+import { Icon } from "@bytebank/ui";
 
 export const Paginator = ({
   totalItems,

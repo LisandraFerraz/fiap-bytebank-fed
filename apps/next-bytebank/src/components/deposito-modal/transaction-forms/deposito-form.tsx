@@ -1,8 +1,8 @@
 import styles from "./form.module.scss";
-import { BtnClasses, Button } from "@components/button/button";
 import { useState } from "react";
 import { UseDeposit } from "../../../utils/hooks/useDeposit";
-import { InputText } from "@bytebank/ui";
+import { Button, InputText } from "@bytebank/ui";
+import { BtnClasses } from "../../../utils/types";
 
 export const DepositForm = ({ data }: { data: any }) => {
   const { deleteDeposit, updateDeposit } = UseDeposit();
