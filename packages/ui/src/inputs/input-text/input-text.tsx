@@ -11,7 +11,7 @@ export const InputText = ({
   ref,
 }: {
   label: string;
-  value: string | number;
+  value?: string | number;
   id: string;
   type?: string | "text";
   placeHolder: string;

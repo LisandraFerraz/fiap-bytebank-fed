@@ -6,6 +6,7 @@ import { UserDataStore } from "@/stores/user-data-store";
 import { AuthTemplate } from "./components/auth-template/auth-template";
 import { UseUser } from "@/utils/hooks/useUser";
 import { BtnClasses } from "@/utils/btn-types.enum";
+import Link from "next/link";
 
 export default function Login() {
   const { loginUser } = UseUser();
@@ -49,6 +50,7 @@ export default function Login() {
             onChange={(e) => updateBody("password", e.target.value)}
           />
           <div className={styles.submit_btn}>
+            <Link href={"/signup"}>Cadastre-se</Link>
             <Button type="submit" btnClass={BtnClasses.CONFIRM} text="Entrar" />
           </div>
         </form>

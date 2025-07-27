@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { env } from "../../../../core/environment/api-urls";
-import { IConta } from "../../../../utils/interfaces/conta";
-import { IUsuario } from "../../../../utils/interfaces/user";
+import { env } from "../../../core/environment/api-urls";
+import { IUsuario } from "../../../utils/interfaces/user";
 import { serialize } from "cookie";
-import { apiFetch } from "../../../../core/core-api";
+import { apiFetch } from "../../../core/core-api";
 
 // LOGIN
 export default async function getUserHandle(

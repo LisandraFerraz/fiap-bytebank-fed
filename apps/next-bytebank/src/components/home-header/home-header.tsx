@@ -13,7 +13,7 @@ export const HomeHeader = () => {
 
       <div>
         <Button
-          click={() => router.push("/auth/login")}
+          click={() => router.push("/auth")}
           text="Acessar conta"
           btnClass={BtnClasses.HIGHLIGHT}
         />

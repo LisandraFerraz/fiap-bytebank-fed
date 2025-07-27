@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./auth-template.module.scss";
+import { Title } from "@bytebank/ui";
 
 export const AuthTemplate = ({
   children,
@@ -30,10 +31,9 @@ export const AuthTemplate = ({
               width={800}
               height={500}
             />
-            <p>{title}</p>
-
-            {children}
+            <Title text={title} size="lg" />
           </div>
+          {children}
         </div>
       </div>
     </>

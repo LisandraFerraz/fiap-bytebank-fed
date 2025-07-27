@@ -26,6 +26,9 @@ importers:
       '@fortawesome/react-fontawesome':
         specifier: ^0.2.3
         version: 0.2.3(@fortawesome/fontawesome-svg-core@6.7.2)(react@19.1.0)
+      cookie:
+        specifier: ^1.0.2
+        version: 1.0.2
       next:
         specifier: 15.3.2
         version: 15.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
@@ -68,9 +71,6 @@ importers:
       '@react-input/mask':
         specifier: ^2.0.4
         version: 2.0.4(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      cookie:
-        specifier: ^1.0.2
-        version: 1.0.2
       uuid:
         specifier: ^11.1.0
         version: 11.1.0

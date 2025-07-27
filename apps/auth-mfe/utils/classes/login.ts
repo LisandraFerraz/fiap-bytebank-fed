@@ -3,7 +3,13 @@ export class LoginBody {
   password: string = "";
 }
 
-export class SignupBody {}
+export class SignupUserBody {
+  nome: string = "";
+  cpf: string = "";
+  dataNascimento: string = "";
+  email: string = "";
+  password: string = "";
+}
 
 export class NewAccoutnBody {
   numeroConta: number = 0;

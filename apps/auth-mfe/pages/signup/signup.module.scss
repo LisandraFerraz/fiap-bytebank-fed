@@ -1,1 +1,53 @@
 @use "@bytebank/ui/variables" as v;
+
+.form {
+  width: 80%;
+  text-align: left;
+
+  @media screen and (max-width: 724px) {
+    width: 100%;
+  }
+
+  .form_row {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 15px;
+
+    @media screen and (max-width: 920px) {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 724px) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  > div {
+    margin: 15px 0;
+  }
+  .bottom_btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    margin-top: 35px;
+
+    a {
+      color: v.$dark_green_default;
+      text-decoration: underline;
+      font-size: v.$text-base;
+    }
+
+    @media screen and (max-width: 724px) {
+      flex-direction: column;
+      gap: 15px;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}
