@@ -1,49 +1,17 @@
 @use "@bytebank/ui/variables" as v;
 
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  padding: 20% 100px;
-  background-color: v.$white_default;
-  box-shadow: 0 0 4px #00000015;
-  border-radius: 10px;
+.form {
+  width: 500px;
+  text-align: left;
 
   @media screen and (max-width: 920px) {
-    padding: 0 40px;
-    height: 100%;
     width: 100%;
   }
 
-  .form_top {
-    text-align: center;
-    .image {
-      height: max-content;
-      width: 120px;
-    }
-    p {
-      display: block;
-      font-size: v.$text-lg;
-      color: v.$grey_font;
-      margin: 10px 0;
-      font-weight: 600;
-    }
+  > div {
+    margin: 15px 0;
   }
-
-  form {
-    width: 500px;
-
-    @media screen and (max-width: 920px) {
-      width: 100%;
-    }
-
-    > div {
-      margin: 15px 0;
-    }
-    .submit_btn {
-      text-align: right;
-    }
+  .submit_btn {
+    text-align: right;
   }
 }

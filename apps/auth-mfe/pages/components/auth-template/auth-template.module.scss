@@ -59,6 +59,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(v.$sogrey_highlight, 20%);
+    background-color: rgb(v.$white_default, 20%);
+
+    .form_top {
+      text-align: center;
+      .image {
+        height: max-content;
+        width: 120px;
+      }
+      p {
+        display: block;
+        font-size: v.$text-lg;
+        color: v.$grey_font;
+        margin: 10px 0;
+        font-weight: 600;
+      }
+    }
   }
 }

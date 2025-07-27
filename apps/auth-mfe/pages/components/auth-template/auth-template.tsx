@@ -1,7 +1,13 @@
 import Image from "next/image";
 import styles from "./auth-template.module.scss";
 
-export const AuthTemplate = ({ children }: { children: React.ReactNode }) => {
+export const AuthTemplate = ({
+  children,
+  title,
+}: {
+  children: React.ReactNode;
+  title: string;
+}) => {
   return (
     <>
       <div className={styles.container}>
@@ -14,9 +20,21 @@ export const AuthTemplate = ({ children }: { children: React.ReactNode }) => {
             height={500}
           />
           <p>Experimente mais liberdade no controle da sua vida financeira.</p>
-          <p>Crie sua conta com a gente!</p>
         </div>
-        <div className={styles.auth_form}>{children}</div>
+        <div className={styles.auth_form}>
+          <div className={styles.form_top}>
+            <Image
+              className={styles.image}
+              src="/bytebank-logo.svg"
+              alt="Banner"
+              width={800}
+              height={500}
+            />
+            <p>{title}</p>
+
+            {children}
+          </div>
+        </div>
       </div>
     </>
   );
