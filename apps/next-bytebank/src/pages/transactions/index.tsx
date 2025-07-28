@@ -13,6 +13,7 @@ import { transPeriodMap, transTypesMap } from "./utils/transaction-maps";
 import { Paginator } from "@components/paginator/paginator";
 import { Pagination } from "../../utils/interfaces/pagination";
 import { Icon, Select } from "@bytebank/ui";
+import { ExpansesChart } from "@components/charts/expanses/expanses-chart";
 
 export default function TransactionsLayout() {
   const { getAccountDetails } = UseAccount();
@@ -62,6 +63,7 @@ export default function TransactionsLayout() {
         <div className={styles.content}>
           <StatementLayout data={accountDetails} />
           <Shortcuts />
+          <ExpansesChart />
           {trasactionList && (
             <TransactionList data={trasactionList}>
               <div className={styles.filter_group}>
