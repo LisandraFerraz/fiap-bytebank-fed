@@ -1,18 +1,15 @@
-import { Icon } from "@bytebank/ui";
+import { Icon, Title } from "@bytebank/ui";
 import styles from "./balance.module.scss";
-import { Title } from "@components/title-text/title-text";
 import { useState } from "react";
 
-interface IBalance {
-  amount: number;
-}
-
-export const Balance = ({ amount }: IBalance) => {
+export const Balance = ({ amount }: { amount: number }) => {
   const [showBalance, setShowBalance] = useState<boolean>(true);
+
+  if (!amount) return;
 
   return (
     <div className={styles.balance}>
-      <Title text="Saldo" />
+      <Title text="Saldo" size="base" />
       <span className={styles.divisor} />
       <p className={styles.balance_type_title}>Conta Corrente</p>
       <div className={styles.balance_info}>

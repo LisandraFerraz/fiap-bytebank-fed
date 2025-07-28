@@ -32,9 +32,9 @@ export const Sidenav = () => {
         <div>
           <ul>
             <li>
-              <CustomLink href="/transactions">
+              <CustomLink href="/dashboard">
                 <Icon iconKey="transaction" />
-                Transferências
+                Dashboard
               </CustomLink>
             </li>
             <li>

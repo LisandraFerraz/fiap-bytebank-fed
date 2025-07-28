@@ -19,7 +19,7 @@ export default function Login() {
     const data = await loginUser(userBody);
     const { access_token, account, user } = data;
     setUserData({ access_token, account, user });
-    window.location.href = "/transactions";
+    window.location.href = "/dashboard";
   };
 
   const updateBody = (key: string, value: string) => {

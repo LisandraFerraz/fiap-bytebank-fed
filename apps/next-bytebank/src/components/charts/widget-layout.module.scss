@@ -1,0 +1,10 @@
+@use "@bytebank/ui/variables" as v;
+
+.widget_layout {
+  background-color: v.$white_default;
+  box-shadow: 0 0 12px #00000018;
+  border-radius: 8px;
+  padding: 25px;
+
+  // width: max-content;
+}

@@ -14,11 +14,12 @@ import { Paginator } from "@components/paginator/paginator";
 import { Pagination } from "../../utils/interfaces/pagination";
 import { Icon, Select } from "@bytebank/ui";
 import { ExpansesChart } from "@components/charts/expanses/expanses-chart";
+import { Balance } from "@components/balance/balance";
 
-export default function TransactionsLayout() {
+export default function Dashboard() {
   const { getAccountDetails } = UseAccount();
 
-  const { user } = UserDataStore((state) => state.data);
+  const { user, account } = UserDataStore((state) => state.data);
 
   const [accountDetails, setAccountDetails] = useState<IUsuario>();
   const [trasactionList, setTransactionList] = useState<ITransacoes[]>();
@@ -59,11 +60,14 @@ export default function TransactionsLayout() {
 
   return (
     <>
-      {!isLoading && (
+      {!isLoading && account && (
         <div className={styles.content}>
-          <StatementLayout data={accountDetails} />
+          <div className={styles.dashboard_widgets}>
+            <Balance amount={account?.saldo} />
+            <ExpansesChart />
+          </div>
+
           <Shortcuts />
-          <ExpansesChart />
           {trasactionList && (
             <TransactionList data={trasactionList}>
               <div className={styles.filter_group}>

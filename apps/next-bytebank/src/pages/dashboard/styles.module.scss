@@ -1,0 +1,30 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .dashboard_widgets {
+    display: grid;
+    // grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+
+    @media screen and (max-width: 724px) {
+      grid-template-columns: repeat(1, 100%);
+      // grid-template-rows: repeat(1, 1fr);
+    }
+  }
+
+  .filter_group {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+    margin: 25px 0;
+
+    button {
+      cursor: pointer;
+    }
+  }
+}

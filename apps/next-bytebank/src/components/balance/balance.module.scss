@@ -5,9 +5,26 @@
   flex-direction: column;
   gap: 15px;
 
+  background-image: url("/balance-bg.svg");
+  height: 100%;
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  padding: 35px;
+  // width: max-content;
+
+  @media screen and (max-width: 1024px) {
+    background-position: center;
+    height: max-content;
+    flex-direction: column;
+    height: 100%;
+    // gap: 50px;
+  }
+
   .divisor {
     height: 2px;
-    width: 100%;
+    // width: 100%;
     background-color: v.$dark_green_default;
   }
 
@@ -19,7 +36,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 250px;
+    // gap: 250px;
 
     button {
       background-color: transparent;

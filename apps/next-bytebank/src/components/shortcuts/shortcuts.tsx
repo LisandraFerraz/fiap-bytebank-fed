@@ -12,14 +12,24 @@ interface IShortcut {
 export const Shortcuts = () => {
   const shortcuts: IShortcut[] = [
     {
+      title: "PIX",
+      icon: "pix",
+      url: "/send-pix",
+    },
+    {
+      title: "TED",
+      icon: "transaction",
+      url: "/send-TED",
+    },
+    {
       title: "Empréstimos",
       icon: "requestLoan",
       url: "/loan",
     },
     {
-      title: "PIX",
-      icon: "pix",
-      url: "/send-pix",
+      title: "Adicionar dinheiro",
+      icon: "addMoney",
+      url: "/add-money",
     },
   ];
 

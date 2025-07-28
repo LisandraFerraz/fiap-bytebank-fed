@@ -4,7 +4,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const protectedRoutes = [
-    "/transactions",
+    "/dashboard",
     "/add-money",
     "/loan",
     "/new-transaction",
@@ -18,9 +18,9 @@ export function middleware(request: NextRequest) {
     if (isAuthenticated === undefined || !isAuthenticated) {
       return NextResponse.redirect(new URL("/auth", request.url));
     }
-    if (pathname === "/auth/transactions") {
+    if (pathname === "/auth/dashboard") {
       const url = request.nextUrl.clone();
-      url.pathname = "/transctions";
+      url.pathname = "/dashboard";
       return NextResponse.redirect(url);
     }
   }
@@ -28,5 +28,5 @@ export function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 export const config = {
-  matcher: "/auth/transactions",
+  matcher: "/auth/dashboard",
 };

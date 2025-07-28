@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { UseCharts } from "../../../utils/hooks/useCharts";
 import { IExpansesChart } from "../../../utils/interfaces/charts";
 import * as echarts from "echarts";
+import { WidgetLayout } from "../widget-layout";
 
 export const ExpansesChart = () => {
   const pieChartRef = useRef<HTMLDivElement>(null);
@@ -29,23 +30,25 @@ export const ExpansesChart = () => {
         legend: {
           orient: "vertical",
           left: "left",
+          top: "middle",
         },
         tooltip: {
           trigger: "item",
         },
-        title: { text: "Últimos registros de gastos", left: "center" },
+        title: { text: "Gastos", left: "left" },
         data: data,
-
-        series: [{ type: "pie", data: data }],
+        color: ["#d3eef3", "#004d61"],
+        series: [
+          { center: ["70%", "60%"], radius: "60%", type: "pie", data: data },
+        ],
       });
       return () => pieChartInstance.dispose();
     }
   };
 
   return (
-    <>
-      <h1>Hello</h1>
-      <div ref={pieChartRef} style={{ width: "100%", height: "400px" }} />
-    </>
+    <WidgetLayout>
+      <div ref={pieChartRef} style={{ width: "300px", height: "200px" }} />
+    </WidgetLayout>
   );
 };

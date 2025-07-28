@@ -4,13 +4,18 @@
   display: flex;
   gap: 15px;
 
+  @media screen and (max-width: 724px) {
+    overflow: auto;
+    padding: 15px 0;
+  }
+
   .shortcut_item {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 0 10px;
+    padding: 0 15px;
     height: 60px;
-    width: 150px;
+    width: max-content;
 
     border-radius: 8px;
     background-color: v.$white_default;

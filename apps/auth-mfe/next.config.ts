@@ -8,8 +8,8 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/transactions",
-        destination: "/transactions",
+        source: "/dashboard",
+        destination: "/dashboard",
         basePath: false,
         permanent: false,
       },
