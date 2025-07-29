@@ -3,7 +3,9 @@
     "baseUrl": ".",
     "paths": {
       "@bytebank/ui": ["packages/ui/src"],
-      "@bytebank/ui/*": ["packages/ui/src/*"]
+      "@bytebank/ui/*": ["packages/ui/src/*"],
+      "@bytebank/utils/": ["packages/utils/src"],
+      "@bytebank/utils/*": ["packages/utils/src/*"]
     }
   }
 }

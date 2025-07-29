@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@components/*": ["./src/components/*"]
+      "@components/*": ["./src/components/*"],
+      "echarts": ["./src/types/echarts.d.ts"]
     }
   },
   "include": [

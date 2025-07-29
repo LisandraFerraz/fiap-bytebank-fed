@@ -1,6 +1,6 @@
 import styles from "./signup.module.scss";
 import { Button, InputText } from "@bytebank/ui";
-import { AuthTemplate } from "../components/auth-template/auth-template";
+import AuthTemplate from "../components/auth-template/auth-template";
 import { UseUser } from "@/utils/hooks/useUser";
 import { useState } from "react";
 import { NewAccoutnBody, SignupUserBody } from "@/utils/classes/login";

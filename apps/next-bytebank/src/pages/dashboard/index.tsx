@@ -1,6 +1,5 @@
 "use client";
 import styles from "./styles.module.scss";
-import { StatementLayout } from "@components/statement-layout/layout";
 import { TransactionList } from "@components/transactions-list/transaction-list";
 import { Shortcuts } from "@components/shortcuts/shortcuts";
 import { useEffect, useState } from "react";
@@ -9,12 +8,15 @@ import { UserDataStore } from "../../stores/user-data-store";
 import { IUsuario } from "../../utils/interfaces/user";
 import { ITransacoes } from "../../utils/interfaces/conta";
 import { TransactionFilter } from "../../utils/interfaces/transaction";
-import { transPeriodMap, transTypesMap } from "./utils/transaction-maps";
 import { Paginator } from "@components/paginator/paginator";
 import { Pagination } from "../../utils/interfaces/pagination";
 import { Icon, Select } from "@bytebank/ui";
 import { ExpansesChart } from "@components/charts/expanses/expanses-chart";
 import { Balance } from "@components/balance/balance";
+import {
+  transTypesMap,
+  transPeriodMaps,
+} from "../../utils/functions/transaction-maps";
 
 export default function Dashboard() {
   const { getAccountDetails } = UseAccount();
@@ -85,7 +87,7 @@ export default function Dashboard() {
 
                 <Select
                   value={filters.transPeriod}
-                  data={transPeriodMap}
+                  data={transPeriodMaps}
                   defaultSelected="Período"
                   onChange={(e) => handleUpdateFilter(e, "transPeriod")}
                 />

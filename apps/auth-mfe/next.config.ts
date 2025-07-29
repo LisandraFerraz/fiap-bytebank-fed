@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
+  experimental: {
+    viewTransition: true,
+  },
   transpilePackages: ["@bytebank/ui", "@bytebank/utils"],
 
   basePath: "/auth",

@@ -12,7 +12,6 @@ export enum TransPeriod {
 }
 
 export interface ITed {
-  id?: string;
   data?: string;
   valor: number;
   cpfDestinatario: string;
@@ -34,7 +33,6 @@ export interface IPix {
 }
 
 export interface IEmprestimo {
-  id: string;
   valor: number; // valor do empréstimo
   data: string;
   aberto?: boolean;
@@ -45,7 +43,6 @@ export interface IEmprestimo {
 }
 
 export interface IDeposito {
-  id: string;
   valor: number;
   data: string;
   tipo: TransacationTypes.DEPOSITO;

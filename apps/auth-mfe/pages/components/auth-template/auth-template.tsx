@@ -2,13 +2,13 @@ import Image from "next/image";
 import styles from "./auth-template.module.scss";
 import { Title } from "@bytebank/ui";
 
-export const AuthTemplate = ({
+export default function AuthTemplate({
   children,
   title,
 }: {
   children: React.ReactNode;
   title: string;
-}) => {
+}) {
   return (
     <>
       <div className={styles.container}>
@@ -38,4 +38,4 @@ export const AuthTemplate = ({
       </div>
     </>
   );
-};
+}

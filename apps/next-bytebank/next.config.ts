@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   experimental: {
     viewTransition: true,
   },
+  transpilePackages: ["@bytebank/ui", "@bytebank/utils"],
 
   async redirects() {
     return [
@@ -29,7 +30,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  transpilePackages: ["@bytebank/ui", "@bytebank/utils"],
 };
 
 export default nextConfig;

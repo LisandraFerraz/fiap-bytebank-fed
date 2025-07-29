@@ -1,5 +1,3 @@
-import { useMask } from "@react-input/mask";
-
 export function formatCpf(value: string): string {
   return value
     .replace(/\D/g, "")

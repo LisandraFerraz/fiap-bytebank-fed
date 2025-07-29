@@ -1,5 +1,4 @@
 "use client";
-import { v4 as generateUUID } from "uuid";
 
 import { LoanList } from "@components/loan-list/loan-list";
 import form_styles from "./../../styles/page-form.module.scss";
@@ -56,7 +55,6 @@ export default function Loan() {
     if (!isNaN(valorParsed) && valorParsed > 0) {
       const loanBody: IEmprestimo = {
         tipo: TransacationTypes.EMPRESTIMO,
-        id: generateUUID(),
         valor: valorParsed,
         data: FormatDate(dateToday),
         valorPago: 0,

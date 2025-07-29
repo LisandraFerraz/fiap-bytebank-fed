@@ -1,8 +1,6 @@
 "use client";
-import { v4 as generateUUID } from "uuid";
 import styles from "./../../styles/page-form.module.scss";
 
-import style from "./styles.module.scss";
 import { useEffect, useState } from "react";
 import {
   IDeposito,
@@ -12,7 +10,6 @@ import { Button, InputText } from "@bytebank/ui";
 import { FormatDate } from "../../utils/functions/format-date";
 import { UseDeposit } from "../../utils/hooks/useDeposit";
 import { UseAccount } from "../../utils/hooks/useAccount";
-import { Transaction } from "@components/transaction/transaction";
 import { BtnClasses } from "../../utils/types";
 
 export default function AddMoney() {
@@ -23,7 +20,6 @@ export default function AddMoney() {
   const [depositoBody, setDepositoBody] = useState<IDeposito>({
     valor: 0,
     tipo: TransacationTypes.DEPOSITO,
-    id: generateUUID(),
     data: "",
   });
 

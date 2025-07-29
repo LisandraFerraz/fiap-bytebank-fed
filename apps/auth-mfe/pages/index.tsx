@@ -3,10 +3,10 @@ import { useState } from "react";
 import { Button, InputText } from "@bytebank/ui";
 import { LoginBody } from "@/utils/classes/login";
 import { UserDataStore } from "@/stores/user-data-store";
-import { AuthTemplate } from "./components/auth-template/auth-template";
 import { UseUser } from "@/utils/hooks/useUser";
 import { BtnClasses } from "@/utils/btn-types.enum";
 import Link from "next/link";
+import AuthTemplate from "./components/auth-template/auth-template";
 
 export default function Login() {
   const { loginUser } = UseUser();

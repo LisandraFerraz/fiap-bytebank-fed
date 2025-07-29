@@ -1,5 +1,4 @@
 "use client";
-import { v4 as generateUUID } from "uuid";
 import styles from "./../../styles/page-form.module.scss";
 import { Button, InputText } from "@bytebank/ui";
 import { useState } from "react";
@@ -27,7 +26,6 @@ export default function SendTED() {
 
     setTedBody({
       ...tedBody,
-      id: generateUUID(),
 
       [key]:
         key === "valor" || key === "numConta" || key === "digito"

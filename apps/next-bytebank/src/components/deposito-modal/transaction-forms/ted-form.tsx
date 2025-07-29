@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Button, InputText } from "@bytebank/ui";
 import { ITed } from "../../../utils/interfaces/transaction";
 import { formatCpf } from "../../../utils/functions/mask-values";
-import { useMask } from "@react-input/mask";
 import { BtnClasses } from "../../../utils/types";
 
 export const TedForm = ({ data }: { data: any }) => {
@@ -42,11 +41,6 @@ export const TedForm = ({ data }: { data: any }) => {
     }
   };
 
-  const cpfMaks = useMask({
-    mask: "000.000.000-00",
-    replacement: { 0: /\d/ },
-  });
-
   return (
     <>
       <div className={styles.transaction_form}>
@@ -78,7 +72,6 @@ export const TedForm = ({ data }: { data: any }) => {
                 handleChangeValues("cpfDestinatario", e.target.value)
               }
               type="text"
-              ref={cpfMaks}
             />
           </div>
         </div>

@@ -24,7 +24,7 @@ export const TransactionList = ({
     <div className={styles.transacions_list}>
       {transactions?.length ? (
         <>
-          <Title text="Movimentações bancárias" />
+          <Title text="Movimentações bancárias" size="base" />
           {children}
           {transactions?.map((item: any, index: any) => (
             <div key={index} className={styles.list_items}>
@@ -34,7 +34,7 @@ export const TransactionList = ({
         </>
       ) : (
         <div className={styles.no_data}>
-          <Title text="Seu extrato está vazio." />
+          <Title text="Seu extrato está vazio." size="md" />
           <p>Faça alguma transfência para visualizar aqui.</p>
         </div>
       )}
