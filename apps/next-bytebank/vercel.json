@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/auth/:path*",
+      "destination": "https://fiap-bytebank-auth.vercel.app//auth/:path*"
+    }
+  ]
+}
