@@ -1,4 +1,3 @@
-import { env } from "../../core/environment/api-urls";
 import { apiFetch } from "../../core/core-api";
 import { IDeposito } from "../interfaces/transaction";
 import { UserDataStore } from "../../stores/user-data-store";
@@ -9,7 +8,7 @@ export const UseDeposit = () => {
   // Adiciona dinheiro na propria conta
   const createDeposit = async (body: IDeposito) => {
     return apiFetch({
-      url: `${env.NEST_API}/account/${account?._id}/deposit/new`,
+      url: `${process.env.BYTEBANK_API_URL}/account/${account?._id}/deposit/new`,
       access_token: `${access_token}`,
       method: "PUT",
       body: body,
@@ -18,7 +17,7 @@ export const UseDeposit = () => {
 
   const updateDeposit = async (body: IDeposito) => {
     return apiFetch({
-      url: `${env.NEST_API}/account/${account?._id}/deposit`,
+      url: `${process.env.BYTEBANK_API_URL}/account/${account?._id}/deposit`,
       method: "PATCH",
       access_token: `${access_token}`,
       body: body,
@@ -27,7 +26,7 @@ export const UseDeposit = () => {
 
   const deleteDeposit = async (id: string) => {
     return apiFetch({
-      url: `${env.NEST_API}/account/${account?._id}/deposit/delete?depositId=${id}`,
+      url: `${process.env.BYTEBANK_API_URL}/account/${account?._id}/deposit/delete?depositId=${id}`,
       method: "PATCH",
       access_token: `${access_token}`,
     });

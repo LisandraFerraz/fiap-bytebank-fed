@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { env } from "../../../core/environment/api-urls";
 import { IConta } from "../../../utils/interfaces/conta";
 import { IEmprestimo } from "../../../utils/interfaces/transaction";
 import { apiFetch } from "../../../core/core-api";
@@ -14,7 +13,7 @@ export default async function handleOrderedLoan(
   if (req.method === "GET") {
     if (access_token && usuarioCpf) {
       const response = await apiFetch<IConta>({
-        url: `${env.NEST_API}/account?usuarioCpf=${usuarioCpf}`,
+        url: `${process.env.BYTEBANK_API_URL}/account?usuarioCpf=${usuarioCpf}`,
         method: "GET",
         access_token: `${access_token}`,
       });

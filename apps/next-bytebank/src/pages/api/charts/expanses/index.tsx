@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { apiFetch } from "../../../../core/core-api";
 import { IConta } from "../../../../utils/interfaces/conta";
-import { env } from "../../../../core/environment/api-urls";
 import { TransacationTypes } from "../../../../utils/interfaces/transaction";
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
@@ -19,7 +18,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   }
 
   const conta = await apiFetch<IConta>({
-    url: `${env.NEST_API}/account?usuarioCpf=${usuarioCpf}`,
+    url: `${process.env.BYTEBANK_API_URL}/account?usuarioCpf=${usuarioCpf}`,
     method: "GET",
     access_token: `${access_token}`,
   });

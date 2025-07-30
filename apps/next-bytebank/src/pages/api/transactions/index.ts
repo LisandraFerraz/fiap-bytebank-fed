@@ -1,6 +1,5 @@
 import { IConta, ITransacoes } from "./../../../utils/interfaces/conta";
 import { NextApiRequest, NextApiResponse } from "next";
-import { env } from "../../../core/environment/api-urls";
 import { apiFetch } from "../../../core/core-api";
 import {
   TransacationTypes,
@@ -20,7 +19,7 @@ export default async function handleListTrans(
 
     if (access_token && usuarioCpf) {
       const conta = await apiFetch<IConta>({
-        url: `${env.NEST_API}/account?usuarioCpf=${usuarioCpf}&itemsPage=${itemsPage}&currentPage=${currentPage}`,
+        url: `${process.env.BYTEBANK_API_URL}/account?usuarioCpf=${usuarioCpf}&itemsPage=${itemsPage}&currentPage=${currentPage}`,
         method: "GET",
         access_token: `${access_token.replace("Bearer ", "")}`,
       });

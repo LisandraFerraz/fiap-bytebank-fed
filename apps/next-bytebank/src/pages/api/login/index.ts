@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { env } from "../../../core/environment/api-urls";
 import { IUsuario } from "../../../utils/interfaces/user";
 import { serialize } from "cookie";
 import { apiFetch } from "../../../core/core-api";
@@ -20,7 +19,7 @@ export default async function getUserHandle(
   const loginResponse = await apiFetch<{
     access_token: { access_token: string };
   }>({
-    url: `${env.NEST_API}/auth/login`,
+    url: `${process.env.BYTEBANK_API_URL}/auth/login`,
     method: "POST",
     body: reqBody,
   });
@@ -41,7 +40,7 @@ export default async function getUserHandle(
   res.setHeader("Set-Cookie", cookie);
 
   const userData = await apiFetch<IUsuario>({
-    url: `${env.NEST_API}/user/one`,
+    url: `${process.env.BYTEBANK_API_URL}/user/one`,
     method: "GET",
     access_token: `${access_token}`,
   });
@@ -53,7 +52,7 @@ export default async function getUserHandle(
   }
 
   const accountData = await apiFetch<any>({
-    url: `${env.NEST_API}/account?usuarioCpf=${userData.cpf}`,
+    url: `${process.env.BYTEBANK_API_URL}/account?usuarioCpf=${userData.cpf}`,
     method: "GET",
     access_token: `${access_token}`,
   });

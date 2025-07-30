@@ -1,4 +1,3 @@
-import { env } from "../../core/environment/api-urls";
 import { apiFetch } from "../../core/core-api";
 import { IPix } from "../interfaces/transaction";
 import { UserDataStore } from "../../stores/user-data-store";
@@ -9,7 +8,7 @@ export const UsePix = () => {
   const sendPix = async (body: IPix) => {
     return await apiFetch({
       method: "PUT",
-      url: `${env.NEST_API}/account/${account?._id}/transaction/new`,
+      url: `${process.env.BYTEBANK_API_URL}/account/${account?._id}/transaction/new`,
       body: body,
       access_token: `${access_token}`,
     });
@@ -17,7 +16,7 @@ export const UsePix = () => {
 
   const deletePix = async (id: string) => {
     return await apiFetch({
-      url: `${env.NEST_API}/account/${account?._id}/transaction/delete?transId=${id}`,
+      url: `${process.env.BYTEBANK_API_URL}/account/${account?._id}/transaction/delete?transId=${id}`,
       method: "PATCH",
       access_token: `${access_token}`,
     });
@@ -25,7 +24,7 @@ export const UsePix = () => {
 
   const updatePix = async (body: IPix) => {
     return await apiFetch({
-      url: `${env.NEST_API}/account/${account?._id}/transaction`,
+      url: `${process.env.BYTEBANK_API_URL}/account/${account?._id}/transaction`,
       method: "PATCH",
       body: body,
       access_token: `${access_token}`,
