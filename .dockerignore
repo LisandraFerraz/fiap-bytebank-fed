@@ -1,0 +1,15 @@
+# Ignorar todos os node_modules
+node_modules
+**/node_modules
+
+# Ignorar diretórios de build locais (caso existam)
+.next
+dist
+build
+
+# Ignore arquivos de configuração de IDE e logs
+.vscode
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

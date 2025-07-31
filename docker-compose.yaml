@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  auth-mfe:
+    build:
+      context: .
+      dockerfile: apps/auth-mfe/Dockerfile
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./apps/auth-mfe:/repo/apps/auth-mfe:delegated
+      - auth_mfe_node_modules:/repo/apps/auth-mfe/node_modules
+      - ./packages:/repo/packages:delegated
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=http://localhost:3003
+    depends_on: []
+
+  next-bytebank:
+    build:
+      context: .
+      dockerfile: apps/next-bytebank/Dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./apps/next-bytebank:/repo/apps/next-bytebank:delegated
+      - next_bytebank_node_modules:/repo/apps/next-bytebank/node_modules
+      - ./packages:/repo/packages:delegated
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_AUTH_URL=http://localhost:3002
+      - NEXT_PUBLIC_API_URL=http://localhost:3003
+    depends_on:
+      - auth-mfe
+
+  api:
+    image: your-api-image
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=development
+
+volumes:
+  auth_mfe_node_modules:
+  next_bytebank_node_modules:

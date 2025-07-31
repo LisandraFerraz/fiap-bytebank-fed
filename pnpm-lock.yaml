@@ -31,7 +31,7 @@ importers:
         version: 1.0.2
       zustand:
         specifier: ^5.0.6
-        version: 5.0.6(@types/react@19.1.9)(react@19.1.1)
+        version: 5.0.7(@types/react@19.1.9)(react@19.1.1)
     devDependencies:
       '@types/node':
         specifier: ^24.1.0
@@ -66,6 +66,28 @@ importers:
       react-dom:
         specifier: ^19.1.0
         version: 19.1.1(react@19.1.1)
+    devDependencies:
+      '@types/node':
+        specifier: ^24.1.0
+        version: 24.1.0
+      '@types/react':
+        specifier: ^19.1.8
+        version: 19.1.9
+      '@types/react-dom':
+        specifier: ^19.1.6
+        version: 19.1.7(@types/react@19.1.9)
+      prettier:
+        specifier: ^3.6.2
+        version: 3.6.2
+      sass:
+        specifier: ^1.89.2
+        version: 1.89.2
+      turbo:
+        specifier: ^2.5.5
+        version: 2.5.5
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
 
   apps/next-bytebank:
     dependencies:
@@ -81,6 +103,28 @@ importers:
       react-dom:
         specifier: ^19.1.0
         version: 19.1.1(react@19.1.1)
+    devDependencies:
+      '@types/node':
+        specifier: ^24.1.0
+        version: 24.1.0
+      '@types/react':
+        specifier: ^19.1.8
+        version: 19.1.9
+      '@types/react-dom':
+        specifier: ^19.1.6
+        version: 19.1.7(@types/react@19.1.9)
+      prettier:
+        specifier: ^3.6.2
+        version: 3.6.2
+      sass:
+        specifier: ^1.89.2
+        version: 1.89.2
+      turbo:
+        specifier: ^2.5.5
+        version: 2.5.5
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
 
   packages/eslint-config:
     devDependencies:
@@ -1612,8 +1656,8 @@ packages:
   zrender@5.6.1:
     resolution: {integrity: sha512-OFXkDJKcrlx5su2XbzJvj/34Q3m6PvyCZkVPHGYpcCJ52ek4U/ymZyfuV1nKE23AyBJ51E/6Yr0mhZ7xGTO4ag==}
 
-  zustand@5.0.6:
-    resolution: {integrity: sha512-ihAqNeUVhe0MAD+X8M5UzqyZ9k3FFZLBTtqo6JLPwV53cbRB/mJwBI0PxcIgqhBBHlEs8G45OTDTMq3gNcLq3A==}
+  zustand@5.0.7:
+    resolution: {integrity: sha512-Ot6uqHDW/O2VdYsKLLU8GQu8sCOM1LcoE8RwvLv9uuRT9s6SOHCKs0ZEOhxg+I1Ld+A1Q5lwx+UlKXXUoCZITg==}
     engines: {node: '>=12.20.0'}
     peerDependencies:
       '@types/react': '>=18.0.0'
@@ -3295,7 +3339,7 @@ snapshots:
     dependencies:
       tslib: 2.3.0
 
-  zustand@5.0.6(@types/react@19.1.9)(react@19.1.1):
+  zustand@5.0.7(@types/react@19.1.9)(react@19.1.1):
     optionalDependencies:
       '@types/react': 19.1.9
       react: 19.1.1

@@ -26,7 +26,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/auth/:path*",
-        destination: `${process.env.BYTEBANK_AUTH_MFE_URL}/auth/:path*`,
+        destination: `http://localhost:3002/auth/:path*`,
       },
     ];
   },
