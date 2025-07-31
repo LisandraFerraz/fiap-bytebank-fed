@@ -1,7 +1,5 @@
-
 FROM node:18-alpine AS deps
 WORKDIR /repo
-
 RUN npm install -g pnpm
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./

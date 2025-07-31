@@ -32,13 +32,6 @@ services:
     depends_on:
       - auth-mfe
 
-  api:
-    image: your-api-image
-    ports:
-      - "3003:3003"
-    environment:
-      - NODE_ENV=development
-
 volumes:
   auth_mfe_node_modules:
   next_bytebank_node_modules:
