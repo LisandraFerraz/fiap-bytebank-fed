@@ -17,15 +17,17 @@ import {
   transTypesMap,
   transPeriodMaps,
 } from "../../utils/functions/transaction-maps";
+import { useLoader } from "../../utils/hooks/context-hooks/useLoader";
 
 export default function Dashboard() {
   const { getAccountDetails } = UseAccount();
+  const { showLoader, hideLoader } = useLoader();
 
   const { user, account } = UserDataStore((state) => state.data);
 
   const [accountDetails, setAccountDetails] = useState<IUsuario>();
   const [trasactionList, setTransactionList] = useState<ITransacoes[]>();
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [pagination, setPagination] = useState<Pagination>(new Pagination());
 
   const [filters, setFilters] = useState<TransactionFilter>(
@@ -37,6 +39,7 @@ export default function Dashboard() {
   }, [user?.cpf, filters]);
 
   const listTransactions = (page: number) => {
+    showLoader();
     if (user?.cpf) {
       getAccountDetails(filters, { ...pagination, currentPage: page }).then(
         (data: any) => {
@@ -46,7 +49,7 @@ export default function Dashboard() {
           setTransactionList(transacoes.transactions);
           setPagination(transacoes.paginacao);
 
-          setIsLoading(false);
+          hideLoader();
         }
       );
     }
@@ -62,7 +65,7 @@ export default function Dashboard() {
 
   return (
     <>
-      {!isLoading && account && (
+      {account && (
         <div className={styles.content}>
           <div className={styles.dashboard_widgets}>
             <Balance amount={account?.saldo} />

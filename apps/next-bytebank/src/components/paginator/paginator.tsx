@@ -17,7 +17,6 @@ export const Paginator = ({
       numbers.push(i);
     }
     setPagNumbers(numbers);
-    console.log(numbers);
   }, [totalItems, itemsPage]);
 
   return totalItems > itemsPage ? (

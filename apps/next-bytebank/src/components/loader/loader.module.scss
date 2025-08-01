@@ -1,0 +1,44 @@
+.loader_bg {
+  background-color: #00000090;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .loader {
+    position: fixed;
+    width: 124px;
+    height: 24px;
+    z-index: 20;
+
+    -webkit-mask:
+      conic-gradient(
+          from 135deg at top,
+          #0000,
+          #000 0.5deg 90deg,
+          #0000 90.5deg
+        )
+        0 0,
+      conic-gradient(
+          from -45deg at bottom,
+          #0000,
+          #000 0.5deg 90deg,
+          #0000 90.5deg
+        )
+        0 100%;
+    -webkit-mask-size: 25% 50%;
+    -webkit-mask-repeat: repeat-x;
+    background: linear-gradient(#25b09b 0 0) left/0% 100% no-repeat #ddd;
+    animation: l13 2s infinite linear;
+  }
+  @keyframes l13 {
+    100% {
+      background-size: 100% 100%;
+    }
+  }
+}

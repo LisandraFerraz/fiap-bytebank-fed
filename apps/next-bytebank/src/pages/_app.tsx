@@ -8,6 +8,11 @@ import { Sidenav } from "@components/sidenav/sidenav";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Icon } from "@bytebank/ui";
+import {
+  LoaderContext,
+  LoaderProvider,
+} from "../utils/contexts/loading-context";
+import { ToastProvider } from "../utils/contexts/toast-context";
 
 export default function App({
   Component,
@@ -27,29 +32,31 @@ export default function App({
   const routesWOSidebar = ["/auth", "/home"];
 
   return (
-    <>
-      {!routesWOSidebar.some((route) => router.route.startsWith(route)) ? (
-        <>
-          <div className={styles.custom_body}>
-            <>
-              <div className={`${!isVisible ? styles.hidden : ""}`}>
-                <Sidenav />
+    <LoaderProvider>
+      <ToastProvider>
+        {!routesWOSidebar.some((route) => router.route.startsWith(route)) ? (
+          <>
+            <div className={styles.custom_body}>
+              <>
+                <div className={`${!isVisible ? styles.hidden : ""}`}>
+                  <Sidenav />
+                </div>
+                <button
+                  className={styles.toggle_sidenav}
+                  onClick={() => setIsVisible(!isVisible)}
+                >
+                  <Icon iconKey="menu" />
+                </button>
+              </>
+              <div className={styles.content}>
+                <Component {...pageProps} />
               </div>
-              <button
-                className={styles.toggle_sidenav}
-                onClick={() => setIsVisible(!isVisible)}
-              >
-                <Icon iconKey="menu" />
-              </button>
-            </>
-            <div className={styles.content}>
-              <Component {...pageProps} />
             </div>
-          </div>
-        </>
-      ) : (
-        <Component {...pageProps} />
-      )}
-    </>
+          </>
+        ) : (
+          <Component {...pageProps} />
+        )}
+      </ToastProvider>
+    </LoaderProvider>
   );
 }

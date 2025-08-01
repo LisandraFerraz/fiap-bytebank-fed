@@ -1,4 +1,8 @@
+import { useToast } from "../../../utils/hooks/context-hooks/useToast";
+
 export function toBase64(file: File) {
+  const { showToast } = useToast();
+
   return new Promise((resolve, reject) => {
     const fileReader = new FileReader();
 
@@ -9,7 +13,7 @@ export function toBase64(file: File) {
     };
 
     fileReader.onerror = (error) => {
-      // TO-DO: mensagem de erro
+      showToast("error", "Ocorreu um erro ao fazer upload do arquivo.");
       reject(error);
     };
   });

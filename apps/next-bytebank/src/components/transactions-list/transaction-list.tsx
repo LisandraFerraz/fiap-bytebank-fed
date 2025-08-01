@@ -4,9 +4,7 @@ import styles from "./transaction-list.module.scss";
 import { Title } from "@components/title-text/title-text";
 import { Transaction } from "@components/transaction/transaction";
 import { useEffect, useState } from "react";
-import { ITransacoes } from "../../utils/interfaces/conta";
 
-//  TO-DO CRIAR INTERFACE TRANSHISTORY
 export const TransactionList = ({
   data,
   children,

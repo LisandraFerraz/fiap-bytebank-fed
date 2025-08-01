@@ -6,6 +6,8 @@ export type icons = keyof typeof byteIcons;
 
 export type transacao = IDeposito | IEmprestimo | ITed | IPix;
 
+export type toastTypes = "success" | "error" | "warning";
+
 export enum BtnClasses {
   CONFIRM = "CONFIRM",
   DEFAULT = "DEFAULT",

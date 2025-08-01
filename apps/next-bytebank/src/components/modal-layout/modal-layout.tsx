@@ -19,7 +19,7 @@ export const ModalLayout = ({
   return (
     <>
       <div className={styles.modal_background}>
-        <motion.button
+        <motion.div
           initial={{
             opacity: 0,
             scale: 0.75,
@@ -42,7 +42,7 @@ export const ModalLayout = ({
             </div>
             <div className={styles.modal_body}>{children}</div>
           </div>
-        </motion.button>
+        </motion.div>
       </div>
     </>
   );

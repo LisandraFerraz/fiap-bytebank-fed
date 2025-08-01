@@ -9,6 +9,7 @@ import { EmprestimoForm } from "./transaction-forms/emprestimo-form";
 import { TedForm } from "./transaction-forms/ted-form";
 import { PixForm } from "./transaction-forms/pix-form";
 import { toBase64 } from "./utils/base64-convert";
+import { useToast } from "../../utils/hooks/context-hooks/useToast";
 
 export const TransactionDetailsModal = ({
   data,
@@ -17,6 +18,8 @@ export const TransactionDetailsModal = ({
   data: transacao;
   onClose: () => void;
 }) => {
+  const { showToast } = useToast();
+
   const [modalData, setModalData] = useState<any>(data);
 
   const checkFormType = (type: TransacationTypes) => {
@@ -35,8 +38,7 @@ export const TransactionDetailsModal = ({
     let file = e.target.files;
     if (file?.length) {
       if (file[0].size > 2097152) {
-        // TO-DO: tratar erro
-        return console.log("Arquivo tem que ser menor que 2MB");
+        return showToast("error", "Arquivo não pode ser maior que 2MB.");
       }
       const base64 = await toBase64(file[0] as File);
       setModalData({
@@ -47,7 +49,10 @@ export const TransactionDetailsModal = ({
   };
 
   const clearFile = () => {
-    setModalData(data);
+    setModalData({
+      ...data,
+      file: null,
+    });
   };
 
   return (
