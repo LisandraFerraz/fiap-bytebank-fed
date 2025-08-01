@@ -19,6 +19,7 @@
     padding: 25px;
     border-radius: 10px;
     width: 620px;
+    text-align: left;
 
     .modal_header {
       display: flex;
@@ -38,5 +39,9 @@
     .modal_body {
       margin: 15px 0;
     }
+  }
+
+  > button {
+    background-color: transparent;
   }
 }

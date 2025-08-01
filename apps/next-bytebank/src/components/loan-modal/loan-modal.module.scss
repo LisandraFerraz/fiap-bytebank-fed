@@ -1,8 +1,10 @@
 @use "@bytebank/ui/variables" as v;
 
-.loan_amount {
-}
-
 .form_layout {
   margin: 25px 0;
+
+  .form_bottom {
+    margin: 25px 0;
+    text-align: end;
+  }
 }
