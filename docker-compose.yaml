@@ -27,7 +27,7 @@ services:
       - ./packages:/repo/packages:delegated
     environment:
       - NODE_ENV=development
-      - NEXT_PUBLIC_AUTH_URL=http://localhost:3002
+      - NEXT_PUBLIC_AUTH_MFE_URL=http://localhost:3002
       - BYTEBANK_API_URL=http://host.docker.internal:3003
     depends_on:
       - auth-mfe
