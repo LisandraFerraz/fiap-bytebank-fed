@@ -19,7 +19,7 @@ export default async function getUserHandle(
   const loginResponse = await apiFetch<{
     access_token: { access_token: string };
   }>({
-    url: `${process.env.BYTEBANK_API_URL}/auth/login`,
+    url: `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
     method: "POST",
     body: reqBody,
   });
@@ -40,7 +40,7 @@ export default async function getUserHandle(
   res.setHeader("Set-Cookie", cookie);
 
   const userData = await apiFetch<IUsuario>({
-    url: `${process.env.BYTEBANK_API_URL}/user/one`,
+    url: `${process.env.NEXT_PUBLIC_API_URL}/user/one`,
     method: "GET",
     access_token: `${access_token}`,
   });
@@ -52,7 +52,7 @@ export default async function getUserHandle(
   }
 
   const accountData = await apiFetch<any>({
-    url: `${process.env.BYTEBANK_API_URL}/account?usuarioCpf=${userData.cpf}`,
+    url: `${process.env.NEXT_PUBLIC_API_URL}/account?usuarioCpf=${userData.cpf}`,
     method: "GET",
     access_token: `${access_token}`,
   });

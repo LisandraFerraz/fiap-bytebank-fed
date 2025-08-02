@@ -16,7 +16,6 @@ export async function apiFetch<T>({
     method: method,
     headers: { "Content-Type": "application/json" },
   };
-
   if (method !== "GET" && method !== "DELETE" && body) {
     Object.assign(config, { body: JSON.stringify(body) });
   }

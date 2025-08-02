@@ -11,6 +11,10 @@ import { FormatDate } from "../../utils/functions/format-date";
 import { UseDeposit } from "../../utils/hooks/useDeposit";
 import { UseAccount } from "../../utils/hooks/useAccount";
 import { BtnClasses } from "../../utils/types";
+import { isValueEmpty } from "@bytebank/utils";
+import { Pagination } from "../../utils/interfaces/pagination";
+import { Transaction } from "@components/transaction/transaction";
+import { Paginator } from "@components/paginator/paginator";
 
 export default function AddMoney() {
   const { createDeposit } = UseDeposit();
@@ -22,9 +26,10 @@ export default function AddMoney() {
     tipo: TransacationTypes.DEPOSITO,
     data: "",
   });
+  const [pagination, setPagination] = useState<Pagination>(new Pagination());
 
   useEffect(() => {
-    listDepositos();
+    listDepositos(1);
   }, []);
 
   const updateBody = (value: number) => {
@@ -37,17 +42,23 @@ export default function AddMoney() {
         data: FormatDate(dateToday),
       });
     }
-    // add toast notification for error
   };
 
   const handleAddMoney = () => {
     createDeposit(depositoBody);
   };
 
-  const listDepositos = async () => {
-    // const accountData = await getAccountDetails();
-    // const depositList = accountData.transHistory.depositos;
-    // setDepositList(depositList);
+  const listDepositos = async (page: number) => {
+    const data = await getAccountDetails(
+      {
+        transType: TransacationTypes.DEPOSITO,
+        transPeriod: "",
+      },
+      { ...pagination, currentPage: page }
+    );
+
+    const { transacoes } = data;
+    setDepositList(transacoes.transactions);
   };
 
   return (
@@ -68,21 +79,28 @@ export default function AddMoney() {
 
         <div className={styles.end_row}>
           <Button
+            disabled={isValueEmpty(depositoBody.valor)}
             btnClass={BtnClasses.CONFIRM}
             text="Confirmar"
             click={handleAddMoney}
           />
         </div>
       </div>
-      {/* {depositList && (
-        <div className={style.transacions_list}>
+      {depositList && (
+        <div className={styles.transacions_list}>
           {depositList.map((dp: IDeposito, index) => (
             <div key={index} className={styles.list_items}>
               <Transaction dataT={dp} key={index} />
             </div>
           ))}
+          <Paginator
+            currentPage={pagination.currentPage}
+            itemsPage={pagination.itemsPage}
+            totalItems={pagination.itemsPage}
+            nextPage={(page) => listDepositos(page)}
+          />
         </div>
-      )} */}
+      )}
     </>
   );
 }

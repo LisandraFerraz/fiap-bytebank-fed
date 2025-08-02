@@ -2,4 +2,14 @@
 
 .input_group {
   color: v.$grey_font;
+  transition: ease-out 0.2s;
+}
+
+.error {
+  > label {
+    color: v.$red_highlight !important;
+  }
+  > input {
+    border-color: v.$red_highlight !important;
+  }
 }

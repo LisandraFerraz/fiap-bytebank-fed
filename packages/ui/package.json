@@ -18,7 +18,8 @@
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "eslint": "^9.31.0"
+    "eslint": "^9.31.0",
+    "react-imask": "^7.6.1"
   },
   "dependencies": {
     "react": "^19.1.0",

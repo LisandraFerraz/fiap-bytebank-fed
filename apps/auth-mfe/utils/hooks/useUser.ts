@@ -1,4 +1,4 @@
-import { LoginBody, NewAccoutnBody, SignupUserBody } from "../classes/login";
+import { LoginBody, NewAccountBody, SignupUserBody } from "../classes/login";
 import { UserData } from "../interfaces/user";
 import { apiFetch } from "@bytebank/utils";
 
@@ -13,15 +13,15 @@ export const UseUser = () => {
 
   const registerUser = async (signupBody: SignupUserBody) => {
     return await apiFetch({
-      url: `${process.env.BYTEBANK_API_URL}/user/register`,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/user/register`,
       method: "POST",
       body: signupBody,
     });
   };
 
-  const registerAccount = async (accountBody: NewAccoutnBody) => {
+  const registerAccount = async (accountBody: NewAccountBody) => {
     return await apiFetch({
-      url: `${process.env.BYTEBANK_API_URL}/account/register`,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/account/register`,
       method: "POST",
       body: accountBody,
     });

@@ -7,7 +7,7 @@
   width: 200px;
   height: 40px;
 
-  &:hover {
+  &:not([disabled]):hover {
     opacity: 80%;
   }
 
@@ -17,6 +17,8 @@
 
   &:disabled {
     cursor: not-allowed;
+    color: rgb(v.$grey_font, 60%);
+    background-color: v.$sogrey_faded;
   }
 }
 

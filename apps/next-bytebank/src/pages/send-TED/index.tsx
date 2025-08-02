@@ -6,9 +6,12 @@ import { ITed, TransacationTypes } from "../../utils/interfaces/transaction";
 import { FormatDate } from "../../utils/functions/format-date";
 import { useTed } from "../../utils/hooks/useTed";
 import { BtnClasses } from "../../utils/types";
+import { UserDataStore } from "../../stores/user-data-store";
+import { hasEmptyValues } from "@bytebank/utils";
 
 export default function SendTED() {
   const { sendTed } = useTed();
+  const { account } = UserDataStore((state) => state.data);
 
   const [tedBody, setTedBody] = useState<ITed>({
     descricao: "",
@@ -42,6 +45,7 @@ export default function SendTED() {
   return (
     <div className={styles.transaction_form}>
       <h2>Tranferência Bancária</h2>
+      <h5>Saldo disponível: R$ {account?.saldo}</h5>
       <div className={styles.row}>
         <InputText
           value={tedBody.valor}
@@ -96,6 +100,7 @@ export default function SendTED() {
 
       <div className={styles.end_row}>
         <Button
+          disabled={hasEmptyValues(tedBody)}
           btnClass={BtnClasses.CONFIRM}
           text="Confirmar"
           click={handleSendTED}

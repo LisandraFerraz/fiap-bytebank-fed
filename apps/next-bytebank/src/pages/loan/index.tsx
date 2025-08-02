@@ -13,6 +13,7 @@ import { UseLoans } from "../../utils/hooks/useLoans";
 import { TabsList } from "@components/tabs-list/tabs-list";
 import { UserDataStore } from "../../stores/user-data-store";
 import { BtnClasses } from "../../utils/types";
+import { isValueEmpty } from "@bytebank/utils";
 
 export default function Loan() {
   const { user } = UserDataStore((state) => state.data);
@@ -40,11 +41,11 @@ export default function Loan() {
   const tabsContent = [
     {
       title: "A pagar",
-      component: <LoanList data={loanPending} />,
+      component: loanPending && <LoanList data={loanPending} />,
     },
     {
       title: "Histórico",
-      component: <LoanList data={paidLoan} />,
+      component: paidLoan && <LoanList data={paidLoan} />,
     },
   ];
 
@@ -77,11 +78,12 @@ export default function Loan() {
                 onChange={(e) => setValor(e.target.value)}
                 label="valor"
                 placeHolder="Valor"
-                type="number"
+                type="string"
               />
             </div>
             <div className={form_styles.end_row}>
               <Button
+                disabled={isValueEmpty(valor)}
                 click={handleRequestLoan}
                 btnClass={BtnClasses.CONFIRM}
                 text="Confirmar"

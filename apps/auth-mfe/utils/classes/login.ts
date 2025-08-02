@@ -11,7 +11,7 @@ export class SignupUserBody {
   password: string = "";
 }
 
-export class NewAccoutnBody {
+export class NewAccountBody {
   numeroConta: number = 0;
   digito: number = 0;
   usuarioCpf: string = "";

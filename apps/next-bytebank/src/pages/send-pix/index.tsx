@@ -4,20 +4,18 @@ import { useState } from "react";
 import { IPix, TransacationTypes } from "../../utils/interfaces/transaction";
 import { UsePix } from "../../utils/hooks/usePix";
 import { FormatDate } from "../../utils/functions/format-date";
-import { IResumoConta } from "../../utils/interfaces/user";
 import { BtnClasses } from "../../utils/types";
-
-interface IAccountProps {
-  data: IResumoConta;
-}
+import { hasEmptyValues } from "@bytebank/utils";
+import { UserDataStore } from "../../stores/user-data-store";
 
 export default function SendPix() {
   const { sendPix } = UsePix();
+  const { account } = UserDataStore((state) => state.data);
 
   const [pixBody, setPixBody] = useState<IPix>({
     chavePix: "",
     descricao: "",
-    valor: 100,
+    valor: null,
     data: "",
     tipo: TransacationTypes.PIX,
     destinatario: "",
@@ -40,7 +38,8 @@ export default function SendPix() {
   return (
     <div className={styles.transaction_layout}>
       <h2>Registrar PIX</h2>
-      {/* <h5>Saldo disponível: R$ {data?.saldo}</h5> */}
+
+      <h5>Saldo disponível: R$ {account?.saldo}</h5>
 
       <div className={styles.transaction_form}>
         <div className={styles.row}>
@@ -49,7 +48,7 @@ export default function SendPix() {
             onChange={(e) => updateBody("valor", e.target.value)}
             id="valor"
             label="Valor"
-            placeHolder="Valor"
+            placeHolder="R$ 0"
             type="number"
           />
           <InputText
@@ -75,13 +74,14 @@ export default function SendPix() {
             value={pixBody.descricao}
             id="mensagem"
             onChange={(e) => updateBody("descricao", e.target.value)}
-            label="Mensagem"
+            label="Mensagem (opcional)"
             placeHolder="Mensagem"
           />
         </div>
 
         <div className={styles.end_row}>
           <Button
+            disabled={hasEmptyValues(pixBody)}
             text="Confirmar"
             btnClass={BtnClasses.CONFIRM}
             click={handleSendPix}

@@ -19,7 +19,7 @@ export default async function handleListTrans(
 
     if (access_token && usuarioCpf) {
       const conta = await apiFetch<IConta>({
-        url: `${process.env.BYTEBANK_API_URL}/account?usuarioCpf=${usuarioCpf}&itemsPage=${itemsPage}&currentPage=${currentPage}`,
+        url: `${process.env.NEXT_PUBLIC_API_URL}/account?usuarioCpf=${usuarioCpf}&itemsPage=${itemsPage}&currentPage=${currentPage}`,
         method: "GET",
         access_token: `${access_token.replace("Bearer ", "")}`,
       });

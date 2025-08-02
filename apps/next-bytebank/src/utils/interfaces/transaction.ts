@@ -24,7 +24,7 @@ export interface ITed {
 }
 export interface IPix {
   data?: string;
-  valor: number;
+  valor: number | null;
   descricao: string;
   chavePix: string;
   destinatario: string; // nome

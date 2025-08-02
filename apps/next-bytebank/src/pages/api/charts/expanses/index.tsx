@@ -18,7 +18,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   }
 
   const conta = await apiFetch<IConta>({
-    url: `${process.env.BYTEBANK_API_URL}/account?usuarioCpf=${usuarioCpf}`,
+    url: `${process.env.NEXT_PUBLIC_API_URL}/account?usuarioCpf=${usuarioCpf}`,
     method: "GET",
     access_token: `${access_token}`,
   });

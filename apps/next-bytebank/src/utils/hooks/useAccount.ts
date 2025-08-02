@@ -10,14 +10,14 @@ export const UseAccount = () => {
 
   const getAccountDetails = async (
     filters: TransactionFilter,
-    pagination: Partial<Pagination>
+    pagination?: Partial<Pagination>
   ): Promise<{
     accountDetails: IUserConta;
     transacoes: any;
     successMsg: string;
   }> => {
     return await apiFetch({
-      url: `${endpoints.transacoes}?usuarioCpf=${user?.cpf}&transType=${filters.transType}&transPeriod=${filters.transPeriod}&itemsPage=${pagination.itemsPage}&currentPage=${pagination.currentPage}`,
+      url: `${endpoints.transacoes}?usuarioCpf=${user?.cpf}&transType=${filters.transType}&transPeriod=${filters.transPeriod}&itemsPage=${pagination?.itemsPage}&currentPage=${pagination?.currentPage}`,
       method: "GET",
       access_token: `${access_token}`,
     });

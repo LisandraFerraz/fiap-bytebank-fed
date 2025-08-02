@@ -1,5 +1,10 @@
 @use "@bytebank/ui/variables" as v;
 
+.transaction_layout {
+  h2 {
+    margin-bottom: 15px;
+  }
+}
 .transaction_form {
   display: flex;
   flex-direction: column;
@@ -14,6 +19,7 @@
   }
 
   .end_row {
+    margin-top: 15px;
     text-align: end;
   }
 }

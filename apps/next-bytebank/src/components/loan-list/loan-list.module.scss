@@ -1,3 +1,5 @@
+@use "@bytebank/ui/variables" as v;
+
 .pending_list {
   .list_item {
     margin: 5px 0;
@@ -14,4 +16,11 @@
       }
     }
   }
+}
+
+.empty_msg {
+  width: 100%;
+  text-align: center;
+  color: v.$grey_font;
+  opacity: 80%;
 }
