@@ -1,33 +1,19 @@
 import styles from "./loan-list.module.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IEmprestimo } from "../../utils/interfaces/transaction";
 import { LoanModal } from "@components/loan-modal/loan-modal";
-import { UseLoans } from "../../utils/hooks/useLoans";
 import { FormatDateSlash } from "../../utils/functions/format-date";
 import { BtnClasses } from "../../utils/types";
 import { Button } from "@bytebank/ui";
 
 interface ILoan {
   data: IEmprestimo[];
+  updateDate: () => void;
 }
 
-export const LoanList = ({ data }: ILoan) => {
-  const { payLoan } = UseLoans();
-
+export const LoanList = ({ data, updateDate }: ILoan) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [modalData, setModalData] = useState<IEmprestimo>();
-
-  const handlePayLoan = (item: IEmprestimo) => {
-    const dateToday = new Date();
-
-    const body: IEmprestimo = {
-      ...item,
-      data: String(dateToday),
-      valorPago: 50,
-    };
-
-    payLoan(body);
-  };
 
   const handleModal = (data: IEmprestimo) => {
     setIsOpen(true);
@@ -35,6 +21,7 @@ export const LoanList = ({ data }: ILoan) => {
   };
 
   const handleCloseModal = () => {
+    updateDate();
     setIsOpen(false);
   };
 

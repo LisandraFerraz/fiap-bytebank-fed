@@ -14,40 +14,35 @@ import { TabsList } from "@components/tabs-list/tabs-list";
 import { UserDataStore } from "../../stores/user-data-store";
 import { BtnClasses } from "../../utils/types";
 import { isValueEmpty } from "@bytebank/utils";
+import { useLoader } from "../../utils/hooks/context-hooks/useLoader";
 
 export default function Loan() {
   const { user } = UserDataStore((state) => state.data);
+  const { showLoader, hideLoader } = useLoader();
 
   const { requestLoan, getOrderedLoan } = UseLoans();
 
   const [valor, setValor] = useState<number>(0);
   const [loanPending, setLoanPending] = useState<IEmprestimo[]>([]);
   const [paidLoan, setPaidLoan] = useState<IEmprestimo[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    handleListOrderedLoans();
+  }, [user?.cpf]);
+
+  const handleListOrderedLoans = () => {
     if (user?.cpf) {
+      showLoader();
       getOrderedLoan(user?.cpf).then((res) => {
         const { loanPending, paidLoan } = res;
 
         setLoanPending(loanPending);
         setPaidLoan(paidLoan);
 
-        setIsLoading(false);
+        hideLoader();
       });
     }
-  }, [user?.cpf]);
-
-  const tabsContent = [
-    {
-      title: "A pagar",
-      component: loanPending && <LoanList data={loanPending} />,
-    },
-    {
-      title: "Histórico",
-      component: paidLoan && <LoanList data={paidLoan} />,
-    },
-  ];
+  };
 
   const handleRequestLoan = () => {
     const valorParsed = Number(valor);
@@ -65,38 +60,49 @@ export default function Loan() {
     }
   };
 
+  const tabsContent = [
+    {
+      title: "A pagar",
+      component: loanPending && (
+        <LoanList data={loanPending} updateDate={handleListOrderedLoans} />
+      ),
+    },
+    {
+      title: "Histórico",
+      component: paidLoan && (
+        <LoanList data={paidLoan} updateDate={handleListOrderedLoans} />
+      ),
+    },
+  ];
+
   return (
     <>
-      {!isLoading && (
+      <div className={form_styles.transaction_form}>
+        <h2>Empréstimos</h2>
+        <div className={form_styles.row}>
+          <InputText
+            value={valor}
+            id="valor"
+            onChange={(e) => setValor(e.target.value)}
+            label="valor"
+            placeHolder="Valor"
+            type="string"
+          />
+        </div>
+        <div className={form_styles.end_row}>
+          <Button
+            disabled={isValueEmpty(valor)}
+            click={handleRequestLoan}
+            btnClass={BtnClasses.CONFIRM}
+            text="Confirmar"
+          />
+        </div>
+      </div>
+      {loanPending.length || paidLoan.length ? (
+        <TabsList data={tabsContent} />
+      ) : (
         <>
-          <div className={form_styles.transaction_form}>
-            <h2>Empréstimos</h2>
-            <div className={form_styles.row}>
-              <InputText
-                value={valor}
-                id="valor"
-                onChange={(e) => setValor(e.target.value)}
-                label="valor"
-                placeHolder="Valor"
-                type="string"
-              />
-            </div>
-            <div className={form_styles.end_row}>
-              <Button
-                disabled={isValueEmpty(valor)}
-                click={handleRequestLoan}
-                btnClass={BtnClasses.CONFIRM}
-                text="Confirmar"
-              />
-            </div>
-          </div>
-          {loanPending.length || paidLoan.length ? (
-            <TabsList data={tabsContent} />
-          ) : (
-            <>
-              <h3>Sem registros.</h3>
-            </>
-          )}
+          <h3>Sem registros.</h3>
         </>
       )}
     </>

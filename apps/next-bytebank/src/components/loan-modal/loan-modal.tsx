@@ -5,6 +5,7 @@ import { Button, InputText } from "@bytebank/ui";
 import { useState } from "react";
 import { UseLoans } from "../../utils/hooks/useLoans";
 import { BtnClasses } from "../../utils/types";
+import { useLoader } from "../../utils/hooks/context-hooks/useLoader";
 
 export const LoanModal = ({
   data,
@@ -14,6 +15,7 @@ export const LoanModal = ({
   onClose: () => void;
 }) => {
   const { payLoan } = UseLoans();
+  const { showLoader, hideLoader } = useLoader();
 
   const [payLoanBody, setPayLoanBody] = useState<IEmprestimo>({
     ...data,
@@ -31,19 +33,17 @@ export const LoanModal = ({
   };
 
   const handlePayLoan = () => {
-    payLoan(payLoanBody);
+    showLoader();
+    payLoan(payLoanBody).then(() => hideLoader());
   };
 
   return (
     <>
       <ModalLayout onClose={onClose} modalTitle="Registrar pagamento">
-        <p className={styles.loan_amount}>
-          Valor do empréstimo: R$ {data?.valorDevido}
-        </p>
-        <div className={styles.form_layout}>
+        <p className={styles.loan_amount}></p>
+        <form action={handlePayLoan} className={styles.form_layout}>
           <div className={styles.row}>
             <InputText
-              value={payLoanBody.valorPago}
               id="valor"
               label="Valor a pagar"
               placeHolder="Valor a pagar"
@@ -54,11 +54,11 @@ export const LoanModal = ({
           <div className={styles.form_bottom}>
             <Button
               text="Confirmar"
-              click={handlePayLoan}
+              type="submit"
               btnClass={BtnClasses.CONFIRM}
             />
           </div>
-        </div>
+        </form>
       </ModalLayout>
     </>
   );
