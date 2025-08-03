@@ -9,7 +9,7 @@ export function UseLoans() {
   const requestLoan = async (body: IEmprestimo) => {
     return await apiFetch({
       url: `${process.env.NEXT_PUBLIC_API_URL}/account/${account?._id}/loan/new`,
-      method: "POST",
+      method: "PUT",
       body: body,
       access_token: `${access_token}`,
     });
@@ -26,7 +26,7 @@ export function UseLoans() {
 
   const deleteLoan = async (id: string) => {
     return await apiFetch({
-      method: "DELETE",
+      method: "PATCH",
       url: `${process.env.NEXT_PUBLIC_API_URL}/account/${account?._id}/loan/delete?loanId=${id}`,
       access_token: `${access_token}`,
     });

@@ -5,54 +5,64 @@ import { useEffect, useState } from "react";
 import {
   IDeposito,
   TransacationTypes,
+  TransPeriod,
 } from "../../utils/interfaces/transaction";
-import { Button, InputText } from "@bytebank/ui";
+import { Button, InputText, Title } from "@bytebank/ui";
 import { FormatDate } from "../../utils/functions/format-date";
 import { UseDeposit } from "../../utils/hooks/useDeposit";
 import { UseAccount } from "../../utils/hooks/useAccount";
 import { BtnClasses } from "../../utils/types";
-import { isValueEmpty } from "@bytebank/utils";
+import { currencyBlocks } from "@bytebank/utils";
 import { Pagination } from "../../utils/interfaces/pagination";
 import { Transaction } from "@components/transaction/transaction";
-import { Paginator } from "@components/paginator/paginator";
+import { isAmountInvalid } from "../../utils/functions/form-validate/valor-validate";
+import { useLoader } from "../../utils/hooks/context-hooks/useLoader";
+import { useToast } from "../../utils/hooks/context-hooks/useToast";
+import { errorResponse } from "../../utils/functions/api-res-treatment";
 
 export default function AddMoney() {
   const { createDeposit } = UseDeposit();
   const { getAccountDetails } = UseAccount();
 
+  const { showLoader, hideLoader } = useLoader();
+  const { showToast } = useToast();
+
   const [depositList, setDepositList] = useState<IDeposito[]>([]);
-  const [depositoBody, setDepositoBody] = useState<IDeposito>({
-    valor: 0,
-    tipo: TransacationTypes.DEPOSITO,
-    data: "",
-  });
+
   const [pagination, setPagination] = useState<Pagination>(new Pagination());
+  const [valor, setValor] = useState<number>(0);
 
   useEffect(() => {
     listDepositos(1);
   }, []);
 
-  const updateBody = (value: number) => {
-    if (!isNaN(value) && value > 0) {
+  const handleAddMoney = () => {
+    showLoader();
+    if (!isAmountInvalid(valor)) {
       let dateToday = new Date();
 
-      setDepositoBody({
-        ...depositoBody,
-        valor: value,
+      const body: IDeposito = {
+        valor: valor,
+        tipo: TransacationTypes.DEPOSITO,
         data: FormatDate(dateToday),
-      });
-    }
-  };
+      };
+      createDeposit(body).then((res: any) => {
+        if (errorResponse(res)) return showToast("error", res?.message);
 
-  const handleAddMoney = () => {
-    createDeposit(depositoBody);
+        hideLoader();
+        listDepositos(1);
+      });
+    } else {
+      hideLoader();
+      showToast("error", "Ocorreu um erro. Tente novamente.");
+    }
   };
 
   const listDepositos = async (page: number) => {
     const data = await getAccountDetails(
       {
         transType: TransacationTypes.DEPOSITO,
-        transPeriod: "",
+        transPeriod: TransPeriod.RECENT,
       },
       { ...pagination, currentPage: page }
     );
@@ -66,39 +76,38 @@ export default function AddMoney() {
       <div className={styles.transaction_form}>
         <h2>Realizar Depósito</h2>
 
-        <div className={styles.row}>
-          <InputText
-            value={depositoBody.valor}
-            onChange={(e) => updateBody(Number(e.target.value))}
-            id="valor"
-            label="Valor"
-            placeHolder="Valor"
-            type="number"
-          />
-        </div>
+        <form action={handleAddMoney}>
+          <div className={styles.row}>
+            <InputText
+              onChange={(e) => setValor(Number(e.target.value))}
+              id="valor"
+              label="valor"
+              mask="R$ currency"
+              placeHolder="R$ 0.000"
+              blocks={currencyBlocks}
+              type="text"
+              errorMsg={valor && isAmountInvalid(valor) ? "- inválido" : ""}
+            />
+          </div>
 
-        <div className={styles.end_row}>
-          <Button
-            disabled={isValueEmpty(depositoBody.valor)}
-            btnClass={BtnClasses.CONFIRM}
-            text="Confirmar"
-            click={handleAddMoney}
-          />
-        </div>
+          <div className={styles.end_row}>
+            <Button
+              disabled={isAmountInvalid(valor)}
+              btnClass={BtnClasses.CONFIRM}
+              text="Confirmar"
+              type="submit"
+            />
+          </div>
+        </form>
       </div>
-      {depositList && (
+      {depositList.length && (
         <div className={styles.transacions_list}>
+          <Title size="base" text="Depósitoss recentes" />
           {depositList.map((dp: IDeposito, index) => (
             <div key={index} className={styles.list_items}>
               <Transaction dataT={dp} key={index} />
             </div>
           ))}
-          <Paginator
-            currentPage={pagination.currentPage}
-            itemsPage={pagination.itemsPage}
-            totalItems={pagination.itemsPage}
-            nextPage={(page) => listDepositos(page)}
-          />
         </div>
       )}
     </>

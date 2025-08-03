@@ -27,19 +27,16 @@ export default function Dashboard() {
 
   const [accountDetails, setAccountDetails] = useState<IUsuario>();
   const [trasactionList, setTransactionList] = useState<ITransacoes[]>();
-  // const [isLoading, setIsLoading] = useState(true);
   const [pagination, setPagination] = useState<Pagination>(new Pagination());
 
-  const [filters, setFilters] = useState<TransactionFilter>(
-    new TransactionFilter()
-  );
+  const [filters, setFilters] = useState<TransactionFilter>({});
 
   useEffect(() => {
+    showLoader();
     listTransactions(1);
   }, [user?.cpf, filters]);
 
   const listTransactions = (page: number) => {
-    showLoader();
     if (user?.cpf) {
       getAccountDetails(filters, { ...pagination, currentPage: page }).then(
         (data: any) => {
@@ -48,7 +45,6 @@ export default function Dashboard() {
           setAccountDetails(accountDetails);
           setTransactionList(transacoes.transactions);
           setPagination(transacoes.paginacao);
-
           hideLoader();
         }
       );
@@ -77,19 +73,17 @@ export default function Dashboard() {
             <TransactionList data={trasactionList}>
               <div className={styles.filter_group}>
                 {(filters.transPeriod || filters.transType) && (
-                  <button onClick={() => setFilters(new TransactionFilter())}>
+                  <button onClick={() => setFilters({})}>
                     <Icon iconKey="close" />
                   </button>
                 )}
                 <Select
-                  value={filters.transType}
                   data={transTypesMap}
                   defaultSelected="Tipo"
                   onChange={(e) => handleUpdateFilter(e, "transType")}
                 />
 
                 <Select
-                  value={filters.transPeriod}
                   data={transPeriodMaps}
                   defaultSelected="Período"
                   onChange={(e) => handleUpdateFilter(e, "transPeriod")}

@@ -33,6 +33,7 @@ export interface IPix {
 }
 
 export interface IEmprestimo {
+  id?: string;
   valor: number; // valor do empréstimo
   data: string;
   aberto?: boolean;
@@ -50,7 +51,7 @@ export interface IDeposito {
 }
 
 // === FILTROS ===
-export class TransactionFilter {
-  transType: TransacationTypes | string = "";
-  transPeriod: TransPeriod | string = "";
+export interface TransactionFilter {
+  transType?: TransacationTypes;
+  transPeriod?: TransPeriod;
 }

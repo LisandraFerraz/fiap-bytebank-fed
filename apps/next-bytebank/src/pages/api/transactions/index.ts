@@ -19,7 +19,7 @@ export default async function handleListTrans(
 
     if (access_token && usuarioCpf) {
       const conta = await apiFetch<IConta>({
-        url: `${process.env.NEXT_PUBLIC_API_URL}/account?usuarioCpf=${usuarioCpf}&itemsPage=${itemsPage}&currentPage=${currentPage}`,
+        url: `${process.env.NEXT_PUBLIC_API_URL}/account?usuarioCpf=${usuarioCpf}`,
         method: "GET",
         access_token: `${access_token.replace("Bearer ", "")}`,
       });
@@ -28,7 +28,7 @@ export default async function handleListTrans(
 
       const { transacoesList, ...parsedConta } = conta;
 
-      const { paginacao, transacoes } = transacoesList;
+      const { transacoes } = transacoesList;
       transactions = transacoes;
 
       const accountDetails = {
@@ -41,28 +41,28 @@ export default async function handleListTrans(
           case TransacationTypes.DEPOSITO:
             transactions =
               transacoesList.transacoes.filter(
-                (tf) => tf.tipo === TransacationTypes.DEPOSITO
+                (tf) => tf.tipo === `${TransacationTypes.DEPOSITO}`
               ) || [];
             break;
 
           case TransacationTypes.EMPRESTIMO:
             transactions =
               transacoesList.transacoes.filter(
-                (tf) => tf.tipo === TransacationTypes.EMPRESTIMO
+                (tf) => tf.tipo === `${TransacationTypes.EMPRESTIMO}`
               ) || [];
             break;
 
           case TransacationTypes.PIX:
             transactions =
               transacoesList.transacoes.filter(
-                (tf) => tf.tipo === TransacationTypes.PIX
+                (tf) => tf.tipo === `${TransacationTypes.PIX}`
               ) || [];
             break;
 
           case TransacationTypes.TED:
             transactions =
               transacoesList.transacoes.filter(
-                (tf) => tf.tipo === TransacationTypes.TED
+                (tf) => tf.tipo === `${TransacationTypes.TED}`
               ) || [];
             break;
         }
@@ -80,6 +80,22 @@ export default async function handleListTrans(
             break;
         }
       }
+
+      // Paginacao
+      const totalItems = transactions.length;
+      const items = Number(itemsPage) || Number(totalItems);
+      const page = Number(currentPage) || 1;
+
+      const inicio = items * (page - 1);
+      const fim = inicio + items;
+
+      transactions = transactions.slice(inicio, fim);
+
+      const paginacao = {
+        totalItems: totalItems,
+        itemsPage: items,
+        currentPage: page,
+      };
 
       return res.status(200).json({
         accountDetails,

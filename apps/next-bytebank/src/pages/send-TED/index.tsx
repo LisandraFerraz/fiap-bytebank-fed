@@ -1,17 +1,32 @@
 "use client";
 import styles from "./../../styles/page-form.module.scss";
 import { Button, InputText } from "@bytebank/ui";
-import { useState } from "react";
-import { ITed, TransacationTypes } from "../../utils/interfaces/transaction";
+import { useEffect, useState } from "react";
+import {
+  ITed,
+  TransacationTypes,
+  TransPeriod,
+} from "../../utils/interfaces/transaction";
 import { FormatDate } from "../../utils/functions/format-date";
 import { useTed } from "../../utils/hooks/useTed";
 import { BtnClasses } from "../../utils/types";
-import { UserDataStore } from "../../stores/user-data-store";
-import { hasEmptyValues } from "@bytebank/utils";
+import { currencyBlocks } from "@bytebank/utils";
+import { isTedFormInvalid } from "../../utils/functions/form-validate/ted-form";
+import { isAmountInvalid } from "../../utils/functions/form-validate/valor-validate";
+import { Title } from "@components/title-text/title-text";
+import { useLoader } from "../../utils/hooks/context-hooks/useLoader";
+import { useToast } from "../../utils/hooks/context-hooks/useToast";
+import { UseAccount } from "../../utils/hooks/useAccount";
+import { Pagination } from "../../utils/interfaces/pagination";
+import { Transaction } from "@components/transaction/transaction";
+import { errorResponse } from "../../utils/functions/api-res-treatment";
 
 export default function SendTED() {
   const { sendTed } = useTed();
-  const { account } = UserDataStore((state) => state.data);
+  const { getAccountDetails } = UseAccount();
+
+  const { showLoader, hideLoader } = useLoader();
+  const { showToast } = useToast();
 
   const [tedBody, setTedBody] = useState<ITed>({
     descricao: "",
@@ -23,6 +38,12 @@ export default function SendTED() {
     cpfDestinatario: "",
     tipo: TransacationTypes.TED,
   });
+  const [tedList, setTedList] = useState<ITed[]>([]);
+  const [pagination, setPagination] = useState<Pagination>(new Pagination());
+
+  useEffect(() => {
+    listTed(1);
+  }, []);
 
   const updateBody = (key: string, value: string | number) => {
     let dateToday = new Date();
@@ -39,73 +60,140 @@ export default function SendTED() {
   };
 
   const handleSendTED = () => {
-    sendTed(tedBody);
+    showLoader();
+    if (!isTedFormInvalid(tedBody)) {
+      sendTed(tedBody).then((res: any) => {
+        if (errorResponse(res)) return showToast("error", res?.message);
+
+        listTed(1);
+      });
+      hideLoader();
+    }
+  };
+
+  const listTed = async (page: number) => {
+    showLoader();
+    const data = await getAccountDetails(
+      {
+        transType: TransacationTypes.TED,
+        transPeriod: TransPeriod.RECENT,
+      },
+      { ...pagination, currentPage: page }
+    );
+    // if (errorResponse(data)) return showToast("error", data?.message);
+
+    const { transacoes } = data;
+    setTedList(transacoes.transactions);
+    hideLoader();
   };
 
   return (
-    <div className={styles.transaction_form}>
-      <h2>Tranferência Bancária</h2>
-      <h5>Saldo disponível: R$ {account?.saldo}</h5>
-      <div className={styles.row}>
-        <InputText
-          value={tedBody.valor}
-          onChange={(e) => updateBody("valor", e.target.value)}
-          id="valor"
-          label="Valor"
-          placeHolder="Valor"
-          type="number"
-        />
-        <InputText
-          value={tedBody.cpfDestinatario}
-          id="cpfDestinatario"
-          onChange={(e) => updateBody("cpfDestinatario", e.target.value)}
-          label="CPF Destinatário"
-          placeHolder="CPF Destinatário"
-        />
+    <>
+      <div className={styles.transaction_form}>
+        <Title text="Tranferência Bancária" size="lg"></Title>
+        <form action={handleSendTED}>
+          <div className={styles.row}>
+            <InputText
+              onChange={(e) => updateBody("valor", e.target.value)}
+              id="valor"
+              label="Valor"
+              placeHolder="R$ 0.000"
+              type="text"
+              mask="R$ currency"
+              blocks={currencyBlocks}
+              errorMsg={
+                tedBody.valor && isAmountInvalid(tedBody.valor)
+                  ? "- inválido"
+                  : ""
+              }
+            />
+            <InputText
+              id="cpfDestinatario"
+              onChange={(e) => updateBody("cpfDestinatario", e.target.value)}
+              label="CPF Destinatário"
+              placeHolder="000.000.000-00"
+              mask="000.000.000-00"
+              errorMsg={
+                tedBody.cpfDestinatario &&
+                String(tedBody.cpfDestinatario).length < 11
+                  ? "- inválido"
+                  : ""
+              }
+            />
+          </div>
+
+          <div className={styles.row}>
+            <InputText
+              id="numConta"
+              onChange={(e) => updateBody("numConta", e.target.value)}
+              label="Conta"
+              placeHolder="000000"
+              mask="000000"
+              type="text"
+              errorMsg={
+                tedBody.numConta && String(tedBody.numConta).length < 6
+                  ? "- insira 6 dígitos"
+                  : ""
+              }
+            />
+            <InputText
+              id="agencia"
+              onChange={(e) => updateBody("agencia", e.target.value)}
+              label="Agência"
+              placeHolder="000"
+              mask="000"
+              type="text"
+              errorMsg={
+                tedBody.agencia && tedBody.agencia.length < 3
+                  ? "- insira 3 dígitos"
+                  : ""
+              }
+            />
+            <InputText
+              id="digito"
+              onChange={(e) => updateBody("digito", e.target.value)}
+              label="Digito"
+              type="text"
+              placeHolder="0"
+              mask="0"
+            />
+          </div>
+
+          <div className={styles.row}>
+            <InputText
+              onChange={(e) => updateBody("descricao", e.target.value)}
+              id="descricao"
+              label="descrição (opcional)"
+              placeHolder="Descrição..."
+              errorMsg={
+                tedBody.descricao && String(tedBody.descricao).length < 3
+                  ? "- insira mais de 3 dígitos"
+                  : ""
+              }
+            />
+          </div>
+
+          <div className={styles.end_row}>
+            <Button
+              disabled={isTedFormInvalid(tedBody)}
+              btnClass={BtnClasses.CONFIRM}
+              text="Confirmar"
+              type="submit"
+            />
+          </div>
+        </form>
       </div>
 
-      <div className={styles.row}>
-        <InputText
-          value={tedBody.numConta}
-          id="numConta"
-          onChange={(e) => updateBody("numConta", e.target.value)}
-          label="Conta"
-          placeHolder="Número da conta"
-        />
-        <InputText
-          value={tedBody.agencia}
-          id="agencia"
-          onChange={(e) => updateBody("agencia", e.target.value)}
-          label="Agência"
-          placeHolder="Agência"
-        />
-        <InputText
-          value={tedBody.digito}
-          id="digito"
-          onChange={(e) => updateBody("digito", e.target.value)}
-          label="Digito"
-          placeHolder="Digito da agência"
-        />
-      </div>
-
-      <div className={styles.row}>
-        <InputText
-          value={tedBody.descricao}
-          onChange={(e) => updateBody("descricao", e.target.value)}
-          id="descricao"
-          label="Mensagem"
-          placeHolder="Mensagem"
-        />
-      </div>
-
-      <div className={styles.end_row}>
-        <Button
-          disabled={hasEmptyValues(tedBody)}
-          btnClass={BtnClasses.CONFIRM}
-          text="Confirmar"
-          click={handleSendTED}
-        />
-      </div>
-    </div>
+      {tedList.length && (
+        <div className={styles.transacions_list}>
+          <Title size="base" text="Transações TED recentes" />
+          {tedList.map((dp: ITed, index) => (
+            <div key={index} className={styles.list_items}>
+              <Transaction dataT={dp} key={index} />
+            </div>
+          ))}
+        </div>
+      )}
+    </>
   );
 }

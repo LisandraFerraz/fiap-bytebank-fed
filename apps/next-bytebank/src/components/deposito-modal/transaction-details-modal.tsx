@@ -24,10 +24,18 @@ export const TransactionDetailsModal = ({
 
   const checkFormType = (type: TransacationTypes) => {
     const getComponent: { [key: string]: ReactNode } = {
-      [TransacationTypes.DEPOSITO]: <DepositForm data={modalData} />,
-      [TransacationTypes.EMPRESTIMO]: <EmprestimoForm data={modalData} />,
-      [TransacationTypes.TED]: <TedForm data={modalData} />,
-      [TransacationTypes.PIX]: <PixForm data={modalData} />,
+      [TransacationTypes.DEPOSITO]: (
+        <DepositForm closeModal={onClose} data={modalData} />
+      ),
+      [TransacationTypes.EMPRESTIMO]: (
+        <EmprestimoForm closeModal={onClose} data={modalData} />
+      ),
+      [TransacationTypes.TED]: (
+        <TedForm closeModal={onClose} data={modalData} />
+      ),
+      [TransacationTypes.PIX]: (
+        <PixForm closeModal={onClose} data={modalData} />
+      ),
     };
 
     return getComponent[type];

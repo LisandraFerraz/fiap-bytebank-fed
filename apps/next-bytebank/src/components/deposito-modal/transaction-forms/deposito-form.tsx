@@ -3,22 +3,32 @@ import { useState } from "react";
 import { UseDeposit } from "../../../utils/hooks/useDeposit";
 import { Button, InputText } from "@bytebank/ui";
 import { BtnClasses } from "../../../utils/types";
+import { errorResponse } from "../../../utils/functions/api-res-treatment";
+import { useToast } from "../../../utils/hooks/context-hooks/useToast";
+import { currencyBlocks } from "@bytebank/utils";
+import { isAmountInvalid } from "../../../utils/functions/form-validate/valor-validate";
 
-export const DepositForm = ({ data }: { data: any }) => {
+export const DepositForm = ({
+  data,
+  closeModal,
+}: {
+  data: any;
+  closeModal: () => void;
+}) => {
   const { deleteDeposit, updateDeposit } = UseDeposit();
+  const { showToast } = useToast();
 
-  const [newValor, setNewValor] = useState<number>(data?.valor);
+  const [newValor, setNewValor] = useState<number>(0);
 
-  const handleChangeValues = (value: string | number) => {
-    const parsed = Number(value);
-
-    if (!isNaN(parsed) && parsed > 0) {
-      setNewValor(parsed);
-    }
+  const handleChangeValues = (value: number) => {
+    setNewValor(value);
   };
 
   const handleDeleteData = () => {
-    deleteDeposit(data?.id);
+    deleteDeposit(data?.id).then((res: any) => {
+      if (errorResponse(res)) return showToast("error", res?.message);
+      closeModal();
+    });
   };
 
   const handleUpdateLoan = () => {
@@ -26,7 +36,10 @@ export const DepositForm = ({ data }: { data: any }) => {
       ...data,
       valor: newValor,
     };
-    updateDeposit(body);
+    updateDeposit(body).then((res: any) => {
+      if (errorResponse(res)) return showToast("error", res?.message);
+      closeModal();
+    });
   };
 
   return (
@@ -41,11 +54,15 @@ export const DepositForm = ({ data }: { data: any }) => {
           <div>
             <InputText
               id="valorDeposito"
-              label="Valor do depósito"
-              placeHolder="Valor do depósito"
-              value={newValor}
-              onChange={(e) => handleChangeValues(e.target.value)}
-              type="number"
+              onChange={(e) => handleChangeValues(Number(e.target.value))}
+              label="valor"
+              mask="R$ currency"
+              placeHolder="R$ 0.000"
+              blocks={currencyBlocks}
+              type="text"
+              errorMsg={
+                newValor && isAmountInvalid(newValor) ? "- inválido" : ""
+              }
             />
           </div>
         </div>
@@ -59,6 +76,7 @@ export const DepositForm = ({ data }: { data: any }) => {
             btnClass={BtnClasses.CONFIRM}
             text="Salvar Alterações"
             click={handleUpdateLoan}
+            disabled={isAmountInvalid(newValor)}
           />
         </div>
       </div>

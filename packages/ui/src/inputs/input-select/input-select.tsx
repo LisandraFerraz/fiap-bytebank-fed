@@ -8,7 +8,7 @@ export const Select = ({
   defaultSelected,
   onChange,
 }: {
-  value: string | "";
+  value?: string | "";
   data: any;
   label?: string;
   defaultSelected: string;

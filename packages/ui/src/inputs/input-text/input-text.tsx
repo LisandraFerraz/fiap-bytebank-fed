@@ -36,6 +36,8 @@ export const InputText = ({
           mask={mask}
           blocks={blocks}
           unmask={true}
+          overwrite={true}
+          autofix={true}
           className={sharedStyles.input}
           placeholder={placeHolder}
           onAccept={(value: string | number) =>

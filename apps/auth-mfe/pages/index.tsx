@@ -7,7 +7,8 @@ import { UseUser } from "@/utils/hooks/useUser";
 import { BtnClasses } from "@/utils/btn-types.enum";
 import Link from "next/link";
 import AuthTemplate from "./components/auth-template/auth-template";
-import { isAuthFormInvalid, isEmailValid } from "@bytebank/utils";
+import { isEmailValid } from "@bytebank/utils";
+import { isAuthFormInvalid } from "@/utils/functions/auth-validate";
 
 export default function Login() {
   const { loginUser } = UseUser();

@@ -7,7 +7,8 @@ import { NewAccountBody, SignupUserBody } from "@/utils/classes/login";
 import { BtnClasses } from "@/utils/btn-types.enum";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { isAuthFormInvalid, isEmailValid } from "@bytebank/utils";
+import { currencyBlocks, isEmailValid } from "@bytebank/utils";
+import { isAuthFormInvalid } from "@/utils/functions/auth-validate";
 
 export default function Signup() {
   const router = useRouter();
@@ -55,18 +56,6 @@ export default function Signup() {
     }
   };
 
-  const currencyBlocks = {
-    currency: {
-      mask: Number,
-      thousandsSeparator: ".",
-      radix: ".",
-      mapToRadix: ["."],
-      scale: 1,
-      normalizeZeros: true,
-      padFractionalZeros: true,
-    },
-  };
-
   return (
     <AuthTemplate title="Criar conta">
       <form action={handleSignup} className={styles.form}>
@@ -79,7 +68,7 @@ export default function Signup() {
             type="text"
             errorMsg={
               userBody.nome && userBody.nome.length < 3
-                ? "(deve conter mais de 6 caracteres)"
+                ? "- deve conter mais de 6 caracteres"
                 : ""
             }
             onChange={(e) => updateUserBody("nome", e.target.value)}
@@ -94,7 +83,7 @@ export default function Signup() {
             type="text"
             errorMsg={
               userBody.dataNascimento && userBody.dataNascimento.length < 8
-                ? "(incompleto)"
+                ? "- incompleto"
                 : ""
             }
             onChange={(e) => updateUserBody("dataNascimento", e.target.value)}
@@ -106,7 +95,7 @@ export default function Signup() {
             mask="000.000.000-00"
             type="text"
             errorMsg={
-              userBody.cpf && userBody.cpf.length < 11 ? "(inválido)" : ""
+              userBody.cpf && userBody.cpf.length < 11 ? "- inválido" : ""
             }
             onChange={(e) => updateUserBody("cpf", e.target.value)}
           />
@@ -119,7 +108,7 @@ export default function Signup() {
             type="email"
             errorMsg={
               userBody.email && !isEmailValid(userBody.email)
-                ? "(inválido)"
+                ? "- inválido"
                 : ""
             }
             onChange={(e) => updateUserBody("email", e.target.value)}
@@ -129,7 +118,7 @@ export default function Signup() {
             label="Senha"
             errorMsg={
               userBody.password && userBody.password.length < 6
-                ? "(deve conter 6 dígitos)"
+                ? "- deve conter 6 dígitos"
                 : ""
             }
             placeHolder="******"
@@ -148,21 +137,21 @@ export default function Signup() {
             type="text"
             errorMsg={
               newAccountBody.agencia && newAccountBody.agencia.length < 3
-                ? "(insira 3 dígitos)"
+                ? "- insira 3 dígitos"
                 : ""
             }
             onChange={(e) => updateNovaConta("agencia", e.target.value)}
           />
           <InputText
             id="numeroConta"
-            label="Número da conta"
+            label="Conta"
             placeHolder="Registre uma conta bancária"
             mask="000000"
             type="text"
             errorMsg={
               newAccountBody.numeroConta &&
               String(newAccountBody.numeroConta).length < 6
-                ? "(insira 3 dígitos)"
+                ? "- insira 3 dígitos"
                 : ""
             }
             onChange={(e) => updateNovaConta("numeroConta", e.target.value)}

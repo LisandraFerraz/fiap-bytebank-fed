@@ -4,9 +4,21 @@ import { useState } from "react";
 import { IPix } from "../../../utils/interfaces/transaction";
 import { UsePix } from "../../../utils/hooks/usePix";
 import { BtnClasses } from "../../../utils/types";
+import { errorResponse } from "../../../utils/functions/api-res-treatment";
+import { useToast } from "../../../utils/hooks/context-hooks/useToast";
+import { currencyBlocks } from "@bytebank/utils";
+import { isAmountInvalid } from "../../../utils/functions/form-validate/valor-validate";
+import { isPixFormInvalid } from "../../../utils/functions/form-validate/pix-form";
 
-export const PixForm = ({ data }: { data: any }) => {
+export const PixForm = ({
+  data,
+  closeModal,
+}: {
+  data: any;
+  closeModal: () => void;
+}) => {
   const { deletePix, updatePix } = UsePix();
+  const { showToast } = useToast();
 
   const [updatedPix, setUpdatedPix] = useState<any>({
     ...data,
@@ -14,7 +26,7 @@ export const PixForm = ({ data }: { data: any }) => {
     chavePix: data?.chavePix,
     destinatario: data?.destinatario,
     valor: data?.valor,
-    id: data?.id,
+    id: data?._id,
   });
 
   const handleChangeValues = (key: keyof IPix, value: string | number) => {
@@ -24,11 +36,17 @@ export const PixForm = ({ data }: { data: any }) => {
     });
   };
   const handleDeleteTed = () => {
-    deletePix(data?.id);
+    deletePix(data?._id).then((res: any) => {
+      if (errorResponse(res)) return showToast("error", res?.message);
+      closeModal();
+    });
   };
 
   const handleUpdateTed = () => {
-    updatePix(updatedPix);
+    updatePix(updatedPix).then((res: any) => {
+      if (errorResponse(res)) return showToast("error", res?.message);
+      closeModal();
+    });
   };
 
   return (
@@ -44,12 +62,18 @@ export const PixForm = ({ data }: { data: any }) => {
             <InputText
               id="valor"
               label="Valor do PIX"
-              placeHolder="Valor do PIX"
-              value={updatedPix.valor}
               onChange={(e) =>
                 handleChangeValues("valor", Number(e.target.value))
               }
-              type="number"
+              mask="R$ currency"
+              blocks={currencyBlocks}
+              placeHolder="R$ 0.000"
+              type="text"
+              errorMsg={
+                updatedPix.valor && isAmountInvalid(updatedPix.valor)
+                  ? "- inválido"
+                  : ""
+              }
             />
             <p className={styles.original_legenda}>
               Valor original: R$ {data?.valor}
@@ -61,28 +85,41 @@ export const PixForm = ({ data }: { data: any }) => {
             id="chavePix"
             label="Chave pix"
             placeHolder="Chave pix"
-            value={updatedPix.chavePix}
             onChange={(e) => handleChangeValues("chavePix", e.target.value)}
             type="text"
+            errorMsg={
+              updatedPix.chavePix && String(updatedPix.chavePix).length < 6
+                ? "- insira mais de 6 dígitos"
+                : ""
+            }
           />
           <InputText
             id="destinatario"
             label="Destinatário"
             placeHolder="Destinatário"
-            value={updatedPix.destinatario}
             onChange={(e) => handleChangeValues("destinatario", e.target.value)}
             type="text"
+            errorMsg={
+              updatedPix.destinatario &&
+              String(updatedPix.destinatario).length < 3
+                ? "- insira mais de 3 dígitos"
+                : ""
+            }
           />
         </div>
         <div className={styles.row}>
           <div>
             <InputText
               id="descricao"
-              label="Mensagem"
+              label="Descrição"
               placeHolder="Mensagem"
-              value={updatedPix.descricao}
               onChange={(e) => handleChangeValues("descricao", e.target.value)}
               type="text"
+              errorMsg={
+                updatedPix.descricao && String(updatedPix.descricao).length < 3
+                  ? "- insira mais de 3 dígitos"
+                  : ""
+              }
             />
           </div>
         </div>
@@ -95,7 +132,9 @@ export const PixForm = ({ data }: { data: any }) => {
           <Button
             btnClass={BtnClasses.CONFIRM}
             text="Salvar Alterações"
+            type="submit"
             click={handleUpdateTed}
+            disabled={isPixFormInvalid(updatedPix)}
           />
         </div>
       </div>

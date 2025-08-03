@@ -4,27 +4,39 @@ import { useState } from "react";
 import { IEmprestimo } from "../../../utils/interfaces/transaction";
 import { Button, InputText } from "@bytebank/ui";
 import { BtnClasses } from "../../../utils/types";
+import { isAmountInvalid } from "../../../utils/functions/form-validate/valor-validate";
+import { currencyBlocks } from "@bytebank/utils";
+import { useToast } from "../../../utils/hooks/context-hooks/useToast";
+import { errorResponse } from "../../../utils/functions/api-res-treatment";
 
-export const EmprestimoForm = ({ data }: { data: any }) => {
+export const EmprestimoForm = ({
+  data,
+  closeModal,
+}: {
+  data: any;
+  closeModal: () => void;
+}) => {
   const { deleteLoan, updateLoan } = UseLoans();
+  const { showToast } = useToast();
 
   const [updatedLoan, setUpdatedLoan] = useState<any>({
-    valorPago: data?.valorPago,
-    valor: data?.valor,
+    valor: 0,
+    valorPago: 0,
   });
 
   const handleChangeValues = (key: keyof IEmprestimo, e: any) => {
-    let parsed = Number(e);
-    if (parsed >= 1) {
-      setUpdatedLoan({
-        ...updatedLoan,
-        [key]: Number(e),
-      });
-    }
+    setUpdatedLoan({
+      ...updatedLoan,
+      [key]: Number(e),
+    });
   };
 
   const handleDeleteData = () => {
-    deleteLoan(data?.id);
+    console.log(data);
+    deleteLoan(data?.id).then((res: any) => {
+      if (errorResponse(res)) return showToast("error", res?.message);
+      closeModal();
+    });
   };
 
   const handlepayLoan = () => {
@@ -36,16 +48,16 @@ export const EmprestimoForm = ({ data }: { data: any }) => {
       ...updatedLoan,
     };
 
-    const response = updateLoan(body);
+    updateLoan(body).then((res: any) => {
+      if (errorResponse(res)) return showToast("error", res?.message);
+      closeModal();
+    });
   };
 
   return (
     <>
       <div className={styles.transaction_form}>
         <div className={styles.payment_info}>
-          <p className={styles.pending_payment}>
-            Valor a pagar: <b>R$ {updatedLoan.valor - updatedLoan.valorPago}</b>
-          </p>
           <p className={styles.original_legenda}>
             Valor original: <b>R$ {data?.valor}</b>
           </p>
@@ -54,32 +66,34 @@ export const EmprestimoForm = ({ data }: { data: any }) => {
           </p>
         </div>
         <div className={styles.row}>
-          <div>
-            <InputText
-              id="valorEmprestimo"
-              label="Valor do empréstimo"
-              placeHolder="Valor do empréstimo"
-              value={updatedLoan.valor}
-              onChange={(e) => handleChangeValues("valor", e.target.value)}
-              type="number"
-            />
-            <p className={styles.original_legenda}>
-              Valor original: R$ {data?.valor}
-            </p>
-          </div>
-          <div>
-            <InputText
-              id="valorPago"
-              label="Valor pago"
-              placeHolder="Valor pago"
-              value={updatedLoan.valorPago}
-              onChange={(e) => handleChangeValues("valorPago", e.target.value)}
-              type="number"
-            />
-            <p className={styles.original_legenda}>
-              Valor original: R$ {data?.valorPago}
-            </p>
-          </div>
+          <InputText
+            id="valorEmprestimo"
+            label="Valor do empréstimo"
+            onChange={(e) => handleChangeValues("valor", e.target.value)}
+            mask="R$ currency"
+            blocks={currencyBlocks}
+            placeHolder="R$ 0.000"
+            type="text"
+            errorMsg={
+              updatedLoan.valor && isAmountInvalid(updatedLoan.valor)
+                ? "- inválido"
+                : ""
+            }
+          />
+          <InputText
+            id="valorPago"
+            label="Valor pago"
+            onChange={(e) => handleChangeValues("valorPago", e.target.value)}
+            type="text"
+            blocks={currencyBlocks}
+            mask="R$ currency"
+            placeHolder="R$ 0.000"
+            errorMsg={
+              updatedLoan.valorPago && isAmountInvalid(updatedLoan.valorPago)
+                ? "- inválido"
+                : ""
+            }
+          />
         </div>
         <div className={styles.end_row}>
           <Button
@@ -91,6 +105,10 @@ export const EmprestimoForm = ({ data }: { data: any }) => {
             btnClass={BtnClasses.CONFIRM}
             text="Salvar Alterações"
             click={handlepayLoan}
+            disabled={
+              isAmountInvalid(updatedLoan.valor) &&
+              isAmountInvalid(updatedLoan.valorPago)
+            }
           />
         </div>
       </div>

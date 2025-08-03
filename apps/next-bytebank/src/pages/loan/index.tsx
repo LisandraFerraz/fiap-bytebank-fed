@@ -13,12 +13,17 @@ import { UseLoans } from "../../utils/hooks/useLoans";
 import { TabsList } from "@components/tabs-list/tabs-list";
 import { UserDataStore } from "../../stores/user-data-store";
 import { BtnClasses } from "../../utils/types";
-import { isValueEmpty } from "@bytebank/utils";
+import { currencyBlocks, isValueEmpty } from "@bytebank/utils";
 import { useLoader } from "../../utils/hooks/context-hooks/useLoader";
+import { isAmountInvalid } from "../../utils/functions/form-validate/valor-validate";
+import { errorResponse } from "../../utils/functions/api-res-treatment";
+import { useToast } from "../../utils/hooks/context-hooks/useToast";
+import { v4 as generateUID } from "uuid";
 
 export default function Loan() {
   const { user } = UserDataStore((state) => state.data);
   const { showLoader, hideLoader } = useLoader();
+  const { showToast } = useToast();
 
   const { requestLoan, getOrderedLoan } = UseLoans();
 
@@ -48,6 +53,7 @@ export default function Loan() {
     const valorParsed = Number(valor);
     const dateToday = new Date();
 
+    showLoader();
     if (!isNaN(valorParsed) && valorParsed > 0) {
       const loanBody: IEmprestimo = {
         tipo: TransacationTypes.EMPRESTIMO,
@@ -55,8 +61,14 @@ export default function Loan() {
         data: FormatDate(dateToday),
         valorPago: 0,
         valorDevido: 0,
+        id: generateUID(),
       };
-      requestLoan(loanBody);
+      requestLoan(loanBody).then((res: any) => {
+        if (errorResponse(res)) return showToast("error", res?.message);
+
+        handleListOrderedLoans();
+      });
+      hideLoader();
     }
   };
 
@@ -79,24 +91,28 @@ export default function Loan() {
     <>
       <div className={form_styles.transaction_form}>
         <h2>Empréstimos</h2>
-        <div className={form_styles.row}>
-          <InputText
-            value={valor}
-            id="valor"
-            onChange={(e) => setValor(e.target.value)}
-            label="valor"
-            placeHolder="Valor"
-            type="string"
-          />
-        </div>
-        <div className={form_styles.end_row}>
-          <Button
-            disabled={isValueEmpty(valor)}
-            click={handleRequestLoan}
-            btnClass={BtnClasses.CONFIRM}
-            text="Confirmar"
-          />
-        </div>
+        <form action={handleRequestLoan}>
+          <div className={form_styles.row}>
+            <InputText
+              id="valor"
+              onChange={(e) => setValor(e.target.value)}
+              label="valor"
+              mask="R$ currency"
+              blocks={currencyBlocks}
+              placeHolder="R$ 0.000"
+              type="text"
+              errorMsg={valor && isAmountInvalid(valor) ? "- inválido" : ""}
+            />
+          </div>
+          <div className={form_styles.end_row}>
+            <Button
+              disabled={isAmountInvalid(valor)}
+              type="submit"
+              btnClass={BtnClasses.CONFIRM}
+              text="Confirmar"
+            />
+          </div>
+        </form>
       </div>
       {loanPending.length || paidLoan.length ? (
         <TabsList data={tabsContent} />
