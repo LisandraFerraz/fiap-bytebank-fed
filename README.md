@@ -34,7 +34,7 @@ O BFF do projeto está em `/apps/next-bytebank/src/pages/api` e para funcionar c
 NEXT_PUBLIC_API_URL=http://localhost:3003
 ```
 O `.env` pode ficar na raíz do projeto, entretanto é recomendado fortemente que cada projeto em `/apps` tenha o próprio environment file.
-## Rodando localmente
+### Rodando localmente
 Passos:
 
 1. Comandos para instalação e inicialização:
