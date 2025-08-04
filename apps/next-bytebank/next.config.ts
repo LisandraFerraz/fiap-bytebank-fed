@@ -26,9 +26,13 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/auth/:path*",
-
-        // destination: `http://auth-mfe:3002/auth/:path*`,
-        destination: `http://localhost:3002/auth/:path*`,
+        destination: `http://auth-mfe:3002/auth/:path*`,
+        // destination: `http://localhost:3002/auth/:path*`,
+      },
+      // api
+      {
+        source: "/nest/:path*",
+        destination: `${process.env.NEXT_PUBLIC_API_URL}/:path*`,
       },
     ];
   },

@@ -8,7 +8,7 @@ export const UseDeposit = () => {
   // Adiciona dinheiro na propria conta
   const createDeposit = async (body: IDeposito) => {
     return apiFetch({
-      url: `${process.env.NEXT_PUBLIC_API_URL}/account/${account?._id}/deposit/new`,
+      url: `/nest/account/${account?._id}/deposit/new`,
       access_token: `${access_token}`,
       method: "PUT",
       body: body,
@@ -17,7 +17,7 @@ export const UseDeposit = () => {
 
   const updateDeposit = async (body: IDeposito) => {
     return apiFetch({
-      url: `${process.env.NEXT_PUBLIC_API_URL}/account/${account?._id}/deposit`,
+      url: `/nest/account/${account?._id}/deposit`,
       method: "PATCH",
       access_token: `${access_token}`,
       body: body,
@@ -26,7 +26,7 @@ export const UseDeposit = () => {
 
   const deleteDeposit = async (id: string) => {
     return apiFetch({
-      url: `${process.env.NEXT_PUBLIC_API_URL}/account/${account?._id}/deposit/delete?depositId=${id}`,
+      url: `/nest/account/${account?._id}/deposit/delete?depositId=${id}`,
       method: "PATCH",
       access_token: `${access_token}`,
     });

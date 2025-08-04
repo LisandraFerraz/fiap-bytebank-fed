@@ -13,7 +13,7 @@ export const UseUser = () => {
 
   const registerUser = async (signupBody: SignupUserBody) => {
     return await apiFetch({
-      url: `${process.env.NEXT_PUBLIC_API_URL}/user/register`,
+      url: `/nest/user/register`,
       method: "POST",
       body: signupBody,
     });
@@ -21,7 +21,7 @@ export const UseUser = () => {
 
   const registerAccount = async (accountBody: NewAccountBody) => {
     return await apiFetch({
-      url: `${process.env.NEXT_PUBLIC_API_URL}/account/register`,
+      url: `/nest/account/register`,
       method: "POST",
       body: accountBody,
     });

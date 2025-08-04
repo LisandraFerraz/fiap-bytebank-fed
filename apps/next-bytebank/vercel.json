@@ -7,6 +7,11 @@
     {
       "source": "/auth/:path*",
       "destination": "https://fiap-bytebank-auth.vercel.app/auth/:path*"
+    },
+
+    {
+      "source": "/nest/:path*",
+      "destination": "https://nest-bytebank-api.vercel.app/:path*"
     }
   ]
 }

@@ -8,7 +8,7 @@ export function UseLoans() {
 
   const requestLoan = async (body: IEmprestimo) => {
     return await apiFetch({
-      url: `${process.env.NEXT_PUBLIC_API_URL}/account/${account?._id}/loan/new`,
+      url: `/nest/account/${account?._id}/loan/new`,
       method: "PUT",
       body: body,
       access_token: `${access_token}`,
@@ -17,7 +17,7 @@ export function UseLoans() {
 
   const payLoan = async (body: IEmprestimo) => {
     return await apiFetch({
-      url: `${process.env.NEXT_PUBLIC_API_URL}/account/${account?._id}/loan`,
+      url: `/nest/account/${account?._id}/loan`,
       method: "PATCH",
       body: body,
       access_token: `${access_token}`,
@@ -27,14 +27,14 @@ export function UseLoans() {
   const deleteLoan = async (id: string) => {
     return await apiFetch({
       method: "PATCH",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/account/${account?._id}/loan/delete?loanId=${id}`,
+      url: `/nest/account/${account?._id}/loan/delete?loanId=${id}`,
       access_token: `${access_token}`,
     });
   };
 
   const updateLoan = async (body: IEmprestimo) => {
     return await apiFetch({
-      url: `${process.env.NEXT_PUBLIC_API_URL}/account/${account?._id}/loan/edit`,
+      url: `/nest/account/${account?._id}/loan/edit`,
       method: "PATCH",
       access_token: `${access_token}`,
       body: body,
