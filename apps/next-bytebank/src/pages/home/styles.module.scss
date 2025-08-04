@@ -20,13 +20,14 @@
     > button {
       display: none;
     }
-
-    @media screen and (max-width: 1024px) {
-      flex-direction: column;
-
+    @media screen and (max-width: 920px) {
       > button {
         display: block;
       }
+    }
+
+    @media screen and (max-width: 1024px) {
+      flex-direction: column;
 
       h1 {
         margin-top: 50px;
