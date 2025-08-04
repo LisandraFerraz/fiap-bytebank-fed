@@ -7,6 +7,7 @@ import { errorResponse } from "../../../utils/functions/api-res-treatment";
 import { useToast } from "../../../utils/hooks/context-hooks/useToast";
 import { currencyBlocks } from "@bytebank/utils";
 import { isAmountInvalid } from "../../../utils/functions/form-validate/valor-validate";
+import { useLoader } from "../../../utils/hooks/context-hooks/useLoader";
 
 export const DepositForm = ({
   data,
@@ -16,6 +17,7 @@ export const DepositForm = ({
   closeModal: () => void;
 }) => {
   const { deleteDeposit, updateDeposit } = UseDeposit();
+  const { showLoader, hideLoader } = useLoader();
   const { showToast } = useToast();
 
   const [newValor, setNewValor] = useState<number>(0);
@@ -25,18 +27,22 @@ export const DepositForm = ({
   };
 
   const handleDeleteData = () => {
-    deleteDeposit(data?.id).then((res: any) => {
+    showLoader();
+    deleteDeposit(data?.transId).then((res: any) => {
+      hideLoader();
       if (errorResponse(res)) return showToast("error", res?.message);
       closeModal();
     });
   };
 
   const handleUpdateLoan = () => {
+    showLoader();
     let body = {
       ...data,
       valor: newValor,
     };
     updateDeposit(body).then((res: any) => {
+      closeModal();
       if (errorResponse(res)) return showToast("error", res?.message);
       closeModal();
     });

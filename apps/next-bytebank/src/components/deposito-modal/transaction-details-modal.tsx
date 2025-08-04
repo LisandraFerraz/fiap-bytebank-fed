@@ -46,7 +46,7 @@ export const TransactionDetailsModal = ({
     let file = e.target.files;
     if (file?.length) {
       if (file[0].size > 2097152) {
-        return showToast("error", "Arquivo não pode ser maior que 2MB.");
+        showToast("error", "Arquivo não pode ser maior que 2MB.");
       }
       const base64 = await toBase64(file[0] as File);
       setModalData({

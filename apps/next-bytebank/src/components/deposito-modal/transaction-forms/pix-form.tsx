@@ -9,6 +9,7 @@ import { useToast } from "../../../utils/hooks/context-hooks/useToast";
 import { currencyBlocks } from "@bytebank/utils";
 import { isAmountInvalid } from "../../../utils/functions/form-validate/valor-validate";
 import { isPixFormInvalid } from "../../../utils/functions/form-validate/pix-form";
+import { useLoader } from "../../../utils/hooks/context-hooks/useLoader";
 
 export const PixForm = ({
   data,
@@ -19,6 +20,7 @@ export const PixForm = ({
 }) => {
   const { deletePix, updatePix } = UsePix();
   const { showToast } = useToast();
+  const { showLoader, hideLoader } = useLoader();
 
   const [updatedPix, setUpdatedPix] = useState<any>({
     ...data,
@@ -26,7 +28,7 @@ export const PixForm = ({
     chavePix: data?.chavePix,
     destinatario: data?.destinatario,
     valor: data?.valor,
-    id: data?._id,
+    id: data?.id,
   });
 
   const handleChangeValues = (key: keyof IPix, value: string | number) => {
@@ -35,15 +37,19 @@ export const PixForm = ({
       [key]: value,
     });
   };
-  const handleDeleteTed = () => {
-    deletePix(data?._id).then((res: any) => {
+  const handleDeletePIX = () => {
+    showLoader();
+    deletePix(data?.transId).then((res: any) => {
+      hideLoader();
       if (errorResponse(res)) return showToast("error", res?.message);
       closeModal();
     });
   };
 
-  const handleUpdateTed = () => {
+  const handleUpdatePIX = () => {
+    showLoader();
     updatePix(updatedPix).then((res: any) => {
+      hideLoader();
       if (errorResponse(res)) return showToast("error", res?.message);
       closeModal();
     });
@@ -127,13 +133,13 @@ export const PixForm = ({
           <Button
             btnClass={BtnClasses.DELETE}
             text="Excluir"
-            click={handleDeleteTed}
+            click={handleDeletePIX}
           />
           <Button
             btnClass={BtnClasses.CONFIRM}
             text="Salvar Alterações"
             type="submit"
-            click={handleUpdateTed}
+            click={handleUpdatePIX}
             disabled={isPixFormInvalid(updatedPix)}
           />
         </div>

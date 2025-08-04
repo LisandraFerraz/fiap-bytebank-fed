@@ -20,6 +20,7 @@ import { UseAccount } from "../../utils/hooks/useAccount";
 import { Pagination } from "../../utils/interfaces/pagination";
 import { Transaction } from "@components/transaction/transaction";
 import { errorResponse } from "../../utils/functions/api-res-treatment";
+import { v4 as generateUID } from "uuid";
 
 export default function SendTED() {
   const { sendTed } = useTed();
@@ -50,12 +51,12 @@ export default function SendTED() {
 
     setTedBody({
       ...tedBody,
-
       [key]:
         key === "valor" || key === "numConta" || key === "digito"
           ? Number(value)
           : value,
       data: FormatDate(dateToday),
+      transId: generateUID(),
     });
   };
 
@@ -63,11 +64,11 @@ export default function SendTED() {
     showLoader();
     if (!isTedFormInvalid(tedBody)) {
       sendTed(tedBody).then((res: any) => {
+        hideLoader();
         if (errorResponse(res)) return showToast("error", res?.message);
 
         listTed(1);
       });
-      hideLoader();
     }
   };
 
@@ -189,7 +190,11 @@ export default function SendTED() {
           <Title size="base" text="Transações TED recentes" />
           {tedList.map((dp: ITed, index) => (
             <div key={index} className={styles.list_items}>
-              <Transaction dataT={dp} key={index} />
+              <Transaction
+                refresh={() => listTed(pagination.currentPage)}
+                dataT={dp}
+                key={index}
+              />
             </div>
           ))}
         </div>

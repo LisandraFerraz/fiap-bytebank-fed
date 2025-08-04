@@ -70,7 +70,10 @@ export default function Dashboard() {
 
           <Shortcuts />
           {trasactionList && (
-            <TransactionList data={trasactionList}>
+            <TransactionList
+              updateData={() => listTransactions(pagination.currentPage)}
+              data={trasactionList}
+            >
               <div className={styles.filter_group}>
                 {(filters.transPeriod || filters.transType) && (
                   <button onClick={() => setFilters({})}>

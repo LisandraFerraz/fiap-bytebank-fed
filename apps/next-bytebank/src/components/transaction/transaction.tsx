@@ -9,7 +9,13 @@ import { handleDownloadFile } from "./utils/download-file";
 import { Button, Icon } from "@bytebank/ui";
 import { BtnClasses } from "../../utils/types";
 
-export const Transaction = ({ dataT }: { dataT: any }) => {
+export const Transaction = ({
+  dataT,
+  refresh,
+}: {
+  dataT: any;
+  refresh?: any;
+}) => {
   const isExpanse = dataT?.tipo !== TransacationTypes.DEPOSITO;
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -22,6 +28,7 @@ export const Transaction = ({ dataT }: { dataT: any }) => {
 
   const handleCloseModal = () => {
     setIsOpen(false);
+    if (refresh) refresh();
   };
 
   const formatDate = (date: any): string => {

@@ -8,6 +8,7 @@ import { isAmountInvalid } from "../../../utils/functions/form-validate/valor-va
 import { currencyBlocks } from "@bytebank/utils";
 import { useToast } from "../../../utils/hooks/context-hooks/useToast";
 import { errorResponse } from "../../../utils/functions/api-res-treatment";
+import { useLoader } from "../../../utils/hooks/context-hooks/useLoader";
 
 export const EmprestimoForm = ({
   data,
@@ -18,6 +19,7 @@ export const EmprestimoForm = ({
 }) => {
   const { deleteLoan, updateLoan } = UseLoans();
   const { showToast } = useToast();
+  const { showLoader, hideLoader } = useLoader();
 
   const [updatedLoan, setUpdatedLoan] = useState<any>({
     valor: 0,
@@ -32,14 +34,16 @@ export const EmprestimoForm = ({
   };
 
   const handleDeleteData = () => {
-    console.log(data);
-    deleteLoan(data?.id).then((res: any) => {
+    showLoader();
+    deleteLoan(data?.transId).then((res: any) => {
+      hideLoader();
       if (errorResponse(res)) return showToast("error", res?.message);
       closeModal();
     });
   };
 
   const handlepayLoan = () => {
+    showLoader();
     delete data.valorDevido;
     delete data.aberto;
 
@@ -49,6 +53,7 @@ export const EmprestimoForm = ({
     };
 
     updateLoan(body).then((res: any) => {
+      hideLoader();
       if (errorResponse(res)) return showToast("error", res?.message);
       closeModal();
     });

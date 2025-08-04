@@ -53,22 +53,22 @@ export default function Loan() {
     const valorParsed = Number(valor);
     const dateToday = new Date();
 
-    showLoader();
-    if (!isNaN(valorParsed) && valorParsed > 0) {
+    if (!isAmountInvalid(valor)) {
+      showLoader();
       const loanBody: IEmprestimo = {
         tipo: TransacationTypes.EMPRESTIMO,
         valor: valorParsed,
         data: FormatDate(dateToday),
         valorPago: 0,
         valorDevido: 0,
-        id: generateUID(),
+        transId: generateUID(),
       };
       requestLoan(loanBody).then((res: any) => {
-        if (errorResponse(res)) return showToast("error", res?.message);
+        hideLoader();
 
+        if (errorResponse(res)) return showToast("error", res?.message);
         handleListOrderedLoans();
       });
-      hideLoader();
     }
   };
 

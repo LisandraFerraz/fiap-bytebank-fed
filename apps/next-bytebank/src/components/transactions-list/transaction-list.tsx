@@ -8,9 +8,11 @@ import { useEffect, useState } from "react";
 export const TransactionList = ({
   data,
   children,
+  updateData,
 }: {
   data: any[];
   children: React.ReactNode;
+  updateData: any;
 }) => {
   const [transactions, setTransactions] = useState<any[]>(data);
 
@@ -26,7 +28,7 @@ export const TransactionList = ({
           {children}
           {transactions?.map((item: any, index: any) => (
             <div key={index} className={styles.list_items}>
-              <Transaction dataT={item} key={index} />
+              <Transaction refresh={updateData} dataT={item} key={index} />
             </div>
           ))}
         </>

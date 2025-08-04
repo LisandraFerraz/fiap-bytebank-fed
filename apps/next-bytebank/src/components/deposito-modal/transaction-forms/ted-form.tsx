@@ -9,6 +9,7 @@ import { useToast } from "../../../utils/hooks/context-hooks/useToast";
 import { currencyBlocks } from "@bytebank/utils";
 import { isAmountInvalid } from "../../../utils/functions/form-validate/valor-validate";
 import { isTedFormInvalid } from "../../../utils/functions/form-validate/ted-form";
+import { useLoader } from "../../../utils/hooks/context-hooks/useLoader";
 
 export const TedForm = ({
   data,
@@ -19,6 +20,7 @@ export const TedForm = ({
 }) => {
   const { deleteTed, updateTed } = useTed();
   const { showToast } = useToast();
+  const { showLoader, hideLoader } = useLoader();
 
   const [updatedTed, setUpdatedTed] = useState<any>({
     ...data,
@@ -38,7 +40,9 @@ export const TedForm = ({
   };
 
   const handleDeleteTed = () => {
-    deleteTed(data?._id).then((res: any) => {
+    showLoader();
+    deleteTed(data?.transId).then((res: any) => {
+      hideLoader();
       if (errorResponse(res)) return showToast("error", res?.message);
       closeModal();
     });
@@ -46,9 +50,13 @@ export const TedForm = ({
 
   const handleUpdateTed = () => {
     if (!isTedFormInvalid(updateTed)) {
+      showLoader();
       updateTed({
         ...updatedTed,
-        cpfDestinatario: updatedTed.cpfDestinatario.replace(/[.-]/g, ""),
+      }).then((res: any) => {
+        hideLoader();
+        if (errorResponse(res)) return showToast("error", res?.message);
+        closeModal();
       });
     }
   };

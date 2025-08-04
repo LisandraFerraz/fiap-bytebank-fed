@@ -20,6 +20,7 @@ import { useToast } from "../../utils/hooks/context-hooks/useToast";
 import { useLoader } from "../../utils/hooks/context-hooks/useLoader";
 import { Title } from "@components/title-text/title-text";
 import { errorResponse } from "../../utils/functions/api-res-treatment";
+import { v4 as generateUID } from "uuid";
 
 export default function SendPix() {
   const { sendPix } = UsePix();
@@ -50,14 +51,17 @@ export default function SendPix() {
       ...pixBody,
       [key]: key === "valor" ? Number(value) : value,
       data: FormatDate(dateToday),
+      transId: generateUID(),
     });
   };
 
   const handleSendPix = () => {
     if (!isPixFormInvalid(pixBody)) {
+      showLoader();
       sendPix(pixBody).then((res: any) => {
-        if (errorResponse(res)) return showToast("error", res?.message);
+        hideLoader();
 
+        if (errorResponse(res)) return showToast("error", res?.message);
         listPix(1);
       });
     }
@@ -164,7 +168,11 @@ export default function SendPix() {
           <Title size="base" text="Transações PIX recentes" />
           {pixList.map((dp: IPix, index) => (
             <div key={index} className={styles.list_items}>
-              <Transaction dataT={dp} key={index} />
+              <Transaction
+                refresh={() => listPix(pagination.currentPage)}
+                dataT={dp}
+                key={index}
+              />
             </div>
           ))}
         </div>

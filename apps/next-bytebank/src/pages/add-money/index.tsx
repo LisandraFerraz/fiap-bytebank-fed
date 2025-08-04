@@ -19,6 +19,7 @@ import { isAmountInvalid } from "../../utils/functions/form-validate/valor-valid
 import { useLoader } from "../../utils/hooks/context-hooks/useLoader";
 import { useToast } from "../../utils/hooks/context-hooks/useToast";
 import { errorResponse } from "../../utils/functions/api-res-treatment";
+import { v4 as generateUID } from "uuid";
 
 export default function AddMoney() {
   const { createDeposit } = UseDeposit();
@@ -37,24 +38,23 @@ export default function AddMoney() {
   }, []);
 
   const handleAddMoney = () => {
-    showLoader();
     if (!isAmountInvalid(valor)) {
+      showLoader();
       let dateToday = new Date();
 
       const body: IDeposito = {
         valor: valor,
         tipo: TransacationTypes.DEPOSITO,
         data: FormatDate(dateToday),
+        transId: generateUID(),
       };
-      createDeposit(body).then((res: any) => {
-        if (errorResponse(res)) return showToast("error", res?.message);
 
+      createDeposit(body).then((res: any) => {
         hideLoader();
+
+        if (errorResponse(res)) return showToast("error", res?.message);
         listDepositos(1);
       });
-    } else {
-      hideLoader();
-      showToast("error", "Ocorreu um erro. Tente novamente.");
     }
   };
 
@@ -105,7 +105,11 @@ export default function AddMoney() {
           <Title size="base" text="Depósitoss recentes" />
           {depositList.map((dp: IDeposito, index) => (
             <div key={index} className={styles.list_items}>
-              <Transaction dataT={dp} key={index} />
+              <Transaction
+                refresh={() => listDepositos(pagination.currentPage)}
+                dataT={dp}
+                key={index}
+              />
             </div>
           ))}
         </div>
