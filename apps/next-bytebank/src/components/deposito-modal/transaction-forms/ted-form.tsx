@@ -144,7 +144,7 @@ export const TedForm = ({
         <div className={styles.row}>
           <InputText
             id="descricao"
-            label="descrição (opcional)"
+            label="descrição"
             placeHolder="Descrição..."
             onChange={(e) => handleChangeValues("descricao", e.target.value)}
             type="text"

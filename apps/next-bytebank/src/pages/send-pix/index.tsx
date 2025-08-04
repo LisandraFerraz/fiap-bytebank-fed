@@ -111,7 +111,7 @@ export default function SendPix() {
             <InputText
               id="chavePix"
               onChange={(e) => updateBody("chavePix", e.target.value)}
-              label="Chave PIX"
+              label="Chave PIX (opcional)"
               placeHolder="Chave PIX"
               errorMsg={
                 pixBody.chavePix && String(pixBody.chavePix).length < 6
@@ -123,7 +123,7 @@ export default function SendPix() {
 
           <div className={styles.row}>
             <InputText
-              id="destinatario"
+              id="destinatario (opcional)"
               onChange={(e) => updateBody("destinatario", e.target.value)}
               label="Destinatário"
               placeHolder="Destinatário"

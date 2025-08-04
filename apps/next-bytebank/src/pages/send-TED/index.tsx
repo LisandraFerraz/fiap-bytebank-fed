@@ -111,7 +111,7 @@ export default function SendTED() {
             <InputText
               id="cpfDestinatario"
               onChange={(e) => updateBody("cpfDestinatario", e.target.value)}
-              label="CPF Destinatário"
+              label="CPF Destinatário (opcional)"
               placeHolder="000.000.000-00"
               mask="000.000.000-00"
               errorMsg={
@@ -128,7 +128,7 @@ export default function SendTED() {
               id="numConta"
               onChange={(e) => updateBody("numConta", e.target.value)}
               label="Conta"
-              placeHolder="000000"
+              placeHolder="000000 (opcional)"
               mask="000000"
               type="text"
               errorMsg={
@@ -140,7 +140,7 @@ export default function SendTED() {
             <InputText
               id="agencia"
               onChange={(e) => updateBody("agencia", e.target.value)}
-              label="Agência"
+              label="Agência (opcional)"
               placeHolder="000"
               mask="000"
               type="text"
@@ -153,7 +153,7 @@ export default function SendTED() {
             <InputText
               id="digito"
               onChange={(e) => updateBody("digito", e.target.value)}
-              label="Digito"
+              label="Digito (opcional)"
               type="text"
               placeHolder="0"
               mask="0"
