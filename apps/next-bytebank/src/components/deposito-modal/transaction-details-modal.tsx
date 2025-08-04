@@ -21,11 +21,12 @@ export const TransactionDetailsModal = ({
   const { showToast } = useToast();
 
   const [modalData, setModalData] = useState<any>(data);
+  const [newFIle, setNewFile] = useState<boolean>(false);
 
   const checkFormType = (type: TransacationTypes) => {
     const getComponent: { [key: string]: ReactNode } = {
       [TransacationTypes.DEPOSITO]: (
-        <DepositForm closeModal={onClose} data={modalData} />
+        <DepositForm closeModal={onClose} data={modalData} newFile={newFIle} />
       ),
       [TransacationTypes.EMPRESTIMO]: (
         <EmprestimoForm closeModal={onClose} data={modalData} />
@@ -46,13 +47,17 @@ export const TransactionDetailsModal = ({
     let file = e.target.files;
     if (file?.length) {
       if (file[0].size > 2097152) {
-        showToast("error", "Arquivo não pode ser maior que 2MB.");
+        return showToast("error", "Arquivo não pode ser maior que 2MB.");
       }
-      const base64 = await toBase64(file[0] as File);
+      const base64 = await toBase64(file[0] as File).catch((error: any) => {
+        showToast("error", "Ocorreu um erro ao fazer upload do arquivo.");
+      });
       setModalData({
         ...data,
         file: base64 as string,
       });
+
+      setNewFile(true);
     }
   };
 
@@ -61,6 +66,7 @@ export const TransactionDetailsModal = ({
       ...data,
       file: null,
     });
+    setNewFile(false);
   };
 
   return (

@@ -12,9 +12,11 @@ import { useLoader } from "../../../utils/hooks/context-hooks/useLoader";
 export const DepositForm = ({
   data,
   closeModal,
+  newFile,
 }: {
   data: any;
   closeModal: () => void;
+  newFile: boolean;
 }) => {
   const { deleteDeposit, updateDeposit } = UseDeposit();
   const { showLoader, hideLoader } = useLoader();
@@ -82,7 +84,7 @@ export const DepositForm = ({
             btnClass={BtnClasses.CONFIRM}
             text="Salvar Alterações"
             click={handleUpdateLoan}
-            disabled={isAmountInvalid(newValor)}
+            disabled={isAmountInvalid(newValor) && !newFile}
           />
         </div>
       </div>
