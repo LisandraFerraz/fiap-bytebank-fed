@@ -163,7 +163,7 @@ export default function SendPix() {
         </div>
       </div>
 
-      {pixList.length && (
+      {pixList.length ? (
         <div className={styles.transacions_list}>
           <Title size="base" text="Transações PIX recentes" />
           {pixList.map((dp: IPix, index) => (
@@ -175,6 +175,11 @@ export default function SendPix() {
               />
             </div>
           ))}
+        </div>
+      ) : (
+        <div className={styles.no_data}>
+          <Title text="Seu extrato está vazio." size="md" />
+          <p>Faça alguma transfência para visualizar aqui.</p>
         </div>
       )}
     </>

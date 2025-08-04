@@ -23,3 +23,10 @@
     text-align: end;
   }
 }
+
+.no_data {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 80%;
+}

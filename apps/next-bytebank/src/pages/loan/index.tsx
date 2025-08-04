@@ -7,7 +7,7 @@ import {
   TransacationTypes,
 } from "../../utils/interfaces/transaction";
 import { useEffect, useState } from "react";
-import { Button, InputText } from "@bytebank/ui";
+import { Button, InputText, Title } from "@bytebank/ui";
 import { FormatDate } from "../../utils/functions/format-date";
 import { UseLoans } from "../../utils/hooks/useLoans";
 import { TabsList } from "@components/tabs-list/tabs-list";
@@ -117,9 +117,10 @@ export default function Loan() {
       {loanPending.length || paidLoan.length ? (
         <TabsList data={tabsContent} />
       ) : (
-        <>
-          <h3>Sem registros.</h3>
-        </>
+        <div className={form_styles.no_data}>
+          <Title text="Seu extrato está vazio." size="md" />
+          <p>Faça algum empréstimo para visualizar aqui.</p>
+        </div>
       )}
     </>
   );

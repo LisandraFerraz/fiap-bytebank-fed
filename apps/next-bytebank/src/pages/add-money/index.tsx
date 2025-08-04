@@ -100,7 +100,7 @@ export default function AddMoney() {
           </div>
         </form>
       </div>
-      {depositList.length && (
+      {depositList.length ? (
         <div className={styles.transacions_list}>
           <Title size="base" text="Depósitoss recentes" />
           {depositList.map((dp: IDeposito, index) => (
@@ -112,6 +112,11 @@ export default function AddMoney() {
               />
             </div>
           ))}
+        </div>
+      ) : (
+        <div className={styles.no_data}>
+          <Title text="Seu extrato está vazio." size="md" />
+          <p>Faça algum depósito para visualizar aqui.</p>
         </div>
       )}
     </>

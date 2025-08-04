@@ -10,7 +10,7 @@ import { ITransacoes } from "../../utils/interfaces/conta";
 import { TransactionFilter } from "../../utils/interfaces/transaction";
 import { Paginator } from "@components/paginator/paginator";
 import { Pagination } from "../../utils/interfaces/pagination";
-import { Icon, Select } from "@bytebank/ui";
+import { Icon, Select, Title } from "@bytebank/ui";
 import { ExpansesChart } from "@components/charts/expanses/expanses-chart";
 import { Balance } from "@components/balance/balance";
 import {
@@ -61,7 +61,7 @@ export default function Dashboard() {
 
   return (
     <>
-      {account && (
+      {account ? (
         <div className={styles.content}>
           <div className={styles.dashboard_widgets}>
             <Balance amount={account?.saldo} />
@@ -100,6 +100,11 @@ export default function Dashboard() {
             totalItems={pagination?.totalItems}
             nextPage={(page) => listTransactions(page)}
           />
+        </div>
+      ) : (
+        <div className={styles.no_data}>
+          <Title text="Seu extrato está vazio." size="md" />
+          <p>Faça alguma transfência para visualizar aqui.</p>
         </div>
       )}
     </>

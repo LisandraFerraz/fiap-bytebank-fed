@@ -185,7 +185,7 @@ export default function SendTED() {
         </form>
       </div>
 
-      {tedList.length && (
+      {tedList.length ? (
         <div className={styles.transacions_list}>
           <Title size="base" text="Transações TED recentes" />
           {tedList.map((dp: ITed, index) => (
@@ -197,6 +197,11 @@ export default function SendTED() {
               />
             </div>
           ))}
+        </div>
+      ) : (
+        <div className={styles.no_data}>
+          <Title text="Seu extrato está vazio." size="md" />
+          <p>Faça alguma transfência para visualizar aqui.</p>
         </div>
       )}
     </>
