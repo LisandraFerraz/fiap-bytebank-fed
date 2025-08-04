@@ -14,7 +14,12 @@ export async function apiFetch<T>({
 }: IApi): Promise<T> {
   const config = {
     method: method,
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    },
   };
   if (method !== "GET" && method !== "DELETE" && body) {
     Object.assign(config, { body: JSON.stringify(body) });
