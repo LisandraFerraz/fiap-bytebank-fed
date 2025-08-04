@@ -1,135 +1,88 @@
-# Turborepo starter
+# Registro de gastos financeiros - BYTEBANK 💸
 
-This Turborepo starter is maintained by the Turborepo core team.
+A proposta de projeto do Tech Challenge criado pela FIAP para turmas do pós-tech em Front-end Engineering é uma interface que permite os usuários gerenciarem suas transações financeiras.
 
-## Using this example
+As tecnologias utilizadas para o desenvolvimento foram:
+- Nextjs + Typescript
+- Turborepo (mono repositório)
+- Multi-zones (microfrontend)
+- Zustand (persistência de dados)
 
-Run the following command:
+O teste local foi feito utilizando Docker compose, conforme uma das exigências do projeto.
 
-```sh
-npx create-turbo@latest
+O deploy do front-end foi realizado no Vercel e está disponível [aqui](https://fiap-bytebank.vercel.app/dashboard).
+
+
+![projeto](https://github.com/user-attachments/assets/d73502c9-7e72-4cf6-a66b-84c564c026b1)
+
+
+## Dependências gerais
+
+Requisitos: 
+- pnpm ^10.13.1
+- Node ^18.17.0
+- API Bytebank ([disponível aqui](https://github.com/LisandraFerraz/nest-bytebank-api))
+
+```bash
+npm install -g pnpm (somente utilizado no FED)
+npm install turbo --global (somente utilizado no FED)
+```
+**Importante**: o package manager dessa aplicação é o PNPM devido as features que auxiliam a performance e eficiência no gerenciamento de pacotes instalados na aplicação de um monorepositório, visto que cada projeto em /apps tem o seu próprio package.json e node_modules.
+
+O BFF do projeto está em `/apps/next-bytebank/src/pages/api` e para funcionar corretamente, é necessário criar um aquivo `.env` na pasta do projeto com a seguinte configuração:
+```bash
+NEXT_PUBLIC_API_URL=http://localhost:3003
+```
+O `.env` pode ficar na raíz do projeto, entretanto é recomendado fortemente que cada projeto em `/apps` tenha o próprio environment file.
+## Rodando localmente
+Passos:
+
+1. Comandos para instalação e inicialização:
+
+```bash
+git clone <link-do-repositorio>
+cd fiap-bytbank-fed
+pnpm install
+pnpm dev
 ```
 
-## What's inside?
+1. Altere o valor de `destination=` no arquivo `next.config.ts` em /apps/next-bytebank para `http://localhost:3002/auth/:path*`.
 
-This Turborepo includes the following packages/apps:
+2. Na raíz do projeto, digite o comando:
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@bytebank/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
+```bash
+pnpm dev
 ```
-cd my-turborepo
+### Rodando no Docker
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
+Passos:
+      
+1. Tenha o docker desktop instalado na máquina.
+2. Altere o valor de `destination` no arquivo `next.config.ts` em /apps/next-bytebank para `http://auth-mfe:3002/auth/:path*`.
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
+3. Na raíz do projeto, abra o terminal e digite os comandos:
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+      > docker-compose up --build
+Isso vai construir a imagem e container do projeto, e quando o processo for finalizado, a url da máquina local estará disponível.
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+## Estrutura do projeto
+A arquitetura das pastas segue a proposta do Nextjs para trabalhar com microfrontends. Turbojs foi escolhido pois sua tecnologia já é conhecida pelo Vercel e isso auxilia nos deploys do front-end.
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+      fiap-bytebank-fed/
+      ├─ apps/
+      │  ├─ auth-mfe/
+      │  │  ├─ next.config.ts --> exposição de rota raíz do MFE
+      │  │  └─ Dockerfile --> instruções para o container no Docker
+      │  └─ next-bytebank/
+      │  │  ├─ next.config.ts --> remapeamento de rotas (API e MFE) para o local
+      │  │  ├─ Dockerfile --> instruções para o container no Docker
+      │  │  └─ vercel.json --> remapeamento das rotas (API e MFE) para o vercel
+      ├─ packages/ --> pacotes de componentes e funções compartilhadas no projeto
+      │  ├─ ui/ --> funções
+      │  └─ utils/ --> componentes e estilos
+      ├─ docker-compose.yaml--> configuração do ambiente no docker com os MFEs
+      ├─ package.json --> alguns pacotes usados em ambos os projetos são declarados aqui
+      ├─ pnpm-workspace.yaml --> define as workspaces (apps e pacotes)
+      └─ turbo.json --> configuração do ambiente em monorepositório
 
-### Develop
 
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
