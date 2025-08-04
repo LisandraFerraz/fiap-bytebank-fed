@@ -17,16 +17,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-
-  async rewrites() {
-    return [
-      // api
-      {
-        source: "/nest/:path*",
-        destination: `${process.env.NEXT_PUBLIC_API_URL}/:path*`,
-      },
-    ];
-  },
 };
 
 export default nextConfig;
