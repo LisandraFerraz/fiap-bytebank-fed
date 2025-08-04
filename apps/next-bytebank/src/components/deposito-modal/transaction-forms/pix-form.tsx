@@ -14,9 +14,11 @@ import { useLoader } from "../../../utils/hooks/context-hooks/useLoader";
 export const PixForm = ({
   data,
   closeModal,
+  newFile,
 }: {
   data: any;
   closeModal: () => void;
+  newFile: boolean;
 }) => {
   const { deletePix, updatePix } = UsePix();
   const { showToast } = useToast();

@@ -13,17 +13,19 @@ import { useLoader } from "../../../utils/hooks/context-hooks/useLoader";
 export const EmprestimoForm = ({
   data,
   closeModal,
+  newFile,
 }: {
   data: any;
   closeModal: () => void;
+  newFile: boolean;
 }) => {
   const { deleteLoan, updateLoan } = UseLoans();
   const { showToast } = useToast();
   const { showLoader, hideLoader } = useLoader();
 
   const [updatedLoan, setUpdatedLoan] = useState<any>({
-    valor: 0,
-    valorPago: 0,
+    valor: data.valor,
+    valorPago: data.valorPago,
   });
 
   const handleChangeValues = (key: keyof IEmprestimo, e: any) => {
@@ -112,7 +114,8 @@ export const EmprestimoForm = ({
             click={handlepayLoan}
             disabled={
               isAmountInvalid(updatedLoan.valor) &&
-              isAmountInvalid(updatedLoan.valorPago)
+              isAmountInvalid(updatedLoan.valorPago) &&
+              !newFile
             }
           />
         </div>

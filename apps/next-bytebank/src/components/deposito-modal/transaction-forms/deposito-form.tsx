@@ -22,7 +22,7 @@ export const DepositForm = ({
   const { showLoader, hideLoader } = useLoader();
   const { showToast } = useToast();
 
-  const [newValor, setNewValor] = useState<number>(0);
+  const [newValor, setNewValor] = useState<number>(data.valor);
 
   const handleChangeValues = (value: number) => {
     setNewValor(value);

@@ -1,6 +1,6 @@
 import styles from "./form.module.scss";
 import { useTed } from "../../../utils/hooks/useTed";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, InputText } from "@bytebank/ui";
 import { ITed } from "../../../utils/interfaces/transaction";
 import { BtnClasses } from "../../../utils/types";
@@ -14,9 +14,11 @@ import { useLoader } from "../../../utils/hooks/context-hooks/useLoader";
 export const TedForm = ({
   data,
   closeModal,
+  newFile,
 }: {
   data: any;
   closeModal: () => void;
+  newFile: boolean;
 }) => {
   const { deleteTed, updateTed } = useTed();
   const { showToast } = useToast();
@@ -121,7 +123,6 @@ export const TedForm = ({
             id="agencia"
             label="Agência"
             placeHolder="000"
-            value={updatedTed.agencia}
             onChange={(e) => handleChangeValues("agencia", e.target.value)}
             type="text"
             mask="000"
@@ -135,7 +136,6 @@ export const TedForm = ({
             id="digito"
             label="Dígito"
             placeHolder="0"
-            value={updatedTed.digito}
             onChange={(e) => handleChangeValues("digito", e.target.value)}
             type="number"
             mask="0"
@@ -146,7 +146,6 @@ export const TedForm = ({
             id="descricao"
             label="descrição (opcional)"
             placeHolder="Descrição..."
-            value={updatedTed.descricao}
             onChange={(e) => handleChangeValues("descricao", e.target.value)}
             type="text"
             errorMsg={
@@ -165,7 +164,7 @@ export const TedForm = ({
           <Button
             btnClass={BtnClasses.CONFIRM}
             text="Salvar Alterações"
-            disabled={isTedFormInvalid(updatedTed)}
+            disabled={isTedFormInvalid(updatedTed) && !newFile}
             click={handleUpdateTed}
           />
         </div>

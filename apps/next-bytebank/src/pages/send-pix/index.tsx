@@ -95,7 +95,6 @@ export default function SendPix() {
         <div className={styles.transaction_form}>
           <div className={styles.row}>
             <InputText
-              value={pixBody.valor}
               onChange={(e) => updateBody("valor", e.target.value)}
               id="valor"
               label="Valor"
@@ -110,7 +109,6 @@ export default function SendPix() {
               }
             />
             <InputText
-              value={pixBody.chavePix}
               id="chavePix"
               onChange={(e) => updateBody("chavePix", e.target.value)}
               label="Chave PIX"
@@ -125,7 +123,6 @@ export default function SendPix() {
 
           <div className={styles.row}>
             <InputText
-              value={pixBody.destinatario}
               id="destinatario"
               onChange={(e) => updateBody("destinatario", e.target.value)}
               label="Destinatário"
@@ -139,7 +136,6 @@ export default function SendPix() {
           </div>
           <div className={styles.row}>
             <InputText
-              value={pixBody.descricao}
               id="descricao"
               onChange={(e) => updateBody("descricao", e.target.value)}
               label="descrição (opcional)"

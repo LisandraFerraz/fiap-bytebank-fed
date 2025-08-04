@@ -29,13 +29,17 @@ export const TransactionDetailsModal = ({
         <DepositForm closeModal={onClose} data={modalData} newFile={newFIle} />
       ),
       [TransacationTypes.EMPRESTIMO]: (
-        <EmprestimoForm closeModal={onClose} data={modalData} />
+        <EmprestimoForm
+          closeModal={onClose}
+          data={modalData}
+          newFile={newFIle}
+        />
       ),
       [TransacationTypes.TED]: (
-        <TedForm closeModal={onClose} data={modalData} />
+        <TedForm closeModal={onClose} data={modalData} newFile={newFIle} />
       ),
       [TransacationTypes.PIX]: (
-        <PixForm closeModal={onClose} data={modalData} />
+        <PixForm closeModal={onClose} data={modalData} newFile={newFIle} />
       ),
     };
 

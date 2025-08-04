@@ -55,7 +55,6 @@ export default function Login() {
             id="password"
             label="Senha"
             placeHolder="Sua senha"
-            value={userBody.password}
             type="password"
             errorMsg={
               userBody.password && userBody.password.length < 6
