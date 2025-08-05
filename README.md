@@ -61,8 +61,9 @@ Passos:
 2. Altere o valor de `destination` no arquivo `next.config.ts` em /apps/next-bytebank para `http://auth-mfe:3002/auth/:path*`.
 
 3. Na raíz do projeto, abra o terminal e digite os comandos:
-
-      > docker-compose up --build
+```bash
+docker-compose up --build
+```
 Isso vai construir a imagem e container do projeto, e quando o processo for finalizado, a url da máquina local estará disponível.
 
 ## Estrutura do projeto
