@@ -3,10 +3,10 @@
 A proposta de projeto do Tech Challenge criado pela FIAP para turmas do pós-tech em Front-end Engineering é uma interface que permite os usuários gerenciarem suas transações financeiras.
 
 As tecnologias utilizadas para o desenvolvimento foram:
-- Nextjs + Typescript
-- Turborepo (mono repositório)
-- Multi-zones (microfrontend)
-- Zustand (persistência de dados)
+- [Nextjs + Typescript](https://nextjs.org/docs/pages/getting-started/installation)
+- [Turborepo (mono repositório)](https://turborepo.com/docs/guides/frameworks/nextjs)
+- [Multi-zones (microfrontend)](https://nextjs.org/docs/pages/guides/multi-zones)
+- [Zustand (persistência de dados)](https://zustand.docs.pmnd.rs/guides/nextjs)
 
 O teste local foi feito utilizando Docker compose, conforme uma das exigências do projeto.
 
@@ -19,9 +19,9 @@ O deploy do front-end foi realizado no Vercel e está disponível [aqui](https:/
 ## Dependências gerais
 
 Requisitos: 
-- pnpm ^10.13.1
-- Node ^18.17.0
-- API Bytebank ([disponível aqui](https://github.com/LisandraFerraz/nest-bytebank-api))
+- [pnpm ^10.13.1](https://pnpm.io/installation#using-npm)
+- [Node ^18.18.0](https://www.npmjs.com/package/node/v/18.18.0)
+- [API Bytebank](https://github.com/LisandraFerraz/nest-bytebank-api)
 
 ```bash
 npm install -g pnpm (somente utilizado no FED)
@@ -34,7 +34,7 @@ O BFF do projeto está em `/apps/next-bytebank/src/pages/api` e para funcionar c
 NEXT_PUBLIC_API_URL=http://localhost:3003
 ```
 O `.env` pode ficar na raíz do projeto, entretanto é recomendado fortemente que cada projeto em `/apps` tenha o próprio environment file.
-### Rodando localmente
+## Rodando localmente
 Passos:
 
 1. Comandos para instalação e inicialização:
@@ -66,14 +66,16 @@ Passos:
 Isso vai construir a imagem e container do projeto, e quando o processo for finalizado, a url da máquina local estará disponível.
 
 ## Estrutura do projeto
-A arquitetura das pastas segue a proposta do Nextjs para trabalhar com microfrontends. Turbojs foi escolhido pois sua tecnologia já é conhecida pelo Vercel e isso auxilia nos deploys do front-end.
+A arquitetura das pastas segue a [proposta do Nextjs](https://nextjs.org/docs/pages/guides/multi-zones#sharing-code) para trabalhar com microfrontends. Turbojs foi escolhido pois sua tecnologia já é conhecida pelo Vercel e isso auxilia nos deploys do front-end.
 
       fiap-bytebank-fed/
       ├─ apps/
-      │  ├─ auth-mfe/
+      │  ├─ auth-mfe/ --> microfrontend de autenticação
       │  │  ├─ next.config.ts --> exposição de rota raíz do MFE
       │  │  └─ Dockerfile --> instruções para o container no Docker
-      │  └─ next-bytebank/
+      │  ├─ next-bytebank/ --> host app
+      │  │  ├─ pages/
+      │  │  │  └─api/ --> BFF do projeto
       │  │  ├─ next.config.ts --> remapeamento de rotas (API e MFE) para o local
       │  │  ├─ Dockerfile --> instruções para o container no Docker
       │  │  └─ vercel.json --> remapeamento das rotas (API e MFE) para o vercel
@@ -84,5 +86,3 @@ A arquitetura das pastas segue a proposta do Nextjs para trabalhar com microfron
       ├─ package.json --> alguns pacotes usados em ambos os projetos são declarados aqui
       ├─ pnpm-workspace.yaml --> define as workspaces (apps e pacotes)
       └─ turbo.json --> configuração do ambiente em monorepositório
-
-
