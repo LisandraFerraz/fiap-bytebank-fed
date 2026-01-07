@@ -23,7 +23,16 @@ export const UseAccount = () => {
     });
   };
 
+  const getAccountData = async (): Promise<{ account: IUserConta }> => {
+    return await apiFetch({
+      url: `/api/account?usuarioCpf=${user?.cpf}`,
+      method: "GET",
+      access_token: `${access_token}`,
+    });
+  };
+
   return {
     getAccountDetails,
+    getAccountData,
   };
 };

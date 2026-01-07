@@ -20,7 +20,7 @@ import {
 import { useLoader } from "../../utils/hooks/context-hooks/useLoader";
 
 export default function Dashboard() {
-  const { getAccountDetails } = UseAccount();
+  const { getAccountDetails, getAccountData } = UseAccount();
   const { showLoader, hideLoader } = useLoader();
 
   const { user, account } = UserDataStore((state) => state.data);
@@ -59,12 +59,20 @@ export default function Dashboard() {
     });
   };
 
+  // const getAccountAmount = async () => {
+  //   const data = await getAccountData();
+  //   const amount = data?.account?.saldo;
+  //   setBalanceAmount(amount);
+  // };
+
+  if (!accountDetails) return;
+
   return (
     <>
       {account ? (
         <div className={styles.content}>
           <div className={styles.dashboard_widgets}>
-            <Balance amount={account?.saldo} />
+            <Balance data={accountDetails} />
             <ExpansesChart />
           </div>
 
